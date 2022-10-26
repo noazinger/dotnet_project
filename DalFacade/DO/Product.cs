@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace DO;
 
-    internal class Product
+    internal struct Product
     {
+
     }
 

@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace DO;
 
-    internal class OrderItem
+    public struct OrderItem
     {
-    }
+    int ProductID;
+    int OrderID;
+    double Price;
+    int Amount;
+}
 

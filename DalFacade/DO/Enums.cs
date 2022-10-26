@@ -7,6 +7,7 @@ public enum catagory{
     pents,
     tie,
     shirt,
+    accssories
 
 }
     
