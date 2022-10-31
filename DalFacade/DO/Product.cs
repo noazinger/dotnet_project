@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace DO;
 
-    internal struct Product
-    {
+internal struct Product
+{
     int ID;
     string Name;
     double Price;
-    catagory catagory ;
+    catagory catagory;
     int inStock;
     public override string ToString() => $@"
     ID={ID},
@@ -20,5 +20,5 @@ namespace DO;
     Product catagory={catagory},
     Order Date={OrderDate},
     Amount in Stock = {inStock},
-    }
-
+    "
+        }
