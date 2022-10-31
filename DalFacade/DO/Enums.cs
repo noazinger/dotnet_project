@@ -8,8 +8,7 @@ public enum catagory{
     tie,
     shirt,
     accssories
-
-}
+};
     
     
 
