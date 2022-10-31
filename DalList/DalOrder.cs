@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dal
 {
-    internal class DalOrder
+    internal struct DalOrder
     {
 
     }

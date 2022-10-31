@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dal
 {
-    internal class DalProduct
+    internal struct DalProduct
     {
     }
 }
