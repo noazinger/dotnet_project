@@ -1,8 +1,8 @@
 ﻿using DO;
-using System;
-namespace Dal;
+namespace DalList;
+using Dal;
 
-internal struct DataSource
+public struct DataSource
 {
     private static void s_Initialize()
     {
@@ -45,7 +45,7 @@ internal struct DataSource
         string[] CustomerName = { "Noa", "Tovi", "Gitty" };
         string[] CustomerEmail = { "Noa123@gmail.com", "Tovi40@gmail.com", "Gitty865@gmail.com" };
         string[] CustomerAdress = { "Noa123@gmail.com", "Tovi40@gmail.com", "Gitty865@gmail.com" };
-        for (int i = 0; i < 22; i++)
+        for (int i = 0; i < 3; i++)
         {
             ordersData[i] = new Order();
             ordersData[i].ID = Config.OrderIndex++;
@@ -78,7 +78,7 @@ internal struct DataSource
         };
     }
 
-    internal class Config
+    public  class Config
     {
         static public int OrderIndex = 0;
         static public int OrderItemIndex = 0;

@@ -9,8 +9,8 @@ public  struct DalOrder
     {
         if (DataSource.Config.OrderIndex > 99)
             throw new Exception("There is not enough space");
-        obj.ID= DataSource.Config.OrderIndex;
-        DataSource.ordersData[DataSource.Config.OrderIndex++] = obj;
+         obj.ID= DataSource.Config.OrderIndex++;
+         DataSource.ordersData[DataSource.Config.OrderIndex-1] = obj;
     }
     public static Order ReadSingle(int id)
     {
@@ -24,7 +24,7 @@ public  struct DalOrder
     public static Order[] Read()
     {
         Order[] tempOrders = new Order[DataSource.Config.OrderIndex];
-        for (int i = 0; i < DataSource.Config.OrderIndex + 1; i++)
+        for (int i = 0; i < DataSource.Config.OrderIndex; i++)
         {
             tempOrders[i]= DataSource.ordersData[i];
         }
