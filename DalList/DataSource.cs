@@ -2,22 +2,28 @@
 namespace Dal;
 
     internal struct DataSource
+{
+    private static void s_Initialize()
     {
-        static Random readionly = new Random();
-    OrderItem[] orderItemsArr = new OrderItem[200];
-    Order[] ordersArr = new Order[100];
-    Product[] productsArr=new Product[50];
-    public static void createProductList()
-    {
+        createProductData();
         
     }
-    //int[] ProductsPrice = {200,100,50,40,300,43,450,70,20,120,550};
-    //int[] Amount = { 7, 98, 40, 104, 30, 65, 0, 0, 80, 30, 10, 5, 6, 15, 54 };
-    //Object[] productName = { new { catagory="suit", name="boySuit" },
-    //   new { catagory="pents", name="boyPent" },
-    //   new { catagory="tie", name="patternedTies" },
-    //   new { catagory="shirt", name="longShirt" },
-    //   new { catagory="accssorie", name="cufflinks" },
-    //};
+
+    static DataSource() { s_Initialize(); }
+    static Random readionly = new Random();
+    public static OrderItem[] orderItemsArr = new OrderItem[200];
+    public static Order[] ordersArr = new Order[100];
+   public static Product[] productsData=new Product[50];
+    public static void createProductData()
+    {
+      for(int i = 0; i < 12; i++)
+        {
+            productsData[i] = new Product();
+            productsData[i].ID = readionly.Next(100000, 999999);
+            Array values = Enum.GetValues(typeof(ProductsNames));
+            Random random = new Random();
+           Bar randomBar = (Bar)values.GetValue(random.Next(values.Length))
+        }
+    }
 }
 

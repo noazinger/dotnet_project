@@ -10,18 +10,18 @@ public enum catagory{
     accssories
 };
   
-public enum productNames
+public enum productsNames
 {
     boy_pent ,
       patterned_ties,
       long_shirt,
-        silver cufflinks,
-       100%_cotton_suit,
+        silver_cufflinks,
+       cotton_suit,
        short_Shirt,
        belt,
        grooms_tie,
        black_suit,
-       100%_cotton_shirt
+      cotton_shirt
 };
     
 

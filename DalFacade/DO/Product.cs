@@ -9,11 +9,11 @@ namespace DO;
 
 public struct Product
 {
-    int ID;
-    string Name;
-    double Price;
-    catagory catagory;
-    int inStock;
+    public int ID;
+   public string Name;
+    public double Price;
+    public catagory catagory;
+    public int inStock;
     public override string ToString() => $@"
     ID={ID},
     Product Name={Name}, 
@@ -21,4 +21,4 @@ public struct Product
     Product catagory={catagory},
     Amount in Stock = {inStock},
     ";
-        }
+    }
