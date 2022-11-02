@@ -46,7 +46,6 @@ void ViewOrder()
 void ViewSingleOrder(int id)
 {
     Order orders = DalOrder.ReadSingle(id);
-
 }
 void UpDateOrder()
 {
@@ -105,6 +104,49 @@ void OrderFunc()
         }
     } while ((choice > 0 || choice < 5));
 }
+
+void ProductFunc()
+{
+
+    int choice;
+    do
+    {
+        Console.WriteLine("Please enter your choice: 1. Add orders" +
+      " 2. view orders 3. view single order 4. update order 5. delete order  0. to exit");
+        choice = (int)Convert.ToInt64(Console.ReadLine());
+        try
+        {
+            switch (choice)
+            {
+                case 0:
+                    return;
+                case 1:
+                    AddOrder();
+                    break;
+                case 2:
+                    ViewOrder();
+                    break;
+                case 3:
+                    Console.WriteLine("enter id order to view");
+                    int v_id = (int)Convert.ToInt64(Console.ReadLine());
+                    ViewSingleOrder(v_id);
+                    break;
+                case 4:
+                    UpDateOrder();
+                    break;
+                case 5:
+                    Console.WriteLine("enter th id order to delete");
+                    int d_id = (int)Convert.ToInt64(Console.ReadLine());
+                    DalOrder.Delete(d_id);
+                    break;
+            }
+        }
+        catch (Exception error)
+        {
+            Console.WriteLine(error.ToString());
+        }
+    } while ((choice > 0 || choice < 5));
+}
 void main()
 {
     Console.WriteLine("Please enter your choice: 1. orders 2. products 3. order-items 0. to exit");
@@ -118,8 +160,12 @@ void main()
             case 1:
                 OrderFunc();
                 break;
-        
-                
+            case 2:
+                ProductFunc();
+                break;
+
+
+
         }
     }
     catch (Exception error)
