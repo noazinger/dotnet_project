@@ -123,10 +123,10 @@ void ProductFunc()
                 case 0:
                     return;
                 case 1:
-                    AddOrder();
+                    AddProduct();
                     break;
                 case 2:
-                    ViewOrder();
+                    ViewProduct();
                     break;
                 case 3:
                     Console.WriteLine("enter id order to view");
