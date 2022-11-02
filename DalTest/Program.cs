@@ -46,6 +46,7 @@ void ViewOrder()
 void ViewSingleOrder(int id)
 {
     Order orders = DalOrder.ReadSingle(id);
+    PrintOrder(orders);
 
 }
 void UpDateOrder()
