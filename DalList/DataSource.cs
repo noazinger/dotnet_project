@@ -43,12 +43,7 @@ namespace Dal;
             ordersData[i].ID = Config.OrderIndex++;
             ordersData[i].ShipDate = DateTime.Now;
             ordersData[i].OrderDate = DateTime.Now;
-            ordersData[i].DeliveryDate = DateTime.Now;
-            int Irnd = readionly.Next(0, TupleProduct.Length);
-            productsData[i].catagory = TupleProduct[Irnd].Item1;
-            productsData[i].Name = TupleProduct[Irnd].Item2;
-            productsData[i].Price = readionly.Next(100, 650);
-            productsData[i].inStock = readionly.Next(0, 200);//לאתחל 5 אחוז מהמוצרים ב-0\        
+            ordersData[i].DeliveryDate = DateTime.Now;        
         };
     }
     public class Config
