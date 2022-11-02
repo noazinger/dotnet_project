@@ -22,7 +22,7 @@ namespace Dal;
             productsData[i].ID = readionly.Next(100000, 999999);
             Array values = Enum.GetValues(typeof(ProductsNames));
             Random random = new Random();
-           Bar randomBar = (Bar)values.GetValue(random.Next(values.Length))
+            Bar randomBar = (Bar)values.GetValue(random.Next(values.Length));
         }
     }
 }
