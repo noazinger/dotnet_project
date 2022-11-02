@@ -13,7 +13,7 @@ public struct DataSource
 
 
     public static (catagory, string)[] TupleProduct = new[] {
-        (catagory.suit, "black_suit"), (catagory.pents, "boy_pent"),
+        (catagory.suit, "black_suit"), (catagory.pants, "boy_pent"),
         (catagory.tie, "patterned_ties"),(catagory.shirt, "long_shirt"),
         (catagory.accssories, "silver_cufflinks"),(catagory.suit, "cotton_suit"),
         (catagory.accssories, "belt"),(catagory.shirt, "short_Shirt"),

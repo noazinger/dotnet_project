@@ -1,8 +1,9 @@
 ﻿using DalList;
 using DO;
-namespace Dal;
 
-internal struct DalProduct
+namespace DalList;
+
+public struct DalProduct
 {
     public static void Create(Product obj)
     {

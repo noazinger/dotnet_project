@@ -43,12 +43,14 @@ void ViewOrder()
         PrintOrder(ordersArr[i]);
     }
 }
+
 void ViewSingleOrder(int id)
 {
     Order orders = DalOrder.ReadSingle(id);
     PrintOrder(orders);
 
 }
+
 void UpDateOrder()
 {
     Order newOrder = new Order();
@@ -109,7 +111,6 @@ void OrderFunc()
 
 void ProductFunc()
 {
-
     int choice;
     do
     {
@@ -129,17 +130,17 @@ void ProductFunc()
                     ViewProduct();
                     break;
                 case 3:
-                    Console.WriteLine("enter id order to view");
+                    Console.WriteLine("enter id product to view");
                     int v_id = (int)Convert.ToInt64(Console.ReadLine());
-                    ViewSingleOrder(v_id);
+                    ViewSingleProduct(v_id);
                     break;
                 case 4:
-                    UpDateOrder();
+                    UpDateProduct();
                     break;
                 case 5:
-                    Console.WriteLine("enter th id order to delete");
+                    Console.WriteLine("enter th id product to delete");
                     int d_id = (int)Convert.ToInt64(Console.ReadLine());
-                    DalOrder.Delete(d_id);
+                    DalProduct.Delete(d_id);
                     break;
             }
         }
@@ -148,6 +149,56 @@ void ProductFunc()
             Console.WriteLine(error.ToString());
         }
     } while ((choice > 0 || choice < 5));
+}
+
+void AddProduct()
+{
+    Product product = new Product();
+    int id = DataSource.Config.ProductIndex++;
+    product.ID = id;
+    Console.WriteLine("enter name for the new product");
+    product.Name = Console.ReadLine();
+    Console.WriteLine("enter the product's category: 1 - suit, 2 - pants, 3 - tie, 4 -  shirt, 5 - accssories");
+    int choice = (int)Convert.ToInt64(Console.ReadLine());
+    product.catagory = (catagory)choice;
+    Console.WriteLine("enter price for the new product");
+    product.Price = float.Parse(Console.ReadLine());
+    Console.WriteLine("enter amount in stock");
+    Console.WriteLine("enter the amout of product in stock");
+    product.inStock = (int)Convert.ToInt64(Console.ReadLine());
+    DalProduct.Create(product);
+}
+
+void ViewProduct()
+{
+    Product[] ProductArr = DalProduct.Read();
+    for (int i = 0; i < ProductArr.Length; i++)
+    {
+        Console.WriteLine(ProductArr[i]);
+    }
+}
+
+void ViewSingleProduct(int id)
+{
+    Product Product = DalProduct.ReadSingle(id);
+    Console.WriteLine(Product);
+}
+
+void UpDateProduct()
+{
+    Product newProduct = new Product();
+    Console.WriteLine("enter the id order to update");
+    newProduct.ID = (int)Convert.ToInt64(Console.ReadLine());
+    Console.WriteLine("enter  name");
+    newProduct.Name = Console.ReadLine();
+    Console.WriteLine("enter price");
+    newProduct.Price = float.Parse(Console.ReadLine());
+    Console.WriteLine("enter costumer category");
+    int choice = (int)Convert.ToInt64(Console.ReadLine());
+    newProduct.catagory = (catagory)choice;
+    Console.WriteLine("enter costumer inStock");
+    newProduct.inStock = (int)Convert.ToInt64(Console.ReadLine());
+    DalProduct.UpDate(newProduct);
 }
 void main()
 {

@@ -1,7 +1,7 @@
 ﻿namespace DO;
 public enum catagory{
     suit,
-    pents,
+    pants,
     tie,
     shirt,
     accssories
