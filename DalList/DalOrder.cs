@@ -42,6 +42,7 @@ public  struct DalOrder
                 DataSource.ordersData[i]=  DataSource.ordersData[DataSource.Config.OrderIndex];
                 DataSource.ordersData[DataSource.Config.OrderIndex]= tmp;
                 DataSource.Config.OrderIndex--;
+                return;
             }
 
         }
@@ -49,11 +50,12 @@ public  struct DalOrder
     }
     public static void UpDate(Order obj)
     {
-        for (int i = 0; i < DataSource.Config.OrderIndex + 1; i++)
+        for (int i = 0; i < DataSource.Config.OrderIndex; i++)
         {
             if (DataSource.ordersData[i].ID == obj.ID)
             {
                 DataSource.ordersData[i] = obj;
+                return;
             }
 
         }
