@@ -84,7 +84,6 @@ internal struct DataSource
         static public int OrderItemIndex = 0;
         static public int OrderFinalIndex = 100;
         static public int ProductIndex = 0;
-        internal int getOrderFinalIndex() { return OrderFinalIndex++; }
 
 
 
