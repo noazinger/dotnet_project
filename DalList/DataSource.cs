@@ -18,12 +18,13 @@ namespace Dal;
     };
     static DataSource() { s_Initialize(); }
     static Random readionly = new Random();
-    public static OrderItem[] orderItemsArr = new OrderItem[200];
+    public static OrderItem[] orderItemsData = new OrderItem[200];
     public static Order[] ordersData = new Order[100];
-   public static Product[] productsData=new Product[50];
+    public static Product[] productsData=new Product[50];
+
     public static void createProductData()
     {
-      for(int i = 0; i < 12; i++)
+      for(int i = 0; i < 10; i++)
         {
             productsData[i] = new Product();
             productsData[i].ID = readionly.Next(100000, 999999);
@@ -51,9 +52,33 @@ namespace Dal;
             productsData[i].inStock = readionly.Next(0, 200);//לאתחל 5 אחוז מהמוצרים ב-0\        
         };
     }
-    public class Config
+    public static void createOrderItemData()
     {
-        static public int OrderIndex = 10000000;
+        for (int i = 0; i < 22; i++)
+        {
+            int orderIndex = readionly.Next(0, ordersData.Length);
+            int orderId = ordersData[orderIndex].ID;
+            int rnd = readionly.Next(0, 5);
+            for (int j = 0; j < rnd; j++)
+            {
+                orderItemsData[i] = new OrderItem();
+                orderItemsData[i].OrderID = orderId;
+                int productIndex = readionly.Next(0, productsData.Length);
+                orderItemsData[i].ProductID = productsData[productIndex].ID;
+                orderItemsData[i].Amount = readionly.Next(0, productsData[productIndex].inStock);
+                orderItemsData[i].Price = orderItemsData[i].Amount * productsData[productIndex].Price;
+            };
+        };
+    }
+    internal class Config
+    {
+        static public int OrderIndex = 0;
+        static public int OrderiTemIndex = 0;
+        static public int OrderFinalIndex = 100;
+        internal int getOrderFinalIndex() { return OrderFinalIndex++; }
+
+
+
     }
 
 
