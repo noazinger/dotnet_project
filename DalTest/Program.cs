@@ -65,11 +65,13 @@ void UpDateOrder()
 
 void OrderFunc()
 {
-    Console.WriteLine("Please enter your choice: 1. Add orders" +
-        " 2. view orders 3. view single order 4. update order 5. delete order  0. to exit");
-    int choice = (int)Convert.ToInt64(Console.ReadLine());
-    while (choice > 0 || choice < 5)
+
+    int choice;
+    do
     {
+        Console.WriteLine("Please enter your choice: 1. Add orders" +
+      " 2. view orders 3. view single order 4. update order 5. delete order  0. to exit");
+        choice = (int)Convert.ToInt64(Console.ReadLine());
         try
         {
             switch (choice)
@@ -101,7 +103,7 @@ void OrderFunc()
         {
             Console.WriteLine(error.ToString());
         }
-    }
+    } while ((choice > 0 || choice < 5));
 }
 void main()
 {

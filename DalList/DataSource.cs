@@ -85,8 +85,6 @@ internal struct DataSource
         static public int OrderFinalIndex = 100;
         static public int ProductIndex = 0;
 
-
-
     }
 }
 
