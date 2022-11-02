@@ -17,7 +17,6 @@ namespace DO;
         Product ID={ProductID}, 
         Order ID = {OrderID},
     	Price= {Price},
-    	Amount= {Amount}
-";
+    	Amount= {Amount}";
 }
 

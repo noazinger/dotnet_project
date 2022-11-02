@@ -2,7 +2,7 @@
 using System;
 namespace Dal;
 
-    internal struct DataSource
+internal struct DataSource
 {
     private static void s_Initialize()
     {
@@ -23,11 +23,11 @@ namespace Dal;
     static Random readionly = new Random();
     public static OrderItem[] orderItemsData = new OrderItem[200];
     public static Order[] ordersData = new Order[100];
-    public static Product[] productsData=new Product[50];
+    public static Product[] productsData = new Product[50];
 
     public static void createProductData()
     {
-      for(int i = 0; i < 10; i++)
+        for (int i = 0; i < 10; i++)
         {
             productsData[i] = new Product();
             productsData[i].ID = readionly.Next(100000, 999999);
@@ -77,6 +77,7 @@ namespace Dal;
             };
         };
     }
+
     internal class Config
     {
         static public int OrderIndex = 0;
@@ -88,7 +89,8 @@ namespace Dal;
 
 
     }
-
-
 }
+
+
+
 
