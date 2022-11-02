@@ -1,7 +1,4 @@
-﻿
-
-namespace DO;
-
+﻿namespace DO;
 public enum catagory{
     suit,
     pents,
@@ -9,7 +6,6 @@ public enum catagory{
     shirt,
     accssories
 };
-  
 public enum productsNames
 {
     boy_pent ,
