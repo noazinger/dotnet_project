@@ -148,7 +148,7 @@ void ProductFunc()
         {
             Console.WriteLine(error.ToString());
         }
-    } while ((choice > 0 || choice < 5));
+    } while ((choice > 0 && choice < 5));
 }
 
 void AddProduct()
@@ -204,27 +204,31 @@ void main()
 {
     Console.WriteLine("Please enter your choice: 1. orders 2. products 3. order-items 0. to exit");
     int choice = (int)Convert.ToInt64(Console.ReadLine());
-    try
+    do
     {
-        switch (choice)
+        try
         {
-            case 0:
-                return;
-            case 1:
-                OrderFunc();
-                break;
-            case 2:
-                ProductFunc();
-                break;
+            switch (choice)
+            {
+                case 0:
+                    return;
+                case 1:
+                    OrderFunc();
+                    break;
+                case 2:
+                    ProductFunc();
+                    break;
+                case 3:
+                    OrderItemFunc();
+                    break;
 
-
-
+            }
         }
-    }
-    catch (Exception error)
-    {
-        Console.WriteLine(error.ToString());
-    }
+        catch (Exception error)
+        {
+            Console.WriteLine(error.ToString());
+        }
+    } while (choice >= 1 && choice <= 3);
    
 }
 main();
