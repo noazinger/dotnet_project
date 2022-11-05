@@ -2,12 +2,9 @@
 using DO;
 using DalList;
 
-
-
-
+//================ Order Functions ================//
 void AddOrder()
 {  
- 
     Order newOrder=new Order();
     Console.WriteLine("enter costumer name");
     newOrder.CustomerName= Console.ReadLine();
@@ -32,9 +29,8 @@ void PrintOrder(Order obj)
     Console.WriteLine("order date:" + obj.OrderDate);
     Console.WriteLine("ship date:" + obj.ShipDate);
     Console.WriteLine("delivery date:" + obj.DeliveryDate);
-
-
 }
+
 void ViewOrder()
 {
     Order[] ordersArr = DalOrder.Read();
@@ -63,24 +59,20 @@ void UpDateOrder()
     Console.WriteLine("enter costumer address");
     newOrder.CustomerAdress = Console.ReadLine();
     DalOrder.UpDate(newOrder);
-
 }
 
 void OrderFunc()
 {
-
     int choice;
     do
     {
-        Console.WriteLine("Please enter your choice: 1. Add orders" +
-      " 2. view orders 3. view single order 4. update order 5. delete order  0. to exit");
+        Console.WriteLine("Please enter your choice: 1. Add orders  " +
+        "2. view orders 3. view single order 4. update order 5. delete order  0. to exit");
         choice = (int)Convert.ToInt64(Console.ReadLine());
         try
         {
             switch (choice)
             {
-                case 0:
-                    return;
                 case 1:
                     AddOrder();
                     break;
@@ -106,23 +98,23 @@ void OrderFunc()
         {
             Console.WriteLine(error.ToString());
         }
-    } while ((choice > 0 || choice < 5));
+    }while(choice!=0);
 }
+
+//================ Product Functions ================//
 
 void ProductFunc()
 {
     int choice;
     do
     {
-        Console.WriteLine("Please enter your choice: 1. Add orders" +
-      " 2. view orders 3. view single order 4. update order 5. delete order  0. to exit");
+        Console.WriteLine("Please enter your choice: 1. Add products " +
+        " 2. view products 3. view single product 4. update product 5. delete product");
         choice = (int)Convert.ToInt64(Console.ReadLine());
         try
         {
             switch (choice)
             {
-                case 0:
-                    return;
                 case 1:
                     AddProduct();
                     break;
@@ -148,7 +140,7 @@ void ProductFunc()
         {
             Console.WriteLine(error.ToString());
         }
-    } while ((choice > 0 && choice < 5));
+    }while (choice!=0);
 }
 
 void AddProduct()
@@ -163,8 +155,7 @@ void AddProduct()
     product.catagory = (catagory)choice;
     Console.WriteLine("enter price for the new product");
     product.Price = float.Parse(Console.ReadLine());
-    Console.WriteLine("enter amount in stock");
-    Console.WriteLine("enter the amout of product in stock");
+    Console.WriteLine("enter the amount of product");
     product.inStock = (int)Convert.ToInt64(Console.ReadLine());
     DalProduct.Create(product);
 }
@@ -200,18 +191,105 @@ void UpDateProduct()
     newProduct.inStock = (int)Convert.ToInt64(Console.ReadLine());
     DalProduct.UpDate(newProduct);
 }
-void main()
+
+//================ Order-Item Functions ================//
+
+void AddOrderItem()
 {
-    Console.WriteLine("Please enter your choice: 1. orders 2. products 3. order-items 0. to exit");
-    int choice = (int)Convert.ToInt64(Console.ReadLine());
+    OrderItem newOrderItem = new OrderItem();
+    Console.WriteLine("enter order id");
+    newOrderItem.OrderID = (int)Convert.ToInt64(Console.ReadLine());
+    Console.WriteLine("enter Product id");
+    newOrderItem.ProductID = (int)Convert.ToInt64(Console.ReadLine());
+    Console.WriteLine("enter  amount");
+    newOrderItem.Amount = (int)Convert.ToInt64(Console.ReadLine());
+    Console.WriteLine("enter  price");
+    newOrderItem.Price = (int)Convert.ToInt64(Console.ReadLine());
+    DalOrderItem.Create(newOrderItem);
+}
+void ViewOrdersItems()
+{
+    OrderItem[] orderItemsArr = DalOrderItem.Read();
+    for (int i = 0; i < orderItemsArr.Length; i++)
+    {
+        Console.WriteLine(orderItemsArr[i]);
+    }
+}
+void ViewSingleOrderItem()
+{
+    Console.WriteLine("enter id order to view");
+    int v_id = (int)Convert.ToInt64(Console.ReadLine());
+    OrderItem orderItem = DalOrderItem.ReadSingle(v_id);
+    Console.WriteLine(orderItem);
+}
+void UpDateOrderItem()
+{
+    OrderItem newOrderItem = new OrderItem();
+    Console.WriteLine("enter the id order to update");
+    newOrderItem.OrderID = (int)Convert.ToInt64(Console.ReadLine());
+    Console.WriteLine("enter order id");
+    newOrderItem.OrderID = (int)Convert.ToInt64(Console.ReadLine());
+    Console.WriteLine("enter product id");
+    newOrderItem.ProductID = (int)Convert.ToInt64(Console.ReadLine());
+    Console.WriteLine("enter amount");
+    newOrderItem.Amount = (int)Convert.ToInt64(Console.ReadLine());
+    newOrderItem.Price = (int)Convert.ToInt64(Console.ReadLine());
+    DalOrderItem.UpDate(newOrderItem);
+
+}
+
+void OrderItemFunc()
+{
+    int choice;
     do
     {
+        Console.WriteLine("Please enter your choice: 1. Add order item" +
+      " 2. view orders items 3. view single order item 4. update order item 5. delete order item");
+        choice = (int)Convert.ToInt64(Console.ReadLine());
         try
         {
             switch (choice)
             {
                 case 0:
                     return;
+                case 1:
+                    AddOrderItem();
+                    break;
+                case 2:
+                    ViewOrdersItems();
+                    break;
+                case 3:
+
+                    ViewSingleOrderItem();
+                    break;
+                case 4:
+                    UpDateOrderItem();
+                    break;
+                case 5:
+                    Console.WriteLine("enter th id product to delete");
+                    int d_id = (int)Convert.ToInt64(Console.ReadLine());
+                    DalProduct.Delete(d_id);
+                    break;
+            }
+        }
+        catch (Exception error)
+        {
+            Console.WriteLine(error.ToString());
+        }
+    }while (choice!=0);
+}
+
+void main()
+{
+    int choice;
+    do
+    {
+        Console.WriteLine("Please enter your choice: 1. orders 2. products 3. order-items 0. to exit");
+        choice = (int)Convert.ToInt64(Console.ReadLine());
+        try
+        {
+            switch (choice)
+            {
                 case 1:
                     OrderFunc();
                     break;
@@ -221,14 +299,12 @@ void main()
                 case 3:
                     OrderItemFunc();
                     break;
-
             }
         }
         catch (Exception error)
         {
             Console.WriteLine(error.ToString());
         }
-    } while (choice >= 1 && choice <= 3);
-   
+    } while (choice!=0);
 }
 main();

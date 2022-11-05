@@ -1,6 +1,5 @@
 ﻿using DalList;
 using DO;
-
 namespace DalList;
 
 public struct DalProduct

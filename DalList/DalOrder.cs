@@ -1,9 +1,8 @@
 ﻿
 using DO;
 namespace DalList;
-using Dal;
 
-public  struct DalOrder
+public struct DalOrder
 {
     public static void Create(Order obj)
     {

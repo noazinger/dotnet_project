@@ -1,7 +1,6 @@
-﻿using DO;
+﻿using DalList;
+using DO;
 namespace DalList;
-using Dal;
-
 public struct DataSource
 {
     private static void s_Initialize()
@@ -10,7 +9,6 @@ public struct DataSource
         createOrderData();
         createOrderItemData();
     }
-
 
     public static (catagory, string)[] TupleProduct = new[] {
         (catagory.suit, "black_suit"), (catagory.pants, "boy_pent"),
@@ -44,7 +42,7 @@ public struct DataSource
     {
         string[] CustomerName = { "Noa", "Tovi", "Gitty" };
         string[] CustomerEmail = { "Noa123@gmail.com", "Tovi40@gmail.com", "Gitty865@gmail.com" };
-        string[] CustomerAdress = { "Noa123@gmail.com", "Tovi40@gmail.com", "Gitty865@gmail.com" };
+        string[] CustomerAdress = { "Kotcher_8", "Revivim_26", "Bleui_65" };
         for (int i = 0; i < 3; i++)
         {
             ordersData[i] = new Order();
@@ -84,7 +82,6 @@ public struct DataSource
         static public int OrderItemIndex = 0;
         static public int OrderFinalIndex = 100;
         static public int ProductIndex = 0;
-
     }
 }
 
