@@ -40,6 +40,7 @@ public struct DalOrderItem
                 DataSource.orderItemsData[i] = DataSource.orderItemsData[DataSource.Config.OrderItemIndex];
                 DataSource.orderItemsData[DataSource.Config.OrderItemIndex] = temp;
                 DataSource.Config.OrderItemIndex--;
+                return;
             }
         }
         throw new Exception("Product isn't exist");
@@ -52,6 +53,7 @@ public struct DalOrderItem
             if (DataSource.orderItemsData[i].ProductID== obj.ProductID)
             {
                 DataSource.orderItemsData[i] = obj;
+                return;
             }
         }
         throw new Exception("Product isn't exist");

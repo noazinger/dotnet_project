@@ -46,6 +46,7 @@ public struct DalProduct
                 DataSource.productsData[i]= DataSource.productsData[DataSource.Config.ProductIndex];
                 DataSource.productsData[DataSource.Config.ProductIndex]= temp;
                 DataSource.Config.ProductIndex--;
+                return;
             }
         }
         throw new Exception("Product isn't exist");
@@ -58,6 +59,7 @@ public struct DalProduct
             if (DataSource.productsData[i].ID == obj.ID)
             {
                 DataSource.productsData[i] = obj;
+                return;
             }
         }
         throw new Exception("Product isn't exist");
