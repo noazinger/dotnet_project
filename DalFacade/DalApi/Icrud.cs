@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Collections;
 namespace DalApi
 {
-    internal interface Icrud
+    public interface Icrud <T>
     {
         void Create <T> (T n);
         void Update<T> (T n);
