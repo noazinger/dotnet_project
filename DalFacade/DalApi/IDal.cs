@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DO;
 namespace DalApi
 {
-    internal class IDal
+    public interface IDal
     {
-        Order _order { get;  }
-        Product _product { get; }
-        OrderItem _orderItem { get;}
+        public IOrder Order { get;  }
+        public IProduct Product { get; }
+        public IOrderItem OrderItem { get;}
     }
 }
