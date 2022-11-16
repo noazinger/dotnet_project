@@ -6,8 +6,33 @@ using System.Threading.Tasks;
 
 namespace DalApi
 {
-    internal class Exceptions
+    public class NotFoundException : Exception
     {
 
+        public override string Message => "not found";
+
+
     }
+    public class DuplicateException : Exception
+    {
+
+        public override string Message => "exist";
+
+
+    }
+    public class StackOverFlowException : Exception
+    {
+
+        public override string Message => "Stack overflow -there is not enough space";
+
+
+    }
+    public class NotValidException : Exception
+    {
+
+        public override string Message => "the input is not valid";
+
+
+    }
+
 }
