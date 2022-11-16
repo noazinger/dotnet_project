@@ -1,4 +1,9 @@
-﻿using DalList;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using DalList;
 using DO;
 namespace DalList;
 public struct DataSource
@@ -19,10 +24,11 @@ public struct DataSource
     };
     static DataSource() { s_Initialize(); }
     static Random readionly = new Random();
-    public static OrderItem[] orderItemsData = new OrderItem[200];
-    public static Order[] ordersData = new Order[100];
-    public static Product[] productsData = new Product[50];
-
+    List<OrderItem> [] sorderItemsData = new List<OrderItem>[200];
+    List<Order>[] ordersData = new List<Order>[100];                                      ;
+    List<Product>[] productsData = new List<Product>[50];                                      ;
+/*    public static Product[] productsData = new Product[50];
+*/
     public static void createProductData()
     {
         for (int i = 0; i < 10; i++)
