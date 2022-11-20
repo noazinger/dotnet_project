@@ -24,7 +24,7 @@ public struct DataSource
     };
     static DataSource() { s_Initialize(); }
     static Random readionly = new Random();
-    public static List<OrderItem> sorderItemsData = new List<OrderItem>();
+    public static List<OrderItem> orderItemsData = new List<OrderItem>();
     public static List<Order> ordersData = new List<Order>();
     public static List<Product> productsData = new List<Product>();
     /*    public static Product[] productsData = new Product[50];
@@ -62,7 +62,7 @@ public struct DataSource
             order.OrderDate = DateTime.MinValue;
             TimeSpan delivery = TimeSpan.FromDays(2);
             order.DeliveryDate = order.OrderDate + delivery;
-            TimeSpan shipDays = TimeSpan.FromDays(7);-
+            TimeSpan shipDays = TimeSpan.FromDays(7);
             order.ShipDate = order.DeliveryDate + shipDays;
             ordersData.Add(order);
         };
@@ -81,7 +81,7 @@ public struct DataSource
                 int productIndex = readionly.Next(0, productsData.Count());
                 orderItem.ProductID = productsData[productIndex].ID;
                 orderItem.Amount = readionly.Next(0, productsData[productIndex].inStock);
-                orderItem.Price = orderItemsData[i].Amount * productsData[productIndex].Price;
+                orderItem.Price = orderItem.Amount * productsData[productIndex].Price;
                 orderItemsData.Add(orderItem);
             };
         };
