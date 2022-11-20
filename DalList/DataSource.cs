@@ -75,8 +75,8 @@ public struct DataSource
             for (int j = 0; j < rnd; j++)
             {
                 OrderItem orderItem = new OrderItem();
-/*                orderItemsData[i] = new OrderItem();
-*/                orderItem.OrderID = orderId;
+/*              orderItemsData[i] = new OrderItem();
+*/              orderItem.OrderID = orderId;
                 int productIndex = readionly.Next(0, productsData.Length);
                 orderItemsData[i].ProductID = productsData[productIndex].ID;
                 orderItemsData[i].Amount = readionly.Next(0, productsData[productIndex].inStock);
