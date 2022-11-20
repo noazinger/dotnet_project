@@ -2,54 +2,54 @@
 using DalList;
 using DO;
 namespace DalList;
-public struct DalOrderItem
-{
+using DalApi;
 
-    public static void Create(OrderItem obj)
+public struct DalOrderItem:IOrderItem
+{
+    static public int size = DataSource.orderItemsData.Count();
+    public void Create(OrderItem obj)
     {
-        if (DataSource.Config.OrderItemIndex > 200)
-            throw new Exception("There is not enough space");
-        DataSource.orderItemsData[DataSource.Config.OrderItemIndex++] = obj;
+        if (size > 200)
+            throw new StackOverFlowException();
+        DataSource.orderItemsData.Add(obj);
     }
 
-    public static OrderItem ReadSingle(int Id)
+    public  OrderItem ReadSingle(int Id)
     {
-        for (int i = 0; i < DataSource.Config.OrderItemIndex; i++)
+        for (int i = 0; i < size; i++)
         {
             if (DataSource.orderItemsData[i].ProductID == Id)
                 return DataSource.orderItemsData[i];
         }
-        throw new Exception("The product isn't exist");
+        throw new NotFoundException();
     }
 
-    public static OrderItem[] Read()
-    {
-        OrderItem[] tempOrderItem = new OrderItem[DataSource.Config.OrderItemIndex];
-        for (int i = 0; i < DataSource.Config.ProductIndex; i++)
+
+  
+        public IEnumerable<OrderItem> Read()
         {
-            tempOrderItem[i] = DataSource.orderItemsData[i];
+            if (size != 0)
+                return DataSource.orderItemsData;
+            throw new DataIsEmpty();
+
         }
-        return tempOrderItem;
-    }
-    public static void Delete(int Id)
+    
+    public  void Delete(int Id)
     {
-        for (int i = 0; i < DataSource.Config.OrderItemIndex; i++)
+        for (int i = 0; i < size; i++)
         {
             if (DataSource.orderItemsData[i].ProductID == Id)
             {
-                OrderItem temp = DataSource.orderItemsData[i];
-                DataSource.orderItemsData[i] = DataSource.orderItemsData[DataSource.Config.OrderItemIndex];
-                DataSource.orderItemsData[DataSource.Config.OrderItemIndex] = temp;
-                DataSource.Config.OrderItemIndex--;
+                DataSource.orderItemsData.Remove(DataSource.orderItemsData[i]);
                 return;
             }
         }
-        throw new Exception("Product isn't exist");
+        throw new NotFoundException();
     }
 
-    public static void UpDate(OrderItem obj)
+    public  void Update(OrderItem obj)
     {
-        for (int i = 0; i < DataSource.Config.OrderItemIndex; i++)
+        for (int i = 0; i < size; i++)
         {
             if (DataSource.orderItemsData[i].ProductID== obj.ProductID)
             {
@@ -57,6 +57,6 @@ public struct DalOrderItem
                 return;
             }
         }
-        throw new Exception("Product isn't exist");
+        throw new NotFoundException();
     }
 }

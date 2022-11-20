@@ -1,59 +1,53 @@
 ﻿using DalApi;
 using DO;
 
-namespace Dal;
 
 namespace DalList;
-
-
-public struct DalOrder
+using DalApi;
+internal class  DalOrder: IOrder
 {
-    public static void Create(Order obj)
+    public static int size = DataSource.ordersData.Count();
+    public  void Create(Order obj)
     {
-        if (DataSource.Config.OrderIndex > 99)
-            throw new Exception("There is not enough space");
-         obj.ID= DataSource.Config.OrderIndex++;
-         DataSource.ordersData[DataSource.Config.OrderIndex-1] = obj;
+        if (size > 99)
+            throw new StackOverFlowException();
+         obj.ID= DataSource.Config.ID;
+         DataSource.ordersData.Add(obj);
     }
-    public static Order ReadSingle(int id)
+
+    public  Order ReadSingle(int id)
     {
-        for(int i=0;i< DataSource.Config.OrderIndex; i++)
+        for(int i=0;i< size; i++)
         {
-            if (DataSource.ordersData[i].ID == id) return DataSource.ordersData[i];
+           if (DataSource.ordersData[i].ID == id) return DataSource.ordersData[i];
         }
-        throw new Exception("The order does not exist");
+        throw new NotFoundException();
 
     }
-    public static Order[] Read()
+
+    public IEnumerable<Order>Read()
     {
-        Order[] tempOrders = new Order[DataSource.Config.OrderIndex];
-        for (int i = 0; i < DataSource.Config.OrderIndex; i++)
-        {
-            tempOrders[i]= DataSource.ordersData[i];
-        }
-        return tempOrders;
+        if (size != 0)
+            return DataSource.ordersData;
+        throw new DataIsEmpty();
 
     }
-    public static void Delete(int id)
+    public void Delete(int id)
     {
-        for (int i = 0; i < DataSource.Config.OrderIndex + 1; i++)
+        for (int i = 0; i < size; i++)
         {
             if (DataSource.ordersData[i].ID == id)
             {
-                Order tmp = new Order();
-                tmp = DataSource.ordersData[i];
-                DataSource.ordersData[i]=  DataSource.ordersData[DataSource.Config.OrderIndex];
-                DataSource.ordersData[DataSource.Config.OrderIndex]= tmp;
-                DataSource.Config.OrderIndex--;
+                DataSource.ordersData.Remove(DataSource.ordersData[i]);
                 return;
             }
 
         }
-        throw new Exception("The order does not exist");
+        throw new NotFoundException();
     }
-    public static void UpDate(Order obj)
+    public  void Update(Order obj)
     {
-        for (int i = 0; i < DataSource.Config.OrderIndex; i++)
+        for (int i = 0; i < size; i++)
         {
             if (DataSource.ordersData[i].ID == obj.ID)
             {
@@ -62,9 +56,14 @@ public struct DalOrder
             }
 
         }
-        throw new Exception("The order does not exist");
+        throw new NotFoundException();
     }
 
 
 
 }
+
+
+
+
+

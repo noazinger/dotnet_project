@@ -2,60 +2,57 @@
 using DalApi;
 using DO;
 namespace DalList;
+using DalApi;
 
-public struct DalProduct
+public struct DalProduct:IProduct
 {
-    public static void Create(Product obj)
+    static public int size = DataSource.productsData.Count();
+    public  void Create(Product obj)
     {
         if (DataSource.Config.ProductIndex > 49)
         {
-            throw new Exception("There isn't enough space");
+            throw new StackOverFlowException();
         }
-        DataSource.productsData[DataSource.Config.ProductIndex++] = obj;
+        DataSource.productsData.Add(obj);
     }
-    public static Product ReadSingle(int Id)
+    public  Product ReadSingle(int Id)
     {
         if (Id < 100000 || Id > 999999)
         {
-            throw new Exception("ID isn't valid");
+            throw new NotValidException();
         }
-        for(int i = 0; i < DataSource.Config.ProductIndex; i++)
+        for(int i = 0; i < size; i++)
         {
             if (DataSource.productsData[i].ID == Id)
                 return DataSource.productsData[i];
         }
-        throw new Exception("The product isn't exist");
+        throw new NotFoundException();
     }
 
-    public static Product[] Read()
+    public IEnumerable<Product> Read()
     {
-        Product[] tempProducts = new Product[DataSource.Config.ProductIndex];
-        for(int i = 0; i < DataSource.Config.ProductIndex; i++)
-        {
-            tempProducts[i] = DataSource.productsData[i];
-        }
-        return tempProducts;
+        if (size != 0)
+            return DataSource.productsData;
+        throw new DataIsEmpty();
+
     }
 
-    public static void Delete(int Id)
+    public  void Delete(int Id)
     {
-        for (int i = 0; i < DataSource.Config.ProductIndex; i++)
+        for (int i = 0; i < size; i++)
         {
             if(DataSource.productsData[i].ID == Id)
             {
-                Product temp=DataSource.productsData[i];
-                DataSource.productsData[i]= DataSource.productsData[DataSource.Config.ProductIndex];
-                DataSource.productsData[DataSource.Config.ProductIndex]= temp;
-                DataSource.Config.ProductIndex--;
+                DataSource.productsData.Remove(DataSource.productsData[i]);
                 return;
             }
         }
-        throw new Exception("Product isn't exist");
+        throw new NotFoundException();
     }
 
-    public static void UpDate(Product obj)
+    public  void Update(Product obj)
     {
-        for (int i = 0; i < DataSource.Config.ProductIndex; i++)
+        for (int i = 0; i < size; i++)
         {
             if (DataSource.productsData[i].ID == obj.ID)
             {
@@ -63,6 +60,6 @@ public struct DalProduct
                 return;
             }
         }
-        throw new Exception("Product isn't exist");
+        throw new NotFoundException();
     }
 }

@@ -27,8 +27,6 @@ public struct DataSource
     public static List<OrderItem> orderItemsData = new List<OrderItem>();
     public static List<Order> ordersData = new List<Order>();
     public static List<Product> productsData = new List<Product>();
-    /*    public static Product[] productsData = new Product[50];
-    */
     public static void createProductData()
     {
         for (int i = 0; i < 10; i++)

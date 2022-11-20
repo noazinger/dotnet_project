@@ -31,8 +31,10 @@ namespace DalApi
     {
 
         public override string Message => "the input is not valid";
-
-
+    }
+    public class DataIsEmpty : Exception
+    {
+        public override string Message => "the Data Is Empty";
     }
 
 }

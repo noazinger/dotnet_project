@@ -8,11 +8,11 @@ namespace DalApi
 {
     public interface Icrud <T>
     {
-        void Create <T> (T n);
-        void Update<T> (T n);
-        IEnumerable <T> Read<T> (T n);
-        T ReadSingle<T> (T n);
-        void Delete<T> (T n);
+        void Create(T n);
+        void Update(T n);
+        IEnumerable<T> Read();
+        T ReadSingle(int id);
+        void Delete(int id);
         
     }
 }
