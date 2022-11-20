@@ -34,14 +34,13 @@ public struct DataSource
     {
         for (int i = 0; i < 10; i++)
         {
-            productsData[i] = new List<Product>();
             productsData[i] = new Product();
             productsData[i].ID = readionly.Next(100000, 999999);
             int Irnd = readionly.Next(0, TupleProduct.Length);
             productsData[i].catagory = TupleProduct[Irnd].Item1;
             productsData[i].Name = TupleProduct[Irnd].Item2;
             productsData[i].Price = readionly.Next(100, 650);
-            productsData[i].inStock= readionly.Next(0, 200);        //לאתחל 5 אחוז מהמוצרים ב-0]
+            productsData[i].inStock= readionly.Next(0, 200);//לאתחל 5 אחוז מהמוצרים ב-0\
             Config.ProductIndex++;
         };
     }
@@ -53,16 +52,17 @@ public struct DataSource
         string[] CustomerAdress = { "Kotcher_8", "Revivim_26", "Bleui_65" };
         for (int i = 0; i < 3; i++)
         {
-            ordersData[i] = new Order();
-            ordersData[i].ID = Config.OrderIndex++;
-            ordersData[i].CustomerName = CustomerName[(int)readionly.NextInt64(CustomerName.Length)];
-            ordersData[i].CustomerEmail = CustomerEmail[(int)readionly.NextInt64(CustomerEmail.Length)];
-            ordersData[i].CustomerAdress = CustomerAdress[(int)readionly.NextInt64(CustomerAdress.Length)];
-            ordersData[i].OrderDate = DateTime.MinValue;
+            Order order = new Order();
+            order.ID = Config.OrderIndex++;
+            order.CustomerName = CustomerName[(int)readionly.NextInt64(CustomerName.Length)];
+            order.CustomerEmail = CustomerEmail[(int)readionly.NextInt64(CustomerEmail.Length)];
+            order.CustomerAdress = CustomerAdress[(int)readionly.NextInt64(CustomerAdress.Length)];
+            order.OrderDate = DateTime.MinValue;
             TimeSpan delivery = TimeSpan.FromDays(2);
-            ordersData[i].DeliveryDate = ordersData[i].OrderDate + delivery;
+            order.DeliveryDate = order.OrderDate + delivery;
             TimeSpan shipDays = TimeSpan.FromDays(7);
-            ordersData[i].ShipDate = ordersData[i].DeliveryDate + shipDays;
+            order.ShipDate = order.DeliveryDate + shipDays;
+            ordersData.Add(order);
         };
     }
     public static void createOrderItemData()
