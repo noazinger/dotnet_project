@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DalList;
 using DO;
+using DO;
 namespace DalList;
 public struct DataSource
 {
@@ -24,22 +25,23 @@ public struct DataSource
     };
     static DataSource() { s_Initialize(); }
     static Random readionly = new Random();
-    List<OrderItem> [] sorderItemsData = new List<OrderItem>[200];
-    List<Order>[] ordersData = new List<Order>[100];                                      ;
-    List<Product>[] productsData = new List<Product>[50];                                      ;
+    public static List<OrderItem> [] sorderItemsData = new List<OrderItem>[200];
+    public static List<Order>[] ordersData = new List<Order>[100];                                      
+    public static List<Product>[] productsData = new List<Product>[50];
 /*    public static Product[] productsData = new Product[50];
 */
     public static void createProductData()
     {
         for (int i = 0; i < 10; i++)
         {
+            productsData[i] = new List<Product>();
             productsData[i] = new Product();
             productsData[i].ID = readionly.Next(100000, 999999);
             int Irnd = readionly.Next(0, TupleProduct.Length);
             productsData[i].catagory = TupleProduct[Irnd].Item1;
             productsData[i].Name = TupleProduct[Irnd].Item2;
             productsData[i].Price = readionly.Next(100, 650);
-            productsData[i].inStock= readionly.Next(0, 200);//לאתחל 5 אחוז מהמוצרים ב-0\
+            productsData[i].inStock= readionly.Next(0, 200);        //לאתחל 5 אחוז מהמוצרים ב-0]
             Config.ProductIndex++;
         };
     }
@@ -72,8 +74,9 @@ public struct DataSource
             int rnd = readionly.Next(0, 5);
             for (int j = 0; j < rnd; j++)
             {
-                orderItemsData[i] = new OrderItem();
-                orderItemsData[i].OrderID = orderId;
+                OrderItem orderItem = new OrderItem();
+/*                orderItemsData[i] = new OrderItem();
+*/                orderItem.OrderID = orderId;
                 int productIndex = readionly.Next(0, productsData.Length);
                 orderItemsData[i].ProductID = productsData[productIndex].ID;
                 orderItemsData[i].Amount = readionly.Next(0, productsData[productIndex].inStock);
