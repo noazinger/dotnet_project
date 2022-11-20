@@ -41,6 +41,9 @@ public struct DataSource
             product.Price = readionly.Next(100, 650);
             product.inStock = readionly.Next(0, 200);//לאתחל 5 אחוז מהמוצרים ב-0\
             Config.ProductIndex++;
+            product.inStock= readionly.Next(0, 200);//לאתחל 5 אחוז מהמוצרים ב-0\
+            productsData.Add(product);
+
         };
     }
 
@@ -59,7 +62,7 @@ public struct DataSource
             order.OrderDate = DateTime.MinValue;
             TimeSpan delivery = TimeSpan.FromDays(2);
             order.DeliveryDate = order.OrderDate + delivery;
-            TimeSpan shipDays = TimeSpan.FromDays(7);
+            TimeSpan shipDays = TimeSpan.FromDays(7);-
             order.ShipDate = order.DeliveryDate + shipDays;
             ordersData.Add(order);
         };
@@ -70,15 +73,16 @@ public struct DataSource
         {
             int orderIndex = readionly.Next(0, ordersData.Count());
             int orderId = ordersData[orderIndex].ID;
-            int rnd = readionly.Next(0, 5);
-            for (int j = 0; j < rnd; j++)
+            int rand = readionly.Next(0, 5);
+            for (int j = 0; j < rand; j++)
             {
                 OrderItem orderItem = new OrderItem();
                 orderItem.OrderID = orderId;
                 int productIndex = readionly.Next(0, productsData.Count());
                 orderItem.ProductID = productsData[productIndex].ID;
                 orderItem.Amount = readionly.Next(0, productsData[productIndex].inStock);
-                orderItem.Price = orderItem.Amount * productsData[productIndex].Price;
+                orderItem.Price = orderItemsData[i].Amount * productsData[productIndex].Price;
+                orderItemsData.Add(orderItem);
             };
         };
     }

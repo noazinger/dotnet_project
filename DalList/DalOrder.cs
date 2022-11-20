@@ -1,6 +1,10 @@
 ﻿using DalApi;
 using DO;
+
+namespace Dal;
+
 namespace DalList;
+
 
 public struct DalOrder
 {
