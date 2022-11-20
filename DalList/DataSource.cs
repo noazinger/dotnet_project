@@ -25,22 +25,22 @@ public struct DataSource
     static DataSource() { s_Initialize(); }
     static Random readionly = new Random();
     List<OrderItem> [] sorderItemsData = new List<OrderItem>[200];
-    List<Order>[] ordersData = new List<Order>[100];                                      ;
-    List<Product>[] productsData = new List<Product>[50];                                      ;
+    public static List<Order> ordersData = new List<Order>();                                      ;
+     public static List<Product> productsData = new List<Product>();                                      ;
 /*    public static Product[] productsData = new Product[50];
 */
     public static void createProductData()
     {
         for (int i = 0; i < 10; i++)
         {
-            productsData[i] = new Product();
-            productsData[i].ID = readionly.Next(100000, 999999);
+           Product product = new Product();
+            product.ID = readionly.Next(100000, 999999);
             int Irnd = readionly.Next(0, TupleProduct.Length);
-            productsData[i].catagory = TupleProduct[Irnd].Item1;
-            productsData[i].Name = TupleProduct[Irnd].Item2;
-            productsData[i].Price = readionly.Next(100, 650);
-            productsData[i].inStock= readionly.Next(0, 200);//לאתחל 5 אחוז מהמוצרים ב-0\
-            Config.ProductIndex++;
+            product.catagory = TupleProduct[Irnd].Item1;
+            product.Name = TupleProduct[Irnd].Item2;
+            product.Price = readionly.Next(100, 650);
+            product.inStock= readionly.Next(0, 200);//לאתחל 5 אחוז מהמוצרים ב-0\
+            productsData.Add(product);
         };
     }
 
@@ -51,16 +51,17 @@ public struct DataSource
         string[] CustomerAdress = { "Kotcher_8", "Revivim_26", "Bleui_65" };
         for (int i = 0; i < 3; i++)
         {
-            ordersData[i] = new Order();
-            ordersData[i].ID = Config.OrderIndex++;
-            ordersData[i].CustomerName = CustomerName[(int)readionly.NextInt64(CustomerName.Length)];
-            ordersData[i].CustomerEmail = CustomerEmail[(int)readionly.NextInt64(CustomerEmail.Length)];
-            ordersData[i].CustomerAdress = CustomerAdress[(int)readionly.NextInt64(CustomerAdress.Length)];
-            ordersData[i].OrderDate = DateTime.MinValue;
+            Order order = new Order();
+            order.ID = Config.OrderIndex++;
+            order.CustomerName = CustomerName[(int)readionly.NextInt64(CustomerName.Length)];
+            order.CustomerEmail = CustomerEmail[(int)readionly.NextInt64(CustomerEmail.Length)];
+            order.CustomerAdress = CustomerAdress[(int)readionly.NextInt64(CustomerAdress.Length)];
+            order.OrderDate = DateTime.MinValue;
             TimeSpan delivery = TimeSpan.FromDays(2);
-            ordersData[i].DeliveryDate = ordersData[i].OrderDate + delivery;
+            order.DeliveryDate = order.OrderDate + delivery;
             TimeSpan shipDays = TimeSpan.FromDays(7);
-            ordersData[i].ShipDate = ordersData[i].DeliveryDate + shipDays;
+            order.ShipDate = order.DeliveryDate + shipDays;
+            ordersData.Add(order);
         };
     }
     public static void createOrderItemData()
