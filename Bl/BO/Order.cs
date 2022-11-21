@@ -18,5 +18,16 @@ namespace BO
         public DateTime DeliveryDate { get; set; }
         public OrderItem Items  { get; set; }
         public double TotalPrice { get; set; }
+        public override string ToString() => $@"
+        Order  ID={ID}, 
+        Customer Name = {CustomerName},
+    	Customer Email= {CustomerEmail},
+    	Order Date= {OrderDate},
+        Status={Status}
+        Payment Date={PaymentDate}
+        Ship Date={ShipDate}
+        Delivery Date={DeliveryDate}
+        Items={Items}
+        Total Price={TotalPrice} ";
     }
 }
