@@ -6,7 +6,7 @@ using DalApi;
 
 public struct DalOrderItem:IOrderItem
 {
-    const public int size = DataSource.orderItemsData.Count();
+    static public int size = DataSource.orderItemsData.Count();
     public void Create(OrderItem obj)
     {
         if (size > 200)
