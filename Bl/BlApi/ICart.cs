@@ -10,6 +10,7 @@ namespace BlApi
     {
         public void Create(ICart cart);
         public void Update(ICart cart);
+        public void OrderConfirmation(ICart cart, string name, string email, string address);
 
     }
 }
