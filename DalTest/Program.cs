@@ -1,7 +1,8 @@
-﻿using DalFacade;
-using DO;
+﻿using DalApi;
 using DalList;
+using DO;
 
+IDal dalEntity = new Dal.DalList();
 //================ Order Functions ================//
 void AddOrder()
 {  
@@ -17,33 +18,28 @@ void AddOrder()
     newOrder.ShipDate = newOrder.OrderDate + shipSpan;
     TimeSpan deliverySpan = TimeSpan.FromDays(7);
     newOrder.DeliveryDate = newOrder.ShipDate + deliverySpan;
-    DalOrder.Create(newOrder);
+    dalEntity.Order.Create(newOrder);
    
 }
-void PrintOrder(Order obj)
-{
-    Console.WriteLine("ID:" + obj.ID);
-    Console.WriteLine("Customer Name:" + obj.CustomerName);
-    Console.WriteLine("Customer email:" + obj.CustomerEmail);
-    Console.WriteLine("Customer address:" + obj.CustomerAdress);
-    Console.WriteLine("order date:" + obj.OrderDate);
-    Console.WriteLine("ship date:" + obj.ShipDate);
-    Console.WriteLine("delivery date:" + obj.DeliveryDate);
-}
+
 
 void ViewOrder()
 {
-    Order[] ordersArr = DalOrder.Read();
-    for(int i = 0; i < ordersArr.Length; i++)
+    foreach (Order item in dalEntity.Order.Read())
     {
-        PrintOrder(ordersArr[i]);
+        if (item.ID != 0)
+        {
+            Console.WriteLine(item);
+        }
+
     }
+ 
 }
 
 void ViewSingleOrder(int id)
 {
-    Order orders = DalOrder.ReadSingle(id);
-    PrintOrder(orders);
+    Order orders = dalEntity.Order.ReadSingle(id);
+    Console.WriteLine(orders);
 
 }
 
@@ -58,7 +54,7 @@ void UpDateOrder()
     newOrder.CustomerEmail = Console.ReadLine();
     Console.WriteLine("enter costumer address");
     newOrder.CustomerAdress = Console.ReadLine();
-    DalOrder.UpDate(newOrder);
+    dalEntity.Order.Update(newOrder);
 }
 
 void OrderFunc()
@@ -90,7 +86,7 @@ void OrderFunc()
                 case 5:
                     Console.WriteLine("enter th id order to delete");
                     int d_id = (int)Convert.ToInt64(Console.ReadLine());
-                    DalOrder.Delete(d_id);
+                    dalEntity.Order.Delete(d_id);
                     break;
             }
         }
@@ -132,7 +128,7 @@ void ProductFunc()
                 case 5:
                     Console.WriteLine("enter th id product to delete");
                     int d_id = (int)Convert.ToInt64(Console.ReadLine());
-                    DalProduct.Delete(d_id);
+                    dalEntity.Product.Delete(d_id);
                     break;
             }
         }
@@ -157,21 +153,24 @@ void AddProduct()
     product.Price = float.Parse(Console.ReadLine());
     Console.WriteLine("enter the amount of product");
     product.inStock = (int)Convert.ToInt64(Console.ReadLine());
-    DalProduct.Create(product);
+    dalEntity.Product.Create(product);
 }
 
 void ViewProduct()
 {
-    Product[] ProductArr = DalProduct.Read();
-    for (int i = 0; i < ProductArr.Length; i++)
+    foreach (Product item in dalEntity.Product.Read())
     {
-        Console.WriteLine(ProductArr[i]);
-    }
+        if (item.ID != 0)
+        {
+            Console.WriteLine(item);
+        }
+
+    } 
 }
 
 void ViewSingleProduct(int id)
 {
-    Product Product = DalProduct.ReadSingle(id);
+    Product Product = dalEntity.Product.ReadSingle(id);
     Console.WriteLine(Product);
 }
 
@@ -189,7 +188,7 @@ void UpDateProduct()
     newProduct.catagory = (catagory)choice;
     Console.WriteLine("enter costumer inStock");
     newProduct.inStock = (int)Convert.ToInt64(Console.ReadLine());
-    DalProduct.UpDate(newProduct);
+    dalEntity.Product.Update(newProduct);
 }
 
 //================ Order-Item Functions ================//
@@ -205,21 +204,21 @@ void AddOrderItem()
     newOrderItem.Amount = (int)Convert.ToInt64(Console.ReadLine());
     Console.WriteLine("enter  price");
     newOrderItem.Price = (int)Convert.ToInt64(Console.ReadLine());
-    DalOrderItem.Create(newOrderItem);
+    dalEntity.OrderItem.Create(newOrderItem);
 }
 void ViewOrdersItems()
 {
-    OrderItem[] orderItemsArr = DalOrderItem.Read();
-    for (int i = 0; i < orderItemsArr.Length; i++)
-    {
-        Console.WriteLine(orderItemsArr[i]);
+    foreach (OrderItem item in dalEntity.OrderItem.Read())
+    { 
+            Console.WriteLine(item);
     }
+ 
 }
 void ViewSingleOrderItem()
 {
     Console.WriteLine("enter id order to view");
     int v_id = (int)Convert.ToInt64(Console.ReadLine());
-    OrderItem orderItem = DalOrderItem.ReadSingle(v_id);
+    OrderItem orderItem = dalEntity.OrderItem.ReadSingle(v_id);
     Console.WriteLine(orderItem);
 }
 void UpDateOrderItem()
@@ -234,7 +233,7 @@ void UpDateOrderItem()
     Console.WriteLine("enter amount");
     newOrderItem.Amount = (int)Convert.ToInt64(Console.ReadLine());
     newOrderItem.Price = (int)Convert.ToInt64(Console.ReadLine());
-    DalOrderItem.UpDate(newOrderItem);
+    dalEntity.OrderItem.Update(newOrderItem);
 
 }
 
@@ -268,7 +267,7 @@ void OrderItemFunc()
                 case 5:
                     Console.WriteLine("enter th id product to delete");
                     int d_id = (int)Convert.ToInt64(Console.ReadLine());
-                    DalProduct.Delete(d_id);
+                    dalEntity.Product.Delete(d_id);
                     break;
             }
         }
