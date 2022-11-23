@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace BlApi
 {
-    public interface Iproduct
+    public interface Iproduct<T>
     {
-        public IEnumerable<Iproduct> ReadListProducts();
-        public Iproduct ReadCatalog();
-        public Iproduct ReadSingleProductForDirector(int id);
-        public Iproduct ReadSingleProductForCustomer(int id);
-        public void Create(Iproduct product);
+        public IEnumerable<BO.ProductForList> ReadListProducts();
+        public IEnumerable<BO.ProductItem> ReadCatalog();
+        public BO.Product ReadSingleProductForDirector(int id);
+        public BO.Product ReadSingleProductForCustomer(int id);
+        public void Add(BO.Product product);
         public void Delete(int id);
-        public void Update(Iproduct product);
+        public void Update(BO.Product product);
     }
 }
