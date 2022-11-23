@@ -8,7 +8,7 @@ namespace BO
 {
     public enum OrderStatus
     {
-      Dispatched, Delayed, Delivered
+      Dispatched=1, Delayed, Delivered
     }
     public enum catagory
     {

@@ -15,6 +15,7 @@ namespace BlImplementation
            
             foreach(DO.Product item in dalEntity.Product.Read())
             {
+                
                 BO.Product(item.ID, item.Name, item.inStock, item.catagory, item.Price);
                 BO.ProductForList.
             }
