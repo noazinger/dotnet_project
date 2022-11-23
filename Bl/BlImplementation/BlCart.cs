@@ -92,6 +92,9 @@ namespace BlImplementation
             }
 
         }
-        public void OrderConfirmation(ICart cart, string name, string email, string address);
+        public void OrderConfirmation(ICart cart, string name, string email, string address)
+        {
+
+        }
     }
 }
