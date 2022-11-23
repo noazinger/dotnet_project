@@ -8,12 +8,12 @@ namespace BlApi
 {
     public interface Iproduct<T>
     {
-        public IEnumerable<T> ReadListProducts();
-        public T ReadCatalog();
-        public T ReadSingleProductForDirector(int id);
-        public T ReadSingleProductForCustomer(int id);
-        public void Create(T product);
+        public IEnumerable<BO.ProductForList> ReadListProducts();
+        public IEnumerable<BO.ProductItem> ReadCatalog();
+        public BO.Product ReadSingleProductForDirector(int id);
+        public BO.Product ReadSingleProductForCustomer(int id);
+        public void Add(BO.Product product);
         public void Delete(int id);
-        public void Update(T product);
+        public void Update(BO.Product product);
     }
 }

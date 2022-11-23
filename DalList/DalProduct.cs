@@ -13,7 +13,17 @@ public struct DalProduct:IProduct
         {
             throw new StackOverFlowException();
         }
-        DataSource.productsData.Add(obj);
+        for(int i=0;i< size; i++)
+        {
+            if (DataSource.productsData[i].ID == obj.ID)
+            {
+                throw new AlreadyExistsException();
+            }
+         }
+             
+         DataSource.productsData.Add(obj);
+
+        
     }
     public  Product ReadSingle(int Id)
     {

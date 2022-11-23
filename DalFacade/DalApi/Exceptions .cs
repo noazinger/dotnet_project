@@ -36,5 +36,9 @@ namespace DalApi
     {
         public override string Message => "the Data Is Empty";
     }
+    public class AlreadyExistsException : Exception
+    {
+        public override string Message => "the item is already exists";
+    }
 
 }
