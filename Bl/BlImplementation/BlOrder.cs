@@ -12,13 +12,13 @@ namespace BlImplementation
         IDal dalEntity = new Dal.DalList();
         public IEnumerable<IOrder> ReadOrders()
         {
-            BO.OrderForList list;
+            List<BO.OrderForList> ItemsList = new List<BO.OrderForList>();
             foreach (DO.Order item in dalEntity.Order.Read())
             {
-                BO.Order()
-                list.add(item);
+                /*BO.Order()*/
+                ItemsList.Add(item);
             }
-            return list;
+            return ItemsList;
         }
         public IOrder ReadOrderInformation(int id);
         public IOrder UpdateShipping(int orderNumber);
