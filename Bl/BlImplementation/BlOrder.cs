@@ -52,7 +52,6 @@ namespace BlImplementation
             {
                 throw new BO.NotDataException(exc);
             }
-
             return OrdersList;
         }
         public BO.Order ReadOrderInformation(int id)
