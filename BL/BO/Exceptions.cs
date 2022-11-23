@@ -28,6 +28,14 @@ namespace BO
 
         }
     }
+    public class NotDataException : Exception
+    {
+
+        public NotDataException(Exception exc) : base("the Data Is Empty", exc)
+        {
+
+        }
+    }
     public class AlreadyExistsException : Exception
     {
         public AlreadyExistsException(Exception exc) : base("it is already exists on data", exc)
@@ -43,6 +51,12 @@ namespace BO
    
         public NotValidException(string exc) : base(exc) { }
      
+
+    }
+    public class ExistsInOrder : Exception
+    {
+        public ExistsInOrder() : base("the product exist in some order")
+        {
 
     }
     public class ExistsInOrder : Exception

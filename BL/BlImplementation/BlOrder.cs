@@ -58,8 +58,15 @@ namespace BlImplementation
             if (id > 0)
             {
                 DO.Order singleOrder = dalEntity.Order.ReadSingle(id);
+                BO.Order order = new BO.Order();
+                singleOrder.ID = order.ID;
+                singleOrder.CustomerName = order.CustomerName;
+                singleOrder.CustomerAddress = order.CustomerAddress;
+                singleOrder.CustomerEmail = order.CustomerEmail;
+                singleOrder.OrderDate = order.OrderDate;
+                singleOrder.ShipDate = order.ShipDate;
+                singleOrder.DeliveryDate = order.DeliveryDate;
             }
-            double totalP=0;
             foreach (var item in dalEntity.OrderItem.ReadByOrderId(id)) 
             {
                 BO.OrderItem itemInformation = new BO.OrderItem();
@@ -70,6 +77,8 @@ namespace BlImplementation
                 itemInformation.Amount = item.Amount;
                 itemInformation.TotalPrice= itemInformation.Amount* itemInformation.Price;
             }
+
+            // ○	תזרוק חריגה מתאימה משלה בקשת מוצר נכשלה (מוצר לא קיים בשכבת נתונים - תפיסת חריגה)
         }
         public IOrder UpdateShipping(int orderNumber);
         public IOrder UpdateDelivery(int orderNumber);
