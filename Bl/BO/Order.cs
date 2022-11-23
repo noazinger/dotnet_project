@@ -11,6 +11,7 @@ namespace BO
        public int ID { get; set; }
         public string CustomerName { get; set; }
         public string CustomerEmail { get; set; }
+        public string CustomerAddress { get; set; }
         public DateTime OrderDate { get; set; }
         public OrderStatus Status { get; set; }
         public DateTime PaymentDate { get; set; }
@@ -21,6 +22,7 @@ namespace BO
         public override string ToString() => $@"
         Order  ID={ID}, 
         Customer Name = {CustomerName},
+        Customer Address = {CustomerAddress},
     	Customer Email= {CustomerEmail},
     	Order Date= {OrderDate},
         Status={Status}
