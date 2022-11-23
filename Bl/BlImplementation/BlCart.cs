@@ -93,6 +93,9 @@ namespace BlImplementation
             throw new BO.NotExistException("the product is nuot exist in cart");
 
         }
-        public void OrderConfirmation(ICart cart, string name, string email, string address);
+        public void OrderConfirmation(ICart cart, string name, string email, string address)
+        {
+
+        }
     }
 }

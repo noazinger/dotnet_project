@@ -57,10 +57,10 @@ namespace BlImplementation
         }
         public BO.Order ReadOrderInformation(int id)
         {
+            BO.Order order = new BO.Order();
             if (id > 0)
             {
                 DO.Order singleOrder = dalEntity.Order.ReadSingle(id);
-                BO.Order order = new BO.Order();
                 singleOrder.ID = order.ID;
                 singleOrder.CustomerName = order.CustomerName;
                 singleOrder.CustomerAddress = order.CustomerAddress;
@@ -69,21 +69,64 @@ namespace BlImplementation
                 singleOrder.ShipDate = order.ShipDate;
                 singleOrder.DeliveryDate = order.DeliveryDate;
             }
-            foreach (var item in dalEntity.OrderItem.ReadByOrderId(id)) 
+            foreach (var item in dalEntity.OrderItem.ReadByOrderId(id))
             {
                 BO.OrderItem itemInformation = new BO.OrderItem();
                 itemInformation.ID = item.OrderID;
-                itemInformation.Name= dalEntity.Product.ReadSingle(itemInformation.ProductID).Name;    
+                itemInformation.Name = dalEntity.Product.ReadSingle(itemInformation.ProductID).Name;
                 itemInformation.ProductID = item.ProductID;
                 itemInformation.Price = item.Price;
                 itemInformation.Amount = item.Amount;
-                itemInformation.TotalPrice= itemInformation.Amount* itemInformation.Price;
+                itemInformation.TotalPrice = itemInformation.Amount * itemInformation.Price;
             }
-
+            order.Items = 
+            return order;
             // ○	תזרוק חריגה מתאימה משלה בקשת מוצר נכשלה (מוצר לא קיים בשכבת נתונים - תפיסת חריגה)
         }
-        public IOrder UpdateShipping(int orderNumber);
-        public IOrder UpdateDelivery(int orderNumber);
+        public BO.Order UpdateShipping(int orderNumber)
+        {
+            try
+            {
+                DO.Order orderDo = dalEntity.Order.ReadSingle(orderNumber);
+                orderDo.ShipDate = DateTime.Now;
+                dalEntity.Order.Update(orderDo);
+                BO.Order orderBo = new BO.Order();
+                orderBo.CustomerAddress= orderDo.CustomerAddress;
+                orderBo.CustomerName= orderDo.CustomerName;
+                orderBo.CustomerEmail = orderDo.CustomerEmail;
+                orderBo.ID=orderDo.ID;
+                orderBo.ShipDate= orderDo.ShipDate;
+                orderBo.OrderDate= orderDo.OrderDate;
+                orderBo.DeliveryDate= orderDo.DeliveryDate;
+                return orderBo;
+            }
+            catch (Exception err)
+            {
+                throw (err);
+            }
+        }
+        public BO.Order UpdateDelivery(int orderNumber)
+        {
+            try
+            {
+                DO.Order orderDo = dalEntity.Order.ReadSingle(orderNumber);
+                orderDo.DeliveryDate = DateTime.Now;
+                dalEntity.Order.Update(orderDo);
+                BO.Order orderBo = new BO.Order();
+                orderBo.CustomerAddress = orderDo.CustomerAddress;
+                orderBo.CustomerName = orderDo.CustomerName;
+                orderBo.CustomerEmail = orderDo.CustomerEmail;
+                orderBo.ID = orderDo.ID;
+                orderBo.ShipDate = orderDo.ShipDate;
+                orderBo.OrderDate = orderDo.OrderDate;
+                orderBo.DeliveryDate = orderDo.DeliveryDate;
+                return orderBo;
+            }
+            catch (Exception err)
+            {
+                throw (err);
+            }
+        }
         public void Update(int orderNumber);
     }
 }
