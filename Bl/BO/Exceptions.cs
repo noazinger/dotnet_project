@@ -6,7 +6,24 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    internal class Exceptions
+   
+        public class NotExistException : Exception
+        {
+        public NotExistException(Exception exc):base("The item does not exist", exc)
+        {
+
+        }
+       
+         
+
+        }
+    public class NotValidException : Exception
     {
+
+        public override string Message => "  The ID number is incorrect";
+
+
     }
+  
+
 }
