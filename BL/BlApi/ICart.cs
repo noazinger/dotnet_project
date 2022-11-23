@@ -8,8 +8,8 @@ namespace BlApi
 {
     public  interface ICart
     {
-        public void Create(ICart cart);
-        public void Update(ICart cart);
+        public BO.Cart Add(BO.Cart c,int id);
+        public BO.Cart Update(BO.Cart cart, int productID, int amount);
         public void OrderConfirmation(ICart cart, string name, string email, string address);
 
     }

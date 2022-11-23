@@ -137,7 +137,15 @@ namespace BlImplementation
         {
             foreach (var item in dalEntity.OrderItem.Read())
             {
-                if (item.ProductID == id) throw new BO.ExistsInOrder();
+                if (item.ProductID == id)
+                {
+                    DO.Order order = dalEntity.Order.ReadSingle(id);
+                   if (order.ShipDate > DateTime.Now)
+                    {
+                        throw new BO.ExistsInOrder();
+                    }
+                }
+                    
             }
             try
             {

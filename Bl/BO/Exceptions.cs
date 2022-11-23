@@ -7,12 +7,18 @@ using System.Threading.Tasks;
 namespace BO
 {
 
-    public class NotExistException : Exception
+    public class NotInStock : Exception
     {
-        public NotExistException(Exception exc) : base("The item does not exist", exc)
+        public NotInStock() : base("The product does not in stock")
         {
 
         }
+    }
+    public class NotExistException : Exception
+    {
+        public NotExistException(Exception exc) : base("The item does not exist", exc) { }
+        public NotExistException(string mess) : base(mess) { }
+
     }
     public class NotDataException : Exception
     {
