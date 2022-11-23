@@ -49,14 +49,14 @@ public struct DataSource
     {
         string[] CustomerName = { "Noa", "Tovi", "Gitty" };
         string[] CustomerEmail = { "Noa123@gmail.com", "Tovi40@gmail.com", "Gitty865@gmail.com" };
-        string[] CustomerAdress = { "Kotcher_8", "Revivim_26", "Bleui_65" };
+        string[] CustomerAddress = { "Kotcher_8", "Revivim_26", "Bleui_65" };
         for (int i = 0; i < 3; i++)
         {
             Order order = new Order();
             order.ID = Config.ID;
             order.CustomerName = CustomerName[(int)readionly.NextInt64(CustomerName.Length)];
             order.CustomerEmail = CustomerEmail[(int)readionly.NextInt64(CustomerEmail.Length)];
-            order.CustomerAdress = CustomerAdress[(int)readionly.NextInt64(CustomerAdress.Length)];
+            order.CustomerAddress = CustomerAddress[(int)readionly.NextInt64(CustomerAddress.Length)];
             order.OrderDate = DateTime.MinValue;
             TimeSpan delivery = TimeSpan.FromDays(2);
             order.DeliveryDate = order.OrderDate + delivery;
