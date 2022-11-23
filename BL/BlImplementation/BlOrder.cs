@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlApi;
-using BO;
 using DalApi;
 namespace BlImplementation
 {
@@ -13,7 +12,7 @@ namespace BlImplementation
         IDal dalEntity = new Dal.DalList();
         public IEnumerable<IOrder> ReadOrders()
         {
-            List<OrderForList> ItemsList = new List<OrderForList>();
+            List<BO.OrderForList> ItemsList = new List<BO.OrderForList>();
             foreach (DO.Order item in dalEntity.Order.Read())
             {
                 /*BO.Order()*/
