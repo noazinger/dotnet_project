@@ -10,8 +10,8 @@ namespace BlApi
     {
         public IEnumerable<BO.OrderForList> ReadOrders();
         public BO.Order ReadOrderInformation(int id);
-        public IOrder UpdateShipping(int orderNumber);
-        public IOrder UpdateDelivery(int orderNumber);
+        public BO.Order UpdateShipping(int orderNumber);
+        public BO.Order UpdateDelivery(int orderNumber);
         public void Update(int orderNumber);
     }
 }
