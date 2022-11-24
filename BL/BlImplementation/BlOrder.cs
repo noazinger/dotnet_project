@@ -52,34 +52,44 @@ namespace BlImplementation
             {
                 throw new BO.NotDataException(exc);
             }
-
             return OrdersList;
         }
         public BO.Order ReadOrderInformation(int id)
         {
             BO.Order order = new BO.Order();
-            if (id > 0)
+            try
             {
-                DO.Order singleOrder = dalEntity.Order.ReadSingle(id);
-                singleOrder.ID = order.ID;
-                singleOrder.CustomerName = order.CustomerName;
-                singleOrder.CustomerAddress = order.CustomerAddress;
-                singleOrder.CustomerEmail = order.CustomerEmail;
-                singleOrder.OrderDate = order.OrderDate;
-                singleOrder.ShipDate = order.ShipDate;
-                singleOrder.DeliveryDate = order.DeliveryDate;
+                if (id > 0)
+                {
+                    DO.Order singleOrder = dalEntity.Order.ReadSingle(id);
+                    singleOrder.ID = order.ID;
+                    singleOrder.CustomerName = order.CustomerName;
+                    singleOrder.CustomerAddress = order.CustomerAddress;
+                    singleOrder.CustomerEmail = order.CustomerEmail;
+                    singleOrder.OrderDate = order.OrderDate;
+                    singleOrder.ShipDate = order.ShipDate;
+                    singleOrder.DeliveryDate = order.DeliveryDate;
+                }
+                foreach (var item in dalEntity.OrderItem.ReadByOrderId(id))
+                {
+                    BO.OrderItem itemInformation = new BO.OrderItem();
+                    itemInformation.ID = item.OrderID;
+                    itemInformation.Name = dalEntity.Product.ReadSingle(itemInformation.ProductID).Name;
+                    itemInformation.ProductID = item.ProductID;
+                    itemInformation.Price = item.Price;
+                    itemInformation.Amount = item.Amount;
+                    itemInformation.TotalPrice = itemInformation.Amount * itemInformation.Price;
+                }
             }
-            foreach (var item in dalEntity.OrderItem.ReadByOrderId(id))
+            catch(NotFoundException exc)
             {
-                BO.OrderItem itemInformation = new BO.OrderItem();
-                itemInformation.ID = item.OrderID;
-                itemInformation.Name = dalEntity.Product.ReadSingle(itemInformation.ProductID).Name;
-                itemInformation.ProductID = item.ProductID;
-                itemInformation.Price = item.Price;
-                itemInformation.Amount = item.Amount;
-                itemInformation.TotalPrice = itemInformation.Amount * itemInformation.Price;
+                throw new BO.NotExistException(exc);
             }
-            order.Items = 
+            catch(DataIsEmpty exc)
+            {
+                throw new BO.NotDataException(exc);
+            }
+           
             return order;
             // ○	תזרוק חריגה מתאימה משלה בקשת מוצר נכשלה (מוצר לא קיים בשכבת נתונים - תפיסת חריגה)
         }
