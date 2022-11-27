@@ -31,7 +31,6 @@ internal class  DalOrder: IOrder
         if (size != 0)
             return DataSource.ordersData;
         throw new DataIsEmpty();
-
     }
     public void Delete(int id)
     {
