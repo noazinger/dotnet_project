@@ -1,18 +1,18 @@
 ﻿using DalApi;
 using DalList;
-using DO;
+using BO;
 
 IDal dalEntity = new Dal.DalList();
 //================ Order Functions ================//
 void AddOrder()
 {
     Order newOrder = new Order();
-    Console.WriteLine("enter costumer name");
+    Console.WriteLine("enter customer name");
     newOrder.CustomerName = Console.ReadLine();
     Console.WriteLine("enter costumer email");
     newOrder.CustomerEmail = Console.ReadLine();
     Console.WriteLine("enter costumer address");
-    newOrder.CustomerAdress = Console.ReadLine();
+    newOrder.CustomerAddress = Console.ReadLine();
     newOrder.OrderDate = DateTime.Today;
     TimeSpan shipSpan = TimeSpan.FromDays(2);
     newOrder.ShipDate = newOrder.OrderDate + shipSpan;

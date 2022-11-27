@@ -13,4 +13,8 @@
 
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Bl\BL.csproj" />
+  </ItemGroup>
+
 </Project>

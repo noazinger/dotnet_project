@@ -12,16 +12,14 @@ void AddOrder()
     Console.WriteLine("enter costumer email");
     newOrder.CustomerEmail = Console.ReadLine();
     Console.WriteLine("enter costumer address");
-    newOrder.CustomerAdress = Console.ReadLine();
+    newOrder.CustomerAddress = Console.ReadLine();
     newOrder.OrderDate= DateTime.Today;
     TimeSpan shipSpan = TimeSpan.FromDays(2);
     newOrder.ShipDate = newOrder.OrderDate + shipSpan;
     TimeSpan deliverySpan = TimeSpan.FromDays(7);
     newOrder.DeliveryDate = newOrder.ShipDate + deliverySpan;
     dalEntity.Order.Create(newOrder);
-   
 }
-
 
 void ViewOrder()
 {
@@ -31,16 +29,13 @@ void ViewOrder()
         {
             Console.WriteLine(item);
         }
-
     }
- 
 }
 
 void ViewSingleOrder(int id)
 {
     Order orders = dalEntity.Order.ReadSingle(id);
     Console.WriteLine(orders);
-
 }
 
 void UpDateOrder()
@@ -53,7 +48,7 @@ void UpDateOrder()
     Console.WriteLine("enter costumer email");
     newOrder.CustomerEmail = Console.ReadLine();
     Console.WriteLine("enter costumer address");
-    newOrder.CustomerAdress = Console.ReadLine();
+    newOrder.CustomerAddress = Console.ReadLine();
     dalEntity.Order.Update(newOrder);
 }
 
