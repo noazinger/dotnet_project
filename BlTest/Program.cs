@@ -1,9 +1,8 @@
 ﻿using DalApi;
 using DalList;
 using BO;
-
-using BlImplementation;
-IDal dalEntity = new Dal.DalList();
+using BlApi;
+IBl blentity = new BlImplementation.Bl();
 //================ Order Functions ================//
 void AddOrder()
 {
@@ -106,7 +105,7 @@ void ProductFunc()
     do
     {
         Console.WriteLine("Please enter your choice: 1. Add products " +
-        " 2. view products 3. view single product 4. update product 5. delete product");
+        " 2. Read Product For Director 3. view catalog 4. read product for customer 5.view list of product  6.delete product 7.update product ");
         choice = (int)Convert.ToInt64(Console.ReadLine());
         try
         {
@@ -116,20 +115,24 @@ void ProductFunc()
                     AddProduct();
                     break;
                 case 2:
-                    ViewProduct();
+                    ViewSingleProduct("directory");
                     break;
                 case 3:
-                    Console.WriteLine("enter id product to view");
-                    int v_id = (int)Convert.ToInt64(Console.ReadLine());
-                    ViewSingleProduct(v_id);
+                    viewCatalog();
                     break;
                 case 4:
-                    UpDateProduct();
+                    ViewSingleProduct("customer");
                     break;
                 case 5:
+                    viewProducts();
+                    break;
+                case 6:
                     Console.WriteLine("enter th id product to delete");
                     int d_id = (int)Convert.ToInt64(Console.ReadLine());
-                    dalEntity.Product.Delete(d_id);
+                    blentity.Product.Delete(d_id);
+                    break;
+                case 7:
+                    UpDateProduct();
                     break;
             }
         }
@@ -142,7 +145,7 @@ void ProductFunc()
 
 void AddProduct()
 {
-    Product product = new Product();
+    BO.Product product=new BO.Product();
     int id = DataSource.Config.ProductIndex++;
     product.ID = id;
     Console.WriteLine("enter name for the new product");
@@ -153,26 +156,29 @@ void AddProduct()
     Console.WriteLine("enter price for the new product");
     product.Price = float.Parse(Console.ReadLine());
     Console.WriteLine("enter the amount of product");
-    product.inStock = (int)Convert.ToInt64(Console.ReadLine());
-    dalEntity.Product.Create(product);
+    product.InStock = (int)Convert.ToInt64(Console.ReadLine());
+    blentity.Product.Add(product);
 }
 
-void ViewProduct()
+void ViewSingleProduct(string x)
 {
-    foreach (Product item in dalEntity.Product.Read())
-    {
-        if (item.ID != 0)
-        {
-            Console.WriteLine(item);
-        }
+    Console.WriteLine("enter id product to view");
+    int v_id = (int)Convert.ToInt64(Console.ReadLine());
+    BO.Product product=new BO.Product();
+    product= x== "directory" ? blentity.Product.ReadSingleProductForDirector(v_id): blentity.Product.ReadSingleProductForCustomer(v_id);
+    Console.WriteLine(product);
 
-    }
 }
 
-void ViewSingleProduct(int id)
+void viewCatalog()
 {
-    Product Product = dalEntity.Product.ReadSingle(id);
-    Console.WriteLine(Product);
+    List<ProductItem> Product = blentity.Product.ReadCatalog().ToList();
+    foreach(ProductItem ProductItem in Product) Console.WriteLine(ProductItem);
+}
+void viewProducts()
+{
+    List<ProductForList> Product = blentity.Product.ReadListProducts().ToList();
+    foreach (ProductForList ProductForList in Product) Console.WriteLine(ProductForList);
 }
 
 void UpDateProduct()
@@ -188,11 +194,11 @@ void UpDateProduct()
     int choice = (int)Convert.ToInt64(Console.ReadLine());
     newProduct.catagory = (catagory)choice;
     Console.WriteLine("enter costumer inStock");
-    newProduct.inStock = (int)Convert.ToInt64(Console.ReadLine());
-    dalEntity.Product.Update(newProduct);
+    newProduct.InStock = (int)Convert.ToInt64(Console.ReadLine());
+    blentity.Product.Update(newProduct);
 }
 
-//================ Order-Item Functions ================//
+//================ cart Functions ================//
 
 void AddOrderItem()
 {
@@ -238,7 +244,7 @@ void UpDateOrderItem()
 
 }
 
-void OrderItemFunc()
+void cartFunc()
 {
     int choice;
     do
