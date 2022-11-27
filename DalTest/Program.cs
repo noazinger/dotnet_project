@@ -112,8 +112,7 @@ void ProductFunc()
             switch (choice)
             {
                 case 1:
-                    AddProduct();
-                    break;
+                    Add(BO.Product product);                    break;
                 case 2:
                     ViewProduct();
                     break;
