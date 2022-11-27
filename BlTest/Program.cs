@@ -175,6 +175,7 @@ void UpDateProduct()
 }
 
 //================ Cart Functions ================//
+Cart cart = new();
 
 
 void OrderConfirmatiom()
@@ -190,7 +191,19 @@ void AddItemToCart()
 
 
 }
-void UpDateCart()
+void orderConfirmation()
+{
+    Console.WriteLine("enter your name");
+    string name = Console.ReadLine();
+    Console.WriteLine("enter your email");
+    string email = Console.ReadLine();
+    Console.WriteLine("enter your address");
+    string address= Console.ReadLine();
+    int v_id = (int)Convert.ToInt64(Console.ReadLine());
+    OrderItem orderItem = dalEntity.OrderItem.ReadSingle(v_id);
+    Console.WriteLine(orderItem);
+}
+void UpDateOrderItem()
 {
     Console.WriteLine("enter producte id to update");
     int id= (int)Convert.ToInt64(Console.ReadLine());
