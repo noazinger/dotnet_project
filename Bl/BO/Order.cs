@@ -8,7 +8,7 @@ namespace BO
 {
     public class Order
     {
-       public int ID { get; set; }
+        public int ID { get; set;}
         public string CustomerName { get; set; }
         public string CustomerEmail { get; set; }
         public string CustomerAddress { get; set; }

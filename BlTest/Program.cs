@@ -1,92 +1,66 @@
-﻿using DalApi;
-using DalList;
+﻿using DalList;
 using BO;
+using BlApi;
+using BlImplementation;
 
-IDal dalEntity = new Dal.DalList();
+IBl blEntity = new BlImplementation.Bl();
 //================ Order Functions ================//
-void AddOrder()
+
+void ViewOrders()
 {
-    Order newOrder = new Order();
-    Console.WriteLine("enter customer name");
-    newOrder.CustomerName = Console.ReadLine();
-    Console.WriteLine("enter costumer email");
-    newOrder.CustomerEmail = Console.ReadLine();
-    Console.WriteLine("enter costumer address");
-    newOrder.CustomerAddress = Console.ReadLine();
-    newOrder.OrderDate = DateTime.Today;
-    TimeSpan shipSpan = TimeSpan.FromDays(2);
-    newOrder.ShipDate = newOrder.OrderDate + shipSpan;
-    TimeSpan deliverySpan = TimeSpan.FromDays(7);
-    newOrder.DeliveryDate = newOrder.ShipDate + deliverySpan;
-    dalEntity.Order.Create(newOrder);
-
-}
-
-
-void ViewOrder()
-{
-    foreach (Order item in dalEntity.Order.Read())
+    foreach (BO.OrderForList item in blEntity.Order.ReadOrders())
     {
         if (item.ID != 0)
         {
             Console.WriteLine(item);
         }
-
     }
-
 }
 
-void ViewSingleOrder(int id)
+void ViewOrderInfo()
 {
-    Order orders = dalEntity.Order.ReadSingle(id);
-    Console.WriteLine(orders);
-
+    Console.WriteLine("enter id order to view");
+    int id = (int)Convert.ToInt64(Console.ReadLine());
+    Order order = blEntity.Order.ReadOrderInformation(id);
+    Console.WriteLine(order);
 }
 
-void UpDateOrder()
+void UpdateShipping()
 {
-    Order newOrder = new Order();
-    Console.WriteLine("enter the id order to update");
-    newOrder.ID = (int)Convert.ToInt64(Console.ReadLine());
-    Console.WriteLine("enter costumer name");
-    newOrder.CustomerName = Console.ReadLine();
-    Console.WriteLine("enter costumer email");
-    newOrder.CustomerEmail = Console.ReadLine();
-    Console.WriteLine("enter costumer address");
-    newOrder.CustomerAdress = Console.ReadLine();
-    dalEntity.Order.Update(newOrder);
+    Console.WriteLine("enter the id order to update shipping");
+    int ID = (int)Convert.ToInt64(Console.ReadLine());
+    blEntity.Order.UpdateShipping(ID);
 }
 
+void UpdateDelivery()
+{
+    Console.WriteLine("enter the id order to update delivery");
+    int ID = (int)Convert.ToInt64(Console.ReadLine());
+    blEntity.Order.UpdateShipping(ID);
+}
 void OrderFunc()
 {
     int choice;
     do
     {
-        Console.WriteLine("Please enter your choice: 1. Add orders  " +
-        "2. view orders 3. view single order 4. update order 5. delete order  0. to exit");
+        Console.WriteLine("Please enter your choice: 1. view orders  " +
+        "2. view order information 3. update shipping 4. update delivery 5. delete order  0. to exit");
         choice = (int)Convert.ToInt64(Console.ReadLine());
         try
         {
             switch (choice)
             {
                 case 1:
-                    AddOrder();
+                    ViewOrders();
                     break;
                 case 2:
-                    ViewOrder();
+                    ViewOrderInfo();
                     break;
                 case 3:
-                    Console.WriteLine("enter id order to view");
-                    int v_id = (int)Convert.ToInt64(Console.ReadLine());
-                    ViewSingleOrder(v_id);
+                    UpdateShipping();
                     break;
                 case 4:
-                    UpDateOrder();
-                    break;
-                case 5:
-                    Console.WriteLine("enter th id order to delete");
-                    int d_id = (int)Convert.ToInt64(Console.ReadLine());
-                    dalEntity.Order.Delete(d_id);
+                    UpdateDelivery();
                     break;
             }
         }
@@ -191,19 +165,22 @@ void UpDateProduct()
     dalEntity.Product.Update(newProduct);
 }
 
-//================ Order-Item Functions ================//
+//================ Cart Functions ================//
 
-void AddOrderItem()
+void AddItemToCart()
 {
+    Cart cart = new Cart();
     OrderItem newOrderItem = new OrderItem();
     Console.WriteLine("enter order id");
-    newOrderItem.OrderID = (int)Convert.ToInt64(Console.ReadLine());
-    Console.WriteLine("enter Product id");
+    var id = (int)Convert.ToInt64(Console.ReadLine());
+/*    newOrderItem.OrderID = (int)Convert.ToInt64(Console.ReadLine());
+*/    Console.WriteLine("enter Product id");
     newOrderItem.ProductID = (int)Convert.ToInt64(Console.ReadLine());
     Console.WriteLine("enter  amount");
     newOrderItem.Amount = (int)Convert.ToInt64(Console.ReadLine());
     Console.WriteLine("enter  price");
     newOrderItem.Price = (int)Convert.ToInt64(Console.ReadLine());
+    blEntity.Cart.Add(cart, id);
     dalEntity.OrderItem.Create(newOrderItem);
 }
 void ViewOrdersItems()
@@ -237,13 +214,13 @@ void UpDateOrderItem()
 
 }
 
-void OrderItemFunc()
+void CartFunc()
 {
     int choice;
     do
     {
-        Console.WriteLine("Please enter your choice: 1. Add order item" +
-      " 2. view orders items 3. view single order item 4. update order item 5. delete order item");
+        Console.WriteLine("Please enter your choice: 1. Add item to cart" +
+      " 2. update cart 3. order confirmation ");
         choice = (int)Convert.ToInt64(Console.ReadLine());
         try
         {
@@ -252,7 +229,7 @@ void OrderItemFunc()
                 case 0:
                     return;
                 case 1:
-                    AddOrderItem();
+                    AddItemToCart();
                     break;
                 case 2:
                     ViewOrdersItems();
@@ -296,7 +273,7 @@ void main()
                     ProductFunc();
                     break;
                 case 3:
-                    OrderItemFunc();
+                    CartFunc();
                     break;
             }
         }
