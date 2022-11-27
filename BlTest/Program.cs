@@ -4,6 +4,8 @@ using BlApi;
 using BlImplementation;
 
 IBl blEntity = new BlImplementation.Bl();
+Cart cart = new Cart();
+
 //================ Order Functions ================//
 
 void ViewOrders()
@@ -174,55 +176,33 @@ void UpDateProduct()
 
 //================ Cart Functions ================//
 
-void AddItemToCart()
+
+void OrderConfirmatiom()
 {
-    Cart cart = new Cart();
-    OrderItem newOrderItem = new OrderItem();
-    Console.WriteLine("enter order id");
-    var id = (int)Convert.ToInt64(Console.ReadLine());
-/*    newOrderItem.OrderID = (int)Convert.ToInt64(Console.ReadLine());
-*/    Console.WriteLine("enter Product id");
-    newOrderItem.ProductID = (int)Convert.ToInt64(Console.ReadLine());
-    Console.WriteLine("enter  amount");
-    newOrderItem.Amount = (int)Convert.ToInt64(Console.ReadLine());
-    Console.WriteLine("enter  price");
-    newOrderItem.Price = (int)Convert.ToInt64(Console.ReadLine());
-    blEntity.Cart.Add(cart, id);
-    dalEntity.OrderItem.Create(newOrderItem);
-}
-void ViewOrdersItems()
-{
-    foreach (OrderItem item in dalEntity.OrderItem.Read())
-    {
-        Console.WriteLine(item);
-    }
+
 
 }
-void ViewSingleOrderItem()
+void AddItemToCart()
 {
-    Console.WriteLine("enter id order to view");
-    int v_id = (int)Convert.ToInt64(Console.ReadLine());
-    OrderItem orderItem = dalEntity.OrderItem.ReadSingle(v_id);
-    Console.WriteLine(orderItem);
+    Console.WriteLine("enter product id to add ");
+    int id = (int)Convert.ToInt64(Console.ReadLine());
+    blEntity.Cart.Add(cart, id);
+
+
 }
-void UpDateOrderItem()
+void UpDateCart()
 {
-    OrderItem newOrderItem = new OrderItem();
-    Console.WriteLine("enter the id order to update");
-    newOrderItem.OrderID = (int)Convert.ToInt64(Console.ReadLine());
-    Console.WriteLine("enter order id");
-    newOrderItem.OrderID = (int)Convert.ToInt64(Console.ReadLine());
-    Console.WriteLine("enter product id");
-    newOrderItem.ProductID = (int)Convert.ToInt64(Console.ReadLine());
-    Console.WriteLine("enter amount");
-    newOrderItem.Amount = (int)Convert.ToInt64(Console.ReadLine());
-    newOrderItem.Price = (int)Convert.ToInt64(Console.ReadLine());
-    dalEntity.OrderItem.Update(newOrderItem);
+    Console.WriteLine("enter producte id to update");
+    int id= (int)Convert.ToInt64(Console.ReadLine());
+    Console.WriteLine("enter producte amount");
+    int amount = (int)Convert.ToInt64(Console.ReadLine());
+    blEntity.Cart.Update(cart, id, amount);
 
 }
 
 void CartFunc()
 {
+
     int choice;
     do
     {
