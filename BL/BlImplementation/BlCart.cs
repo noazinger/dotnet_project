@@ -127,14 +127,9 @@ namespace BlImplementation
                 orderItem.ProductID = i.ProductID;
                 orderItem.Amount = i.Amount;
                 dalEntity.OrderItem.Create(orderItem);
-                //===========================================
-                DO.Product product = new DO.Product();  
-                product.Name = i.Name;
-                product.ID= i.ID;
-                product.Price = i.Price;
-                dalEntity.Product.Update(product);
-                //===========================================
-                
+                List<DO.Product> product = dalEntity.Product.Read().ToList();
+                DO.Product pr= product.Find(item => item.ID == id);
+                dalEntity.Product.Update(pr);
             }
         }
     }
