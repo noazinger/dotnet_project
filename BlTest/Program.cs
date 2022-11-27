@@ -103,7 +103,7 @@ void ProductFunc()
                 case 6:
                     Console.WriteLine("enter th id product to delete");
                     int d_id = (int)Convert.ToInt64(Console.ReadLine());
-                    blentity.Product.Delete(d_id);
+                    blEntity.Product.Delete(d_id);
                     break;
                 case 7:
                     UpDateProduct();
@@ -131,7 +131,7 @@ void AddProduct()
     product.Price = float.Parse(Console.ReadLine());
     Console.WriteLine("enter the amount of product");
     product.InStock = (int)Convert.ToInt64(Console.ReadLine());
-    blentity.Product.Add(product);
+    blEntity.Product.Add(product);
 }
 
 void ViewSingleProduct(string x)
@@ -139,19 +139,19 @@ void ViewSingleProduct(string x)
     Console.WriteLine("enter id product to view");
     int v_id = (int)Convert.ToInt64(Console.ReadLine());
     BO.Product product=new BO.Product();
-    product= x== "directory" ? blentity.Product.ReadSingleProductForDirector(v_id): blentity.Product.ReadSingleProductForCustomer(v_id);
+    product= x== "directory" ? blEntity.Product.ReadSingleProductForDirector(v_id): blEntity.Product.ReadSingleProductForCustomer(v_id);
     Console.WriteLine(product);
 
 }
 
 void viewCatalog()
 {
-    List<ProductItem> Product = blentity.Product.ReadCatalog().ToList();
+    List<ProductItem> Product = blEntity.Product.ReadCatalog().ToList();
     foreach(ProductItem ProductItem in Product) Console.WriteLine(ProductItem);
 }
 void viewProducts()
 {
-    List<ProductForList> Product = blentity.Product.ReadListProducts().ToList();
+    List<ProductForList> Product = blEntity.Product.ReadListProducts().ToList();
     foreach (ProductForList ProductForList in Product) Console.WriteLine(ProductForList);
 }
 
@@ -169,19 +169,18 @@ void UpDateProduct()
     newProduct.catagory = (catagory)choice;
     Console.WriteLine("enter costumer inStock");
     newProduct.InStock = (int)Convert.ToInt64(Console.ReadLine());
-    blentity.Product.Update(newProduct);
+    blEntity.Product.Update(newProduct);
 }
 
 //================ Cart Functions ================//
+Cart cart = new();
 
 void AddItemToCart()
 {
-    Cart cart = new Cart();
     OrderItem newOrderItem = new OrderItem();
     Console.WriteLine("enter order id");
-    var id = (int)Convert.ToInt64(Console.ReadLine());
-/*    newOrderItem.OrderID = (int)Convert.ToInt64(Console.ReadLine());
-*/    Console.WriteLine("enter Product id");
+    newOrderItem.OrderID = (int)Convert.ToInt64(Console.ReadLine());
+    Console.WriteLine("enter Product id");
     newOrderItem.ProductID = (int)Convert.ToInt64(Console.ReadLine());
     Console.WriteLine("enter  amount");
     newOrderItem.Amount = (int)Convert.ToInt64(Console.ReadLine());
@@ -190,7 +189,7 @@ void AddItemToCart()
     blEntity.Cart.Add(cart, id);
     dalEntity.OrderItem.Create(newOrderItem);
 }
-void ViewOrdersItems()
+void updateCart()
 {
     foreach (OrderItem item in dalEntity.OrderItem.Read())
     {
@@ -198,9 +197,14 @@ void ViewOrdersItems()
     }
 
 }
-void ViewSingleOrderItem()
+void orderConfirmation()
 {
-    Console.WriteLine("enter id order to view");
+    Console.WriteLine("enter your name");
+    string name = Console.ReadLine();
+    Console.WriteLine("enter your email");
+    string email = Console.ReadLine();
+    Console.WriteLine("enter your address");
+    string address= Console.ReadLine();
     int v_id = (int)Convert.ToInt64(Console.ReadLine());
     OrderItem orderItem = dalEntity.OrderItem.ReadSingle(v_id);
     Console.WriteLine(orderItem);
