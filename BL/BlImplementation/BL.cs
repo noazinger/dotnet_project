@@ -8,6 +8,10 @@ namespace BlImplementation
 {
     sealed public class Bl : IBl
     {
+        public ICart Cart => new BlCart();
 
+        public Iproduct Product => new BlProduct();
+
+        public IOrder Order => new BlOrder();
     }
 }
