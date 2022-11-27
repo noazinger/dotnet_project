@@ -9,10 +9,10 @@ namespace BO;
 
     public class NotInStock : Exception
 {
-    public NotInStock() : base("The product does not in stock")
-    {
+    public NotInStock() : base("The product does not in stock") { }
+    public NotInStock(string message) : base(message) { }
 
-    }
+  
 }
 public class NotExistException : Exception
 {
