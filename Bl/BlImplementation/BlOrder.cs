@@ -1,6 +1,8 @@
 ﻿
 using BlApi;
 using DalApi;
+using IOrder = BlApi.IOrder;
+
 namespace BlImplementation
 {
     internal class BlOrder : IOrder

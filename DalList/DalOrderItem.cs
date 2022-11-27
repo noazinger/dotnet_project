@@ -1,5 +1,4 @@
-﻿using DalApi;
-using DalList;
+﻿
 using DO;
 namespace DalList;
 using DalApi;
@@ -7,7 +6,7 @@ using DalApi;
 public struct DalOrderItem:IOrderItem
 {
     static public int size = DataSource.orderItemsData.Count();
-    public void Creat(OrderItem orderItem)
+    public void Create(OrderItem orderItem)
     {
         bool alreadyExist = false;
         for (int i = 0; i < DataSource.orderItemsData.Count(); i++)
@@ -21,11 +20,11 @@ public struct DalOrderItem:IOrderItem
         if (!alreadyExist)
         {
             if (DataSource.orderItemsData.Count() == 200)
-                throw new DataOverflow();
+                throw new StackOverFlowException();
             DataSource.orderItemsData.Add((OrderItem)orderItem);
         }
         else
-            throw new ObjectIsAlreadyExist();
+            throw new AlreadyExistsException();
     }
     public OrderItem ReadSingleByOrderIdAndProductId(int orderId, int productId)
     {
@@ -44,7 +43,7 @@ public struct DalOrderItem:IOrderItem
             if (DataSource.orderItemsData[i].OrderID == id)
                 return DataSource.orderItemsData[i];
         }
-        throw new ObjectIsNotExist();
+        throw new NotFoundException();
     }
 
     public IEnumerable<OrderItem> Read()
@@ -86,11 +85,11 @@ public struct DalOrderItem:IOrderItem
                 return;
             }
         }
-        throw new ObjectIsNotExist();
+        throw new NotFoundException();
     }
 
 
-    public void UpDate(OrderItem orderItem)
+    public void Update(OrderItem orderItem)
     {
         int idx = -1;
         for (int i = 0; i < DataSource.orderItemsData.Count(); i++)
@@ -102,7 +101,7 @@ public struct DalOrderItem:IOrderItem
         {
             DataSource.orderItemsData[idx] = orderItem;
         }
-        else throw new ObjectIsNotExist();
+        else throw new NotFoundException();
     }
 
 }

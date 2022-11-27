@@ -107,7 +107,7 @@ namespace BlImplementation
             {
                 List<DO.Product> products = dalEntity.Product.Read().ToList();
                 p = products.Find(x => x.ID == item.ID);
-                 if (p.inStock < item.Amount) throw new BO.NotValidException("Not enough of this product in stock");
+                if (p.inStock < item.Amount) throw new BO.NotValidException("Not enough of this product in stock");
               }
 
 
