@@ -7,12 +7,13 @@ using DalApi;
 internal class  DalOrder: IOrder
 {
     public static int size = DataSource.ordersData.Count();
-    public  void Create(Order obj)
+    public  int Create(Order obj)
     {
         if (size > 99)
             throw new StackOverFlowException();
          obj.ID= DataSource.Config.ID;
          DataSource.ordersData.Add(obj);
+        return DataSource.Config.ID;
     }
 
     public  Order ReadSingle(int id)

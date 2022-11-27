@@ -74,7 +74,6 @@ public struct DalOrderItem:IOrderItem
         }
         return itemsArr;
     }
-
     public void Delete(int id)
     {
         for (int i = 0; i < DataSource.orderItemsData.Count(); i++)
