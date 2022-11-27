@@ -9,7 +9,7 @@ using DalApi;
 namespace BlImplementation
 {
     internal class BlCart : ICart
-    {
+    {  
         IDal dalEntity = new Dal.DalList();
         public BO.Cart Add(BO.Cart cart, int id)
         {
@@ -30,31 +30,31 @@ namespace BlImplementation
                     }
                 }
             }
-            foreach (var p in dalEntity.Product.Read())
-            {
-                if (p.ID == id)
+                foreach(var p in dalEntity.Product.Read())
                 {
-                    if (p.inStock > 0) {
-                        BO.OrderItem orderItem = new BO.OrderItem();
-                        orderItem.ID = 0;
-                        orderItem.Name = p.Name;
-                        orderItem.Price = p.Price;
-                        orderItem.ProductID = p.ID;
-                        orderItem.Amount = 1;
-                        orderItem.TotalPrice = p.Price;
-                        cart.items.Add(orderItem);
-                        return cart;
+                    if (p.ID == id)
+                    {
+                        if ( p.inStock > 0) {
+                            BO.OrderItem orderItem = new BO.OrderItem();
+                            orderItem.ID = 0;
+                            orderItem.Name = p.Name;
+                            orderItem.Price = p.Price;
+                            orderItem.ProductID = p.ID;
+                            orderItem.Amount = 1;
+                            orderItem.TotalPrice = p.Price;
+                            cart.items.Add(orderItem);
+                            return cart;
+                        }
+                        else throw new BO.NotInStock();
                     }
-                    else throw new BO.NotInStock();
+                    
                 }
-
-            }
             throw new BO.NotExistException("the product is not exist");
 
         }
-        public BO.Cart Update(BO.Cart cart, int productID, int amount)
+        public BO.Cart Update(BO.Cart cart,int productID,int amount)
         {
-            foreach (var i in cart.items)
+             foreach (var i in cart.items)
             {
                 if (i.ProductID == productID)
                 {
@@ -88,10 +88,10 @@ namespace BlImplementation
                         }
                         else throw new BO.NotInStock();
                     }
-
+                 
                 }
             }
-            throw new BO.NotExistException("the product is nuot exist in cart");
+            throw new BO.NotExistException("the product is not exist in cart");
 
         }
         public void OrderConfirmation(BO.Cart cart, string name, string email, string address)
@@ -99,13 +99,13 @@ namespace BlImplementation
             if (name == "") throw new BO.NotValidException("the name isnt valid");
             if (email == "") throw new BO.NotValidException("the email isnt valid");
             var Email = new EmailAddressAttribute();
-            if (!Email.IsValid(email) || email == "") throw new BO.NotValidException("the name isnt valid");
+            if (Email.IsValid(email)) throw new BO.NotValidException("the name isnt valid");
             if (address == "") throw new BO.NotValidException("the address isnt valid");
             if (name == "") throw new BO.NotValidException("the name isnt valid");
-            DO.Product p = new DO.Product();
+            BO.Product p = new();
             foreach (var item in cart.items)
             {
-                List<DO.Product> products = dalEntity.Product.Read().ToList();
+                List<BO.Product> products = dalEntity.Product.Read();
                 p = products.Find(x => x.ID == item.ID);
                  if (p.inStock < item.Amount) throw new BO.NotValidException("Not enough of this product in stock");
               }
@@ -113,7 +113,12 @@ namespace BlImplementation
 
 
 
+                if (p == null) throw new BO.NotValidException("njnjnjnjnjnjnj");
+                if (p.InStock < item.Amount) throw new BO.NotValidException("one of the items isnt inStock");
+                if (item.Amount<0) throw new BO.NotValidException("the amount isnt valid");
+                DO.Order newOrder = new();
+                newOrder.OrderDate = DateTime.Now();
+            }
         }
     }
 }
-
