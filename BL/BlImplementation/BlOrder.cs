@@ -93,7 +93,6 @@ namespace BlImplementation
             }
            
             return order;
-            // ○	תזרוק חריגה מתאימה משלה בקשת מוצר נכשלה (מוצר לא קיים בשכבת נתונים - תפיסת חריגה)
         }
         public BO.Order UpdateShipping(int orderNumber)
         {
@@ -112,13 +111,13 @@ namespace BlImplementation
                 orderBo.DeliveryDate= orderDo.DeliveryDate;
                 return orderBo;
             }
-            catch (Exception err)
+            catch (NotFoundException err)
             {
-                throw (err);
+                throw new BO.NotExistException(err) ;
             }
         }
         public BO.Order UpdateDelivery(int orderNumber)
-        {
+        { 
             try
             {
                 DO.Order orderDo = dalEntity.Order.ReadSingle(orderNumber);
@@ -134,11 +133,11 @@ namespace BlImplementation
                 orderBo.DeliveryDate = orderDo.DeliveryDate;
                 return orderBo;
             }
-            catch (Exception err)
+            catch (NotFoundException err)
             {
-                throw (err);
+                throw new BO.NotExistException(err);
             }
         }
-        public void Update(int orderNumber);
+        public void Update(int orderNumber) { }
     }
 }
