@@ -108,7 +108,7 @@ namespace BlImplementation
                 List<DO.Product> products = dalEntity.Product.Read().ToList();
                 p = products.Find(x => x.ID == item.ID);
                  if (p.inStock < item.Amount) throw new BO.NotValidException("Not enough of this product in stock");
-                if (item.Amount < 0) throw new BO.NotValidException("the amount isnt valid");
+                 if (item.Amount < 0) throw new BO.NotValidException("the amount isnt valid");
             }
             DO.Order newOrder = new();
             newOrder.OrderDate = DateTime.Now;
@@ -122,19 +122,14 @@ namespace BlImplementation
             foreach (var i in cart.items)
             {
                 DO.OrderItem orderItem = new();
-                orderItem.OrderID=id;
+                orderItem.OrderID = id;
                 orderItem.Price = i.Price;
                 orderItem.ProductID = i.ProductID;
                 orderItem.Amount = i.Amount;
                 dalEntity.OrderItem.Create(orderItem);
-                //===========================================
-                DO.Product product = new DO.Product();  
-                product.Name = i.Name;
-                product.ID= i.ID;
-                product.Price = i.Price;
-                dalEntity.Product.Update(product);
-                //===========================================
-                
+                List<DO.Product> product = dalEntity.Product.Read().ToList();
+                DO.Product pr = product.Find(item => item.ID == id);
+                dalEntity.Product.Update(pr);
             }
         }
     }
