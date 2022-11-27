@@ -8,6 +8,5 @@ namespace DalApi
 {
     public interface IOrder : Icrud<Order>
     {
-
     }
 }
