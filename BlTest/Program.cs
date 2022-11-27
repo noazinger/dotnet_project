@@ -175,14 +175,8 @@ void UpDateProduct()
 }
 
 //================ Cart Functions ================//
-Cart cart = new();
 
 
-void OrderConfirmatiom()
-{
-
-
-}
 void AddItemToCart()
 {
     Console.WriteLine("enter product id to add ");
@@ -199,11 +193,9 @@ void orderConfirmation()
     string email = Console.ReadLine();
     Console.WriteLine("enter your address");
     string address= Console.ReadLine();
-    int v_id = (int)Convert.ToInt64(Console.ReadLine());
-    OrderItem orderItem = dalEntity.OrderItem.ReadSingle(v_id);
-    Console.WriteLine(orderItem);
+    blEntity.Cart.OrderConfirmation(cart,name,email,address);   
 }
-void UpDateOrderItem()
+void UpdateCart()
 {
     Console.WriteLine("enter producte id to update");
     int id= (int)Convert.ToInt64(Console.ReadLine());
@@ -232,20 +224,13 @@ void CartFunc()
                     AddItemToCart();
                     break;
                 case 2:
-                    ViewOrdersItems();
+                    UpdateCart();
                     break;
                 case 3:
 
-                    ViewSingleOrderItem();
+                    orderConfirmation();
                     break;
-                case 4:
-                    UpDateOrderItem();
-                    break;
-                case 5:
-                    Console.WriteLine("enter th id product to delete");
-                    int d_id = (int)Convert.ToInt64(Console.ReadLine());
-                    dalEntity.Product.Delete(d_id);
-                    break;
+             
             }
         }
         catch (Exception error)

@@ -117,7 +117,7 @@ namespace BlImplementation
             newOrder.CustomerAddress = address;
             newOrder.CustomerName= name;
             newOrder.CustomerEmail = email;
-            var id = dalEntity.Order.Create(newOrder);
+            var id = dalEntity.Order.Add(newOrder);
 
             foreach (var i in cart.items)
             {
