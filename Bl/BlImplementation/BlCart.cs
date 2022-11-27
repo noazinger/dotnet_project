@@ -84,7 +84,7 @@ namespace BlImplementation
                             i.Amount += amount;
                             i.TotalPrice += i.Price * amount;
                             cart.TotalPrice += i.TotalPrice;
-                            return cart;
+                            return cart; 
                         }
                         else throw new BO.NotInStock();
                     }
@@ -108,11 +108,29 @@ namespace BlImplementation
                 List<DO.Product> products = dalEntity.Product.Read().ToList();
                 p = products.Find(x => x.ID == item.ID);
                  if (p.inStock < item.Amount) throw new BO.NotValidException("Not enough of this product in stock");
-              }
+                if (item.Amount < 0) throw new BO.NotValidException("the amount isnt valid");
+            }
+            DO.Order newOrder = new();
+            newOrder.OrderDate = DateTime.Now;
+            newOrder.DeliveryDate = DateTime.MinValue;
+            newOrder.ShipDate = DateTime.MinValue;
+            newOrder.CustomerAddress = address;
+            newOrder.CustomerName= name;
+            newOrder.CustomerEmail = email;
+            var id = dalEntity.Order.Create(newOrder);
 
-
-
-
+            foreach (var i in cart.items)
+            {
+                DO.OrderItem orderItem = new();
+                orderItem.OrderID=id;
+                orderItem.Price = i.Price;
+                orderItem.ProductID = i.ProductID;
+                orderItem.Amount = i.Amount;
+                dalEntity.OrderItem.Create(orderItem);
+                List<DO.Product> product = dalEntity.Product.Read().ToList();
+                DO.Product pr= product.Find(item => item.ID == id);
+                dalEntity.Product.Update(pr);
+            }
         }
     }
 }

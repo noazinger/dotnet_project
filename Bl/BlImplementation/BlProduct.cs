@@ -7,7 +7,7 @@ using  BlApi;
 using DalApi;
 namespace BlImplementation
 {
-    internal class BlProduct:Iproduct<BlProduct>
+    internal class BlProduct:Iproduct
     {
         IDal dalEntity = new Dal.DalList();
         public IEnumerable<BO.ProductForList> ReadListProducts()
