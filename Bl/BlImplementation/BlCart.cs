@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 using BlApi;
 using DalApi;
 namespace BlImplementation
@@ -90,12 +91,28 @@ namespace BlImplementation
                  
                 }
             }
-            throw new BO.NotExistException("the product is nuot exist in cart");
+            throw new BO.NotExistException("the product is not exist in cart");
 
         }
-        public void OrderConfirmation(ICart cart, string name, string email, string address)
+        public void OrderConfirmation(BO.Cart cart, string name, string email, string address)
         {
-
+            if (name == "") throw new BO.NotValidException("the name isnt valid");
+            if (email == "") throw new BO.NotValidException("the email isnt valid");
+            var Email = new EmailAddressAttribute();
+            if (Email.IsValid(email)) throw new BO.NotValidException("the name isnt valid");
+            if (address == "") throw new BO.NotValidException("the address isnt valid");
+            if (name == "") throw new BO.NotValidException("the name isnt valid");
+            BO.Product p = new();
+            foreach (var item in cart.items)
+            {
+                List<BO.Product> products = dalEntity.Product.Read();
+                p = products.Find(x => x.ID == item.ID);
+                if (p == null) throw new BO.NotValidException("njnjnjnjnjnjnj");
+                if (p.InStock < item.Amount) throw new BO.NotValidException("one of the items isnt inStock");
+                if (item.Amount<0) throw new BO.NotValidException("the amount isnt valid");
+                DO.Order newOrder = new();
+                newOrder.OrderDate = DateTime.Now();
+            }
         }
     }
 }
