@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Loader;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 using BlApi;
 using DalApi;
 namespace BlImplementation
 {
     internal class BlCart : ICart
-    {
+    {  
         IDal dalEntity = new Dal.DalList();
         public BO.Cart Add(BO.Cart cart, int id)
         {
@@ -30,31 +30,31 @@ namespace BlImplementation
                     }
                 }
             }
-            foreach (var p in dalEntity.Product.Read())
-            {
-                if (p.ID == id)
+                foreach(var p in dalEntity.Product.Read())
                 {
-                    if (p.inStock > 0) {
-                        BO.OrderItem orderItem = new BO.OrderItem();
-                        orderItem.ID = 0;
-                        orderItem.Name = p.Name;
-                        orderItem.Price = p.Price;
-                        orderItem.ProductID = p.ID;
-                        orderItem.Amount = 1;
-                        orderItem.TotalPrice = p.Price;
-                        cart.items.Add(orderItem);
-                        return cart;
+                    if (p.ID == id)
+                    {
+                        if ( p.inStock > 0) {
+                            BO.OrderItem orderItem = new BO.OrderItem();
+                            orderItem.ID = 0;
+                            orderItem.Name = p.Name;
+                            orderItem.Price = p.Price;
+                            orderItem.ProductID = p.ID;
+                            orderItem.Amount = 1;
+                            orderItem.TotalPrice = p.Price;
+                            cart.items.Add(orderItem);
+                            return cart;
+                        }
+                        else throw new BO.NotInStock();
                     }
-                    else throw new BO.NotInStock();
+                    
                 }
-
-            }
             throw new BO.NotExistException("the product is not exist");
 
         }
-        public BO.Cart Update(BO.Cart cart, int productID, int amount)
+        public BO.Cart Update(BO.Cart cart,int productID,int amount)
         {
-            foreach (var i in cart.items)
+             foreach (var i in cart.items)
             {
                 if (i.ProductID == productID)
                 {
@@ -88,7 +88,7 @@ namespace BlImplementation
                         }
                         else throw new BO.NotInStock();
                     }
-
+                 
                 }
             }
             throw new BO.NotExistException("the product is nuot exist in cart");
@@ -96,23 +96,18 @@ namespace BlImplementation
         }
         public void OrderConfirmation(BO.Cart cart, string name, string email, string address)
         {
-            if (address == "" || !IsValidEmail(email) || email == "" || name == "")
-            {
-                throw new Exception();
-            }   
+            if (name == "") throw new BO.NotValidException("the name isnt valid");
+            if (email == "") throw new BO.NotValidException("the email isnt valid");
+            var Email = new EmailAddressAttribute();
+            if (Email.IsValid(email)) throw new BO.NotValidException("the name isnt valid");
+            if (address == "") throw new BO.NotValidException("the address isnt valid");
+            if (name == "") throw new BO.NotValidException("the name isnt valid");
+            BO.Product p = new();
             foreach (var item in cart.items)
             {
-                if (item.Amount < 0 || (dalEntity.Product.ReadSingle(item.ID).inStock - item.Amount) < 0)
-                {
-                    throw new Exception();
-                }
-                DO.Order newOrder = new DO.Order();
-                newOrder.OrderDate = DateTime.Now;
-                newOrder.ShipDate = DateTime.MinValue;
-                newOrder.DeliveryDate = DateTime.MinValue;
-                newOrder.CustomerAddress = address;
-                newOrder.CustomerEmail = email;
-                newOrder.CustomerName = name;
+                List<BO.Product> products = dalEntity.Product.Read();
+                p = products.Find(x => x.ID == item.ID);
+                if(p==null||p.InStock<item.Amount) throw new BO.NotValidException("the name isnt valid");
 
 
             }
