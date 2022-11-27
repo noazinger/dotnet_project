@@ -91,7 +91,7 @@ namespace BlImplementation
                  
                 }
             }
-            throw new BO.NotExistException("the product is nuot exist in cart");
+            throw new BO.NotExistException("the product is not exist in cart");
 
         }
         public void OrderConfirmation(BO.Cart cart, string name, string email, string address)
@@ -107,9 +107,11 @@ namespace BlImplementation
             {
                 List<BO.Product> products = dalEntity.Product.Read();
                 p = products.Find(x => x.ID == item.ID);
-                if(p==null||p.InStock<item.Amount) throw new BO.NotValidException("the name isnt valid");
-
-
+                if (p == null) throw new BO.NotValidException("njnjnjnjnjnjnj");
+                if (p.InStock < item.Amount) throw new BO.NotValidException("one of the items isnt inStock");
+                if (item.Amount<0) throw new BO.NotValidException("the amount isnt valid");
+                DO.Order newOrder = new();
+                newOrder.OrderDate = DateTime.Now();
             }
         }
     }
