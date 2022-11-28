@@ -96,41 +96,61 @@ namespace BlImplementation
         }
         public void OrderConfirmation(BO.Cart cart, string name, string email, string address)
         {
-            if (name == "") throw new BO.NotValidException("the name isnt valid");
-            if (email == "") throw new BO.NotValidException("the email isnt valid");
-            var Email = new EmailAddressAttribute();
-            if (!Email.IsValid(email) || email == "") throw new BO.NotValidException("the name isnt valid");
-            if (address == "") throw new BO.NotValidException("the address isnt valid");
-            if (name == "") throw new BO.NotValidException("the name isnt valid");
-            DO.Product p = new DO.Product();
-            foreach (var item in cart.items)
+            try
             {
-                List<DO.Product> products = dalEntity.Product.Read().ToList();
-                p = products.Find(x => x.ID == item.ID);
-                 if (p.inStock < item.Amount) throw new BO.NotValidException("Not enough of this product in stock");
-                 if (item.Amount < 0) throw new BO.NotValidException("the amount isnt valid");
+                if (name == "") throw new BO.NotValidException("the name isnt valid");
+                if (email == "") throw new BO.NotValidException("the email isnt valid");
+                var Email = new EmailAddressAttribute();
+                if (!Email.IsValid(email) || email == "") throw new BO.NotValidException("the name isnt valid");
+                if (address == "") throw new BO.NotValidException("the address isnt valid");
+                if (name == "") throw new BO.NotValidException("the name isnt valid");
+                DO.Product p = new DO.Product();
+                DO.Order newOrder = new();
+                newOrder.OrderDate = DateTime.Now;
+                newOrder.DeliveryDate = DateTime.MinValue;
+                newOrder.ShipDate = DateTime.MinValue;
+                newOrder.CustomerAddress = address;
+                newOrder.CustomerName = name;
+                newOrder.CustomerEmail = email;
+                var id = dalEntity.Order.Add(newOrder);
+                    foreach (var i in cart.items)
+                    {
+                        i.ID = id;
+                        DO.OrderItem orderItem = new();
+                        orderItem.OrderID = id;
+                        orderItem.Price = i.Price;
+                        orderItem.ProductID = i.ProductID;
+                        orderItem.Amount = i.Amount;
+                        dalEntity.OrderItem.Create(orderItem);                        
+                    }
+                foreach (var item in cart.items)
+                {
+                    List<DO.Product> products = dalEntity.Product.Read().ToList();
+                    p = products.Find(x => x.ID == item.ProductID);
+                    if (p.inStock < item.Amount) throw new BO.NotValidException("Not enough of this product in stock");
+                    if (item.Amount < 0) throw new BO.NotValidException("the amount isnt valid");
+                    p.inStock -= item.Amount;
+                    dalEntity.Product.Update(p);
+                }
             }
-            DO.Order newOrder = new();
-            newOrder.OrderDate = DateTime.Now;
-            newOrder.DeliveryDate = DateTime.MinValue;
-            newOrder.ShipDate = DateTime.MinValue;
-            newOrder.CustomerAddress = address;
-            newOrder.CustomerName= name;
-            newOrder.CustomerEmail = email;
-            var id = dalEntity.Order.Add(newOrder);
+            catch(StackOverFlowException exc)
+            {
+                throw new BO.OverflowException(exc);
+            }
+            catch (AlreadyExistsException exc)
+            {
+                throw new BO.AlreadyExistsException(exc);
+            }
+            catch(DataIsEmpty exc)
+            {
+                throw new BO.NotDataException(exc);
+            }
+            catch(NotFoundException exc)
+            {
+                throw new BO.NotExistException(exc);
+            }
 
-            foreach (var i in cart.items)
-            {
-                DO.OrderItem orderItem = new();
-                orderItem.OrderID = id;
-                orderItem.Price = i.Price;
-                orderItem.ProductID = i.ProductID;
-                orderItem.Amount = i.Amount;
-                dalEntity.OrderItem.Create(orderItem);
-                List<DO.Product> product = dalEntity.Product.Read().ToList();
-                DO.Product pr = product.Find(item => item.ID == id);
-                dalEntity.Product.Update(pr);
-            }
+        
         }
     }
 }

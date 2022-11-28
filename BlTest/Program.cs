@@ -1,8 +1,6 @@
 ﻿using DalList;
 using BO;
 using BlApi;
-using BlImplementation;
-
 IBl blEntity = new BlImplementation.Bl();
 Cart cart = new Cart();
 cart.items = new List<OrderItem>();
@@ -166,10 +164,10 @@ void UpDateProduct()
     newProduct.Name = Console.ReadLine();
     Console.WriteLine("enter price");
     newProduct.Price = float.Parse(Console.ReadLine());
-    Console.WriteLine("enter costumer category");
+    Console.WriteLine("enter the product's category: 1 - suit, 2 - pants, 3 - tie, 4 -  shirt, 5 - accssories");
     int choice = (int)Convert.ToInt64(Console.ReadLine());
     newProduct.catagory = (catagory)choice;
-    Console.WriteLine("enter costumer inStock");
+    Console.WriteLine("enter the amount inStock");
     newProduct.InStock = (int)Convert.ToInt64(Console.ReadLine());
     blEntity.Product.Update(newProduct);
 }

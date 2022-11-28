@@ -135,19 +135,18 @@ namespace BlImplementation
         }
         public void Delete(int id)
         {
-            
-            foreach (var item in dalEntity.OrderItem.Read())
+            List<DO.OrderItem> orderItems=dalEntity.OrderItem.Read().ToList();
+            DO.OrderItem orderItem=orderItems.Find(order=>order.ID==id);
+            if (orderItem.Equals(default(DO.OrderItem)))
             {
-                if (item.ProductID == id)
+                DO.Order order = dalEntity.Order.ReadSingle(orderItem.OrderID);
+                if (order.ShipDate > DateTime.Now)
                 {
-                    DO.Order order = dalEntity.Order.ReadSingle(id);
-                   if (order.ShipDate > DateTime.Now)
-                    {
-                        throw new BO.ExistsInOrder();
-                    }
+                    throw new BO.ExistsInOrder();
                 }
-                    
+
             }
+      
             try
             {
                 dalEntity.Product.Delete(id);

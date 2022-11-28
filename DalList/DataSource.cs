@@ -32,7 +32,7 @@ public struct DataSource
         for (int i = 0; i < 10; i++)
         {
             Product product = new Product();
-            product.ID = readionly.Next(100000, 999999);
+            product.ID = Config.ProductID;
             int Irnd = readionly.Next(0, TupleProduct.Length);
             product.catagory = TupleProduct[Irnd].Item1;
             product.Name = TupleProduct[Irnd].Item2;
@@ -53,7 +53,7 @@ public struct DataSource
         for (int i = 0; i < 3; i++)
         {
             Order order = new Order();
-            order.ID = Config.ID;
+            order.ID = Config.OrderID;
             order.CustomerName = CustomerName[(int)readionly.NextInt64(CustomerName.Length)];
             order.CustomerEmail = CustomerEmail[(int)readionly.NextInt64(CustomerEmail.Length)];
             order.CustomerAddress = CustomerAddress[(int)readionly.NextInt64(CustomerAddress.Length)];
@@ -91,8 +91,12 @@ public struct DataSource
         static public int OrderItemIndex = 0;
         static public int OrderFinalIndex = 100;
         static public int ProductIndex = 0;
-        static public int id = 1000;
-        static public int ID { get { return id++; } }
+        static public int ProductId = 10000;
+
+        static public int OrderId = 1000;
+        static public int ProductID { get { return ProductId++; } }
+
+        static public int OrderID { get { return OrderId++; } }
     }
 }
 
