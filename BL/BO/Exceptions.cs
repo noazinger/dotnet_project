@@ -47,6 +47,9 @@ public class ExistsInOrder : Exception
     public ExistsInOrder() : base("the product exist in some order") { }
 
 }
+public class OverflowException:Exception{
+    public OverflowException(Exception exc) : base("overflow",exc) { }
+}
 
 
  

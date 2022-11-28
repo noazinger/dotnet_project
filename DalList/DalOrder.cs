@@ -12,9 +12,9 @@ internal class  DalOrder: IOrder
     {
         if (size > 99)
             throw new StackOverFlowException();
-        obj.ID = DataSource.Config.ID;
+        obj.ID = DataSource.Config.OrderID;
         DataSource.ordersData.Add(obj);
-        return DataSource.Config.ID;
+        return DataSource.Config.OrderID;
     }
 
   
