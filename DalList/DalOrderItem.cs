@@ -76,15 +76,15 @@ public struct DalOrderItem:IOrderItem
     }
     public void Delete(int id)
     {
-        for (int i = 0; i < DataSource.orderItemsData.Count(); i++)
+        OrderItem item=DataSource.orderItemsData.Find(item => item.ID == id);
+        if (item.ID!=null)
         {
-            if (DataSource.orderItemsData[i].ID == id)
-            {
-                DataSource.orderItemsData.Remove(DataSource.orderItemsData[i]);
-                return;
-            }
-        }
+            DataSource.orderItemsData.Remove(item);
+            return;
+        } 
         throw new NotFoundException();
+     
+        
     }
 
 

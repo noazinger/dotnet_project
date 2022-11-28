@@ -8,5 +8,7 @@ namespace DalApi
 {
     public interface IOrder : Icrud<Order>
     {
+        public int Add(DO.Order order);
+
     }
 }

@@ -5,7 +5,7 @@ using BlImplementation;
 
 IBl blEntity = new BlImplementation.Bl();
 Cart cart = new Cart();
-
+cart.items = new List<OrderItem>();
 //================ Order Functions ================//
 
 void ViewOrders()
