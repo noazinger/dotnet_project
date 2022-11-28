@@ -202,7 +202,6 @@ void UpdateCart()
     Console.WriteLine("enter producte amount");
     int amount = (int)Convert.ToInt64(Console.ReadLine());
     blEntity.Cart.Update(cart, id, amount);
-
 }
 
 void CartFunc()
@@ -227,10 +226,8 @@ void CartFunc()
                     UpdateCart();
                     break;
                 case 3:
-
                     orderConfirmation();
                     break;
-             
             }
         }
         catch (Exception error)

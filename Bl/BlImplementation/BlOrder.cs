@@ -13,7 +13,8 @@ namespace BlImplementation
             List <BO.OrderForList> OrdersList = new List<BO.OrderForList>();
             try
             {
-                foreach (var item in dalEntity.Order.Read())
+                List<DO.Order> orders = dalEntity.Order.Read().ToList();
+                foreach (var item in orders )
                 {
                     BO.OrderForList order = new BO.OrderForList();
                     order.ID = item.ID;
@@ -33,21 +34,27 @@ namespace BlImplementation
                     int amount = 0;
                     double price = 0;
                     double totalPrice = 0;
-                    foreach (var itemIn in dalEntity.OrderItem.Read())
+                    List<DO.OrderItem> items = dalEntity.OrderItem.Read().ToList();
+                    foreach (var itemIn in items )
                     {
-                        BO.OrderItem orderItem = new BO.OrderItem();
-                        if (orderItem.ID == item.ID)
-                        {
-                            amount = orderItem.Amount;
-                            order.AmountOfItems = amount;
-                            price = itemIn.Price * amount;
-                            totalPrice += price;
+                        //BO.OrderItem orderItem = new BO.OrderItem();
+                        if (itemIn.ID == item.ID) {
                             amount++;
+                        }
+                        if (itemIn.OrderID == item.ID)
+                        {
+                            //amount = orderItem.Amount;
+                            //order.AmountOfItems = amount;
+                            amount = itemIn.Amount;
+                            price = (double)(itemIn.Price * amount);
+                            //totalPrice += price;
+                            totalPrice = price;
                         }
                     }
                     order.AmountOfItems = amount;
                     order.TotalPrice = totalPrice;
                     OrdersList.Add(order);
+                    amount++;
                 }
             }
             catch(DataIsEmpty exc)
