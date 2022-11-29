@@ -4,7 +4,7 @@ using DO;
 
 namespace DalList;
 using DalApi;
-internal class  DalOrder: IOrder
+internal class DalOrder : IOrder
 {
     public static int size = DataSource.ordersData.Count();
     public void Create(Order obj) { }
@@ -14,22 +14,21 @@ internal class  DalOrder: IOrder
             throw new StackOverFlowException();
         obj.ID = DataSource.Config.OrderID;
         DataSource.ordersData.Add(obj);
-        return DataSource.Config.OrderID;
+        return obj.ID;
     }
 
-  
 
-    public  Order ReadSingle(int id)
+
+    public Order ReadSingle(int id)
     {
-        for(int i=0;i< size; i++)
-        {
-           if (DataSource.ordersData[i].ID == id) return DataSource.ordersData[i];
-        }
+
+        Order order = DataSource.ordersData.Find(i => i.ID == id);
+        if (!order.Equals(default(Order))) return order;
         throw new NotFoundException();
 
     }
 
-    public IEnumerable<Order>Read()
+    public IEnumerable<Order> Read()
     {
         if (size != 0)
             return DataSource.ordersData;
@@ -48,7 +47,7 @@ internal class  DalOrder: IOrder
         }
         throw new NotFoundException();
     }
-    public  void Update(Order obj)
+    public void Update(Order obj)
     {
         for (int i = 0; i < size; i++)
         {

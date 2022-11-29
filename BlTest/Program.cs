@@ -23,20 +23,28 @@ void ViewOrderInfo()
     int id = (int)Convert.ToInt64(Console.ReadLine());
     Order order = blEntity.Order.ReadOrderInformation(id);
     Console.WriteLine(order);
+    Console.WriteLine("order items:");
+    foreach(OrderItem item in order.Items)
+    {
+        Console.WriteLine(item);
+    }
 }
 
 void UpdateShipping()
 {
     Console.WriteLine("enter the id order to update shipping");
     int ID = (int)Convert.ToInt64(Console.ReadLine());
-    blEntity.Order.UpdateShipping(ID);
+     Order order=blEntity.Order.UpdateShipping(ID);
+    Console.WriteLine(order);
 }
 
 void UpdateDelivery()
 {
     Console.WriteLine("enter the id order to update delivery");
     int ID = (int)Convert.ToInt64(Console.ReadLine());
-    blEntity.Order.UpdateShipping(ID);
+    Order order=blEntity.Order.UpdateDelivery(ID);
+    Console.WriteLine(order);
+
 }
 void OrderFunc()
 {
@@ -44,7 +52,7 @@ void OrderFunc()
     do
     {
         Console.WriteLine("Please enter your choice: 1. view orders  " +
-        "2. view order information 3. update shipping 4. update delivery 5. delete order  0. to exit");
+        "2. view order information 3. update shipping 4. update delivery  0. to exit");
         choice = (int)Convert.ToInt64(Console.ReadLine());
         try
         {

@@ -42,21 +42,16 @@ public struct DalOrderItem:IOrderItem
     public IEnumerable<OrderItem> ReadByOrderId(int orderId)
     {
         
-        OrderItem[] itemsArr = new OrderItem[DataSource.orderItemsData.Count()];
-        int idx = 0;
-        for (int i = 0; i < DataSource.orderItemsData.Count(); i++)
+        List<OrderItem> items = new ();
+        foreach (OrderItem item in DataSource.orderItemsData)
         {
-            if (DataSource.orderItemsData[i].OrderID == orderId)
+            if (item.OrderID == orderId)
             {
-                itemsArr[idx] = DataSource.orderItemsData[i];
-                idx++;
+                items.Add(item);
             }
         }
-        if (idx == 0)
-        {
-            throw new NotFoundException();
-        }
-        return itemsArr;
+        if(items.Count > 0) return items;
+        throw new NotFoundException();
     }
     public void Delete(int id)
     {

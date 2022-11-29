@@ -70,6 +70,7 @@ namespace BlImplementation
                     product.Name = item.Name;
                     product.Price = item.Price;
                     product.catagory = (BO.catagory)item.catagory;
+                    product.InStock = item.inStock;
                     return product;
                 }
                 catch (NotFoundException exc)
@@ -137,7 +138,7 @@ namespace BlImplementation
         {
             List<DO.OrderItem> orderItems=dalEntity.OrderItem.Read().ToList();
             DO.OrderItem orderItem=orderItems.Find(order=>order.ID==id);
-            if (orderItem.Equals(default(DO.OrderItem)))
+            if (!orderItem.Equals(default(DO.OrderItem)))
             {
                 DO.Order order = dalEntity.Order.ReadSingle(orderItem.OrderID);
                 if (order.ShipDate > DateTime.Now)

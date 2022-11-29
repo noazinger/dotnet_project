@@ -8,6 +8,10 @@ using DO;
 namespace DalList;
 public struct DataSource
 {
+    const int orderItemSize = 40;
+    const int orderSize = 10;
+    const int productSize = 40;
+
     private static void s_Initialize()
     {
         createProductData();
@@ -29,17 +33,16 @@ public struct DataSource
     public static List<Product> productsData = new List<Product>();
     public static void createProductData()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < productSize; i++)
         {
             Product product = new Product();
             product.ID = Config.ProductID;
             int Irnd = readionly.Next(0, TupleProduct.Length);
             product.catagory = TupleProduct[Irnd].Item1;
             product.Name = TupleProduct[Irnd].Item2;
-            product.Price = readionly.Next(100, 650);
+            product.Price = readionly.Next(50, 650);
             product.inStock = readionly.Next(0, 200);//לאתחל 5 אחוז מהמוצרים ב-0\
             Config.ProductIndex++;
-            product.inStock= readionly.Next(0, 200);//לאתחל 5 אחוז מהמוצרים ב-0\
             productsData.Add(product);
 
         };
@@ -50,7 +53,7 @@ public struct DataSource
         string[] CustomerName = { "Noa", "Tovi", "Gitty" };
         string[] CustomerEmail = { "Noa123@gmail.com", "Tovi40@gmail.com", "Gitty865@gmail.com" };
         string[] CustomerAddress = { "Kotcher_8", "Revivim_26", "Bleui_65" };
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < orderSize; i++)
         {
             Order order = new Order();
             order.ID = Config.OrderID;
@@ -67,21 +70,29 @@ public struct DataSource
     }
     public static void createOrderItemData()
     {
-        for (int i = 0; i < 22; i++)
+
+        for (int i = 0; i < ordersData.Count(); i++)
+        {
+            OrderItem orderItem = new OrderItem();
+            orderItem.OrderID = ordersData[i].ID;
+            int productIndex = readionly.Next(0, productsData.Count());
+            orderItem.ProductID = productsData[productIndex].ID;
+            orderItem.Amount = 1;
+            orderItem.Price = orderItem.Amount * productsData[productIndex].Price;
+            orderItemsData.Add(orderItem);
+        }
+        for (int i = 0; i < orderItemSize; i++)
         {
             int orderIndex = readionly.Next(0, ordersData.Count());
             int orderId = ordersData[orderIndex].ID;
-            int rand = readionly.Next(0, 5);
-            for (int j = 0; j < rand; j++)
-            {
-                OrderItem orderItem = new OrderItem();
-                orderItem.OrderID = orderId;
-                int productIndex = readionly.Next(0, productsData.Count());
-                orderItem.ProductID = productsData[productIndex].ID;
-                orderItem.Amount = readionly.Next(0, productsData[productIndex].inStock);
-                orderItem.Price = orderItem.Amount * productsData[productIndex].Price;
-                orderItemsData.Add(orderItem);
-            };
+            OrderItem orderItem = new OrderItem();
+            orderItem.OrderID = orderId;
+            int productIndex = readionly.Next(0, productsData.Count());
+            orderItem.ProductID = productsData[productIndex].ID;
+            orderItem.Amount = 1;
+            orderItem.Price = orderItem.Amount * productsData[productIndex].Price;
+            orderItemsData.Add(orderItem);
+
         };
     }
 
