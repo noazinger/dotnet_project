@@ -93,7 +93,7 @@ public struct DataSource
         static public int ProductIndex = 0;
         static public int ProductId = 10000;
 
-        static public int OrderId = 1000;
+        static public int OrderId = 10000;
         static public int ProductID { get { return ProductId++; } }
 
         static public int OrderID { get { return OrderId++; } }

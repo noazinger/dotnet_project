@@ -9,7 +9,7 @@ public struct DalOrderItem:IOrderItem
     public void Create(OrderItem orderItem)
     {
         OrderItem findOrder=DataSource.orderItemsData.Find(item => item.OrderID == orderItem.OrderID && item.ProductID == orderItem.ProductID);
-        if (findOrder.Equals(default(OrderItem))) throw new AlreadyExistsException();
+        if (!(findOrder.Equals(default(OrderItem)))) throw new AlreadyExistsException();
         if (DataSource.orderItemsData.Count() == 200) throw new StackOverFlowException();
         DataSource.orderItemsData.Add(orderItem);
            
