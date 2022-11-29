@@ -124,7 +124,7 @@ void AddProduct()
     product.ID = id;
     Console.WriteLine("enter name for the new product");
     product.Name = Console.ReadLine();
-    Console.WriteLine("enter the product's category: 1 - suit, 2 - pants, 3 - tie, 4 -  shirt, 5 - accssories");
+    Console.WriteLine("enter the product's category: 0 - suit, 1 - pants, 2 - tie, 3 -  shirt, 4 - accssories");
     int choice = (int)Convert.ToInt64(Console.ReadLine());
     product.catagory = (catagory)choice;
     Console.WriteLine("enter price for the new product");
@@ -164,7 +164,7 @@ void UpDateProduct()
     newProduct.Name = Console.ReadLine();
     Console.WriteLine("enter price");
     newProduct.Price = float.Parse(Console.ReadLine());
-    Console.WriteLine("enter the product's category: 1 - suit, 2 - pants, 3 - tie, 4 -  shirt, 5 - accssories");
+    Console.WriteLine("enter the product's category: 0 - suit, 1 - pants, 2 - tie, 3 -  shirt, 4 - accssories");
     int choice = (int)Convert.ToInt64(Console.ReadLine());
     newProduct.catagory = (catagory)choice;
     Console.WriteLine("enter the amount inStock");
