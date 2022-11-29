@@ -100,10 +100,9 @@ namespace BlImplementation
             {
                 if (name == "") throw new BO.NotValidException("the name isnt valid");
                 if (email == "") throw new BO.NotValidException("the email isnt valid");
-                var Email = new EmailAddressAttribute();
-                if (!Email.IsValid(email) || email == "") throw new BO.NotValidException("the name isnt valid");
                 if (address == "") throw new BO.NotValidException("the address isnt valid");
-                if (name == "") throw new BO.NotValidException("the name isnt valid");
+                var Email = new EmailAddressAttribute();
+                if (!Email.IsValid(email) || email == "") throw new BO.NotValidException("the email isnt valid");
                 DO.Product p = new DO.Product();
                 DO.Order newOrder = new();
                 newOrder.OrderDate = DateTime.Now;
