@@ -16,9 +16,6 @@ internal class DalOrder : IOrder
         DataSource.ordersData.Add(obj);
         return obj.ID;
     }
-
-
-
     public Order ReadSingle(int id)
     {
 
@@ -43,7 +40,6 @@ internal class DalOrder : IOrder
                 DataSource.ordersData.Remove(DataSource.ordersData[i]);
                 return;
             }
-
         }
         throw new NotFoundException();
     }
@@ -56,13 +52,9 @@ internal class DalOrder : IOrder
                 DataSource.ordersData[i] = obj;
                 return;
             }
-
         }
         throw new NotFoundException();
     }
-
-
-
 }
 
 

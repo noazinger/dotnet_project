@@ -10,13 +10,13 @@ namespace BlImplementation
         IDal dalEntity = new Dal.DalList();
         public IEnumerable<BO.OrderForList> ReadOrders()
         {
-            List <BO.OrderForList> OrdersList = new List<BO.OrderForList>();
+            List<BO.OrderForList> OrdersList = new List<BO.OrderForList>();
             try
             {
                 List<DO.Order> orders = dalEntity.Order.Read().ToList();
-                foreach (var item in orders )
+                foreach (var item in orders)
                 {
-                    BO.OrderForList order = new BO.OrderForList();
+                    BO.OrderForList order = new ();
                     order.ID = item.ID;
                     order.CustomerName = item.CustomerName;
                     if (item.OrderDate >= DateTime.Now && item.ShipDate <= DateTime.Now)
@@ -32,32 +32,22 @@ namespace BlImplementation
                         order.Status = (BO.OrderStatus)3;
                     }
                     int amount = 0;
-                    double price = 0;
                     double totalPrice = 0;
-                    List<DO.OrderItem> items = dalEntity.OrderItem.Read().ToList();
-                    foreach (var itemIn in items )
+                    List<DO.OrderItem> items = dalEntity.OrderItem.ReadByOrderId(item.ID).ToList();
+                    foreach (var itemIn in items)
                     {
-                        //BO.OrderItem orderItem = new BO.OrderItem();
-                        if (itemIn.ID == item.ID) {
-                            amount++;
-                        }
-                        if (itemIn.OrderID == item.ID)
-                        {
-                            //amount = orderItem.Amount;
-                            //order.AmountOfItems = amount;
-                            amount = itemIn.Amount;
-                            price = (double)(itemIn.Price * amount);
-                            //totalPrice += price;
-                            totalPrice = price;
-                        }
+                        amount +=itemIn.Amount;
+                        totalPrice += itemIn.Price* itemIn.Amount;
+                  
                     }
+                   
                     order.AmountOfItems = amount;
                     order.TotalPrice = totalPrice;
                     OrdersList.Add(order);
-                    amount++;
+
                 }
             }
-            catch(DataIsEmpty exc)
+            catch (DataIsEmpty exc)
             {
                 throw new BO.NotDataException(exc);
             }
@@ -71,34 +61,37 @@ namespace BlImplementation
                 if (id > 0)
                 {
                     DO.Order singleOrder = dalEntity.Order.ReadSingle(id);
-                    singleOrder.ID = order.ID;
-                    singleOrder.CustomerName = order.CustomerName;
-                    singleOrder.CustomerAddress = order.CustomerAddress;
-                    singleOrder.CustomerEmail = order.CustomerEmail;
-                    singleOrder.OrderDate = order.OrderDate;
-                    singleOrder.ShipDate = order.ShipDate;
-                    singleOrder.DeliveryDate = order.DeliveryDate;
+                    order.ID = id;
+                    order.CustomerName = singleOrder.CustomerName;
+                    order.CustomerAddress = singleOrder.CustomerAddress;
+                    order.CustomerEmail = singleOrder.CustomerEmail;
+                    order.OrderDate = singleOrder.OrderDate;
+                    order.ShipDate = singleOrder.ShipDate;
+                    order.DeliveryDate = singleOrder.DeliveryDate;
                 }
-                foreach (var item in dalEntity.OrderItem.ReadByOrderId(id))
+                List<BO.OrderItem> itemInformation = new List<BO.OrderItem>();
+                foreach (var i in dalEntity.OrderItem.ReadByOrderId(id))
                 {
-                    BO.OrderItem itemInformation = new BO.OrderItem();
-                    itemInformation.ID = item.OrderID;
-                    itemInformation.Name = dalEntity.Product.ReadSingle(itemInformation.ProductID).Name;
-                    itemInformation.ProductID = item.ProductID;
-                    itemInformation.Price = item.Price;
-                    itemInformation.Amount = item.Amount;
-                    itemInformation.TotalPrice = itemInformation.Amount * itemInformation.Price;
+                    BO.OrderItem item = new BO.OrderItem();
+                    item.ID = i.OrderID;
+                    item.Name = dalEntity.Product.ReadSingle(i.ProductID).Name;
+                    item.ProductID = i.ProductID;
+                    item.Price = i.Price;
+                    item.Amount = i.Amount;
+                    item.TotalPrice = item.Amount * item.Price;
+                    itemInformation.Add(item);
                 }
+                order.Items = itemInformation;
             }
-            catch(NotFoundException exc)
+            catch (NotFoundException exc)
             {
                 throw new BO.NotExistException(exc);
             }
-            catch(DataIsEmpty exc)
+            catch (DataIsEmpty exc)
             {
                 throw new BO.NotDataException(exc);
             }
-           
+
             return order;
         }
         public BO.Order UpdateShipping(int orderNumber)
@@ -109,22 +102,22 @@ namespace BlImplementation
                 orderDo.ShipDate = DateTime.Now;
                 dalEntity.Order.Update(orderDo);
                 BO.Order orderBo = new BO.Order();
-                orderBo.CustomerAddress= orderDo.CustomerAddress;
-                orderBo.CustomerName= orderDo.CustomerName;
+                orderBo.CustomerAddress = orderDo.CustomerAddress;
+                orderBo.CustomerName = orderDo.CustomerName;
                 orderBo.CustomerEmail = orderDo.CustomerEmail;
-                orderBo.ID=orderDo.ID;
-                orderBo.ShipDate= orderDo.ShipDate;
-                orderBo.OrderDate= orderDo.OrderDate;
-                orderBo.DeliveryDate= orderDo.DeliveryDate;
+                orderBo.ID = orderDo.ID;
+                orderBo.ShipDate = orderDo.ShipDate;
+                orderBo.OrderDate = orderDo.OrderDate;
+                orderBo.DeliveryDate = orderDo.DeliveryDate;
                 return orderBo;
             }
             catch (NotFoundException err)
             {
-                throw new BO.NotExistException(err) ;
+                throw new BO.NotExistException(err);
             }
         }
         public BO.Order UpdateDelivery(int orderNumber)
-        { 
+        {
             try
             {
                 DO.Order orderDo = dalEntity.Order.ReadSingle(orderNumber);
@@ -138,6 +131,7 @@ namespace BlImplementation
                 orderBo.ShipDate = orderDo.ShipDate;
                 orderBo.OrderDate = orderDo.OrderDate;
                 orderBo.DeliveryDate = orderDo.DeliveryDate;
+
                 return orderBo;
             }
             catch (NotFoundException err)

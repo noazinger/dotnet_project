@@ -11,6 +11,23 @@ namespace BlImplementation
     internal class BlCart : ICart
     {
         IDal dalEntity = new Dal.DalList();
+        /// <summary>
+        /// the function get 2 parameters: 1. the cart 2. id of the product
+        ///     if a product does not exist in the cart:
+        /// I check if the product exists and is in stock
+        /// add to the cart according to the current price of the product
+        /// Define the total price of an item as the price of the above product
+        /// Update the total price of the shopping basket\
+        ///     if a product exist in the cart:
+        /// Check if there is enough in stock of the product
+        /// Increase quantity by 1, update total price of item and total price of cart
+        ///  return the cart
+        /// </summary>
+        /// <param name="cart"></param>
+        /// <param name="id"></param>
+        /// <returns> the function return the update cart after add product</returns>
+        /// <exception cref="BO.NotInStock"></exception>
+        /// <exception cref="BO.NotExistException"></exception>
         public BO.Cart Add(BO.Cart cart, int id)
         {
             foreach (var i in cart.items)
@@ -52,6 +69,22 @@ namespace BlImplementation
             throw new BO.NotExistException("the product is not exist");
 
         }
+        /// <summary>
+        /// the function update the amount of the product in the cart
+        /// the function get 3 parmeters: cart object, product ID, new quantity
+        /// Check if the quantity has changed:
+        /// If the quantity increases - act similarly to adding a product to cart that already exists in the cart as above
+        /// If the quantity is small - reduce the quantity accordingly and update the total price of the item and the cart
+        /// If the quantity became 0 - delete the corresponding item from the cart and update the total price of the cart
+        /// Return an updated cart object .
+        /// 
+        /// </summary>
+        /// <param name="cart"></param>
+        /// <param name="productID"></param>
+        /// <param name="amount"></param>
+        /// <returns></returns>
+        /// <exception cref="BO.NotInStock"></exception>
+        /// <exception cref="BO.NotExistException"></exception>
         public BO.Cart Update(BO.Cart cart, int productID, int amount)
         {
             foreach (var i in cart.items)
@@ -114,7 +147,7 @@ namespace BlImplementation
                 var id = dalEntity.Order.Add(newOrder);
                     foreach (var i in cart.items)
                     {
-                        i.ID = id;
+                    i.ID = id;
                         DO.OrderItem orderItem = new();
                         orderItem.OrderID = id;
                         orderItem.Price = i.Price;
