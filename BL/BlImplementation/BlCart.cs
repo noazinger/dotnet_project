@@ -77,7 +77,6 @@ namespace BlImplementation
         /// If the quantity is small - reduce the quantity accordingly and update the total price of the item and the cart
         /// If the quantity became 0 - delete the corresponding item from the cart and update the total price of the cart
         /// Return an updated cart object .
-        /// 
         /// </summary>
         /// <param name="cart"></param>
         /// <param name="productID"></param>
@@ -127,6 +126,25 @@ namespace BlImplementation
             throw new BO.NotExistException("the product is not exist in cart");
 
         }
+        /// <summary>
+        /// the function confirm cart for order
+        /// the gunction get the cart object and the buyer details 
+        /// I Check the integrity of all data
+        /// and Create an order object based on the data in the cart
+        /// I make an attempt to add an order, created to the data layer and get back an order number
+        /// I Build order item objects according to the data from the cart and the aforementioned - 
+        /// order number and make attempts to request the addition of an order item
+        /// the products in the order should be removed from the inventory
+        /// 
+        /// <param name="cart"></param>
+        /// <param name="name"></param>
+        /// <param name="email"></param>
+        /// <param name="address"></param>
+        /// <exception cref="BO.NotValidException"></exception>
+        /// <exception cref="BO.OverflowException"></exception>
+        /// <exception cref="BO.AlreadyExistsException"></exception>
+        /// <exception cref="BO.NotDataException"></exception>
+        /// <exception cref="BO.NotExistException"></exception>
         public void OrderConfirmation(BO.Cart cart, string name, string email, string address)
         {
             try
