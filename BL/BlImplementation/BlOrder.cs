@@ -1,6 +1,7 @@
 ﻿
 using BlApi;
 using DalApi;
+using System.Reflection;
 using IOrder = BlApi.IOrder;
 
 namespace BlImplementation
@@ -8,6 +9,12 @@ namespace BlImplementation
     internal class BlOrder : IOrder
     {
         IDal dalEntity = new Dal.DalList();
+        /// <summary>
+        /// the function requesting the orders list
+        /// and Build an order list of the OrderForList
+        /// </summary>
+        /// <returns> return list of all the orders</returns>
+        /// <exception cref="BO.NotDataException"> if the orders return null</exception>
         public IEnumerable<BO.OrderForList> ReadOrders()
         {
             List<BO.OrderForList> OrdersList = new List<BO.OrderForList>();
@@ -53,6 +60,16 @@ namespace BlImplementation
             }
             return OrdersList;
         }
+        /// <summary>
+        /// the function requesting Order details, get the order Id
+        /// If the ID is a positive number , request a data layer order
+        /// request order items from a data layer and Build an order object
+        /// based on the received data and calculate missing information
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns> return a constructed order object </returns>
+        /// <exception cref="BO.NotExistException"> if itsnt found the order by order Id</exception>
+        /// <exception cref="BO.NotDataException"> if the data is empty</exception>
         public BO.Order ReadOrderInformation(int id)
         {
             BO.Order order = new BO.Order();
@@ -94,6 +111,15 @@ namespace BlImplementation
 
             return order;
         }
+        /// <summary>
+        /// the function update the shipping date in the order
+        /// Check if an order exists and has not yet been sent
+        /// Update the shipping date in the order 
+        /// try to update an order for a data layer
+        /// </summary>
+        /// <param name="orderNumber"> the function get the order number</param>
+        /// <returns>return an updated order object of a logical entity</returns>
+        /// <exception cref="BO.NotExistException"> if itsnt found the order by order Id</exception>
         public BO.Order UpdateShipping(int orderNumber)
         {
             try
@@ -116,6 +142,15 @@ namespace BlImplementation
                 throw new BO.NotExistException(err);
             }
         }
+        /// <summary>
+        /// the function update the delivery date in the order
+        /// Check if an order exists and has not yet been sent
+        /// Update the delivery date in the order 
+        /// try to update an order for a data layer
+        /// </summary>
+        /// <param name="orderNumber"></param>
+        /// <returns>return an updated order object of a logical entity</returns>
+        /// <exception cref="BO.NotExistException"> if itsnt found the order by order Id</exception>
         public BO.Order UpdateDelivery(int orderNumber)
         {
             try
