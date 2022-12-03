@@ -10,7 +10,9 @@ namespace DalApi
     {
         void Create(T n);
         void Update(T n);
-        IEnumerable<T> Read();
+        IEnumerable<T?> Read();
+/*        IEnumerable<T?>? bool Read();
+*/
         T ReadSingle(int id);
         void Delete(int id);
         

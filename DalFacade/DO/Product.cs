@@ -10,9 +10,9 @@ namespace DO;
 public struct Product
 {
     public int ID;
-    public string Name;
+    public string ? Name;
     public double Price;
-    public catagory catagory;
+    public catagory? catagory;
     public int inStock;
     public override string ToString() => $@"
     ID={ID},
