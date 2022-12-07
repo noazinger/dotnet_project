@@ -28,9 +28,9 @@ public struct DataSource
     };
     static DataSource() { s_Initialize(); }
     static Random readionly = new Random();
-    public static List<OrderItem?> orderItemsData = new List<OrderItem?>();
-    public static List<Order?> ordersData = new List<Order?>();
-    public static List<Product?> productsData = new List<Product?>();
+    public static List<OrderItem> orderItemsData = new List<OrderItem>();
+    public static List<Order> ordersData = new List<Order>();
+    public static List<Product> productsData = new List<Product>();
     public static void createProductData()
     {
         for (int i = 0; i < productSize; i++)
