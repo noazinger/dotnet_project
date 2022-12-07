@@ -11,17 +11,22 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BlApi;
+using BlImplementation;
 
-namespace PL.Order
+namespace PL.Products
 {
     /// <summary>
-    /// Interaction logic for Order.xaml
+    /// Interaction logic for ProductForListWindow.xaml
     /// </summary>
-    public partial class Order : Window
+    public partial class ProductForListWindow : Window
     {
-        public Order()
+        public IBl bl;
+        public ProductForListWindow(IBl b)
         {
             InitializeComponent();
+            bl = b;
+            
         }
     }
 }

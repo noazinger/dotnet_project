@@ -20,4 +20,9 @@
     <ProjectReference Include="..\Bl\BL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Carts\" />
+    <Folder Include="Orders\" />
+  </ItemGroup>
+
 </Project>
