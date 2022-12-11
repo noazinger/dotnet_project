@@ -21,12 +21,14 @@ namespace PL.Products
     /// </summary>
     public partial class ProductForListWindow : Window
     {
-        public IBl bl;
+        private IBl bl;
         public ProductForListWindow(IBl b)
         {
+
             InitializeComponent();
             bl = b;
-            
+            ProductListView.ItemsSource = b.Product.ReadListProducts();
+            CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.catagory));
         }
     }
 }
