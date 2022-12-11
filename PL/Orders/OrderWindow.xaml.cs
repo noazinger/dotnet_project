@@ -12,27 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PL.Products
+namespace PL.Orders
 {
     /// <summary>
-    /// Interaction logic for ProductWindow.xaml
+    /// Interaction logic for OrderWindow.xaml
     /// </summary>
-    public partial class ProductWindow : Window
+    public partial class OrderWindow : Window
     {
-        public ProductWindow()
+        public OrderWindow()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
