@@ -32,5 +32,10 @@ namespace PL
             new Products.ProductForListWindow(bl).Show();
             this.Hide();
         }
+        private void Order_Click(object sender, RoutedEventArgs e)
+        {
+            new Orders.OrderForList(bl).Show();
+            this.Hide();
+        }
     }
 }

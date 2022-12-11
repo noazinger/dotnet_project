@@ -30,6 +30,7 @@ namespace PL.Orders
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+
         }
     }
 }
