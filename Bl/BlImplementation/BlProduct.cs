@@ -30,9 +30,6 @@ namespace BlImplementation
             {
                 throw new BO.NotDataException(exc);
             }
-           
-            
-           
         }
         public IEnumerable<BO.ProductItem> ReadCatalog()
         {
@@ -57,6 +54,25 @@ namespace BlImplementation
                 throw new BO.NotDataException(exc);
             }
 
+        }
+
+        public IEnumerable<BO.ProductForList> ReadProductByCategoty(BO.catagory category)
+        {
+            IEnumerable<DO.Product> lst = dalEntity.Product.Read(p => p.catagory == (DO.catagory)category);
+            List<BO.ProductForList> productsForList = new List<BO.ProductForList>();
+            foreach (DO.Product DoProduct in lst)
+            {
+                BO.ProductForList ProductForList = new BO.ProductForList();
+
+                ProductForList.ID = DoProduct.ID;
+                ProductForList.Name = DoProduct.Name;
+                ProductForList.Price = DoProduct.Price;
+                ProductForList.catagory = (BO.catagory)DoProduct.catagory;
+                productsForList.Add(ProductForList);
+            }
+            /*if (productsForList.Count() == 0)
+                throw new BO.NotDataException("ttttttt");*/
+            return productsForList;
         }
         public BO.Product ReadSingleProductForDirector(int id)
         {

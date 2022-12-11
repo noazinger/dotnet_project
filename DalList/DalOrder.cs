@@ -25,11 +25,12 @@ internal class DalOrder : IOrder
 
     }
 
-    public IEnumerable<Order> Read()
+    public IEnumerable<Order> Read(Func<Order, bool> func = null)
     {
-        if (size != 0)
+        /*if (size != 0)
             return DataSource.ordersData;
-        throw new DataIsEmpty();
+        throw new DataIsEmpty();*/
+        return (func == null ? DataSource.ordersData : DataSource.ordersData.Where(func).ToList());
     }
     public void Delete(int id)
     {
