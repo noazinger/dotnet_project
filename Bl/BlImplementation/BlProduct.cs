@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using  BlApi;
+using BlApi;
 using DalApi;
 namespace BlImplementation
 {
-    internal class BlProduct:Iproduct
+    internal class BlProduct : Iproduct
     {
         IDal dalEntity = new Dal.DalList();
         public IEnumerable<BO.ProductForList> ReadListProducts()
@@ -26,7 +26,7 @@ namespace BlImplementation
                 }
                 return products;
             }
-            catch(DataIsEmpty exc)
+            catch (DataIsEmpty exc)
             {
                 throw new BO.NotDataException(exc);
             }
@@ -53,26 +53,29 @@ namespace BlImplementation
             {
                 throw new BO.NotDataException(exc);
             }
-
         }
-
         public IEnumerable<BO.ProductForList> ReadProductByCategoty(BO.catagory category)
         {
-            IEnumerable<DO.Product> lst = dalEntity.Product.Read(p => p.catagory == (DO.catagory)category);
-            List<BO.ProductForList> productsForList = new List<BO.ProductForList>();
-            foreach (DO.Product DoProduct in lst)
+            try
             {
-                BO.ProductForList ProductForList = new BO.ProductForList();
+                IEnumerable<DO.Product> lst = dalEntity.Product.Read(p => p.catagory == (DO.catagory)category);
+                List<BO.ProductForList> productsForList = new List<BO.ProductForList>();
+                foreach (DO.Product DoProduct in lst)
+                {
+                    BO.ProductForList ProductForList = new BO.ProductForList();
 
-                ProductForList.ID = DoProduct.ID;
-                ProductForList.Name = DoProduct.Name;
-                ProductForList.Price = DoProduct.Price;
-                ProductForList.catagory = (BO.catagory)DoProduct.catagory;
-                productsForList.Add(ProductForList);
+                    ProductForList.ID = DoProduct.ID;
+                    ProductForList.Name = DoProduct.Name;
+                    ProductForList.Price = DoProduct.Price;
+                    ProductForList.catagory = (BO.catagory)DoProduct.catagory;
+                    productsForList.Add(ProductForList);
+                }
+                return productsForList;
             }
-            /*if (productsForList.Count() == 0)
-                throw new BO.NotDataException("ttttttt");*/
-            return productsForList;
+            catch (DataIsEmpty exc)
+            {
+                throw new BO.NotDataException(exc);
+            }
         }
         public BO.Product ReadSingleProductForDirector(int id)
         {
@@ -128,32 +131,30 @@ namespace BlImplementation
         }
         public void Add(BO.Product product)
         {
-           
-                if (product.ID < 0) throw new BO.NotValidException("the ID is not valid");
-                if (product.Name == "") throw new BO.NotValidException("the name is not valid");
-                if (product.Price < 0) throw new BO.NotValidException("the price is not valid");
-                if (product.InStock < 0) throw new BO.NotValidException("the in stock amount is not valid");
-                    DO.Product tempProduct = new DO.Product();
-                    tempProduct.ID = product.ID;
-                    tempProduct.Name = product.Name;
-                    tempProduct.Price = product.Price;
-                    tempProduct.catagory = (DO.catagory)product.catagory;
-                    tempProduct.inStock = product.InStock;
+            if (product.ID < 0) throw new BO.NotValidException("the ID is not valid");
+            if (product.Name == "") throw new BO.NotValidException("the name is not valid");
+            if (product.Price < 0) throw new BO.NotValidException("the price is not valid");
+            if (product.InStock < 0) throw new BO.NotValidException("the in stock amount is not valid");
+            DO.Product tempProduct = new DO.Product();
+            tempProduct.ID = product.ID;
+            tempProduct.Name = product.Name;
+            tempProduct.Price = product.Price;
+            tempProduct.catagory = (DO.catagory)product.catagory;
+            tempProduct.inStock = product.InStock;
             try
             {
                 dalEntity.Product.Create(tempProduct);
 
             }
-            catch(AlreadyExistsException exc)
+            catch (AlreadyExistsException exc)
             {
                 throw new BO.AlreadyExistsException(exc);
             }
-        
         }
         public void Delete(int id)
         {
-            List<DO.OrderItem> orderItems=dalEntity.OrderItem.Read().ToList();
-            DO.OrderItem orderItem=orderItems.Find(order=>order.ID==id);
+            List<DO.OrderItem> orderItems = dalEntity.OrderItem.Read().ToList();
+            DO.OrderItem orderItem = orderItems.Find(order => order.ID == id);
             if (!orderItem.Equals(default(DO.OrderItem)))
             {
                 DO.Order order = dalEntity.Order.ReadSingle(orderItem.OrderID);
@@ -161,18 +162,15 @@ namespace BlImplementation
                 {
                     throw new BO.ExistsInOrder();
                 }
-
             }
-      
             try
             {
                 dalEntity.Product.Delete(id);
             }
-            catch(NotFoundException exc)
+            catch (NotFoundException exc)
             {
                 throw new BO.NotExistException(exc);
             }
-
         }
         public void Update(BO.Product product)
         {
@@ -194,8 +192,6 @@ namespace BlImplementation
             {
                 throw new BO.NotExistException(exc);
             }
-
-
         }
     }
 }
