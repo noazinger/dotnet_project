@@ -4,24 +4,24 @@ using DO;
 namespace DalList;
 using DalApi;
 
-public struct DalProduct:IProduct
+public struct DalProduct : IProduct
 {
     static public int size = DataSource.productsData.Count();
-    public  void Create(Product obj)
+    public void Create(Product obj)
     {
         if (DataSource.Config.ProductIndex > 49) throw new StackOverFlowException();
         obj.ID = DataSource.Config.ProductID;
-        Product product=DataSource.productsData.Find(p => p.ID == obj.ID);
-        if(!product.Equals(default(Product))) throw new AlreadyExistsException();   
+        Product product = DataSource.productsData.Find(p => p.ID == obj.ID);
+        if (!product.Equals(default(Product))) throw new AlreadyExistsException();
         DataSource.productsData.Add(obj);
     }
-    public  Product ReadSingle(int Id)
+    public Product ReadSingle(int Id)
     {
         if (Id < 10000 || Id > 99999)
         {
             throw new NotValidException();
         }
-        for(int i = 0; i < size; i++)
+        for (int i = 0; i < size; i++)
         {
             if (DataSource.productsData[i].ID == Id)
                 return DataSource.productsData[i];
@@ -29,19 +29,19 @@ public struct DalProduct:IProduct
         throw new NotFoundException();
     }
 
-    public IEnumerable<Product> Read()
+    public IEnumerable<Product> Read(Func<Product, bool> func = null)
     {
-        if (size != 0)
+        /*if (size != 0)
             return DataSource.productsData;
-        throw new DataIsEmpty();
-
+        throw new DataIsEmpty();*/
+        return (func == null ? DataSource.productsData : DataSource.productsData.Where(func).ToList());
     }
 
-    public  void Delete(int Id)
+    public void Delete(int Id)
     {
         for (int i = 0; i < size; i++)
         {
-            if(DataSource.productsData[i].ID == Id)
+            if (DataSource.productsData[i].ID == Id)
             {
                 DataSource.productsData.Remove(DataSource.productsData[i]);
                 return;
@@ -50,7 +50,7 @@ public struct DalProduct:IProduct
         throw new NotFoundException();
     }
 
-    public  void Update(Product obj)
+    public void Update(Product obj)
     {
         for (int i = 0; i < size; i++)
         {

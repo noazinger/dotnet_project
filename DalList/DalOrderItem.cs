@@ -31,12 +31,12 @@ public struct DalOrderItem:IOrderItem
         else return findOrder;
     }
 
-    public IEnumerable<OrderItem> Read()
+    public IEnumerable<OrderItem> Read(Func<OrderItem, bool> func = null)
     {
-        if (DataSource.orderItemsData.Count() != 0)
+        /*if (DataSource.orderItemsData.Count() != 0)
             return DataSource.orderItemsData;
-        else throw new DataIsEmpty();
-
+        else throw new DataIsEmpty();*/
+        return (func == null ? DataSource.orderItemsData : DataSource.orderItemsData.Where(func).ToList());
     }
 
     public IEnumerable<OrderItem> ReadByOrderId(int orderId)
