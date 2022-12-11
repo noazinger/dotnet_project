@@ -30,5 +30,11 @@ namespace PL.Products
             ProductListView.ItemsSource = b.Product.ReadListProducts();
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.catagory));
         }
+        private void comboBox_selectionChange(object sender, SelectionChangedEventArgs e)
+        {
+            string? category = CategorySelector.SelectedItem.ToString();
+            ProductListView.ItemsSource = bl.Product.ReadCatalog(); // to change
+            message.Text = CategorySelector.SelectedItem.ToString();
+        }
     }
 }
