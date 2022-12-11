@@ -11,7 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using BlApi;
+using BlImplementation;
 namespace PL.Products
 {
     /// <summary>
@@ -19,9 +20,22 @@ namespace PL.Products
     /// </summary>
     public partial class ProductWindow : Window
     {
-        public ProductWindow()
+        IBl bl = new BlImplementation.Bl();
+        public ProductWindow(IBl bl)
         {
             InitializeComponent();
+            
+        }
+        public ProductWindow(BO.ProductForList ob)
+        {
+            InitializeComponent();
+            name.Text = ob.Name;
+            price.Text = ob.Price.ToString();
+            catagory.Text=ob.catagory.ToString();
+            amount.Text = "";
+            func.Content = "update";
+
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -32,7 +46,14 @@ namespace PL.Products
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
+            BO.Product product= new();
+            product.Name = name.Text;
+            product.Price =double.Parse(price.Text);
+            product.catagory = (BO.catagory)int.Parse(catagory.Text);
+            product.InStock = int.Parse(amount.Text);
+            bl.Product.Add(product);
+            new MainWindow().Show();
+            this.Hide();
         }
     }
 }

@@ -36,5 +36,17 @@ namespace PL.Products
             ProductListView.ItemsSource = bl.Product.ReadCatalog(); // to change
             message.Text = CategorySelector.SelectedItem.ToString();
         }
+        private void back_To_Main(object sender, RoutedEventArgs e)
+        {
+            new MainWindow().Show();
+            this.Close();
+        }
+
+        private void ProductListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            BO.ProductForList p = (BO.ProductForList)((ListView)sender).SelectedItem;
+            new Products.ProductWindow(p).Show();
+            this.Close();
+        }
     }
 }
