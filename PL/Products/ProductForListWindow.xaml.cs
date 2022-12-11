@@ -28,7 +28,7 @@ namespace PL.Products
             InitializeComponent();
             bl = b;
             ProductListView.ItemsSource = b.Product.ReadListProducts();
-            CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.catagory));
+            CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.catagory)); 
         }
         private void comboBox_selectionChange(object sender, SelectionChangedEventArgs e)
         {

@@ -21,12 +21,14 @@ namespace PL.Orders
     public partial class OrderForList : Window
     {
         IBl bl = new BlImplementation.Bl();
-        public OrderForList(IBl bl)
+        public OrderForList(IBl b)
         {
-            OrdersListView.ItemsSource = bl.Order.ReadOrders();
             InitializeComponent();
+            bl = b;
+            OrdersListView.ItemsSource = b.Order.ReadOrders();
+
         }
-        
+
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
