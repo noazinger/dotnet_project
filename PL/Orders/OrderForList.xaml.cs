@@ -11,26 +11,23 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
-namespace PL.Products
+using BlApi;
+using BlImplementation;
+namespace PL.Orders
 {
     /// <summary>
-    /// Interaction logic for ProductWindow.xaml
+    /// Interaction logic for OrderForList.xaml
     /// </summary>
-    public partial class ProductWindow : Window
+    public partial class OrderForList : Window
     {
-        public ProductWindow()
+        IBl bl = new BlImplementation.Bl();
+        public OrderForList(IBl bl)
         {
+            OrdersListView.ItemsSource = bl.Order.ReadOrders();
             InitializeComponent();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
