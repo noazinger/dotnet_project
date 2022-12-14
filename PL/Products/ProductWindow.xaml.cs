@@ -27,50 +27,80 @@ namespace PL.Products
         }
         public ProductWindow(BO.ProductItem ob)
         {
-            InitializeComponent();
-            id = ob.ID;
-            name.Text = ob.Name;
-            price.Text = ob.Price.ToString();
-            CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.catagory));
-            CategorySelector.SelectedItem = ob.catagory;
-            amount.Text = ob.Amount.ToString();
-            func_butt.Content = "update";
+            try
+            {
+                InitializeComponent();
+                id = ob.ID;
+                name.Text = ob.Name;
+                price.Text = ob.Price.ToString();
+                CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.catagory));
+                CategorySelector.SelectedItem = ob.catagory;
+                amount.Text = ob.Amount.ToString();
+                func_butt.Content = "update";
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
         }
         private void comboBox_selectionChange(object sender, SelectionChangedEventArgs e)
         {
             object categor = CategorySelector.SelectedItem;
-            IEnumerable<BO.ProductItem> list = bl.Product.ReadProductByCategoty((BO.catagory)categor);
+            try
+            {
+                IEnumerable<BO.ProductItem> list = bl.Product.ReadProductByCategoty((BO.catagory)categor);
+            }
+            catch(Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             string function = func_butt.Content.ToString();
             if (function == "add")
             {
-                BO.Product product = new();
-                product.Name = name.Text;
-                product.Price = double.Parse(price.Text);
-                object categor = CategorySelector.SelectedItem;
-                 product.catagory = (BO.catagory)categor;
-                product.InStock = int.Parse(amount.Text);
-                bl.Product.Add(product);     
+                try
+                {
+                    BO.Product product = new();
+                    product.Name = name.Text;
+                    product.Price = double.Parse(price.Text);
+                    object categor = CategorySelector.SelectedItem;
+                    product.catagory = (BO.catagory)categor;
+                    product.InStock = int.Parse(amount.Text);
+                    bl.Product.Add(product);
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                }
+                   
             }
             if(function == "update")
             {
-                BO.Product product = new();
-                product.ID = id;
-                product.Name = name.Text;
-                product.Price = double.Parse(price.Text);
-                object categor = CategorySelector.SelectedItem;
-                product.catagory = (BO.catagory)categor;
-                product.InStock = int.Parse(amount.Text);
-                bl.Product.Update(product);
+                try
+                {
+                    BO.Product product = new();
+                    product.ID = id;
+                    product.Name = name.Text;
+                    product.Price = double.Parse(price.Text);
+                    object categor = CategorySelector.SelectedItem;
+                    product.catagory = (BO.catagory)categor;
+                    product.InStock = int.Parse(amount.Text);
+                    bl.Product.Update(product);
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                }
+
             }
             new MainWindow().Show();
             this.Hide();
         }
         private void back_To_Main(object sender, RoutedEventArgs e)
         {
-            new MainWindow().Show();
+            new ProductForListWindow(bl).Show();
             this.Close();
         }
 

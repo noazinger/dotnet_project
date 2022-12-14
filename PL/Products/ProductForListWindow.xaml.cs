@@ -26,14 +26,28 @@ namespace PL.Products
         {
             InitializeComponent();
             bl = b;
-            ProductListView.ItemsSource = b.Product.ReadCatalog();
-            CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.catagory)); 
+            try
+            {
+                ProductListView.ItemsSource = b.Product.ReadCatalog();
+                CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.catagory));
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
         }
         private void comboBox_selectionChange(object sender, SelectionChangedEventArgs e)
         {
-            object categor = CategorySelector.SelectedItem;
-            IEnumerable<BO.ProductItem> list = bl.Product.ReadProductByCategoty((BO.catagory)categor);
-            ProductListView.ItemsSource = list;
+            try
+            {
+                object categor = CategorySelector.SelectedItem;
+                IEnumerable<BO.ProductItem> list = bl.Product.ReadProductByCategoty((BO.catagory)categor);
+                ProductListView.ItemsSource = list;
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
         }
         private void back_To_Main(object sender, RoutedEventArgs e)
         {
@@ -46,6 +60,11 @@ namespace PL.Products
             BO.ProductItem p = (BO.ProductItem)((ListView)sender).SelectedItem;
             new Products.ProductWindow(p).Show();
             this.Close();
+        }
+        private void Add_product_Click(object sender, RoutedEventArgs e)
+        {
+            new Products.ProductWindow(bl).Show();
+            this.Hide();
         }
     }
 }

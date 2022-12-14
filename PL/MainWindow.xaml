@@ -7,10 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button  Content="GoToProductForList" HorizontalAlignment="Center" VerticalAlignment="Top" Height="64" Width="169" Click="Button_Click" Margin="0,61,0,0"/>
-        <Button  Content="GoToOrderForList" HorizontalAlignment="Center" VerticalAlignment="Top" Height="64" Width="168" Click="Order_Click" Margin="0,153,0,0"/>
-        <Button  Content="add product" HorizontalAlignment="Center" VerticalAlignment="Top" Height="64" Width="168" Click="Add_product_Click" Margin="0,235,0,0"/>
-       
+        <Button  Content="Admin" HorizontalAlignment="Center" VerticalAlignment="Top" Height="64" Width="168" Click="Button_Click" Margin="0,180,0,0" Background="#FFCBD8CF"/>
+
 
     </Grid>
 </Window>
