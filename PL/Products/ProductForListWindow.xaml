@@ -22,10 +22,9 @@
             </Grid.ColumnDefinitions >
             <ComboBox 
                 Name="CategorySelector"
-                Grid.Column="1"
-                SelectionChanged="comboBox_selectionChange"
+                Grid.Column="0"
+                SelectionChanged="comboBox_selectionChange" Margin="0,185,0,368"
                 />
-            <Label Grid.Column="0"></Label>
             <ListView x:Name="ProductListView" Grid.Column="2" MouseDoubleClick="ProductListView_MouseDoubleClick"></ListView>
         </Grid>
         <ComboBox HorizontalAlignment="Left" Margin="199,56,0,0" VerticalAlignment="Top" Width="144" Height="46" Grid.Row="1"/>

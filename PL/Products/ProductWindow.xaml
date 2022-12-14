@@ -22,12 +22,26 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <Button Grid.Row="2" Name="func" Content="Add Product" HorizontalAlignment="Left" Margin="68,132,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
-            <Grid Name="addProduct" Margin="0,10,0,59" Grid.Column="1">
-                <TextBox TextWrapping="Wrap"  Name="name" Text="Product name" Margin="13,61,7,357"/>
-                <TextBox TextWrapping="Wrap" x:Name="catagory" Text="Product catagory" Margin="13,206,7,250"/>
-                <TextBox TextWrapping="Wrap" x:Name="price" Text="product price" Margin="0,394,20,101"/>
-                <TextBox TextWrapping="Wrap" Name="amount" Text="product amount" Margin="13,310,7,154"/>
+            <Grid Name="addProduct" Margin="10,10,190,61" Grid.Column="1" Grid.ColumnSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="4*"/>
+
+                </Grid.RowDefinitions>
+
+                <Label Content="product name:"  FontSize="18" Grid.Row="0"></Label>
+                <TextBox TextWrapping="Wrap"  Name="name"  Grid.Row="0" Margin="121,0,-138,103"/>
+                <Label Content="product price:"  FontSize="18" Grid.Row="1"></Label>
+                <TextBox TextWrapping="Wrap" x:Name="price" Margin="121,135,-138,102" Grid.RowSpan="2"/>
+                <Label Content="product amount:"  FontSize="18" Grid.Row="2"></Label>
+                <TextBox TextWrapping="Wrap" Name="amount"   Grid.Row="2" Margin="150,5,-138,0" Height="37" VerticalAlignment="Top" />
+                <Label Content="product &#xD;&#xA;catagory:"  FontSize="18" Grid.Row="3" Margin="0,0,-138,73"></Label>
+                <ComboBox   Name="CategorySelector"  Grid.Row="3" HorizontalAlignment="Left" Width="90" Margin="100,10,0,93"/>
+                <Button Name="func_butt" Content="add" HorizontalAlignment="Center" Grid.Row="3"  VerticalAlignment="Top" Click="Button_Click_1" Height="60" Width="180" Margin="0,67,0,0" FontWeight="Bold" Background="#FF67D850" />
+                <Button Content="Back" Width="121" HorizontalAlignment="Left" Margin="-184,100,0,0" VerticalAlignment="Top" Background="#FFF11212" Click="back_To_Main" Height="35"/>
+
             </Grid>
 
         </Grid>
