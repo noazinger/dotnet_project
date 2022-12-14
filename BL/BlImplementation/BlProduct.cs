@@ -54,15 +54,15 @@ namespace BlImplementation
                 throw new BO.NotDataException(exc);
             }
         }
-        public IEnumerable<BO.ProductForList> ReadProductByCategoty(BO.catagory category)
+        public IEnumerable<BO.ProductItem> ReadProductByCategoty(BO.catagory category)
         {
             try
             {
                 IEnumerable<DO.Product> lst = dalEntity.Product.Read(p => p.catagory == (DO.catagory)category);
-                List<BO.ProductForList> productsForList = new List<BO.ProductForList>();
+                List<BO.ProductItem> productsForList = new List<BO.ProductItem>();
                 foreach (DO.Product DoProduct in lst)
                 {
-                    BO.ProductForList ProductForList = new BO.ProductForList();
+                    BO.ProductItem ProductForList = new BO.ProductItem();
 
                     ProductForList.ID = DoProduct.ID;
                     ProductForList.Name = DoProduct.Name;

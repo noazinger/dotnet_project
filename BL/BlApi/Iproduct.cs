@@ -10,7 +10,7 @@ namespace BlApi
     {
         public IEnumerable<BO.ProductForList?> ReadListProducts();
         public IEnumerable<BO.ProductItem?> ReadCatalog();
-        public IEnumerable<BO.ProductForList> ReadProductByCategoty(BO.catagory category);
+        public IEnumerable<BO.ProductItem> ReadProductByCategoty(BO.catagory category);
         public BO.Product ReadSingleProductForDirector(int id);
         public BO.Product ReadSingleProductForCustomer(int id);
         public void Add(BO.Product product);

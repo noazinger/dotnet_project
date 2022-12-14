@@ -25,7 +25,17 @@
                 Grid.Column="0"
                 SelectionChanged="comboBox_selectionChange" Margin="0,185,0,368"
                 />
-            <ListView x:Name="ProductListView" Grid.Column="2" MouseDoubleClick="ProductListView_MouseDoubleClick"></ListView>
+            <ListView x:Name="ProductListView" Grid.Column="2" MouseDoubleClick="ProductListView_MouseDoubleClick">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=ID}" Header="ID" ></GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Header="Name" ></GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=category}" Header="Category" ></GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Price}" Header="Price" ></GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            
         </Grid>
         <ComboBox HorizontalAlignment="Left" Margin="199,56,0,0" VerticalAlignment="Top" Width="144" Height="46" Grid.Row="1"/>
         <TextBox x:Name="message" Grid.Row="3" Text="dd" />
