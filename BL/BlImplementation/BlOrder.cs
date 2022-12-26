@@ -8,7 +8,7 @@ namespace BlImplementation
 {
     internal class BlOrder : IOrder
     {
-        IDal dalEntity = new Dal.DalList();
+        DalApi.IDal? dalEntity = DalApi.Factory.Get();
         /// <summary>
         /// the function requesting the orders list
         /// and Build an order list of the OrderForList

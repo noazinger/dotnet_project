@@ -10,7 +10,7 @@ namespace BlImplementation
 {
     internal class BlCart : ICart
     {
-        IDal dalEntity = new Dal.DalList();
+        DalApi.IDal? dalEntity = DalApi.Factory.Get();
         /// <summary>
         /// the function get 2 parameters: 1. the cart 2. id of the product
         ///     if a product does not exist in the cart:

@@ -9,7 +9,7 @@ namespace BlImplementation
 {
     internal class BlProduct : Iproduct
     {
-        IDal dalEntity = new Dal.DalList();
+        DalApi.IDal? dalEntity = DalApi.Factory.Get();
         public IEnumerable<BO.ProductForList> ReadListProducts()
         {
             List<BO.ProductForList> products = new List<BO.ProductForList>();
