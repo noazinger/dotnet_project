@@ -1,9 +1,7 @@
 ﻿using DalApi;
 using DO;
-
-
 namespace DalList;
-using DalApi;
+
 internal class DalOrder : IOrder
 {
     public static int size = DataSource.ordersData.Count();
@@ -27,9 +25,6 @@ internal class DalOrder : IOrder
 
     public IEnumerable<Order> Read(Func<Order, bool> func = null)
     {
-        /*if (size != 0)
-            return DataSource.ordersData;
-        throw new DataIsEmpty();*/
         return (func == null ? DataSource.ordersData : DataSource.ordersData.Where(func).ToList());
     }
     public void Delete(int id)

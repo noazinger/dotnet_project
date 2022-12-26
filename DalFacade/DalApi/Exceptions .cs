@@ -40,5 +40,12 @@ namespace DalApi
     {
         public override string Message => "the item is already exists";
     }
+    [Serializable]
+    public class DalConfigException : Exception
+    {
+        public DalConfigException(string msg) : base(msg) { }
+        public DalConfigException(string msg, Exception ex) : base(msg, ex) { }
+    }
+
 
 }

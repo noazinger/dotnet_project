@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlApi;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,8 +12,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using BlApi;
-using BlImplementation;
 namespace PL.Orders
 {
     /// <summary>
@@ -20,7 +19,7 @@ namespace PL.Orders
     /// </summary>
     public partial class OrderForList : Window
     {
-        IBl bl = new BlImplementation.Bl();
+        BlApi.IBl? bl = BlApi.Factory.Get();
         public OrderForList(IBl b)
         {
             InitializeComponent();

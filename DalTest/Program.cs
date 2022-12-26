@@ -2,7 +2,7 @@
 using DalList;
 using DO;
 
-IDal dalEntity = new Dal.DalList();
+DalApi.IDal? dalEntity = DalApi.Factory.Get();
 //================ Order Functions ================//
 void AddOrder()
 {  
@@ -107,7 +107,9 @@ void ProductFunc()
             switch (choice)
             {
                 case 1:
-                    Add(BO.Product product);    break;
+                    //Add(BO.Product product);
+                    AddProduct();
+                    break;
                 case 2:
                     ViewProduct();
                     break;

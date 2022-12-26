@@ -7,8 +7,11 @@ using DalApi;
 using DalList;
 namespace Dal
 {
-    sealed public class DalList : IDal
+    sealed internal class DalList : IDal
     {
+        public static DalApi.IDal? Instance { get; } = DalApi.Factory.Get();
+        /*      private DalList();
+        */
         public IProduct Product => new DalProduct();
         public IOrder Order => new DalOrder();
         public IOrderItem OrderItem => new DalOrderItem();
