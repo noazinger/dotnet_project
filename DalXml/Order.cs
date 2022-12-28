@@ -9,40 +9,51 @@ using System.Xml.Linq;
     using DalApi;
     using DO;
 
-internal class Order :IOrder
+internal class Order : IOrder 
 {
-    public int Add(DO.Order order)
+    public int Add(DO.Order or)
+    {
+        return 1;
+    }
+
+    void Create(Order or)
+    {
+
+        XDocument orderElement = XDocument.Load("..\\xml\\Order.xml");
+        XElement ID = new XElement("ID", or.ID);
+        XElement CustomerName = new XElement("CustomerName", or.CustomerName);
+        XElement CustomerEmail = new XElement("CustomerEmail", or.CustomerEmail);
+        XElement CustomerAddress = new XElement("CustomerAddress", or.CustomerAddress);
+        XElement OrderDate = new XElement("OrderDate", or.OrderDate);
+        XElement ShipDate = new XElement("ShipDate", or.ShipDate);
+        XElement DeliveryDate = new XElement("ShipDate", or.DeliveryDate);
+        XElement order = new XElement("order", ID, CustomerName, CustomerEmail, CustomerAddress, OrderDate, ShipDate, DeliveryDate);
+        orderElement.Add(order);
+        orderElement.Save("Order.xml");
+    }
+
+
+
+    void Update(Order n)
     {
 
     }
-          void Create(DO.Order or)
-           {
-           XElement order = XDocument.Load("Order.xml").Root;
-    
-            order = new XElement("id", or.ID);
-
-        XElement id = new XElement("id", item.Id);
-
-            XElement firstName = new XElement("firstName", item.FirstName);
-            XElement lastName = new XElement("lastName", item.LastName);
-
-            XElement name = new XElement("name", firstName, lastName);
-
-            XElement student = new XElement("student", id, name);
-
-            return student;
-          }
-
-    }
-    void Update(T n);
-        IEnumerable<T?> Read(Func<T, bool> func = null)
+    IEnumerable<Order> Read(Func<Order, bool> func = null)
     {
-   
+        List<Order> n = new List<Order>();
+        return n;
     }
-}
-        T ReadSingle(int id);
-        void Delete(int id);
-}
 
+    Order ReadSingle(int id)
+    {
+        Order order = new Order();
+        return order;
+    }
+    void Delete(int id)
+    {
+
+    }
+
+}
  
 
