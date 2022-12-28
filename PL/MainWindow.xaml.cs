@@ -20,6 +20,7 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
+        
         private readonly BlApi.IBl? bl = BlApi.Factory.Get();
         public MainWindow()
         {
@@ -28,8 +29,16 @@ namespace PL
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            new Products.ProductForListWindow(bl).Show();
-            this.Hide();
+            try
+            {
+                new Products.ProductForListWindow(bl).Show();
+                this.Hide();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            
         }
  
     
