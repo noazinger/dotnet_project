@@ -16,7 +16,7 @@ internal class Order : IOrder
         return 1;
     }
 
-    void Create(DO.Order or)
+    public void Create(DO.Order or)
     {
 
         XDocument orderElement = XDocument.Load("..\\xml\\Order.xml");
@@ -27,36 +27,35 @@ internal class Order : IOrder
          new XElement("CustomerAddress", or.CustomerAddress),
         new XElement("OrderDate", or.OrderDate),
          new XElement("ShipDate", or.ShipDate),
-         new XElement("ShipDate", or.DeliveryDate));
+         new XElement("DeliveryDate", or.DeliveryDate));
         orderElement.Add(order);
-        orderElement.Save("Order.xml");
+        orderElement.Save("..\\xml\\Order.xml");
     }
-    void Update(DO.Order n)
+   public void Update(DO.Order item)
     {
-        XDocument orderElement = XDocument.Load("..\\xml\\Order.xml");
-        XElement ID = new XElement("ID", n.ID);                       
-        XElement CustomerName = new XElement("CustomerName", n.CustomerName);
-        XElement CustomerEmail = new XElement("CustomerEmail", n.CustomerEmail);
-        XElement CustomerAddress = new XElement("CustomerAddress", n.CustomerAddress);
-        XElement OrderDate = new XElement("OrderDate", n.OrderDate);
-        XElement ShipDate = new XElement("ShipDate", n.ShipDate);
-        XElement DeliveryDate = new XElement("ShipDate", n.DeliveryDate);
-        XElement order = new XElement("order", ID, CustomerName, CustomerEmail, CustomerAddress, OrderDate, ShipDate, DeliveryDate);
-        orderElement.Save("Order.xml");
+        XElement? orderElement = XDocument.Load("..\\xml\\Order.xml").Root;
+        XElement order= orderElement?.Elements("Order").Where(e => e.Element("ID")?.Value == item.ID.ToString()).FirstOrDefault()??throw new Exception();
+        order.Element("CustomerName").Value = item.CustomerName;
+        order.Element("CustomerEmail").Value = item.CustomerEmail;
+        order.Element("CustomerAddress").Value = item.CustomerAddress;
+        order.Element("OrderDate").Value = item.OrderDate.ToString();
+        order.Element("ShipDate").Value = item.CustomerAddress;
+        order.Element("DeliveryDate").Value = item.CustomerAddress;
+        orderElement.Save("..\\xml\\Order.xml");
 
     }
-    IEnumerable<Order> Read(Func<Order, bool> func = null)
+   public IEnumerable<DO.Order> Read(Func<DO.Order, bool> func )
     {
-        List<Order> n = new List<Order>();
+        List<DO.Order> n = new List<DO.Order>();
         return n;
     }
 
-    Order ReadSingle(int id)
+    public DO.Order ReadSingle(int id)
     {
-        Order order = new Order();
+       DO.Order order = new DO.Order();
         return order;
     }
-    void Delete(int id)
+   public void Delete(int id)
     {
 
     }

@@ -31,6 +31,7 @@ namespace PL
         {
             try
             {
+
                 new Products.ProductForListWindow(bl).Show();
                 this.Hide();
             }
