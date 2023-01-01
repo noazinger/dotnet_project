@@ -40,47 +40,48 @@ namespace Dal
                 StreamReader sr = new StreamReader(@"..\..\xml\OrderItem.xml");
                 XmlSerializer serializer = new XmlSerializer(typeof(List<DO.OrderItem>));
                 List<DO.OrderItem> list = (List<DO.OrderItem>?)serializer?.Deserialize(sr);
+                sr.Close ();    
                 return list;
         }
-
         public IEnumerable<DO.OrderItem> ReadByOrderId(int orderId) {
 
             StreamReader sr = new StreamReader(@"..\..\xml\OrderItem.xml");
             XmlSerializer serializer = new XmlSerializer(typeof(List<DO.OrderItem>));
             List<DO.OrderItem> list = (List<DO.OrderItem>)serializer.Deserialize(sr);
             List<DO.OrderItem> oi = (List<DO.OrderItem>)list.Where(e => e.ID == orderId);
+            sr.Close();
             return oi;
         }
-
         public DO.OrderItem ReadSingle(int id)
         {
             StreamReader sr = new StreamReader(@"..\..\xml\OrderItem.xml");
             XmlSerializer serializer = new XmlSerializer(typeof(List<DO.OrderItem>));
             List<DO.OrderItem> list = (List<DO.OrderItem>)serializer.Deserialize(sr);
             DO.OrderItem oi = list.Where(e => e.ID == id).FirstOrDefault();
+            sr.Close();
             return oi;  
-            
         }
-
-        public OrderItem ReadSingleByOrderIdAndProductId(int orderId, int productId)
+        public DO.OrderItem ReadSingleByOrderIdAndProductId(int orderId, int productId)
         {
-            OrderItem o = new();
-            return o;
+            StreamReader sr = new StreamReader(@"..\..\xml\OrderItem.xml");
+            XmlSerializer serializer = new XmlSerializer(typeof(List<DO.OrderItem>));
+            List<DO.OrderItem> list = (List<DO.OrderItem>)serializer.Deserialize(sr);
+            DO.OrderItem oi = list.Where(e => e.ID == orderId && e.ProductID == productId).FirstOrDefault();
+            sr.Close();
+            return oi;
         }
-
-        public void Update(DO.OrderItem n)
+        public void Update(DO.OrderItem item)
         {
-            throw new NotImplementedException();
-        }
-
-        IEnumerable<DO.OrderItem> IOrderItem.ReadByOrderId(int orderId)
-        {
-            throw new NotImplementedException();
-        }
-
-        DO.OrderItem IOrderItem.ReadSingleByOrderIdAndProductId(int orderId, int productId)
-        {
-            throw new NotImplementedException();
+            StreamReader sr = new StreamReader(@"..\..\xml\OrderItem.xml");
+            XmlSerializer serializer = new XmlSerializer (typeof(OrderItem));
+            StreamWriter sw = new StreamWriter(@"..\..\xml\OrderItem.xml");
+            List<DO.OrderItem> list = (List<DO.OrderItem>) serializer.Deserialize(sr);
+            DO.OrderItem orderItem = list.Where(e => e.ID == item.ID).FirstOrDefault();
+            list.Remove(orderItem);
+            list.Add(item);
+            serializer.Serialize(sw, list); 
+            sw.Close();
+            sr.Close();
         }
     }
 }
