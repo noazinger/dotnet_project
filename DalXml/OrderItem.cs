@@ -36,16 +36,30 @@ namespace Dal
 
         public IEnumerable<DO.OrderItem> Read(Func<DO.OrderItem, bool> func = null)
         {
-            throw new NotImplementedException();
+            
+                StreamReader sr = new StreamReader(@"..\..\xml\OrderItem.xml");
+                XmlSerializer serializer = new XmlSerializer(typeof(List<DO.OrderItem>));
+                List<DO.OrderItem> list = (List<DO.OrderItem>?)serializer?.Deserialize(sr);
+                return list;
         }
 
-        public IEnumerable<OrderItem> ReadByOrderId(int orderId) { 
+        public IEnumerable<DO.OrderItem> ReadByOrderId(int orderId) {
 
+            StreamReader sr = new StreamReader(@"..\..\xml\OrderItem.xml");
+            XmlSerializer serializer = new XmlSerializer(typeof(List<DO.OrderItem>));
+            List<DO.OrderItem> list = (List<DO.OrderItem>)serializer.Deserialize(sr);
+            List<DO.OrderItem> oi = (List<DO.OrderItem>)list.Where(e => e.ID == orderId);
+            return oi;
         }
 
         public DO.OrderItem ReadSingle(int id)
         {
-            throw new NotImplementedException();
+            StreamReader sr = new StreamReader(@"..\..\xml\OrderItem.xml");
+            XmlSerializer serializer = new XmlSerializer(typeof(List<DO.OrderItem>));
+            List<DO.OrderItem> list = (List<DO.OrderItem>)serializer.Deserialize(sr);
+            DO.OrderItem oi = list.Where(e => e.ID == id).FirstOrDefault();
+            return oi;  
+            
         }
 
         public OrderItem ReadSingleByOrderIdAndProductId(int orderId, int productId)
