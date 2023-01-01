@@ -10,6 +10,5 @@ namespace DalApi
     {
         public IEnumerable<OrderItem> ReadByOrderId(int orderId);
         public OrderItem ReadSingleByOrderIdAndProductId(int orderId, int productId);
-
     }
 }
