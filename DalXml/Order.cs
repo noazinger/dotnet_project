@@ -35,6 +35,7 @@ internal class Order : IOrder
     {
         XElement? orderElement = XDocument.Load("..\\xml\\Order.xml").Root;
         XElement order= orderElement?.Elements("Order").Where(e => e.Element("ID")?.Value == item.ID.ToString()).FirstOrDefault()??throw new Exception();
+
         order.Element("CustomerName").Value = item.CustomerName;
         order.Element("CustomerEmail").Value = item.CustomerEmail;
         order.Element("CustomerAddress").Value = item.CustomerAddress;
@@ -42,7 +43,6 @@ internal class Order : IOrder
         order.Element("ShipDate").Value = item.CustomerAddress;
         order.Element("DeliveryDate").Value = item.CustomerAddress;
         orderElement.Save("..\\xml\\Order.xml");
-
     }
    public IEnumerable<DO.Order> Read(Func<DO.Order, bool> func )
     {
@@ -52,11 +52,25 @@ internal class Order : IOrder
 
     public DO.Order ReadSingle(int id)
     {
-       DO.Order order = new DO.Order();
-        return order;
+        XElement? orderElement = XDocument.Load("..\\xml\\Order.xml").Root;
+        XElement order = orderElement?.Elements("Order").Where(e => e.Element("ID")?.Value == id.ToString()).FirstOrDefault() ?? throw new Exception();
+        DO.Order returnOrder = new DO.Order();
+        returnOrder.ID= id;
+        returnOrder.CustomerName = order?.Element("CustomerName").Value;
+        returnOrder.CustomerEmail = order?.Element("CustomerEmail").Value;
+        returnOrder.CustomerAddress = order?.Element("CustomerAddress").Value;
+        returnOrder.OrderDate = Convert.ToDateTime(order?.Element("OrderDate").Value);
+        returnOrder.ShipDate = Convert.ToDateTime(order?.Element("ShipDate").Value);
+        returnOrder.DeliveryDate = Convert.ToDateTime(order?.Element("DeliveryDate").Value);
+
+        return returnOrder;
     }
    public void Delete(int id)
     {
+        XElement? orderElement = XDocument.Load("..\\xml\\Order.xml").Root;
+        XElement order = orderElement?.Elements("Order").Where(e => e.Element("ID")?.Value == id.ToString()).FirstOrDefault() ?? throw new Exception();
+        order.Remove();
+        orderElement.Save("..\\xml\\Order.xml");
 
     }
 

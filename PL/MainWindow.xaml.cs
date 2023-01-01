@@ -24,6 +24,7 @@ namespace PL
         private readonly BlApi.IBl? bl = BlApi.Factory.Get();
         public MainWindow()
         {
+
             InitializeComponent();
         }
 
