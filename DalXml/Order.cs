@@ -31,10 +31,10 @@ internal class Order : IOrder
         orderElement.Add(order);
         orderElement.Save("Order.xml");
     }
-    void Update(Order n)
+    void Update(DO.Order n)
     {
         XDocument orderElement = XDocument.Load("..\\xml\\Order.xml");
-        XElement ID = new XElement("ID", n.id);
+        XElement ID = new XElement("ID", n.ID);                       
         XElement CustomerName = new XElement("CustomerName", n.CustomerName);
         XElement CustomerEmail = new XElement("CustomerEmail", n.CustomerEmail);
         XElement CustomerAddress = new XElement("CustomerAddress", n.CustomerAddress);
