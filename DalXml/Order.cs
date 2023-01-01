@@ -32,10 +32,19 @@ internal class Order : IOrder
         orderElement.Save("Order.xml");
     }
 
-
-
     void Update(Order n)
     {
+        XDocument orderElement = XDocument.Load("..\\xml\\Order.xml");
+        XElement ID=new XElement("ID", n.ID);
+        XElement ID = new XElement("ID", n.ID);
+        XElement CustomerName = new XElement("CustomerName", n.CustomerName);
+        XElement CustomerEmail = new XElement("CustomerEmail", n.CustomerEmail);
+        XElement CustomerAddress = new XElement("CustomerAddress", n.CustomerAddress);
+        XElement OrderDate = new XElement("OrderDate", n.OrderDate);
+        XElement ShipDate = new XElement("ShipDate", n.ShipDate);
+        XElement DeliveryDate = new XElement("ShipDate", n.DeliveryDate);
+        XElement order = new XElement("order", ID, CustomerName, CustomerEmail, CustomerAddress, OrderDate, ShipDate, DeliveryDate);
+        orderElement.Save("Order.xml");
 
     }
     IEnumerable<Order> Read(Func<Order, bool> func = null)
