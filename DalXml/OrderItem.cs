@@ -78,8 +78,9 @@ namespace Dal
             List<DO.OrderItem> list = (List<DO.OrderItem>) serializer.Deserialize(sr);
             DO.OrderItem orderItem = list.Where(e => e.ID == item.ID).FirstOrDefault();
             list.Remove(orderItem);
-            list.Add(item);
-            serializer.Serialize(sw, list); 
+            //list.Add(item);
+            //serializer.Serialize(sw, list);
+            serializer.Serialize(sw, item); 
             sw.Close();
             sr.Close();
         }
