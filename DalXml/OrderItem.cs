@@ -12,10 +12,10 @@ namespace Dal
     {
         public void Create(DO.OrderItem oi)
         {
-            StreamReader sr = new StreamReader(@"..\..\xml\OrderItem.xml");
+            StreamReader sr = new StreamReader(@"..\xml\OrderItem.xml");
             XmlSerializer serializer= new XmlSerializer(typeof(DO.OrderItem));
             var a = serializer.Deserialize(sr);
-            StreamWriter sw = new StreamWriter(@"..\..\xml\OrderItem.xml");
+            StreamWriter sw = new StreamWriter(@"..\xml\OrderItem.xml");
             serializer.Serialize(sw, oi);
             sr.Close();
             sw.Close();
@@ -23,9 +23,9 @@ namespace Dal
 
         public void Delete(int id)
         {
-            StreamReader sr = new StreamReader(@"..\..\xml\OrderItem.xml");
+            StreamReader sr = new StreamReader(@"..\xml\OrderItem.xml");
             XmlSerializer serializer = new XmlSerializer(typeof(List<DO.OrderItem>));
-            StreamWriter sw = new StreamWriter(@"..\..\xml\OrderItem.xml");
+            StreamWriter sw = new StreamWriter(@"..\xml\OrderItem.xml");
             List<DO.OrderItem> list = (List<DO.OrderItem>) serializer.Deserialize(sr);
             DO.OrderItem oi = list.Where(e => e.ID == id).FirstOrDefault();
             list.Remove(oi);
@@ -37,7 +37,7 @@ namespace Dal
         public IEnumerable<DO.OrderItem> Read(Func<DO.OrderItem, bool> func = null)
         {
             
-                StreamReader sr = new StreamReader(@"..\..\xml\OrderItem.xml");
+                StreamReader sr = new StreamReader(@"..\xml\OrderItem.xml");
                 XmlSerializer serializer = new XmlSerializer(typeof(List<DO.OrderItem>));
                 List<DO.OrderItem> list = (List<DO.OrderItem>?)serializer?.Deserialize(sr);
                 sr.Close ();    
@@ -45,7 +45,7 @@ namespace Dal
         }
         public IEnumerable<DO.OrderItem> ReadByOrderId(int orderId) {
 
-            StreamReader sr = new StreamReader(@"..\..\xml\OrderItem.xml");
+            StreamReader sr = new StreamReader(@"..\xml\OrderItem.xml");
             XmlSerializer serializer = new XmlSerializer(typeof(List<DO.OrderItem>));
             List<DO.OrderItem> list = (List<DO.OrderItem>)serializer.Deserialize(sr);
             List<DO.OrderItem> oi = (List<DO.OrderItem>)list.Where(e => e.ID == orderId);
@@ -54,7 +54,7 @@ namespace Dal
         }
         public DO.OrderItem ReadSingle(int id)
         {
-            StreamReader sr = new StreamReader(@"..\..\xml\OrderItem.xml");
+            StreamReader sr = new StreamReader(@"..\xml\OrderItem.xml");
             XmlSerializer serializer = new XmlSerializer(typeof(List<DO.OrderItem>));
             List<DO.OrderItem> list = (List<DO.OrderItem>)serializer.Deserialize(sr);
             DO.OrderItem oi = list.Where(e => e.ID == id).FirstOrDefault();
@@ -63,7 +63,7 @@ namespace Dal
         }
         public DO.OrderItem ReadSingleByOrderIdAndProductId(int orderId, int productId)
         {
-            StreamReader sr = new StreamReader(@"..\..\xml\OrderItem.xml");
+            StreamReader sr = new StreamReader(@"..\xml\OrderItem.xml");
             XmlSerializer serializer = new XmlSerializer(typeof(List<DO.OrderItem>));
             List<DO.OrderItem> list = (List<DO.OrderItem>)serializer.Deserialize(sr);
             DO.OrderItem oi = list.Where(e => e.ID == orderId && e.ProductID == productId).FirstOrDefault();
@@ -72,9 +72,9 @@ namespace Dal
         }
         public void Update(DO.OrderItem item)
         {
-            StreamReader sr = new StreamReader(@"..\..\xml\OrderItem.xml");
+            StreamReader sr = new StreamReader(@"..\xml\OrderItem.xml");
             XmlSerializer serializer = new XmlSerializer (typeof(OrderItem));
-            StreamWriter sw = new StreamWriter(@"..\..\xml\OrderItem.xml");
+            StreamWriter sw = new StreamWriter(@"..\xml\OrderItem.xml");
             List<DO.OrderItem> list = (List<DO.OrderItem>) serializer.Deserialize(sr);
             DO.OrderItem orderItem = list.Where(e => e.ID == item.ID).FirstOrDefault();
             list.Remove(orderItem);

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Products>
+  <Product>
+    <ID>0</ID>
+    <Price>324</Price>
+    <Name>dsf</Name>
+    <inStock>423</inStock>
+    <caragory>pants</caragory>
+  </Product>
+</Products>

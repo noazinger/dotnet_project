@@ -7,25 +7,34 @@ namespace Dal;
 using DalApi;
 using DO;
 using System.Xml.Serialization;
-
+using System.Xml.Linq;
 internal class Product : IProduct
 {
     public void Create(DO.Product p)
     {
-        StreamReader sr = new StreamReader(@"..\..\xml\Product.xml");
-        XmlSerializer serializer = new XmlSerializer(typeof(DO.Product));
-        StreamWriter sw = new StreamWriter(@"..\..\xml\Product.xml");
-        var de = serializer.Deserialize(sr);
-        serializer.Serialize(sw, p);
-        sr.Close();
-        sw.Close();
+
+        XElement? orderElement = XDocument.Load(@"..\xml\Product.xml").Root;
+        XElement? product = new XElement("Product",
+        new XElement("ID", p.ID),
+        new XElement("Price", p.Price),
+        new XElement("Name", p.Name),
+        new XElement("inStock", p.inStock),
+        new XElement("caragory", p.catagory));
+        orderElement?.Add(product);
+        orderElement?.Save(@"..\xml\Product.xml");
+        //StreamReader sr = new StreamReader(@"..\xml\Product.xml");
+        //XmlSerializer serializer = new XmlSerializer(typeof(DO.Product));
+        //StreamWriter sw = new StreamWriter(@"..\xml\Product.xml");
+        //serializer.Serialize(sw, p);
+        //sr.Close();
+        //sw.Close();
     }
 
     public void Update(DO.Product p)
     {
-        StreamReader sr = new StreamReader(@"..\..\xml\Product.xml");
+        StreamReader sr = new StreamReader(@"..\xml\Product.xml");
         XmlSerializer serializer = new XmlSerializer(typeof(DO.Product));
-        StreamWriter sw = new StreamWriter(@"..\..\xml\Product.xml");
+        StreamWriter sw = new StreamWriter(@"..\xml\Product.xml");
         List<DO.Product> list = (List<DO.Product>)serializer.Deserialize(sr);
         DO.Product product = list.Where(e => e.ID == p.ID).FirstOrDefault();
         list.Remove(product);
@@ -35,7 +44,7 @@ internal class Product : IProduct
     }
     public IEnumerable<DO.Product> Read(Func<DO.Product, bool> func = null)
     {
-        StreamReader sr = new StreamReader(@"..\..\xml\OrderItem.xml");
+        StreamReader sr = new StreamReader(@"..\xml\Product.xml");
         XmlSerializer serializer = new XmlSerializer(typeof(List<DO.Product>));
         List<DO.Product> list = (List<DO.Product>?)serializer?.Deserialize(sr);
         sr.Close();
@@ -43,7 +52,7 @@ internal class Product : IProduct
     }
     public DO.Product ReadSingle(int id)
     {
-        StreamReader sr = new StreamReader(@"..\..\xml\OrderItem.xml");
+        StreamReader sr = new StreamReader(@"..\xml\Product.xml");
         XmlSerializer serializer = new XmlSerializer(typeof(List<DO.Product>));
         List<DO.Product> list = (List<DO.Product>)serializer.Deserialize(sr);
         DO.Product product = list.Where(e => e.ID == id).FirstOrDefault();
@@ -52,9 +61,9 @@ internal class Product : IProduct
     }
     public void Delete(int id)
     {
-        StreamReader sr = new StreamReader(@"..\..\xml\OrderItem.xml");
+        StreamReader sr = new StreamReader(@"..\xml\Product.xml");
         XmlSerializer serializer = new XmlSerializer(typeof(List<DO.Product>));
-        StreamWriter sw = new StreamWriter(@"..\..\xml\OrderItem.xml");
+        StreamWriter sw = new StreamWriter(@"..\xml\Product.xml");
         List<DO.Product> list = (List<DO.Product>?)serializer?.Deserialize(sr);
         DO.Product product=list.Where(e=> e.ID == id).FirstOrDefault();
         list.Remove(product);
