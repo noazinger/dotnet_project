@@ -8,6 +8,8 @@ using DalApi;
 using DO;
 using System.Xml.Serialization;
 using System.Xml.Linq;
+using System.Reflection.PortableExecutable;
+
 internal class Product : IProduct
 {
     public void Create(DO.Product p)
@@ -49,7 +51,7 @@ internal class Product : IProduct
         xRoot.IsNullable = true;
         StreamReader sr = new StreamReader(@"..\xml\Product.xml");
         XmlSerializer serializer = new XmlSerializer(typeof(List<DO.Product>), xRoot);
-        List<DO.Product> list = (List<DO.Product>?)serializer?.Deserialize(sr);
+        List<DO.Product>? list = (List<DO.Product>?) serializer.Deserialize(sr);
         sr.Close();
         return list;
     }
