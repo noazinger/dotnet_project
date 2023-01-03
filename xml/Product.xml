@@ -7,4 +7,25 @@
     <inStock>423</inStock>
     <caragory>pants</caragory>
   </Product>
+  <Product>
+    <ID>0</ID>
+    <Price>454</Price>
+    <Name>rfe</Name>
+    <inStock>35</inStock>
+    <caragory>tie</caragory>
+  </Product>
+  <Product>
+    <ID>0</ID>
+    <Price>324</Price>
+    <Name>ttt</Name>
+    <inStock>24</inStock>
+    <caragory>pants</caragory>
+  </Product>
+  <Product>
+    <ID>0</ID>
+    <Price>55</Price>
+    <Name>rte</Name>
+    <inStock>5</inStock>
+    <caragory>tie</caragory>
+  </Product>
 </Products>

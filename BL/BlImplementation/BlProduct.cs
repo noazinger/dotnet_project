@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using BlApi;
 using DalApi;
+using Dal;
 namespace BlImplementation
 {
     internal class BlProduct : Iproduct
     {
-        DalApi.IDal? dalEntity = DalApi.Factory.Get();
+        DalApi.IDal? dalEntity = DalXml.Instance;
         public IEnumerable<BO.ProductForList> ReadListProducts()
         {
             List<BO.ProductForList> products = new List<BO.ProductForList>();

@@ -44,8 +44,11 @@ internal class Product : IProduct
     }
     public IEnumerable<DO.Product> Read(Func<DO.Product, bool> func = null)
     {
+        XmlRootAttribute xRoot = new XmlRootAttribute();
+        xRoot.ElementName = "Products";
+        xRoot.IsNullable = true;
         StreamReader sr = new StreamReader(@"..\xml\Product.xml");
-        XmlSerializer serializer = new XmlSerializer(typeof(List<DO.Product>));
+        XmlSerializer serializer = new XmlSerializer(typeof(List<DO.Product>), xRoot);
         List<DO.Product> list = (List<DO.Product>?)serializer?.Deserialize(sr);
         sr.Close();
         return list;
