@@ -34,6 +34,7 @@ internal class Product : IProduct
 
     public void Update(DO.Product p)
     {
+        
         XmlRootAttribute xRoot = new XmlRootAttribute();
         xRoot.ElementName = "Products";
         xRoot.IsNullable = true;
@@ -53,6 +54,7 @@ internal class Product : IProduct
         xRoot.ElementName = "Products";
         xRoot.IsNullable = true;
         StreamReader sr = new StreamReader(@"..\xml\Product.xml");
+        StreamWriter sw = new StreamWriter(@"..\xml\Product.xml");
         XmlSerializer serializer = new XmlSerializer(typeof(List<DO.Product>), xRoot);
         List<DO.Product>? list = (List<DO.Product>?) serializer.Deserialize(sr);
         sr.Close();
