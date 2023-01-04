@@ -21,7 +21,7 @@ internal class Product : IProduct
         new XElement("Price", p.Price),
         new XElement("Name", p.Name),
         new XElement("inStock", p.inStock),
-        new XElement("caragory", p.catagory));
+        new XElement("catagory", p.catagory));
         orderElement?.Add(product);
         orderElement?.Save(@"..\xml\Product.xml");
         //StreamReader sr = new StreamReader(@"..\xml\Product.xml");
@@ -34,8 +34,11 @@ internal class Product : IProduct
 
     public void Update(DO.Product p)
     {
+        XmlRootAttribute xRoot = new XmlRootAttribute();
+        xRoot.ElementName = "Products";
+        xRoot.IsNullable = true;
         StreamReader sr = new StreamReader(@"..\xml\Product.xml");
-        XmlSerializer serializer = new XmlSerializer(typeof(DO.Product));
+        XmlSerializer serializer = new XmlSerializer(typeof(List<DO.Product>),xRoot);
         StreamWriter sw = new StreamWriter(@"..\xml\Product.xml");
         List<DO.Product> list = (List<DO.Product>)serializer.Deserialize(sr);
         DO.Product product = list.Where(e => e.ID == p.ID).FirstOrDefault();

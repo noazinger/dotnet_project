@@ -63,6 +63,7 @@ namespace PL.Products
                 try
                 {
                     BO.Product product = new();
+                    product.ID=Config.ProductID;
                     product.Name = name.Text;
                     product.Price = double.Parse(price.Text);
                     object categor = CategorySelector.SelectedItem;
@@ -105,5 +106,10 @@ namespace PL.Products
         }
 
       
+    }
+    public class Config
+    {
+        public static int ProductId = 10000;
+        static public int ProductID { get { return ProductId++; } }
     }
 }

@@ -1,31 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Products>
   <Product>
-    <ID>0</ID>
-    <Price>324</Price>
-    <Name>dsf</Name>
-    <inStock>423</inStock>
-    <caragory>pants</caragory>
+    <ID>10000</ID>
+    <Price>575</Price>
+    <Name>ghfd</Name>
+    <inStock>745</inStock>
+    <catagory>tie</catagory>
   </Product>
   <Product>
-    <ID>0</ID>
-    <Price>454</Price>
-    <Name>rfe</Name>
-    <inStock>35</inStock>
-    <caragory>tie</caragory>
-  </Product>
-  <Product>
-    <ID>0</ID>
-    <Price>324</Price>
-    <Name>ttt</Name>
-    <inStock>24</inStock>
-    <caragory>pants</caragory>
-  </Product>
-  <Product>
-    <ID>0</ID>
-    <Price>55</Price>
-    <Name>rte</Name>
-    <inStock>5</inStock>
-    <caragory>tie</caragory>
+    <ID>10001</ID>
+    <Price>746</Price>
+    <Name>dnyd</Name>
+    <inStock>5754</inStock>
+    <catagory>pants</catagory>
   </Product>
 </Products>
