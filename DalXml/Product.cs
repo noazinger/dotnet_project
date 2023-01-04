@@ -24,12 +24,12 @@ internal class Product : IProduct
         new XElement("catagory", p.catagory));
         orderElement?.Add(product);
         orderElement?.Save(@"..\xml\Product.xml");
-        //StreamReader sr = new StreamReader(@"..\xml\Product.xml");
-        //XmlSerializer serializer = new XmlSerializer(typeof(DO.Product));
-        //StreamWriter sw = new StreamWriter(@"..\xml\Product.xml");
-        //serializer.Serialize(sw, p);
-        //sr.Close();
-        //sw.Close();
+        /*StreamReader sr = new StreamReader(@"..\xml\Product.xml");
+        XmlSerializer serializer = new XmlSerializer(typeof(DO.Product));
+        sr.Close();
+        StreamWriter sw = new StreamWriter(@"..\xml\Product.xml");
+        serializer.Serialize(sw, p);
+        sw.Close();*/
     }
 
     public void Update(DO.Product p)

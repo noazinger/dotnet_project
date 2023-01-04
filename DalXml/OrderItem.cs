@@ -48,7 +48,8 @@ namespace Dal
             StreamReader sr = new StreamReader(@"..\xml\OrderItem.xml");
             XmlSerializer serializer = new XmlSerializer(typeof(List<DO.OrderItem>));
             List<DO.OrderItem> list = (List<DO.OrderItem>)serializer.Deserialize(sr);
-            List<DO.OrderItem> oi = (List<DO.OrderItem>)list.Where(e => e.ID == orderId);
+            List<DO.OrderItem> oi = (List<DO.OrderItem>)
+            list.Where(e => e.ID == orderId);
             sr.Close();
             return oi;
         }
