@@ -40,21 +40,22 @@ internal class Product : IProduct
         xRoot.IsNullable = true;
         StreamReader sr = new StreamReader(@"..\xml\Product.xml");
         XmlSerializer serializer = new XmlSerializer(typeof(List<DO.Product>),xRoot);
-        StreamWriter sw = new StreamWriter(@"..\xml\Product.xml");
         List<DO.Product> list = (List<DO.Product>)serializer.Deserialize(sr);
+        sr.Close();
+        StreamWriter sw = new StreamWriter(@"..\xml\Product.xml");
         DO.Product product = list.Where(e => e.ID == p.ID).FirstOrDefault();
         list.Remove(product);
-        serializer.Serialize(sw, p);
+        list.Add(p);
+        serializer.Serialize(sw, list);
         sw.Close();
-        sr.Close();
     }
     public IEnumerable<DO.Product> Read(Func<DO.Product, bool> func = null)
     {
+
         XmlRootAttribute xRoot = new XmlRootAttribute();
         xRoot.ElementName = "Products";
         xRoot.IsNullable = true;
         StreamReader sr = new StreamReader(@"..\xml\Product.xml");
-        StreamWriter sw = new StreamWriter(@"..\xml\Product.xml");
         XmlSerializer serializer = new XmlSerializer(typeof(List<DO.Product>), xRoot);
         List<DO.Product>? list = (List<DO.Product>?) serializer.Deserialize(sr);
         sr.Close();
@@ -73,12 +74,12 @@ internal class Product : IProduct
     {
         StreamReader sr = new StreamReader(@"..\xml\Product.xml");
         XmlSerializer serializer = new XmlSerializer(typeof(List<DO.Product>));
-        StreamWriter sw = new StreamWriter(@"..\xml\Product.xml");
         List<DO.Product> list = (List<DO.Product>?)serializer?.Deserialize(sr);
+        sr.Close();
+        StreamWriter sw = new StreamWriter(@"..\xml\Product.xml");
         DO.Product product=list.Where(e=> e.ID == id).FirstOrDefault();
         list.Remove(product);
         serializer.Serialize(sw,list);
-        sr.Close();
         sw.Close();
     }
 }

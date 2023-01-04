@@ -1,2 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Orders></Orders>
+<Orders>
+	<Order>
+		<ID>20008</ID>
+		<CustomerName>tovi</CustomerName>
+		<CustomerEmail>t@t</CustomerEmail>
+		<CustomerAddress>revivim</CustomerAddress>
+		<OrderDate>01/01/2023</OrderDate>
+		<ShipDate>02/01/2023</ShipDate>
+		<DeliveryDate>02/01/2023</DeliveryDate>
+	</Order>
+	<Order>
+		<ID>20009</ID>
+		<CustomerName>noa</CustomerName>
+		<CustomerEmail>n@n</CustomerEmail>
+		<CustomerAddress>kutcher</CustomerAddress>
+		<OrderDate>01/01/2023</OrderDate>
+		<ShipDate>02/01/2023</ShipDate>
+		<DeliveryDate>04/01/2023</DeliveryDate>
+	</Order>
+</Orders>

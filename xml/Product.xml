@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Products>
+<Products xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Product>
     <ID>10000</ID>
-    <Price>575</Price>
-    <Name>ghfd</Name>
-    <inStock>745</inStock>
+    <Name>vcgfhtehr</Name>
+    <Price>8</Price>
     <catagory>tie</catagory>
+    <inStock>0</inStock>
   </Product>
   <Product>
     <ID>10001</ID>
-    <Price>746</Price>
-    <Name>dnyd</Name>
-    <inStock>5754</inStock>
-    <catagory>pants</catagory>
+    <Price>7</Price>
+    <Name>jhi</Name>
+    <inStock>89</inStock>
+    <catagory>tie</catagory>
   </Product>
 </Products>
