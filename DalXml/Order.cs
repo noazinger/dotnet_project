@@ -13,7 +13,23 @@ internal class Order : IOrder
 {
     public int Add(DO.Order or)
     {
-        return 1;
+        XElement? orderElement = XDocument.Load(@"../../../../xml/Order.xml").Root;
+        XElement? orderId = XDocument.Load(@"../../../../xml/dal-config.xml").Root;
+        XElement? orderId1 = orderId?.Element("ids")?.Element("orderId");
+        XElement? order1 = new XElement("order",
+        new XElement("OrderID", orderId1),
+        new XElement("CustomerName", or.CustomerName),
+        new XElement("CustomerAdress", or.CustomerAddress),
+        new XElement("CustomerEmail", or.CustomerEmail),
+        new XElement("ShipDate", or.ShipDate));
+        new XElement("DeliveryDate", or.DeliveryDate);
+        new XElement("OrderDate", or.OrderDate);
+        orderElement?.Add(order1);
+        orderElement?.Save(@"../../../../xml/Order.xml");
+        int id = int.Parse(orderId1.Value);
+        id++;
+        orderId1.Value = Convert.ToString(id);
+        return or.ID;
     }
 
     public void Create(DO.Order or)
@@ -47,10 +63,30 @@ internal class Order : IOrder
     }
    public IEnumerable<DO.Order> Read(Func<DO.Order, bool> func )
     {
-        List<DO.Order> n = new List<DO.Order>();
-        return n;
+        XElement? root = XDocument.Load("../../../../xml/Order.xml")?.Root;
+        IEnumerable<XElement>? orderList = root?.Descendants("order")?.ToList();
+        List<DO.Order> orders = new List<DO.Order>();
+        foreach (var xOrder in orderList)
+        {
+            orders.Add(deepCopy(xOrder));
+        }
+
+        return (func == null ? orders : orders.Where(func).ToList());
+        throw new NotImplementedException();
     }
 
+    public DO.Order deepCopy(XElement? o)
+    {
+        DO.Order order = new DO.Order();
+        order.ID = Convert.ToInt32(o?.Element("OrderID")?.Value);
+        order.CustomerName = o?.Element("CustomerName")?.Value;
+        order.CustomerEmail = o?.Element("CustomerEmail")?.Value;
+        order.CustomerAddress = o?.Element("CustomerAdress")?.Value;
+        order.OrderDate = Convert.ToDateTime(o?.Element("OrderDate")?.Value);
+        order.ShipDate = Convert.ToDateTime(o?.Element("ShipDate")?.Value);
+        order.DeliveryDate = Convert.ToDateTime(o?.Element("DeliveryDate")?.Value);
+        return order;
+    }
     public DO.Order ReadSingle(int id)
     {
         XElement? orderElement = XDocument.Load("..\\xml\\Order.xml").Root;
@@ -68,11 +104,15 @@ internal class Order : IOrder
     }
    public void Delete(int id)
     {
-        XElement? orderElement = XDocument.Load("..\\xml\\Order.xml").Root;
+        /*XElement? orderElement = XDocument.Load("..\\xml\\Order.xml").Root;
         XElement? order = orderElement?.Element("Order").Elements("Order").
             Where(e => e.Element("ID")?.Value == id.ToString()).FirstOrDefault() ?? throw new Exception();
         order?.Remove();
-        orderElement?.Save("..\\xml\\Order.xml");
+        orderElement?.Save("..\\xml\\Order.xml");*/
+
+        XElement? orderElement = XDocument.Load("../../../../xml/Order.xml").Root;
+        orderElement?.Descendants("order").Where(p => int.Parse(p?.Element("OrderID").Value) == id).Remove();
+        orderElement?.Save("../../../../xml/Order.xml");
     }
 }
 

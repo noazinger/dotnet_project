@@ -49,6 +49,25 @@ internal class Product : IProduct
         serializer.Serialize(sw, list);
         sw.Close();
     }
+    /*public void updateAmount(int id, int amount)
+    {
+        XmlRootAttribute xRoot = new XmlRootAttribute();
+        xRoot.ElementName = "Products";
+        xRoot.IsNullable = true;
+        XmlSerializer ser = new XmlSerializer(typeof(List<Product>), xRoot);
+        StreamReader reader = new StreamReader("..\\..\\..\\..\\xml\\Product.xml");
+        List<DO.Product> products = (List<DO.Product>)ser.Deserialize(reader);
+        reader.Close();
+        StreamWriter writer = new StreamWriter("..\\..\\..\\..\\xml\\Product.xml");
+        Product pro = products.Where(p => p.ID == id).FirstOrDefault();
+        Product prod = pro;
+        prod.InStock = amount;
+        products.Remove(pro);
+        products.Add(prod);
+        ser.Serialize(writer, products);
+        writer.Close();
+        //  throw new NotImplementedException();
+    }*/
     public IEnumerable<DO.Product> Read(Func<DO.Product, bool> func = null)
     {
 
