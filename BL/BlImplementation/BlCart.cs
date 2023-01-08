@@ -23,11 +23,11 @@ namespace BlImplementation
         /// Increase quantity by 1, update total price of item and total price of cart
         ///  return the cart
         /// </summary>
-        /// <param name="cart"></param>
-        /// <param name="id"></param>
+        /// <param name = "cart" ></ param >
+        /// < param name="id"></param>
         /// <returns> the function return the update cart after add product</returns>
-        /// <exception cref="BO.NotInStock"></exception>
-        /// <exception cref="BO.NotExistException"></exception>
+        /// <exception cref = "BO.NotInStock" ></ exception >
+        /// < exception cref= "BO.NotExistException" ></ exception >
         public BO.Cart Add(BO.Cart cart, int id)
         {
             foreach (var i in cart.items)

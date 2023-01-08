@@ -5,10 +5,11 @@
 		<CustomerName>tovi</CustomerName>
 		<CustomerEmail>t@t</CustomerEmail>
 		<CustomerAddress>revivim</CustomerAddress>
-		<OrderDate>01/01/2023</OrderDate>
-		<ShipDate>02/01/2023</ShipDate>
-		<DeliveryDate>02/01/2023</DeliveryDate>
+		<OrderDate>2022-12-28T00:00:00+02:00</OrderDate>
+		<ShipDate>2022-12-28T00:00:00+02:00</ShipDate>
+		<DeliveryDate>2022-12-28T00:00:00+02:00</DeliveryDate>
 	</Order>
+	
 	<Order>
 		<ID>20009</ID>
 		<CustomerName>noa</CustomerName>

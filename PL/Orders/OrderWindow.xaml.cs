@@ -1,8 +1,6 @@
-﻿using System;
+﻿using BlApi;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -13,16 +11,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BlApi;
 using BO;
+using System.Xml.Serialization;
+using System.Xml.Linq;
+
 namespace PL.Orders
 {
     /// <summary>
     /// Interaction logic for OrderWindow.xaml
     /// </summary>
+
     public partial class OrderWindow : Window
     {
         BlApi.IBl? bl = Factory.Get();
 
         public OrderWindow(Order b)
+        BlApi.IBl? bl = Factory.Get();
+        public OrderWindow(BO.ProductItem ob)
         {
             InitializeComponent();
             Order_status.Content = b.Status;
