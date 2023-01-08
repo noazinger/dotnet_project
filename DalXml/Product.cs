@@ -101,9 +101,9 @@ internal class Product : IProduct
         serializer.Serialize(sw,list);
         sw.Close();
     }
-    public static IEnumerable<BO.ProductItem> ReadProductByCategoty(BO.catagory category)
+  /*  public static IEnumerable<BO.ProductItem> ReadProductByCategoty(BO.catagory category)
     {
 
-    }
+    }*/
 }
 
