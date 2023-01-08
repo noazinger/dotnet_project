@@ -1,1 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?><ArrayOfProduct xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><Product><ID>10000</ID><Name>hgggg</Name><Price>667</Price><catagory>pants</catagory><inStock>5</inStock></Product></ArrayOfProduct>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Products>
+  <Product>
+    <ID>10000</ID>
+    <Name>hgggg</Name>
+    <Price>667</Price>
+    <catagory>pants</catagory>
+    <inStock>5</inStock>
+  </Product>
+  <Product>
+    <ID>10000</ID>
+    <Price>7</Price>
+    <Name>ח</Name>
+    <inStock>7</inStock>
+    <catagory>shirt</catagory>
+  </Product>
+  <Product>
+    <ID>10001</ID>
+    <Price>89</Price>
+    <Name>וו</Name>
+    <inStock>6</inStock>
+    <catagory>pants</catagory>
+  </Product>
+</Products>
