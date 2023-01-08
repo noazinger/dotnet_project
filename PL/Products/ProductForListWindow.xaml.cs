@@ -1,9 +1,6 @@
 ﻿using BlApi;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -33,7 +30,7 @@ namespace PL.Products
             }
             catch (Exception exc)
             {
-                MessageBox.Show(exc.Message);
+                MessageBox.Show( "The Data Is Empty");
             }
         }
         private void comboBox_selectionChange(object sender, SelectionChangedEventArgs e)
@@ -46,7 +43,7 @@ namespace PL.Products
             }
             catch (Exception exc)
             {
-                MessageBox.Show(exc.Message);
+                MessageBox.Show( "The Data Is Empty");
             }
         }
         private void back_To_Main(object sender, RoutedEventArgs e)
@@ -58,12 +55,12 @@ namespace PL.Products
         private void ProductListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             BO.ProductItem p = (BO.ProductItem)((ListView)sender).SelectedItem;
-            new Products.ProductWindow(p).Show();
+            new ProductWindow(p).Show();
             this.Close();
         }
         private void Add_product_Click(object sender, RoutedEventArgs e)
         {
-            new Products.ProductWindow(bl).Show();
+            new ProductWindow(bl).Show();
             this.Hide();
         }
     }

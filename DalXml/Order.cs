@@ -90,16 +90,16 @@ internal class Order : IOrder
     public DO.Order ReadSingle(int id)
     {
         XElement? orderElement = XDocument.Load("..\\xml\\Order.xml").Root;
-        XElement? order = orderElement?.Element("Order").Elements("Order").
+        XElement? order = orderElement?.Element("Order")?.Elements("Order").
             Where(e => e.Element("ID")?.Value == id.ToString()).FirstOrDefault() ?? throw new Exception();
         DO.Order returnOrder = new DO.Order();
         returnOrder.ID= id;
-        returnOrder.CustomerName = order?.Element("CustomerName").Value;
-        returnOrder.CustomerEmail = order?.Element("CustomerEmail").Value;
-        returnOrder.CustomerAddress = order?.Element("CustomerAddress").Value;
-        returnOrder.OrderDate = Convert.ToDateTime(order?.Element("OrderDate").Value);
-        returnOrder.ShipDate = Convert.ToDateTime(order?.Element("ShipDate").Value);
-        returnOrder.DeliveryDate = Convert.ToDateTime(order?.Element("DeliveryDate").Value);
+        returnOrder.CustomerName = order?.Element("CustomerName")?.Value;
+        returnOrder.CustomerEmail = order?.Element("CustomerEmail")?.Value;
+        returnOrder.CustomerAddress = order?.Element("CustomerAddress")?.Value;
+        returnOrder.OrderDate = Convert.ToDateTime(order?.Element("OrderDate")?.Value);
+        returnOrder.ShipDate = Convert.ToDateTime(order?.Element("ShipDate")?.Value);
+        returnOrder.DeliveryDate = Convert.ToDateTime(order?.Element("DeliveryDate")?.Value);
         return returnOrder;
     }
    public void Delete(int id)
