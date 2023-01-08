@@ -36,7 +36,7 @@ product.Name = "updated";
 product.Price = (float)480;
 product.inStock = 15;
 product.catagory = DO.catagory.accssories;
-d.Product.updateAmount(100006, 56);
+//d.Product.updateAmount(100006, 56);
 Console.WriteLine("success");
 
 /*using System.Text;
