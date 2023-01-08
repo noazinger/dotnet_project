@@ -46,9 +46,9 @@
             </ListView>
 
         </Grid>
-        <Grid Grid.Column="1">
-            <!-- orders -->
-            <ListView x:Name="OrdersListView" Grid.Column="1" SelectionChanged="UpdateOrder" >
+        <!--<Grid Grid.Column="1">
+            --><!-- orders --><!--
+            <ListView x:Name="OrderListView" Grid.Column="1" SelectionChanged="UpdateOrder" >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding ID}" Header="Id"/>
@@ -59,7 +59,7 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-        </Grid>
+        </Grid>-->
         <Button  Content="add product" HorizontalAlignment="Left" VerticalAlignment="Center" Height="22" Width="168" Click="Add_product_Click" Margin="580,0,0,0" Grid.ColumnSpan="2" Grid.Row="2"/>
         <Button Content="Back" Width="100" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Background="#FFF11212" Click="back_To_Main" Margin="10,10,0,0"/>
 

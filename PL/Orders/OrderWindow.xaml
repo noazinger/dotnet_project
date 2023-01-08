@@ -3,10 +3,55 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PL.Orders"
+        xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="OrderWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="Window2" Height="450" Width="800" Foreground="#FF02059C">
+    <Grid >
+        <TextBox x:Name="txtOrderCustomerName" HorizontalAlignment="Left" Margin="251,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="30"/>
+        <Label x:Name="lblOrderCustomerName" Content="customer name: " HorizontalAlignment="Left" Margin="62,53,0,0" VerticalAlignment="Top"  RenderTransformOrigin="-0.128,-0.175" Height="30"/>
+        <TextBox x:Name="txtOrderCustomerEmail" HorizontalAlignment="Left" Margin="251,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="30"/>
+        <Label x:Name="lblOrderCustomerEmail" Content="customer email:" HorizontalAlignment="Left" Margin="62,84,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.756,-0.04" Height="30"/>
+        <TextBox x:Name="txtOrderCustomerAddress"  HorizontalAlignment="Left" Margin="251,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="30"/>
+        <Label x:Name="lblOrderCustomerAddress" Content="customer address:" HorizontalAlignment="Left" Margin="62,111,0,0" VerticalAlignment="Top" Height="30"/>
+        <TextBox x:Name="txtOrderOrderDate" HorizontalAlignment="Left" Margin="251,136,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="30"/>
+        <Label x:Name="lblOrderOrderDate" Content="order date:" HorizontalAlignment="Left" Margin="62,138,0,0" VerticalAlignment="Top" Height="30" />
+        <TextBox x:Name="txtOrderStatus" HorizontalAlignment="Left" Margin="251,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="30"/>
+        <Label x:Name="lblOrderStatus" Content="status" HorizontalAlignment="Left" Margin="62,168,0,0" VerticalAlignment="Top" Height="30"/>
+        <TextBox x:Name="txtOrderShipDate" HorizontalAlignment="Left" Margin="251,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="30"/>
+        <Label x:Name="lblOrderShipDate" Content="ship date:" HorizontalAlignment="Left" Margin="62,198,0,0" VerticalAlignment="Top" Height="30" RenderTransformOrigin="0.282,1.065"/>
+        <TextBox x:Name="txtOrderDeliveryDate" HorizontalAlignment="Left" Margin="251,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="30"/>
+        <Label x:Name="lblOrderDeliveryDate" Content="delivery date:" HorizontalAlignment="Left" Margin="62,217,0,0" VerticalAlignment="Top" Height="30"/>
+        <!--<TextBox x:Name="txtOrderCustomerName" HorizontalAlignment="Left" Margin="360,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" />
+        <Label x:Name="lblOrderCustomerName" HorizontalContentAlignment="Center" Content="name:" HorizontalAlignment="Left" Margin="261,109,0,0" VerticalAlignment="Top" Height="30" Width="90"/>
+        <TextBox x:Name="txtOrderCustomerEmail" HorizontalAlignment="Left" Margin="358,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" />
+        <Label x:Name="lblOrderCustomerEmail" HorizontalContentAlignment="Center" Content="price:" HorizontalAlignment="Left" Margin="248,176,0,0" VerticalAlignment="Top" Height="30" Width="125"/>
+        <TextBox x:Name="txtOrderCustomerAddress" HorizontalAlignment="Left" Margin="359,216,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" />
+        <Label x:Name="lblOrderCustomerAddress" HorizontalContentAlignment="Center" Content="amount in stock:" HorizontalAlignment="Left" Margin="224,210,0,0" VerticalAlignment="Top" Height="30" Width="126"></Label>
+        <TextBox x:Name="txtOrderOrderDate" Width="100" Height="100" />
+        <Label x:Name="lblOrderOrderDate" Content="order date:" Width="50" Height="30"/>
+        <TextBox x:Name="txtOrderStatus"  />
+        <Label x:Name="lblOrderStatus" Content="status:"/>
+        <TextBox x:Name="txtOrderShipDate"  />
+        <Label x:Name="lblOrderShipDate" Content="ship date:"/>
+        <TextBox x:Name="txtOrderDeliveryDate"  />
+        <Label x:Name="lblOrderDeliveryDate" Content="delivery date:&#xD;&#xA;" RenderTransformOrigin="0.516,0.491"/>-->
+        <!--<ListView x:Name="OrderItemsListView" Grid.Row="1"  MouseDoubleClick="OrderItemsListView_MouseDoubleClick" >
+            <ListView.View>
+                <GridView AllowsColumnReorder="true" >
+                    <GridViewColumn x:Name="gvcProductID" DisplayMemberBinding="{Binding Path=ProductID}" Header="ProductID" Width="100"/>
+                    <GridViewColumn x:Name="gvcProductName" DisplayMemberBinding="{Binding Path=ProductName}" Header="ProductName" Width="150"/>
+                    <GridViewColumn x:Name="gvcPrice" DisplayMemberBinding="{Binding Path=Price}" Header="Price" Width="100"/>
+                    <GridViewColumn x:Name="gvcAmount" DisplayMemberBinding="{Binding Path=Amount}" Header="Amount" Width="100"/>
+                    <GridViewColumn x:Name="gvcTotalPrice" DisplayMemberBinding="{Binding Path=TotalPrice}" Header="TotalPrice" Width="100"/>
+                </GridView>
+            </ListView.View>
+        </ListView>-->
+
+        <!--<Button x:Name="btnAddOrUpdate" Content="ADD" HorizontalAlignment="Left" Margin="318,285,0,0" VerticalAlignment="Top" Height="45" Width="121" Click="btnAddOrUpdate_Click" Background="#FFD1F6FD" BorderBrush="#FF02059C" Foreground="#FF02059C" FontSize="14" FontWeight="Bold"/>
+        <Button x:Name="btnOrderList" Content=" OrderList" HorizontalAlignment="Left" Margin="675,25,0,0" VerticalAlignment="Top" Click="btnOrderList_Click" RenderTransformOrigin="-1.326,-10.096" Height="30" Background="#FFD1F6FD" Width="91" BorderBrush="#FF02059C" Foreground="#FF02059C"/>
+        <Button x:Name="btnDelete" Content="delete" HorizontalAlignment="Left" Margin="481,285,0,0" VerticalAlignment="Top" Click="btnDelete_Click" Height="45" Width="122" Background="#FFD1F6FD" Foreground="#FF02059C" BorderBrush="#FF02059C" FontSize="14" FontWeight="Bold"/>
+        <Button x:Name="btnExit" Content="exit" HorizontalAlignment="Left" Margin="24,20,0,0" VerticalAlignment="Top" BorderBrush="#FF02059C" Foreground="#FF02059C" Background="#FFD1F6FD" Click="btnExit_Click" RenderTransformOrigin="-0.626,-3.298" Width="33"/>-->
+
     </Grid>
 </Window>
+

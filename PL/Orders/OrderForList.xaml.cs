@@ -18,40 +18,30 @@ namespace PL.Orders
     /// </summary>
     public partial class OrderForList : Window
     {
+        //private BlApi.IBl Bl { get; set; }
         BlApi.IBl? bl = BlApi.Factory.Get();
+
         public OrderForList(IBl b)
         {
             InitializeComponent();
             bl = b;
             try
             {
-                OrdersListView.ItemsSource = b.Product.ReadCatalog();
-                CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.catagory));
+                OrderListView.ItemsSource = bl.Order.ReadOrders();
             }
             catch (Exception exc)
             {
                 MessageBox.Show(exc.Message);
+
             }
         }
 
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                object categor = CategorySelector.SelectedItem;
-                IEnumerable<BO.ProductItem> list = bl.Product.ReadProductByCategoty((BO.catagory)categor);
-                OrdersListView.ItemsSource = list;
-            }
-            catch (Exception exc)
-            {
-                MessageBox.Show(exc.Message);
-            }
-        }
         private void OrderListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            BO.ProductItem p = (BO.ProductItem)((ListView)sender).SelectedItem;
-            new OrderWindow(p).Show();
-            this.Close();
+            BO.ProductItem pi = (BO.ProductItem)((ListView)sender).SelectedItem;
+            OrderWindow OW = new(pi);
+            OW.Show();
+            this.Hide();
         }
     }
 }

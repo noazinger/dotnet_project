@@ -61,20 +61,18 @@ internal class Order : IOrder
         order.Element("DeliveryDate").Value = item.CustomerAddress;
         orderElement.Save("..\\xml\\Order.xml");
     }
-   public IEnumerable<DO.Order> Read(Func<DO.Order, bool> func )
+   public IEnumerable<DO.Order> Read(Func<DO.Order, bool>? func=null )
     {
         XElement? root = XDocument.Load("..\\xml\\Order.xml")?.Root;
-        IEnumerable<XElement>? orderList = root?.Descendants("order")?.ToList();
+        IEnumerable<XElement>? orderList = root?.Descendants("orders")?.ToList();
         List<DO.Order> orders = new List<DO.Order>();
         foreach (var xOrder in orderList)
         {
             orders.Add(deepCopy(xOrder));
         }
-        
         return (func == null ? orders : orders.Where(func).ToList());
         throw new NotImplementedException();
     }
-
     public DO.Order deepCopy(XElement? o)
     {
         DO.Order order = new DO.Order();
@@ -104,11 +102,11 @@ internal class Order : IOrder
     }
    public void Delete(int id)
     {
-        /*XElement? orderElement = XDocument.Load("..\\xml\\Order.xml").Root;
-        XElement? order = orderElement?.Element("Order").Elements("Order").
-            Where(e => e.Element("ID")?.Value == id.ToString()).FirstOrDefault() ?? throw new Exception();
-        order?.Remove();
-        orderElement?.Save("..\\xml\\Order.xml");*/
+        //XElement? orderElement = XDocument.Load("..\\xml\\Order.xml").Root;
+        //XElement? order = orderElement?.Element("Order").Elements("Order").
+        //    Where(e => e.Element("ID")?.Value == id.ToString()).FirstOrDefault() ?? throw new Exception();
+        //order?.Remove();
+        //orderElement?.Save("..\\xml\\Order.xml");
         XElement? orderElement = XDocument.Load("../../../../xml/Order.xml").Root;
         orderElement?.Descendants("order").Where(p => int.Parse(p?.Element("OrderID").Value) == id).Remove();
         orderElement?.Save("../../../../xml/Order.xml");

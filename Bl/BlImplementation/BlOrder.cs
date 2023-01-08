@@ -23,7 +23,7 @@ namespace BlImplementation
                 List<DO.Order> orders = dalEntity.Order.Read().ToList();
                 foreach (var item in orders)
                 {
-                    BO.OrderForList order = new ();
+                    BO.OrderForList order = new();
                     order.ID = item.ID;
                     order.CustomerName = item.CustomerName;
                     if (item.OrderDate >= DateTime.Now && item.ShipDate <= DateTime.Now)
@@ -43,11 +43,9 @@ namespace BlImplementation
                     List<DO.OrderItem> items = dalEntity.OrderItem.ReadByOrderId(item.ID).ToList();
                     foreach (var itemIn in items)
                     {
-                        amount +=itemIn.Amount;
-                        totalPrice += itemIn.Price* itemIn.Amount;
-                  
+                        amount += itemIn.Amount;
+                        totalPrice += itemIn.Price * itemIn.Amount;
                     }
-                   
                     order.AmountOfItems = amount;
                     order.TotalPrice = totalPrice;
                     OrdersList.Add(order);
@@ -60,6 +58,29 @@ namespace BlImplementation
             }
             return OrdersList;
         }
+
+        //public IEnumerable<BO.OrderForList> ReadOrders()
+        //{
+        //    try
+        //    {
+        //        var doOrders = dalEntity.Order.Read();
+        //        List<BO.OrderForList> orderList = new();
+        //        orderList = (from order in doOrders
+        //                     select new BO.OrderForList
+        //                     {
+        //                         ID = order.ID,
+        //                         CustomerName = order.CustomerName,
+        //                         Status = order.DeliveryDate != null ? (BO.OrderStatus)2 : order.ShipDate != null ? (BO.OrderStatus)1 : (BO.OrderStatus)0,
+        //                         TotalPrice = dalEntity.OrderItem.Read(oi => oi.OrderID == order.ID).Sum(oi => oi.Price * oi.Amount),
+        //                         AmountOfItems = dalEntity.OrderItem.Read(oi => oi.OrderID == order.ID).Sum(oi => oi.Amount)
+        //                     }).ToList();
+        //        return orderList;
+        //    }
+        //    catch (DataIsEmpty exc)
+        //    {
+        //        throw new BO.NotDataException(exc);
+        //    }
+        //}
         /// <summary>
         /// the function requesting Order details, get the order Id
         /// If the ID is a positive number , request a data layer order
