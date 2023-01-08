@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlApi
 {
-    public interface Iproduct
+    public interface Iproduct 
     {
         public IEnumerable<BO.ProductForList?> ReadListProducts();
         public IEnumerable<BO.ProductItem?> ReadCatalog();
