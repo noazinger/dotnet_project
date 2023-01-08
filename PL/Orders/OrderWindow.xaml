@@ -6,28 +6,9 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="OrderWindow" Height="450" Width="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50*"/>
-            <ColumnDefinition Width="50*"/>
-            <ColumnDefinition Width="50*"/>
+   
 
-
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="20*"/>
-            <RowDefinition Height="20*"/>
-            <RowDefinition Height="20*"/>
-
-
-        </Grid.RowDefinitions>
-        <Grid Grid.Column="1" Grid.Row="1">
-            <Border BorderBrush="#FF9E4E4E"  Margin="-28,-17,0,0"/>
-            <Button Content="Order details" HorizontalAlignment="Left"  Width="257" Margin="0,52,0,31" />
-            <Label  Content="sdg" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="120" Name="Order_status" Margin="133,29,0,0"/>
-        </Grid>
-        Title="Window2" Height="450" Width="800" Foreground="#FF02059C">
-    <Grid >
+        <Grid >
         <TextBox x:Name="txtOrderCustomerName" HorizontalAlignment="Left" Margin="251,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="30"/>
         <Label x:Name="lblOrderCustomerName" Content="customer name: " HorizontalAlignment="Left" Margin="62,53,0,0" VerticalAlignment="Top"  RenderTransformOrigin="-0.128,-0.175" Height="30"/>
         <TextBox x:Name="txtOrderCustomerEmail" HorizontalAlignment="Left" Margin="251,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="30"/>

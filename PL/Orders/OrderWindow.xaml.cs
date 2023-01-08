@@ -25,11 +25,9 @@ namespace PL.Orders
         BlApi.IBl? bl = Factory.Get();
 
         public OrderWindow(Order b)
-        BlApi.IBl? bl = Factory.Get();
-        public OrderWindow(BO.ProductItem ob)
         {
             InitializeComponent();
-            Order_status.Content = b.Status;
+
         }
     }
 }

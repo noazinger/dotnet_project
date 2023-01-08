@@ -39,8 +39,8 @@ namespace PL.Orders
         private void OrderListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             BO.ProductItem pi = (BO.ProductItem)((ListView)sender).SelectedItem;
-            OrderWindow OW = new(pi);
-            OW.Show();
+/*            OrderWindow OW = new(pi);
+*//*            OW.Show();*/
             this.Hide();
         }
     }

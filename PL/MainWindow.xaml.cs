@@ -61,7 +61,7 @@ namespace PL
         {
             int id = Convert.ToInt32(number.Text);
             BO.Order order= bl.Order.ReadOrderInformation(id);
-            new Orders.OrderWindow(order).Show();
+            new Orders.TrakOrder(order).Show();
             this.Hide();
         }
 
