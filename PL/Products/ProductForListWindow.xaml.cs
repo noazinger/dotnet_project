@@ -9,7 +9,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using System.Xml.Serialization;
+using System.Xml.Linq;
 namespace PL.Products
 {
     /// <summary>
@@ -30,7 +31,7 @@ namespace PL.Products
             }
             catch (Exception exc)
             {
-                MessageBox.Show( "The Data Is Empty");
+                MessageBox.Show(exc.Message);
             }
         }
         private void comboBox_selectionChange(object sender, SelectionChangedEventArgs e)
@@ -43,7 +44,7 @@ namespace PL.Products
             }
             catch (Exception exc)
             {
-                MessageBox.Show( "The Data Is Empty");
+                MessageBox.Show(exc.Message);
             }
         }
         private void back_To_Main(object sender, RoutedEventArgs e)

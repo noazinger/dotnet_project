@@ -3,7 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-
+using System.Xml.Serialization;
+using System.Xml.Linq;
 
 namespace PL.Products
 {
@@ -44,7 +45,7 @@ namespace PL.Products
             }
             catch(Exception exc)
             {
-                MessageBox.Show( "The Data Is Empty");
+                MessageBox.Show(exc.Message);
             }
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -55,7 +56,10 @@ namespace PL.Products
                 try
                 {
                     BO.Product product = new();
-                    product.ID=Config.ProductID;
+                    XElement? config = XDocument.Load(@"..\xml\dal-config.xml").Root;
+                    product.ID = Convert.ToInt32(config?.Element("ids").Element("productId").Value);
+                    config.Element("ids").Element("productId").Value = (product.ID + 1).ToString();
+                    config.Save(@"..\xml\dal-config.xml");
                     product.Name = name.Text;
                     product.Price = double.Parse(price.Text);
                     object categor = CategorySelector.SelectedItem;
@@ -65,7 +69,7 @@ namespace PL.Products
                 }
                 catch (Exception exc)
                 {
-                    MessageBox.Show( "the item is already exists");
+                    MessageBox.Show( exc.Message);
                 }
                    
             }
@@ -84,7 +88,7 @@ namespace PL.Products
                 }
                 catch (Exception exc)
                 {
-                    MessageBox.Show( "The Product is not found");
+                    MessageBox.Show(exc.Message);
                 }
 
             }
@@ -99,9 +103,5 @@ namespace PL.Products
 
       
     }
-    public class Config
-    {
-        public static int ProductId = 10000;
-        static public int ProductID { get { return ProductId++; } }
-    }
+  
 }

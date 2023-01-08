@@ -21,4 +21,18 @@
     <inStock>6</inStock>
     <catagory>pants</catagory>
   </Product>
+  <Product>
+    <ID>100010</ID>
+    <Price>3</Price>
+    <Name>fd</Name>
+    <inStock>3</inStock>
+    <catagory>suit</catagory>
+  </Product>
+  <Product>
+    <ID>100011</ID>
+    <Price>432</Price>
+    <Name>ds</Name>
+    <inStock>42</inStock>
+    <catagory>suit</catagory>
+  </Product>
 </Products>
