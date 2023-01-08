@@ -1,23 +1,15 @@
 ﻿using BlApi;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace PL.Products
 {
     public partial class ProductWindow : Window
     {
-        BlApi.IBl? bl = BlApi.Factory.Get();
+        BlApi.IBl? bl = Factory.Get();
         private int id = 0;
         public ProductWindow(IBl bl)
         {
@@ -52,7 +44,7 @@ namespace PL.Products
             }
             catch(Exception exc)
             {
-                MessageBox.Show(exc.Message);
+                MessageBox.Show( "The Data Is Empty");
             }
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -73,7 +65,7 @@ namespace PL.Products
                 }
                 catch (Exception exc)
                 {
-                    MessageBox.Show(exc.Message);
+                    MessageBox.Show( "the item is already exists");
                 }
                    
             }
@@ -92,11 +84,11 @@ namespace PL.Products
                 }
                 catch (Exception exc)
                 {
-                    MessageBox.Show(exc.Message);
+                    MessageBox.Show( "The Product is not found");
                 }
 
             }
-            new MainWindow().Show();
+            new ProductForListWindow(bl).Show();
             this.Hide();
         }
         private void back_To_Main(object sender, RoutedEventArgs e)
