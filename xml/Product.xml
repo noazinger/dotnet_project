@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ArrayOfProduct xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<Products>
   <Product>
     <ID>10000</ID>
     <Name>hgggg</Name>
@@ -9,30 +9,16 @@
   </Product>
   <Product>
     <ID>10000</ID>
-    <Price>44</Price>
-    <Name>רקע</Name>
-    <inStock>4</inStock>
-    <catagory>pants</catagory>
-  </Product>
-  <Product>
-    <ID>10000</ID>
-    <Price>4352</Price>
-    <Name>rt</Name>
-    <inStock>435</inStock>
-    <catagory>tie</catagory>
-  </Product>
-  <Product>
-    <ID>10000</ID>
-    <Price>35</Price>
-    <Name>gfhd</Name>
-    <inStock>63</inStock>
-    <catagory>pants</catagory>
+    <Price>7</Price>
+    <Name>ח</Name>
+    <inStock>7</inStock>
+    <catagory>shirt</catagory>
   </Product>
   <Product>
     <ID>10001</ID>
-    <Price>4234</Price>
-    <Name>trh</Name>
-    <inStock>423</inStock>
+    <Price>89</Price>
+    <Name>וו</Name>
+    <inStock>6</inStock>
     <catagory>pants</catagory>
   </Product>
-</ArrayOfProduct>
+</Products>

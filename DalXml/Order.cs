@@ -70,7 +70,7 @@ internal class Order : IOrder
         {
             orders.Add(deepCopy(xOrder));
         }
-
+        
         return (func == null ? orders : orders.Where(func).ToList());
         throw new NotImplementedException();
     }
@@ -109,11 +109,8 @@ internal class Order : IOrder
             Where(e => e.Element("ID")?.Value == id.ToString()).FirstOrDefault() ?? throw new Exception();
         order?.Remove();
         orderElement?.Save("..\\xml\\Order.xml");*/
-
         XElement? orderElement = XDocument.Load("../../../../xml/Order.xml").Root;
         orderElement?.Descendants("order").Where(p => int.Parse(p?.Element("OrderID").Value) == id).Remove();
         orderElement?.Save("../../../../xml/Order.xml");
     }
 }
-
-
