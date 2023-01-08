@@ -57,7 +57,13 @@ namespace PL
             }
 
         }
-
+        private void Trak_b(object sender, RoutedEventArgs e)
+        {
+            int id = Convert.ToInt32(number.Text);
+            BO.Order order= bl.Order.ReadOrderInformation(id);
+            new Orders.OrderWindow(order).Show();
+            this.Hide();
+        }
 
     }
 }

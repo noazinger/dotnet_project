@@ -11,7 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using BlApi;
+using BO;
 namespace PL.Orders
 {
     /// <summary>
@@ -19,9 +20,12 @@ namespace PL.Orders
     /// </summary>
     public partial class OrderWindow : Window
     {
-        public OrderWindow()
+        BlApi.IBl? bl = Factory.Get();
+
+        public OrderWindow(Order b)
         {
             InitializeComponent();
+            Order_status.Content = b.Status;
         }
     }
 }

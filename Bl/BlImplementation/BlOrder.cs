@@ -85,7 +85,22 @@ namespace BlImplementation
                     order.OrderDate = singleOrder.OrderDate;
                     order.ShipDate = singleOrder.ShipDate;
                     order.DeliveryDate = singleOrder.DeliveryDate;
+                    if (singleOrder.OrderDate >= DateTime.Now && singleOrder.ShipDate <= DateTime.Now)
+                    {
+                        order.Status = (BO.OrderStatus)1;
+                    }
+                    else if (singleOrder.ShipDate >= DateTime.Now && singleOrder.DeliveryDate <= DateTime.Now)
+                    {
+                        order.Status = (BO.OrderStatus)2;
+                    }
+                    else
+                    {
+                        order.Status = (BO.OrderStatus)3;
+                    }
+                    order.PaymentDate = DateTime.Now;
+                    
                 }
+                double total = 0;
                 List<BO.OrderItem> itemInformation = new List<BO.OrderItem>();
                 foreach (var i in dalEntity.OrderItem.ReadByOrderId(id))
                 {
@@ -96,9 +111,11 @@ namespace BlImplementation
                     item.Price = i.Price;
                     item.Amount = i.Amount;
                     item.TotalPrice = item.Amount * item.Price;
+                    total += item.TotalPrice;
                     itemInformation.Add(item);
                 }
                 order.Items = itemInformation;
+                order.TotalPrice = total;
             }
             catch (NotFoundException exc)
             {

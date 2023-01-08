@@ -90,8 +90,7 @@ internal class Order : IOrder
     public DO.Order ReadSingle(int id)
     {
         XElement? orderElement = XDocument.Load("..\\xml\\Order.xml").Root;
-        XElement? order = orderElement?.Element("Order")?.Elements("Order").
-            Where(e => e.Element("ID")?.Value == id.ToString()).FirstOrDefault() ?? throw new Exception();
+        XElement? order = orderElement?.Elements("Order").Where(e => e.Element("ID")?.Value == id.ToString()).FirstOrDefault() ?? throw new Exception();
         DO.Order returnOrder = new DO.Order();
         returnOrder.ID= id;
         returnOrder.CustomerName = order?.Element("CustomerName")?.Value;

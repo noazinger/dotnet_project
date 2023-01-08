@@ -43,15 +43,25 @@ namespace Dal
                 sr.Close ();    
                 return list;
         }
+       
         public IEnumerable<DO.OrderItem> ReadByOrderId(int orderId) {
-
+            XmlRootAttribute xRoot = new XmlRootAttribute();
+            xRoot.ElementName = "OrderItems";
+            xRoot.IsNullable = true;
             StreamReader sr = new StreamReader(@"..\xml\OrderItem.xml");
-            XmlSerializer serializer = new XmlSerializer(typeof(List<DO.OrderItem>));
+            XmlSerializer serializer = new XmlSerializer(typeof(List<DO.OrderItem>),xRoot);
             List<DO.OrderItem> list = (List<DO.OrderItem>)serializer.Deserialize(sr);
-            List<DO.OrderItem> oi = (List<DO.OrderItem>)
-            list.Where(e => e.ID == orderId);
+            List<DO.OrderItem> result=new List<DO.OrderItem>();
+            foreach (var i in list)
+            {
+                if(i.OrderID == orderId) result.Add(i);
+            }
+            /*IEnumerable<DO.OrderItem> result =  from X in list
+                                                where X.OrderID==orderId
+                                                select X;*/
+         
             sr.Close();
-            return oi;
+            return result;
         }
         public DO.OrderItem ReadSingle(int id)
         {

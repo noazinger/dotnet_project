@@ -7,7 +7,34 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button  Content="Admin" HorizontalAlignment="Center" VerticalAlignment="Top" Height="64" Width="168" Click="admin_b" Margin="0,180,0,0" Background="#FFCBD8CF"/>
-        <Button Content="New Order" HorizontalAlignment="Left" Margin="186,309,0,0" VerticalAlignment="Top" Click="newOrder_b"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="50*"/>
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="20*"/>
+
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1" Grid.Column="2">
+            <Button  Content="Admin" HorizontalAlignment="Center" VerticalAlignment="Top" Height="64" Width="168" Click="admin_b"  Background="#FFCBD8CF"/>
+
+        </Grid>
+        <Grid Grid.Column="4" Grid.Row="1">
+            <Border BorderBrush="#FF9E4E4E"  Margin="-28,-17,0,0"/>
+            <Button Content="Trak" HorizontalAlignment="Left" Click="Trak_b" Height="40" Width="85" />
+            <TextBox   HorizontalAlignment="Left" TextWrapping="Wrap" Text="Order number" VerticalAlignment="Top" Width="120" Name="number"/>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="2">
+            <Button Content="New Order"  HorizontalAlignment="Left"  VerticalAlignment="Top" Click="newOrder_b" Height="99" Width="123"/>
+
+        </Grid>
     </Grid>
 </Window>

@@ -82,8 +82,11 @@ internal class Product : IProduct
     }
     public DO.Product ReadSingle(int id)
     {
+        XmlRootAttribute xRoot = new XmlRootAttribute();
+        xRoot.ElementName = "Products";
+        xRoot.IsNullable = true;
         StreamReader sr = new StreamReader(@"..\xml\Product.xml");
-        XmlSerializer serializer = new XmlSerializer(typeof(List<DO.Product>));
+        XmlSerializer serializer = new XmlSerializer(typeof(List<DO.Product>),xRoot);
         List<DO.Product> list = (List<DO.Product>)serializer.Deserialize(sr);
         DO.Product product = list.Where(e => e.ID == id).FirstOrDefault();
         sr.Close();
