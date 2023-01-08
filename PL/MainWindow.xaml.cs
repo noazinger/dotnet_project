@@ -28,7 +28,7 @@ namespace PL
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void admin_b(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -42,8 +42,22 @@ namespace PL
             }
             
         }
- 
-    
-   
+
+        private void newOrder_b(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                new Orders.OrderForList(bl).Show();
+                this.Hide();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+
+        }
+
+
     }
 }
