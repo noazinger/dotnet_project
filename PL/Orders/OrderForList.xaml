@@ -6,43 +6,21 @@
         xmlns:local="clr-namespace:PL.Orders"
         mc:Ignorable="d"
         Title="OrderForList" Height="640" Width="800">
-    <Grid Name="MainGrid">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <ComboBox HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1" Width="385" Height="35"
-                Name="CategorySelector"
-                SelectionChanged="comboBox_selectionChange" 
-                  />
-        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
-       VerticalAlignment="Stretch" Width="auto">
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions >
-            
-            <ListView x:Name="OrdersListView" MouseDoubleClick="OrderListView_MouseDoubleClick"  Grid.ColumnSpan="5" Grid.RowSpan="2">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=ID}" Header="ID" ></GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Header="Name" ></GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=catagory}" Header="Category" ></GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Price}" Header="Price" ></GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Amount}" Header="Amount" ></GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=InStock}" Header="InStock" ></GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-
-
-        </Grid>
-
-
-
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="147*"/>
+            <ColumnDefinition Width="13*"/>
+        </Grid.ColumnDefinitions>
+        <ListView x:Name="OrderListView" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="2,60,4,73" Grid.ColumnSpan="2" MouseDoubleClick="OrderListView_MouseDoubleClick">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn x:Name="gvcID" DisplayMemberBinding="{Binding Path=ID}" Header="ID" Width="70"/>
+                    <GridViewColumn x:Name="gvcCustomerName" DisplayMemberBinding="{Binding Path=CustomerName}" Header="Customer Name" Width="150"/>
+                    <GridViewColumn x:Name="gvcStatus" DisplayMemberBinding="{Binding Path=Status}" Header="Status" Width="150"/>
+                    <GridViewColumn x:Name="gvcAmount" DisplayMemberBinding="{Binding Path=AmountOfItems}" Header="Amount" Width="100"/>
+                    <GridViewColumn x:Name="gvcPrice" DisplayMemberBinding="{Binding Path=TotalPrice}" Header="Price" Width="150"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>
