@@ -28,6 +28,7 @@ namespace PL.Products
             {
                 ProductListView.ItemsSource = b.Product.ReadCatalog();
                 CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.catagory));
+
             }
             catch (Exception exc)
             {
@@ -50,19 +51,19 @@ namespace PL.Products
         private void back_To_Main(object sender, RoutedEventArgs e)
         {
             new MainWindow().Show();
-            this.Close();
+            Close();
         }
 
         private void ProductListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             BO.ProductItem p = (BO.ProductItem)((ListView)sender).SelectedItem;
-            new ProductWindow(p).Show();
-            this.Close();
+            new ProductWindow(p,"update").Show();
+            Close();
         }
         private void Add_product_Click(object sender, RoutedEventArgs e)
         {
             new ProductWindow(bl).Show();
-            this.Hide();
+            Hide();
         }
     }
 }

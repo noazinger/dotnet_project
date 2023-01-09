@@ -47,8 +47,8 @@ namespace PL
         {
             try
             {
-
-                new Orders.OrderForList(bl).Show();
+                BO.Cart cart=new BO.Cart();  
+                new Orders.OrderForList(bl,cart).Show();
                 this.Hide();
             }
             catch (Exception exc)
@@ -57,7 +57,7 @@ namespace PL
             }
 
         }
-        private void Trak_b(object sender, RoutedEventArgs e)
+        private void Track_b(object sender, RoutedEventArgs e)
         {
             int id = Convert.ToInt32(number.Text);
             BO.Order order= bl.Order.ReadOrderInformation(id);

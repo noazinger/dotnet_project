@@ -29,7 +29,7 @@
         </Grid>
         <Grid Grid.Column="4" Grid.Row="1">
             <Border BorderBrush="#FF9E4E4E"  Margin="-28,-17,0,0"/>
-            <Button Content="Trak" HorizontalAlignment="Left" Click="Trak_b" Height="40" Width="85" />
+            <Button Content="Track" HorizontalAlignment="Left" Click="Track_b" Height="40" Width="85" />
             <TextBox   HorizontalAlignment="Left" TextWrapping="Wrap" Text="Order number" VerticalAlignment="Top" Width="120" Name="number"/>
         </Grid>
         <Grid Grid.Column="1" Grid.Row="2">

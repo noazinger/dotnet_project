@@ -11,6 +11,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml.Serialization;
 using System.Xml.Linq;
+using PL.Products;
+
 namespace PL.Orders
 {
     /// <summary>
@@ -19,15 +21,16 @@ namespace PL.Orders
     public partial class OrderForList : Window
     {
         //private BlApi.IBl Bl { get; set; }
-        BlApi.IBl? bl = BlApi.Factory.Get();
-
-        public OrderForList(IBl b)
+      IBl? bl = Factory.Get();
+        BO.Cart myCart = new BO.Cart();
+        public OrderForList(IBl b, BO.Cart c)
         {
             InitializeComponent();
             bl = b;
             try
             {
-                OrderListView.ItemsSource = bl.Order.ReadOrders();
+                myCart = c;
+                OrderListView.ItemsSource = bl.Product.ReadCatalog();
             }
             catch (Exception exc)
             {
@@ -42,6 +45,17 @@ namespace PL.Orders
 /*            OrderWindow OW = new(pi);
 *//*            OW.Show();*/
             this.Hide();
+        }
+
+        private void OrderListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            BO.ProductItem p = (BO.ProductItem)((ListView)sender).SelectedItem;
+            new ProductWindow(p, myCart).Show();
+            Close();
+        }
+        public void showCart_btn()
+        {
+
         }
     }
 }

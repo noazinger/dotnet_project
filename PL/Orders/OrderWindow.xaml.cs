@@ -19,14 +19,32 @@ namespace PL.Orders
     /// <summary>
     /// Interaction logic for OrderWindow.xaml
     /// </summary>
-
     public partial class OrderWindow : Window
     {
         BlApi.IBl? bl = Factory.Get();
 
-        public OrderWindow(Order b)
+        public OrderWindow(Order order)
         {
             InitializeComponent();
+/*            txtOrderCustomerName.Text = order.CustomerName;
+            txtOrderCustomerEmail.Text = order.CustomerEmail;
+            txtOrderCustomerAddress.Text = order.CustomerAddress;*/
+            this.DataContext = order;
+
+            txtOrderOrderDate.Text = order.OrderDate.ToString();
+            txtOrderOrderDate.Text = order.OrderDate.ToString();
+            txtOrderStatus.Text = order.Status.ToString();
+            txtOrderShipDate.Text = order.ShipDate.ToString();
+            txtOrderDeliveryDate.Text = order.DeliveryDate.ToString();
+            try
+            {
+                OrderItemsListView.ItemsSource = order.Items;
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+
+            }
 
         }
     }

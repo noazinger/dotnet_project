@@ -10,6 +10,7 @@ namespace PL.Products
 {
     public partial class ProductWindow : Window
     {
+        BO.Cart cart=new BO.Cart();
         BlApi.IBl? bl = Factory.Get();
         private int id = 0;
         public ProductWindow(IBl bl)
@@ -18,7 +19,26 @@ namespace PL.Products
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.catagory));
 
         }
-        public ProductWindow(BO.ProductItem ob)
+        public ProductWindow(BO.ProductItem ob, BO.Cart c)
+        {
+            InitializeComponent();
+            id = ob.ID;
+            name.Text = ob.Name;
+            price.Text = ob.Price.ToString();
+            CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.catagory));
+            CategorySelector.SelectedItem = ob.catagory;
+            amount.Text = ob.Amount.ToString();
+            func_butt.Content = "Add to cart";
+                name.IsReadOnly = true;
+                price.IsReadOnly = true;
+                CategorySelector.IsEnabled = false;
+                amount.IsReadOnly = true;
+            cart = c;
+
+
+        }
+
+        public ProductWindow(BO.ProductItem ob,string btn)
         {
             try
             {
@@ -29,7 +49,14 @@ namespace PL.Products
                 CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.catagory));
                 CategorySelector.SelectedItem = ob.catagory;
                 amount.Text = ob.Amount.ToString();
-                func_butt.Content = "update";
+                func_butt.Content = btn;
+             /*   if(btn== "Add to cart")
+                {
+                    name.IsReadOnly= true;
+                    price.IsReadOnly= true;
+                    CategorySelector.IsEnabled= false;
+                    amount.IsReadOnly= true;
+                }*/
             }
             catch (Exception exc)
             {
@@ -71,9 +98,10 @@ namespace PL.Products
                 {
                     MessageBox.Show( exc.Message);
                 }
-                   
+                new ProductForListWindow(bl).Show();
+
             }
-            if(function == "update")
+            if (function == "update")
             {
                 try
                 {
@@ -90,10 +118,16 @@ namespace PL.Products
                 {
                     MessageBox.Show(exc.Message);
                 }
+                new ProductForListWindow(bl).Show();
 
             }
-            new ProductForListWindow(bl).Show();
-            this.Hide();
+            if (function== "Add to cart")
+            {
+                bl.Cart.Add(cart, id);
+                new Orders.OrderForList(bl,cart).Show();
+            }
+
+            Hide();
         }
         private void back_To_Main(object sender, RoutedEventArgs e)
         {

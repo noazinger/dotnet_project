@@ -9,35 +9,27 @@
    
 
         <Grid >
-        <TextBox x:Name="txtOrderCustomerName" HorizontalAlignment="Left" Margin="251,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="30"/>
-        <Label x:Name="lblOrderCustomerName" Content="customer name: " HorizontalAlignment="Left" Margin="62,53,0,0" VerticalAlignment="Top"  RenderTransformOrigin="-0.128,-0.175" Height="30"/>
-        <TextBox x:Name="txtOrderCustomerEmail" HorizontalAlignment="Left" Margin="251,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="30"/>
-        <Label x:Name="lblOrderCustomerEmail" Content="customer email:" HorizontalAlignment="Left" Margin="62,84,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.756,-0.04" Height="30"/>
-        <TextBox x:Name="txtOrderCustomerAddress"  HorizontalAlignment="Left" Margin="251,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="30"/>
-        <Label x:Name="lblOrderCustomerAddress" Content="customer address:" HorizontalAlignment="Left" Margin="62,111,0,0" VerticalAlignment="Top" Height="30"/>
-        <TextBox x:Name="txtOrderOrderDate" HorizontalAlignment="Left" Margin="251,136,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="30"/>
-        <Label x:Name="lblOrderOrderDate" Content="order date:" HorizontalAlignment="Left" Margin="62,138,0,0" VerticalAlignment="Top" Height="30" />
-        <TextBox x:Name="txtOrderStatus" HorizontalAlignment="Left" Margin="251,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="30"/>
-        <Label x:Name="lblOrderStatus" Content="status" HorizontalAlignment="Left" Margin="62,168,0,0" VerticalAlignment="Top" Height="30"/>
-        <TextBox x:Name="txtOrderShipDate" HorizontalAlignment="Left" Margin="251,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="30"/>
-        <Label x:Name="lblOrderShipDate" Content="ship date:" HorizontalAlignment="Left" Margin="62,198,0,0" VerticalAlignment="Top" Height="30" RenderTransformOrigin="0.282,1.065"/>
-        <TextBox x:Name="txtOrderDeliveryDate" HorizontalAlignment="Left" Margin="251,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="30"/>
-        <Label x:Name="lblOrderDeliveryDate" Content="delivery date:" HorizontalAlignment="Left" Margin="62,217,0,0" VerticalAlignment="Top" Height="30"/>
-        <!--<TextBox x:Name="txtOrderCustomerName" HorizontalAlignment="Left" Margin="360,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" />
-        <Label x:Name="lblOrderCustomerName" HorizontalContentAlignment="Center" Content="name:" HorizontalAlignment="Left" Margin="261,109,0,0" VerticalAlignment="Top" Height="30" Width="90"/>
-        <TextBox x:Name="txtOrderCustomerEmail" HorizontalAlignment="Left" Margin="358,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" />
-        <Label x:Name="lblOrderCustomerEmail" HorizontalContentAlignment="Center" Content="price:" HorizontalAlignment="Left" Margin="248,176,0,0" VerticalAlignment="Top" Height="30" Width="125"/>
-        <TextBox x:Name="txtOrderCustomerAddress" HorizontalAlignment="Left" Margin="359,216,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" />
-        <Label x:Name="lblOrderCustomerAddress" HorizontalContentAlignment="Center" Content="amount in stock:" HorizontalAlignment="Left" Margin="224,210,0,0" VerticalAlignment="Top" Height="30" Width="126"></Label>
-        <TextBox x:Name="txtOrderOrderDate" Width="100" Height="100" />
-        <Label x:Name="lblOrderOrderDate" Content="order date:" Width="50" Height="30"/>
-        <TextBox x:Name="txtOrderStatus"  />
-        <Label x:Name="lblOrderStatus" Content="status:"/>
-        <TextBox x:Name="txtOrderShipDate"  />
-        <Label x:Name="lblOrderShipDate" Content="ship date:"/>
-        <TextBox x:Name="txtOrderDeliveryDate"  />
-        <Label x:Name="lblOrderDeliveryDate" Content="delivery date:&#xD;&#xA;" RenderTransformOrigin="0.516,0.491"/>-->
-        <!--<ListView x:Name="OrderItemsListView" Grid.Row="1"  MouseDoubleClick="OrderItemsListView_MouseDoubleClick" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="50*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <TextBox Text="{Binding Path=CustomerName}" x:Name="txtOrderCustomerName" HorizontalAlignment="Left" Margin="202,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="30"/>
+        <Label x:Name="lblOrderCustomerName" Content="customer name: " HorizontalAlignment="Left" Margin="60,23,0,0" VerticalAlignment="Top"  RenderTransformOrigin="-0.128,-0.175" Height="30"/>
+            <TextBox Text="{Binding Path=CustomerEmail}" x:Name="txtOrderCustomerEmail" HorizontalAlignment="Left" Margin="202,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="30"/>
+        <Label x:Name="lblOrderCustomerEmail" Content="customer email:" HorizontalAlignment="Left" Margin="64,53,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.756,-0.04" Height="30"/>
+            <TextBox Text="{Binding Path=CustomerAddress}" x:Name="txtOrderCustomerAddress"  HorizontalAlignment="Left" Margin="202,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="30"/>
+        <Label x:Name="lblOrderCustomerAddress" Content="customer address:" HorizontalAlignment="Left" Margin="60,88,0,0" VerticalAlignment="Top" Height="30"/>
+            <TextBox Text="{Binding Path=OrderOrderDate}" x:Name="txtOrderOrderDate" HorizontalAlignment="Left" Margin="202,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="30"/>
+        <Label x:Name="lblOrderOrderDate" Content="order date:" HorizontalAlignment="Left" Margin="68,113,0,0" VerticalAlignment="Top" Height="30" />
+            <TextBox Text="{Binding Path=OrderStatus}" x:Name="txtOrderStatus" HorizontalAlignment="Left" Margin="202,143,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="30"/>
+        <Label x:Name="lblOrderStatus" Content="status" HorizontalAlignment="Left" Margin="74,143,0,0" VerticalAlignment="Top" Height="30" RenderTransformOrigin="0.218,0.521"/>
+            <TextBox Text="{Binding Path=OrderShipDate}" x:Name="txtOrderShipDate" HorizontalAlignment="Left" Margin="202,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="30"/>
+        <Label x:Name="lblOrderShipDate" Content="ship date:" HorizontalAlignment="Left" Margin="64,170,0,0" VerticalAlignment="Top" Height="30" RenderTransformOrigin="0.282,1.065"/>
+            <TextBox Text="{Binding Path=OrderDeliveryDate}" x:Name="txtOrderDeliveryDate" HorizontalAlignment="Left" Margin="202,202,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="30" RenderTransformOrigin="0.029,0.063"/>
+        <Label x:Name="lblOrderDeliveryDate" Content="delivery date:" HorizontalAlignment="Left" Margin="62,202,0,0" VerticalAlignment="Top" Height="30"/>
+        </Grid>
+        <ListView x:Name="OrderItemsListView" Grid.Row="1"  >
             <ListView.View>
                 <GridView AllowsColumnReorder="true" >
                     <GridViewColumn x:Name="gvcProductID" DisplayMemberBinding="{Binding Path=ProductID}" Header="ProductID" Width="100"/>
@@ -47,7 +39,7 @@
                     <GridViewColumn x:Name="gvcTotalPrice" DisplayMemberBinding="{Binding Path=TotalPrice}" Header="TotalPrice" Width="100"/>
                 </GridView>
             </ListView.View>
-        </ListView>-->
+        </ListView>
 
         <!--<Button x:Name="btnAddOrUpdate" Content="ADD" HorizontalAlignment="Left" Margin="318,285,0,0" VerticalAlignment="Top" Height="45" Width="121" Click="btnAddOrUpdate_Click" Background="#FFD1F6FD" BorderBrush="#FF02059C" Foreground="#FF02059C" FontSize="14" FontWeight="Bold"/>
         <Button x:Name="btnOrderList" Content=" OrderList" HorizontalAlignment="Left" Margin="675,25,0,0" VerticalAlignment="Top" Click="btnOrderList_Click" RenderTransformOrigin="-1.326,-10.096" Height="30" Background="#FFD1F6FD" Width="91" BorderBrush="#FF02059C" Foreground="#FF02059C"/>
