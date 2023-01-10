@@ -6,34 +6,41 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="OrderWindow" Height="450" Width="800">
-   
 
-        <Grid >
+
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="70*"/>
             <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <TextBox Text="{Binding Path=CustomerName}" x:Name="txtOrderCustomerName" HorizontalAlignment="Left" Margin="202,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="30"/>
-        <Label x:Name="lblOrderCustomerName" Content="customer name: " HorizontalAlignment="Left" Margin="60,23,0,0" VerticalAlignment="Top"  RenderTransformOrigin="-0.128,-0.175" Height="30"/>
-            <TextBox Text="{Binding Path=CustomerEmail}" x:Name="txtOrderCustomerEmail" HorizontalAlignment="Left" Margin="202,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="30"/>
-        <Label x:Name="lblOrderCustomerEmail" Content="customer email:" HorizontalAlignment="Left" Margin="64,53,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.756,-0.04" Height="30"/>
-            <TextBox Text="{Binding Path=CustomerAddress}" x:Name="txtOrderCustomerAddress"  HorizontalAlignment="Left" Margin="202,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="30"/>
-        <Label x:Name="lblOrderCustomerAddress" Content="customer address:" HorizontalAlignment="Left" Margin="60,88,0,0" VerticalAlignment="Top" Height="30"/>
-            <TextBox Text="{Binding Path=OrderOrderDate}" x:Name="txtOrderOrderDate" HorizontalAlignment="Left" Margin="202,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="30"/>
-        <Label x:Name="lblOrderOrderDate" Content="order date:" HorizontalAlignment="Left" Margin="68,113,0,0" VerticalAlignment="Top" Height="30" />
-            <TextBox Text="{Binding Path=OrderStatus}" x:Name="txtOrderStatus" HorizontalAlignment="Left" Margin="202,143,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="30"/>
-        <Label x:Name="lblOrderStatus" Content="status" HorizontalAlignment="Left" Margin="74,143,0,0" VerticalAlignment="Top" Height="30" RenderTransformOrigin="0.218,0.521"/>
-            <TextBox Text="{Binding Path=OrderShipDate}" x:Name="txtOrderShipDate" HorizontalAlignment="Left" Margin="202,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="30"/>
-        <Label x:Name="lblOrderShipDate" Content="ship date:" HorizontalAlignment="Left" Margin="64,170,0,0" VerticalAlignment="Top" Height="30" RenderTransformOrigin="0.282,1.065"/>
-            <TextBox Text="{Binding Path=OrderDeliveryDate}" x:Name="txtOrderDeliveryDate" HorizontalAlignment="Left" Margin="202,202,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="30" RenderTransformOrigin="0.029,0.063"/>
-        <Label x:Name="lblOrderDeliveryDate" Content="delivery date:" HorizontalAlignment="Left" Margin="62,202,0,0" VerticalAlignment="Top" Height="30"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="19*"/>
+                <ColumnDefinition Width="205*"/>
+                <ColumnDefinition Width="576*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Text="{Binding Path=ID}" x:Name="txtOrderID" HorizontalAlignment="Left" Margin="183,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="24" Grid.ColumnSpan="2" Grid.Column="1"/>
+            <Label x:Name="lblOrderID" Content="Order Id: " HorizontalAlignment="Left" Margin="41,23,0,0" VerticalAlignment="Top"  RenderTransformOrigin="-0.128,-0.175" Height="30" Grid.Column="1"/>
+            <TextBox Text="{Binding Path=CustomerName}" x:Name="txtOrderCustomerName" HorizontalAlignment="Left" Margin="183,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="23" Grid.ColumnSpan="2" Grid.Column="1"/>
+            <Label x:Name="lblOrderCustomerName" Content="customer name: " HorizontalAlignment="Left" Margin="40,0,0,0" VerticalAlignment="Top"  RenderTransformOrigin="-0.128,-0.175" Height="30" Grid.Column="1"/>
+            <TextBox Text="{Binding Path=CustomerEmail}" x:Name="txtOrderCustomerEmail" HorizontalAlignment="Left" Margin="183,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="30" Grid.ColumnSpan="2" Grid.Column="1"/>
+            <Label x:Name="lblOrderCustomerEmail" Content="customer email:" HorizontalAlignment="Left" Margin="45,53,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.756,-0.04" Height="30" Grid.Column="1"/>
+            <TextBox Text="{Binding Path=CustomerAddress}" x:Name="txtOrderCustomerAddress"  HorizontalAlignment="Left" Margin="183,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="30" Grid.ColumnSpan="2" Grid.Column="1"/>
+            <Label x:Name="lblOrderCustomerAddress" Content="customer address:" HorizontalAlignment="Left" Margin="40,88,0,0" VerticalAlignment="Top" Height="30" Grid.Column="1"/>
+            <TextBox Text="{Binding Path=OrderDate}" x:Name="txtOrderOrderDate" HorizontalAlignment="Left" Margin="183,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="30" Grid.ColumnSpan="2" Grid.Column="1"/>
+            <Label x:Name="lblOrderOrderDate" Content="order date:" HorizontalAlignment="Left" Margin="49,113,0,0" VerticalAlignment="Top" Height="30" Grid.Column="1" />
+            <TextBox Text="{Binding Path=Status}" x:Name="txtOrderStatus" HorizontalAlignment="Left" Margin="183,143,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="30" Grid.ColumnSpan="2" Grid.Column="1"/>
+            <Label x:Name="lblOrderStatus" Content="status" HorizontalAlignment="Left" Margin="55,143,0,0" VerticalAlignment="Top" Height="30" RenderTransformOrigin="0.218,0.521" Grid.Column="1"/>
+            <TextBox Text="{Binding Path=ShipDate}" x:Name="txtOrderShipDate" HorizontalAlignment="Left" Margin="183,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="30" Grid.ColumnSpan="2" Grid.Column="1"/>
+            <Label x:Name="lblOrderShipDate" Content="ship date:" HorizontalAlignment="Left" Margin="45,170,0,0" VerticalAlignment="Top" Height="30" RenderTransformOrigin="0.282,1.065" Grid.Column="1"/>
+            <TextBox Text="{Binding Path=DeliveryDate}" x:Name="txtOrderDeliveryDate" HorizontalAlignment="Left" Margin="183,202,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="30" RenderTransformOrigin="0.029,0.063" Grid.ColumnSpan="2" Grid.Column="1"/>
+            <Label x:Name="lblOrderDeliveryDate" Content="delivery date:" HorizontalAlignment="Left" Margin="43,202,0,0" VerticalAlignment="Top" Height="30" Grid.Column="1"/>
         </Grid>
         <ListView x:Name="OrderItemsListView" Grid.Row="1"  >
             <ListView.View>
                 <GridView AllowsColumnReorder="true" >
                     <GridViewColumn x:Name="gvcProductID" DisplayMemberBinding="{Binding Path=ProductID}" Header="ProductID" Width="100"/>
-                    <GridViewColumn x:Name="gvcProductName" DisplayMemberBinding="{Binding Path=ProductName}" Header="ProductName" Width="150"/>
+                    <GridViewColumn x:Name="gvcProductName" DisplayMemberBinding="{Binding Path=Name}" Header="ProductName" Width="150"/>
                     <GridViewColumn x:Name="gvcPrice" DisplayMemberBinding="{Binding Path=Price}" Header="Price" Width="100"/>
                     <GridViewColumn x:Name="gvcAmount" DisplayMemberBinding="{Binding Path=Amount}" Header="Amount" Width="100"/>
                     <GridViewColumn x:Name="gvcTotalPrice" DisplayMemberBinding="{Binding Path=TotalPrice}" Header="TotalPrice" Width="100"/>

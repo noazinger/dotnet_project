@@ -76,10 +76,10 @@ internal class Order : IOrder
     public DO.Order deepCopy(XElement? o)
     {
         DO.Order order = new DO.Order();
-        order.ID = Convert.ToInt32(o?.Element("OrderID")?.Value);
+        order.ID = Convert.ToInt32(o?.Element("ID")?.Value);
         order.CustomerName = o?.Element("CustomerName")?.Value;
         order.CustomerEmail = o?.Element("CustomerEmail")?.Value;
-        order.CustomerAddress = o?.Element("CustomerAdress")?.Value;
+        order.CustomerAddress = o?.Element("CustomerAddress")?.Value;
         order.OrderDate = Convert.ToDateTime(o?.Element("OrderDate")?.Value);
         order.ShipDate = Convert.ToDateTime(o?.Element("ShipDate")?.Value);
         order.DeliveryDate = Convert.ToDateTime(o?.Element("DeliveryDate")?.Value);

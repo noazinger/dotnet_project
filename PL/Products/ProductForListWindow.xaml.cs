@@ -71,5 +71,10 @@ namespace PL.Products
             new ProductWindow(bl).Show();
             Hide();
         }
+
+        private void ProductListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

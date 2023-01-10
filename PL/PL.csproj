@@ -17,11 +17,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Bl\BL.csproj" />
+    <Compile Remove="OrderItems\**" />
+    <EmbeddedResource Remove="OrderItems\**" />
+    <None Remove="OrderItems\**" />
+    <Page Remove="OrderItems\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="OrderItems\" />
+    <ProjectReference Include="..\Bl\BL.csproj" />
   </ItemGroup>
 
 </Project>

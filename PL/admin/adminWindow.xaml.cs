@@ -52,12 +52,13 @@ namespace PL.admin
                 int pId = (ProductsListview.SelectedItem as BO.ProductForList).ID;
                 prod = bl.Product.ReadSingleProductForDirector(pId);
                 Window window = new ProductWindow(bl);
+                window.DataContext = prod;
                 //addProductBtn.Visibility = Visibility.Hidden;
                 window.Show();
-                InitializeComponent();
+                // InitializeComponent();
                 ProductsListview.ItemsSource = bl.Product.ReadListProducts();
             }
-            catch(Exception exc)
+            catch (Exception exc)
             {
                 MessageBox.Show(exc.Message);
             }
@@ -76,11 +77,10 @@ namespace PL.admin
             {
                 int oId = (OrdersListview.SelectedItem as BO.OrderForList).ID;
                 ord = bl?.Order.ReadOrderInformation(oId);
-                Window window = new OrderWindow(ord);
+                new OrderWindow(ord).Show();
                 //addProductBtn.Visibility = Visibility.Hidden;
-                window.Show();
-                InitializeComponent();
-                OrdersListview.ItemsSource = bl.Order.ReadOrders();
+/*                InitializeComponent();
+*/               //OrdersListview.ItemsSource = bl.Order.ReadOrders();
             }
             catch (Exception exc)
             {

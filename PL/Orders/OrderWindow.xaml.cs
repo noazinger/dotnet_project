@@ -26,16 +26,18 @@ namespace PL.Orders
         public OrderWindow(Order order)
         {
             InitializeComponent();
+            
 /*            txtOrderCustomerName.Text = order.CustomerName;
             txtOrderCustomerEmail.Text = order.CustomerEmail;
             txtOrderCustomerAddress.Text = order.CustomerAddress;*/
-            this.DataContext = order;
-
+            //this.DataContext = order;
             txtOrderOrderDate.Text = order.OrderDate.ToString();
             //txtOrderOrderDate.Text = order.OrderDate.ToString();
             txtOrderStatus.Text = order.Status.ToString();
             txtOrderShipDate.Text = order.ShipDate.ToString();
             txtOrderDeliveryDate.Text = order.DeliveryDate.ToString();
+            BO.Order order1 = bl.Order.ReadOrderInformation(order.ID);
+            this.DataContext=order1;
             try
             {
                 OrderItemsListView.ItemsSource = order.Items;

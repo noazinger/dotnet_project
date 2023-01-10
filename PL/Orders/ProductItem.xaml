@@ -24,6 +24,5 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button></Button>
     </Grid>
 </Window>

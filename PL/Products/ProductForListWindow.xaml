@@ -34,7 +34,7 @@
                 <ColumnDefinition Width="21*"/>
                 <ColumnDefinition Width="79*"/>
             </Grid.ColumnDefinitions >
-            <ListView x:Name="ProductListView" MouseDoubleClick="ProductListView_MouseDoubleClick"  Grid.ColumnSpan="5" Grid.RowSpan="2">
+            <ListView x:Name="ProductListView" MouseDoubleClick="ProductListView_MouseDoubleClick"  Grid.ColumnSpan="5" Grid.RowSpan="2" SelectionChanged="ProductListView_SelectionChanged">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=ID}" Header="ID" ></GridViewColumn>
