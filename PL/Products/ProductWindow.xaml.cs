@@ -5,12 +5,14 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Xml.Serialization;
 using System.Xml.Linq;
+using PL.admin;
 
 namespace PL.Products
 {
     public partial class ProductWindow : Window
     {
         BO.Cart cart=new BO.Cart();
+        BO.Product prod=new BO.Product();
         BlApi.IBl? bl = Factory.Get();
         private int id = 0;
         public ProductWindow(IBl bl)
@@ -21,6 +23,7 @@ namespace PL.Products
         }
         public ProductWindow(BO.ProductItem ob, BO.Cart c)
         {
+            this.DataContext = ob;
             InitializeComponent();
             id = ob.ID;
             name.Text = ob.Name;
@@ -98,7 +101,7 @@ namespace PL.Products
                 {
                     MessageBox.Show( exc.Message);
                 }
-                new ProductForListWindow(bl).Show();
+                new ProductForListWindow(bl,false,prod).Show();
 
             }
             if (function == "update")
@@ -118,7 +121,7 @@ namespace PL.Products
                 {
                     MessageBox.Show(exc.Message);
                 }
-                new ProductForListWindow(bl).Show();
+                new ProductForListWindow(bl, false, prod).Show();
 
             }
             if (function== "Add to cart")
@@ -131,11 +134,24 @@ namespace PL.Products
         }
         private void back_To_Main(object sender, RoutedEventArgs e)
         {
-            new ProductForListWindow(bl).Show();
+            new ProductForListWindow(bl, false, prod).Show();
             this.Close();
         }
 
-      
+        private void delete_btn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                bl.Product.Delete(prod.ID);
+                adminWindow a = new(bl);
+                a.Show();
+                Close();
+            }
+            catch(Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+        }
     }
   
 }

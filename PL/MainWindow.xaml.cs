@@ -32,8 +32,9 @@ namespace PL
         {
             try
             {
-
-                new Products.ProductForListWindow(bl).Show();
+                admin.adminWindow w = new(bl);
+                w.Show();   
+                //new Products.ProductForListWindow(bl).Show();
                 this.Hide();
             }
             catch (Exception exc)

@@ -30,22 +30,30 @@ namespace BlImplementation
         /// < exception cref= "BO.NotExistException" ></ exception >
         public BO.Cart Add(BO.Cart cart, int id)
         {
-            foreach (var i in cart.items)
+            if (cart.items!=null)
             {
-                if (i.ProductID == id)
+                foreach (var i in cart.items)
                 {
-                    DO.Product d = dalEntity.Product.ReadSingle(id);
-                    if (d.inStock > 0) {
-                        i.Amount++;
-                        i.TotalPrice += i.Price;
-                        cart.TotalPrice += i.Price;
-                        return cart;
-                    }
-                    else
+                    if (i.ProductID == id)
                     {
-                        throw new BO.NotInStock();
+                        DO.Product d = dalEntity.Product.ReadSingle(id);
+                        if (d.inStock > 0)
+                        {
+                            i.Amount++;
+                            i.TotalPrice += i.Price;
+                            cart.TotalPrice += i.Price;
+                            return cart;
+                        }
+                        else
+                        {
+                            throw new BO.NotInStock();
+                        }
                     }
                 }
+            }
+            else
+            {
+                cart.items=new List<BO.OrderItem>();
             }
             foreach (var p in dalEntity.Product.Read())
             {

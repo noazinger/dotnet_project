@@ -20,7 +20,8 @@ namespace PL.Products
     {
 
         private BlApi.IBl? bl = BlApi.Factory.Get();
-        public ProductForListWindow(IBl b)
+        BO.Product p = new BO.Product();
+        public ProductForListWindow(IBl b, bool IsCustomer, BO.Product prod)
         {
             InitializeComponent();
             bl = b;
@@ -28,20 +29,25 @@ namespace PL.Products
             {
                 ProductListView.ItemsSource = b.Product.ReadCatalog();
                 CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.catagory));
-
             }
             catch (Exception exc)
             {
                 MessageBox.Show(exc.Message);
             }
         }
+        /*private void categorySelectorBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
+            p.Category = (BO.Category)categorySelectorBox.SelectedItem;
+        }*/
         private void comboBox_selectionChange(object sender, SelectionChangedEventArgs e)
         {
             try
             {
-                object categor = CategorySelector.SelectedItem;
+                p.catagory = (BO.catagory)CategorySelector.SelectedItem;
+                /*object categor = CategorySelector.SelectedItem;
                 IEnumerable<BO.ProductItem> list = bl.Product.ReadProductByCategoty((BO.catagory)categor);
-                ProductListView.ItemsSource = list;
+                ProductListView.ItemsSource = list;*/
             }
             catch (Exception exc)
             {

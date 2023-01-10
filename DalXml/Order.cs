@@ -63,8 +63,8 @@ internal class Order : IOrder
     }
    public IEnumerable<DO.Order> Read(Func<DO.Order, bool>? func=null )
     {
-        XElement? root = XDocument.Load("..\\xml\\Order.xml")?.Root;
-        IEnumerable<XElement>? orderList = root?.Descendants("orders")?.ToList();
+        XElement? root = XDocument.Load("../xml/Order.xml")?.Root;
+        IEnumerable<XElement>? orderList = root?.Descendants("Order")?.ToList();
         List<DO.Order> orders = new List<DO.Order>();
         foreach (var xOrder in orderList)
         {

@@ -32,7 +32,7 @@ namespace PL.Orders
             this.DataContext = order;
 
             txtOrderOrderDate.Text = order.OrderDate.ToString();
-            txtOrderOrderDate.Text = order.OrderDate.ToString();
+            //txtOrderOrderDate.Text = order.OrderDate.ToString();
             txtOrderStatus.Text = order.Status.ToString();
             txtOrderShipDate.Text = order.ShipDate.ToString();
             txtOrderDeliveryDate.Text = order.DeliveryDate.ToString();

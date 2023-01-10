@@ -34,14 +34,16 @@ namespace Dal
             sw.Close();
         }
 
-        public IEnumerable<DO.OrderItem> Read(Func<DO.OrderItem, bool> func = null)
+        public IEnumerable<DO.OrderItem> Read(Func<DO.OrderItem, bool> func=null)
         {
-            
-                StreamReader sr = new StreamReader(@"..\xml\OrderItem.xml");
-                XmlSerializer serializer = new XmlSerializer(typeof(List<DO.OrderItem>));
-                List<DO.OrderItem> list = (List<DO.OrderItem>?)serializer?.Deserialize(sr);
-                sr.Close ();    
-                return list;
+            XmlRootAttribute xRoot = new XmlRootAttribute();
+            xRoot.ElementName = "OrderItems";
+            xRoot.IsNullable = true;
+            StreamReader sr = new StreamReader(@"..\xml\OrderItem.xml");
+            XmlSerializer serializer = new XmlSerializer(typeof(List<DO.OrderItem>));
+            List<DO.OrderItem>? list = (List<DO.OrderItem>?) serializer.Deserialize(sr);
+            sr.Close ();
+            return list;            
         }
        
         public IEnumerable<DO.OrderItem> ReadByOrderId(int orderId) {

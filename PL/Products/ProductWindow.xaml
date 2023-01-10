@@ -24,10 +24,10 @@
             </Grid.ColumnDefinitions >
             <Grid Name="addProduct" Margin="10,10,190,61" Grid.Column="1" Grid.ColumnSpan="2">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="4*"/>
-                    <RowDefinition Height="4*"/>
-                    <RowDefinition Height="4*"/>
-                    <RowDefinition Height="4*"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
 
                 </Grid.RowDefinitions>
 
@@ -39,7 +39,8 @@
                 <TextBox TextWrapping="Wrap" Name="amount"   Grid.Row="2" Margin="150,5,-138,0" Height="37" VerticalAlignment="Top" />
                 <Label Content="product &#xD;&#xA;catagory:"  FontSize="18" Grid.Row="3" Margin="0,0,-138,73"></Label>
                 <ComboBox   Name="CategorySelector"  Grid.Row="3" HorizontalAlignment="Left" Width="90" Margin="100,10,0,93"/>
-                <Button Name="func_butt" Content="add" HorizontalAlignment="Center" Grid.Row="3"  VerticalAlignment="Top" Click="Button_Click_1" Height="60" Width="180" Margin="0,67,0,0" FontWeight="Bold" Background="#FF67D850" />
+                <Button Name="func_butt" Content="UpDate" HorizontalAlignment="Center" Grid.Row="3"  VerticalAlignment="Top" Click="Button_Click_1" Height="60" Width="180" Margin="0,67,0,0" FontWeight="Bold" Background="#FF67D850" />
+                <Button Name="delete_btn" Content="Delete" HorizontalAlignment="Left" Grid.Row="3" Click="delete_btn_Click" Width="117" Margin="-157,75,0,4" FontWeight="Bold" Background="#FF67D850" RenderTransformOrigin="0.503,0.102" />
                 <Button Content="Back" Width="121" HorizontalAlignment="Left" Margin="-184,100,0,0" VerticalAlignment="Top" Background="#FFF11212" Click="back_To_Main" Height="35"/>
 
             </Grid>

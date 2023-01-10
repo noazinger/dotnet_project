@@ -22,7 +22,7 @@ namespace PL.Orders
         BlApi.IBl? bl = Factory.Get();
         BO.Order myOrder = new();
         public TrakOrder(BO.Order order )
-        { 
+        {
             InitializeComponent();
             Order_status.Content = order.Status.ToString();
             myOrder = order;
