@@ -19,6 +19,7 @@
                 <ColumnDefinition Width="205*"/>
                 <ColumnDefinition Width="576*"/>
             </Grid.ColumnDefinitions>
+            <Button Grid.Column="2" Margin="418,44,28,170" Click="back_To_Main">back</Button>
             <TextBox Text="{Binding Path=ID}" x:Name="txtOrderID" HorizontalAlignment="Left" Margin="183,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="24" Grid.ColumnSpan="2" Grid.Column="1"/>
             <Label x:Name="lblOrderID" Content="Order Id: " HorizontalAlignment="Left" Margin="41,23,0,0" VerticalAlignment="Top"  RenderTransformOrigin="-0.128,-0.175" Height="30" Grid.Column="1"/>
             <TextBox Text="{Binding Path=CustomerName}" x:Name="txtOrderCustomerName" HorizontalAlignment="Left" Margin="183,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="23" Grid.ColumnSpan="2" Grid.Column="1"/>
@@ -47,7 +48,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-
+      
         <!--<Button x:Name="btnAddOrUpdate" Content="ADD" HorizontalAlignment="Left" Margin="318,285,0,0" VerticalAlignment="Top" Height="45" Width="121" Click="btnAddOrUpdate_Click" Background="#FFD1F6FD" BorderBrush="#FF02059C" Foreground="#FF02059C" FontSize="14" FontWeight="Bold"/>
         <Button x:Name="btnOrderList" Content=" OrderList" HorizontalAlignment="Left" Margin="675,25,0,0" VerticalAlignment="Top" Click="btnOrderList_Click" RenderTransformOrigin="-1.326,-10.096" Height="30" Background="#FFD1F6FD" Width="91" BorderBrush="#FF02059C" Foreground="#FF02059C"/>
         <Button x:Name="btnDelete" Content="delete" HorizontalAlignment="Left" Margin="481,285,0,0" VerticalAlignment="Top" Click="btnDelete_Click" Height="45" Width="122" Background="#FFD1F6FD" Foreground="#FF02059C" BorderBrush="#FF02059C" FontSize="14" FontWeight="Bold"/>

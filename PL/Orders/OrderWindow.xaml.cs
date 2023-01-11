@@ -49,5 +49,10 @@ namespace PL.Orders
             }
 
         }
+        private void back_To_Main(object sender, RoutedEventArgs e)
+        {
+            new MainWindow().Show();
+            Close();
+        }
     }
 }

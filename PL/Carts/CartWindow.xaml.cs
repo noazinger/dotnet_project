@@ -22,6 +22,7 @@ namespace PL.Carts
         public CartWindow()
         {
             InitializeComponent();
+
         }
     }
 }

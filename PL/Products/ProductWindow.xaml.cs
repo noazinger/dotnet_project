@@ -32,10 +32,11 @@ namespace PL.Products
             CategorySelector.SelectedItem = ob.catagory;
             amount.Text = ob.Amount.ToString();
             func_butt.Content = "Add to cart";
-                name.IsReadOnly = true;
-                price.IsReadOnly = true;
-                CategorySelector.IsEnabled = false;
-                amount.IsReadOnly = true;
+             name.IsReadOnly = true;
+             price.IsReadOnly = true;
+             CategorySelector.IsEnabled = false;
+             amount.IsReadOnly = true;
+            delete_btn.Visibility = Visibility.Collapsed;
             cart = c;
 
 

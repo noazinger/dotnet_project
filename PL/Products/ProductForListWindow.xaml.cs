@@ -64,7 +64,7 @@ namespace PL.Products
         {
             BO.ProductItem p = (BO.ProductItem)((ListView)sender).SelectedItem;
             new ProductWindow(p,"update").Show();
-            Close();
+            this.Close();
         }
         private void Add_product_Click(object sender, RoutedEventArgs e)
         {
