@@ -8,6 +8,11 @@ using BlApi;
 using DalApi;
 namespace BlImplementation
 {
+    public  class Config
+    {
+        static int Id = 1;
+       public static int OrderItemId { get { return Id++; } }
+    }
     internal class BlCart : ICart
     {
         DalApi.IDal? dalEntity = DalApi.Factory.Get();
@@ -61,12 +66,13 @@ namespace BlImplementation
                 {
                     if (p.inStock > 0) {
                         BO.OrderItem orderItem = new BO.OrderItem();
-                        orderItem.ID = 0;
+                        orderItem.ID = Config.OrderItemId;
                         orderItem.Name = p.Name;
                         orderItem.Price = p.Price;
                         orderItem.ProductID = p.ID;
                         orderItem.Amount = 1;
-                        orderItem.TotalPrice = p.Price;
+                        if (orderItem.TotalPrice == null) orderItem.TotalPrice = 0;
+                        orderItem.TotalPrice += p.Price;
                         cart.items.Add(orderItem);
                         return cart;
                     }

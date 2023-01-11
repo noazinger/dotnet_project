@@ -28,7 +28,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Margin="251,574,303,10" >cart</Button>
         <Button Content="Back" Width="100" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Background="#FFF11212" Click="back_To_Main" Margin="10,10,0,0"/>
 
         <Button Margin="251,574,303,10" Click="showCart_btn">cart</Button>

@@ -38,7 +38,7 @@
 
         </Grid>
 
-        <ListView x:Name="OrderItemView"   Grid.Column="1">
+        <ListView x:Name="OrderItemView"   Grid.Column="1" Margin="0,0,0,42">
             <ListView.View>
                 <GridView>
                     <GridViewColumn x:Name="gvcName" DisplayMemberBinding="{Binding Path=Name}" Header="Name" Width="150"/>
