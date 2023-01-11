@@ -13,6 +13,7 @@ using BlApi;
 using BO;
 using System.Xml.Serialization;
 using System.Xml.Linq;
+using DO;
 
 namespace PL.Orders
 {
@@ -22,15 +23,21 @@ namespace PL.Orders
     public partial class OrderWindow : Window
     {
         BlApi.IBl? bl = Factory.Get();
-
-        public OrderWindow(Order order)
+        bool IsCustomer;
+        int id;
+        public OrderWindow(BO.Order order, bool isCustomer)
         {
             InitializeComponent();
-            
-/*            txtOrderCustomerName.Text = order.CustomerName;
-            txtOrderCustomerEmail.Text = order.CustomerEmail;
-            txtOrderCustomerAddress.Text = order.CustomerAddress;*/
-            //this.DataContext = order;
+            IsCustomer = isCustomer;
+            id = order.ID;
+            txtOrderCustomerAddress.IsReadOnly = isCustomer;
+            txtOrderCustomerEmail.IsReadOnly = isCustomer;
+            txtOrderCustomerName.IsReadOnly = isCustomer;
+            txtOrderDeliveryDate.IsReadOnly = isCustomer;
+            txtOrderID.IsReadOnly = isCustomer;
+            txtOrderOrderDate.IsReadOnly = isCustomer;
+            txtOrderShipDate.IsReadOnly = isCustomer;
+            txtOrderStatus.IsReadOnly = isCustomer;
             txtOrderOrderDate.Text = order.OrderDate.ToString();
             //txtOrderOrderDate.Text = order.OrderDate.ToString();
             txtOrderStatus.Text = order.Status.ToString();
@@ -53,6 +60,16 @@ namespace PL.Orders
         {
             new MainWindow().Show();
             Close();
+        }
+
+        private void btn_update_shipping(object sender, RoutedEventArgs e)
+        {
+            bl.Order.UpdateShipping(id);
+        }
+
+        private void btn_update_delivery(object sender, RoutedEventArgs e)
+        {
+            bl.Order.UpdateDelivery(id);
         }
     }
 }

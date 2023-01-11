@@ -71,7 +71,7 @@ namespace BlImplementation
                     ProductForList.catagory = (BO.catagory)DoProduct.catagory;
                     if(ProductForList.catagory == category) productsForList.Add(ProductForList);
                     if (DoProduct.inStock > 0) ProductForList.InStock = true;
-                    ProductForList.InStock = false;
+                    else ProductForList.InStock = false;
                 }
                 return productsForList;
             }

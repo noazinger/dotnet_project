@@ -36,6 +36,8 @@
             <Label x:Name="lblOrderShipDate" Content="ship date:" HorizontalAlignment="Left" Margin="45,170,0,0" VerticalAlignment="Top" Height="30" RenderTransformOrigin="0.282,1.065" Grid.Column="1"/>
             <TextBox Text="{Binding Path=DeliveryDate}" x:Name="txtOrderDeliveryDate" HorizontalAlignment="Left" Margin="183,202,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="30" RenderTransformOrigin="0.029,0.063" Grid.ColumnSpan="2" Grid.Column="1"/>
             <Label x:Name="lblOrderDeliveryDate" Content="delivery date:" HorizontalAlignment="Left" Margin="43,202,0,0" VerticalAlignment="Top" Height="30" Grid.Column="1"/>
+            <Button Grid.Column="2" Content="update shipping" Background="Aqua" HorizontalAlignment="Left" Margin="395,108,0,0" VerticalAlignment="Top" Height="31" Width="153" Click="btn_update_shipping"/>
+            <Button Grid.Column="2" Content="update delivery" Background="Aqua" HorizontalAlignment="Left" Margin="395,156,0,0" VerticalAlignment="Top" Height="32" Width="153" Click="btn_update_delivery"/>
         </Grid>
         <ListView x:Name="OrderItemsListView" Grid.Row="1"  >
             <ListView.View>
@@ -48,7 +50,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-      
+
         <!--<Button x:Name="btnAddOrUpdate" Content="ADD" HorizontalAlignment="Left" Margin="318,285,0,0" VerticalAlignment="Top" Height="45" Width="121" Click="btnAddOrUpdate_Click" Background="#FFD1F6FD" BorderBrush="#FF02059C" Foreground="#FF02059C" FontSize="14" FontWeight="Bold"/>
         <Button x:Name="btnOrderList" Content=" OrderList" HorizontalAlignment="Left" Margin="675,25,0,0" VerticalAlignment="Top" Click="btnOrderList_Click" RenderTransformOrigin="-1.326,-10.096" Height="30" Background="#FFD1F6FD" Width="91" BorderBrush="#FF02059C" Foreground="#FF02059C"/>
         <Button x:Name="btnDelete" Content="delete" HorizontalAlignment="Left" Margin="481,285,0,0" VerticalAlignment="Top" Click="btnDelete_Click" Height="45" Width="122" Background="#FFD1F6FD" Foreground="#FF02059C" BorderBrush="#FF02059C" FontSize="14" FontWeight="Bold"/>

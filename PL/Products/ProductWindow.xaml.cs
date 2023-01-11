@@ -131,12 +131,11 @@ namespace PL.Products
                 bl.Cart.Add(cart, id);
                 new Orders.OrderForList(bl,cart).Show();
             }
-
             Hide();
         }
         private void back_To_Main(object sender, RoutedEventArgs e)
         {
-            new ProductForListWindow(bl, false, prod).Show();
+            new MainWindow().Show();
             this.Close();
         }
 

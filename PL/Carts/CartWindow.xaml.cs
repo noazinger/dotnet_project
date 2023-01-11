@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -11,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace PL.Carts
 {
@@ -19,17 +22,20 @@ namespace PL.Carts
     /// </summary>
     public partial class CartWindow : Window
     {
+        BO.Cart ca = new();
         public CartWindow(BO.Cart cart)
         {
             InitializeComponent();
            OrderItemView.ItemsSource = cart.items;
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("please complete your details");
-            
+            if (ca.CustomerName == "") throw new BO.NotValidException("the name isnt valid");
+            if (ca.CustomerAddress == "") throw new BO.NotValidException("the address isnt valid");
+            var Email = new EmailAddressAttribute();
+            if (!Email.IsValid(ca.CustomerEmail) || ca.CustomerEmail == "") throw new BO.NotValidException("the email isnt valid");
+            MessageBox.Show("please complete your details");   
         }
     }
 }

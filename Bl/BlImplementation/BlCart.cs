@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using BlApi;
 using DalApi;
+
 namespace BlImplementation
 {
     public  class Config

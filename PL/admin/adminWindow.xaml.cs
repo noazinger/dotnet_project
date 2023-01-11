@@ -79,10 +79,7 @@ namespace PL.admin
             {
                 int oId = (OrdersListview.SelectedItem as BO.OrderForList).ID;
                 ord = bl?.Order.ReadOrderInformation(oId);
-                new OrderWindow(ord).Show();
-                //addProductBtn.Visibility = Visibility.Hidden;
-/*                InitializeComponent();
-*/               //OrdersListview.ItemsSource = bl.Order.ReadOrders();
+                new OrderWindow(ord, false).Show();
             }
             catch (Exception exc)
             {

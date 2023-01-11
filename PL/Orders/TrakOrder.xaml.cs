@@ -29,7 +29,7 @@ namespace PL.Orders
         }
         public void Order_d(object sender, RoutedEventArgs e)
         {
-            new OrderWindow(myOrder).Show();
+            new OrderWindow(myOrder, true).Show();
             this.Close();
 
         }
