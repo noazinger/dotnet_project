@@ -8,22 +8,28 @@
         Title="OrderForList" Height="640" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="147*"/>
-            <ColumnDefinition Width="13*"/>
+            <ColumnDefinition Width="93*"/>
+            <ColumnDefinition Width="7*"/>
         </Grid.ColumnDefinitions>
-        <ListView x:Name="OrderListView" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="2,60,4,73" Grid.ColumnSpan="2" MouseDoubleClick="OrderListView_MouseDoubleClick" SelectionChanged="OrderListView_SelectionChanged">
+        <ComboBox Grid.Row="0"
+                Name="CategorySelector"
+                SelectionChanged="comboBox_selectionChange" Grid.ColumnSpan="2" Margin="658,50,10,519" 
+                  />
+        <ListView x:Name="ProductListView" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,49,91,84" MouseDoubleClick="OrderListView_MouseDoubleClick" SelectionChanged="OrderListView_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn x:Name="gvcID" DisplayMemberBinding="{Binding Path=ID}" Header="ID" Width="70"/>
-                    <GridViewColumn x:Name="gvcName" DisplayMemberBinding="{Binding Path=Name}" Header="Name" Width="150"/>
-                    <GridViewColumn x:Name="gvcPrice" DisplayMemberBinding="{Binding Path=Price}" Header="Price" Width="150"/>
+                    <GridViewColumn x:Name="gvcName" DisplayMemberBinding="{Binding Path=Name}" Header="Name" Width="100"/>
+                    <GridViewColumn x:Name="gvcPrice" DisplayMemberBinding="{Binding Path=Price}" Header="Price" Width="100"/>
                     <GridViewColumn x:Name="gvcCatagory" DisplayMemberBinding="{Binding Path=catagory}" Header="catagory" Width="100"/>
-                    <GridViewColumn x:Name="gvcAmount" DisplayMemberBinding="{Binding Path=Amount}" Header="Amount" Width="150"/>
+                    <GridViewColumn x:Name="gvcAmount" DisplayMemberBinding="{Binding Path=Amount}" Header="Amount" Width="100"/>
                     <GridViewColumn x:Name="gvcInStock" DisplayMemberBinding="{Binding Path=InStock}" Header="InStock" Width="150"/>
 
                 </GridView>
             </ListView.View>
         </ListView>
         <Button Margin="251,574,303,10" >cart</Button>
+        <Button Content="Back" Width="100" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Background="#FFF11212" Click="back_To_Main" Margin="10,10,0,0"/>
+
     </Grid>
 </Window>

@@ -18,7 +18,6 @@ namespace PL.Products
     /// </summary>
     public partial class ProductForListWindow : Window
     {
-
         private BlApi.IBl? bl = BlApi.Factory.Get();
         BO.Product p = new BO.Product();
         public ProductForListWindow(IBl b, bool IsCustomer, BO.Product prod)
@@ -44,10 +43,10 @@ namespace PL.Products
         {
             try
             {
-                p.catagory = (BO.catagory)CategorySelector.SelectedItem;
-                /*object categor = CategorySelector.SelectedItem;
+                //p.catagory = (BO.catagory)CategorySelector.SelectedItem;
+                object categor = CategorySelector.SelectedItem;
                 IEnumerable<BO.ProductItem> list = bl.Product.ReadProductByCategoty((BO.catagory)categor);
-                ProductListView.ItemsSource = list;*/
+                ProductListView.ItemsSource = list;
             }
             catch (Exception exc)
             {
@@ -62,8 +61,8 @@ namespace PL.Products
 
         private void ProductListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            BO.ProductItem p = (BO.ProductItem)((ListView)sender).SelectedItem;
-            new ProductWindow(p,"update").Show();
+            BO.ProductItem pr = (BO.ProductItem)((ListView)sender).SelectedItem;
+            new ProductWindow(pr,"update").Show();
             this.Close();
         }
         private void Add_product_Click(object sender, RoutedEventArgs e)

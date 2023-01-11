@@ -30,7 +30,8 @@ namespace PL.Orders
             try
             {
                 myCart = c;
-                OrderListView.ItemsSource = bl.Product.ReadCatalog();
+                ProductListView.ItemsSource = b.Product.ReadCatalog();
+                CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.catagory));
             }
             catch (Exception exc)
             {
@@ -60,5 +61,24 @@ namespace PL.Orders
 
         }
 
+        private void comboBox_selectionChange(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                object categor = CategorySelector.SelectedItem;
+                IEnumerable<BO.ProductItem> list = bl.Product.ReadProductByCategoty((BO.catagory)categor);
+                ProductListView.ItemsSource = list;
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+        }
+
+        private void back_To_Main(object sender, RoutedEventArgs e)
+        {
+            new MainWindow().Show();
+            Close();
+        }
     }
 }

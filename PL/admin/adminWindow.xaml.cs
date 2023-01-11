@@ -24,7 +24,7 @@ namespace PL.admin
     public partial class adminWindow : Window
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
-        private BO.Product prod = new BO.Product();
+        private BO.Product p = new BO.Product();
         private BO.Order ord = new BO.Order();
         private BO.ProductItem pi = new();
         public adminWindow(IBl b)
@@ -44,20 +44,21 @@ namespace PL.admin
 
         private void addProBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            new ProductWindow(pi, "add").Show();
+            Close();
         }
         private void itemsClicked(object sender, MouseButtonEventArgs e)
         {
             try
             {
-                int pId = (ProductsListview.SelectedItem as BO.ProductForList).ID;
-                prod = bl?.Product.ReadSingleProductForDirector(pId);
-                new ProductWindow(prod,"update").Show();
-                //window.DataContext = prod;
-                //addProductBtn.Visibility = Visibility.Hidden;
-                //window.Show();
-                // InitializeComponent();
-                //ProductsListview.ItemsSource = bl.Product.ReadListProducts();
+                BO.ProductForList pr = (BO.ProductForList)((ListView)sender).SelectedItem;
+                p = bl.Product.ReadSingleProductForDirector(pr.ID);
+                pi.ID = p.ID;
+                pi.Price = p.Price;
+                pi.catagory = p.catagory;
+                pi.Name=p.Name;
+                new ProductWindow(pi, "update").Show();
+                Close();
             }
             catch (Exception exc)
             {
@@ -66,11 +67,11 @@ namespace PL.admin
         }
         private void OrdersListview_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+           
         }
         private void ProductsListview_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            
         }
         private void ordersClicked(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {

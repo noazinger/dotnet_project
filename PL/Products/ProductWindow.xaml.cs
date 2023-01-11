@@ -47,7 +47,8 @@ namespace PL.Products
             try
             {
                 InitializeComponent();
-                id = ob.ID;
+                if (btn == "add") delete_btn.Visibility = Visibility.Collapsed;
+                    id = ob.ID;
                 name.Text = ob.Name;
                 price.Text = ob.Price.ToString();
                 CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.catagory));
