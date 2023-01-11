@@ -26,6 +26,7 @@ namespace PL.admin
         BlApi.IBl? bl = BlApi.Factory.Get();
         private BO.Product prod = new BO.Product();
         private BO.Order ord = new BO.Order();
+        private BO.ProductItem pi = new();
         public adminWindow(IBl b)
         {
             try
@@ -50,13 +51,13 @@ namespace PL.admin
             try
             {
                 int pId = (ProductsListview.SelectedItem as BO.ProductForList).ID;
-                prod = bl.Product.ReadSingleProductForDirector(pId);
-                Window window = new ProductWindow(bl);
-                window.DataContext = prod;
+                prod = bl?.Product.ReadSingleProductForDirector(pId);
+                new ProductWindow(prod,"update").Show();
+                //window.DataContext = prod;
                 //addProductBtn.Visibility = Visibility.Hidden;
-                window.Show();
+                //window.Show();
                 // InitializeComponent();
-                ProductsListview.ItemsSource = bl.Product.ReadListProducts();
+                //ProductsListview.ItemsSource = bl.Product.ReadListProducts();
             }
             catch (Exception exc)
             {
