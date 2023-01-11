@@ -19,10 +19,17 @@ namespace PL.Carts
     /// </summary>
     public partial class CartWindow : Window
     {
-        public CartWindow()
+        public CartWindow(BO.Cart cart)
         {
             InitializeComponent();
+           OrderItemView.ItemsSource = cart.items;
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("please complete your details");
+            
         }
     }
 }

@@ -55,8 +55,10 @@ namespace PL.Orders
         }
         public void showCart_btn(object sender, RoutedEventArgs e)
         {
-            new PL.Carts.CartWindow().Show() ;
+            new PL.Carts.CartWindow(myCart).Show() ;
             this.Hide();
+
+
 
         }
 

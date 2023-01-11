@@ -24,6 +24,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Margin="251,574,303,10" >cart</Button>
+        <Button Margin="251,574,303,10" Click="showCart_btn">cart</Button>
     </Grid>
 </Window>

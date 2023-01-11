@@ -7,6 +7,48 @@
         mc:Ignorable="d"
         Title="CartWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="90*"/>
+
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30*"/>
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30*"/>
+                <ColumnDefinition Width="30*"/>
+               
+            </Grid.ColumnDefinitions>
+            <Label Content="your details" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0" VerticalAlignment="Top" Height="26" Width="221"/>
+            <TextBox x:Name="CustomerName" Grid.Column="1" Grid.Row="1"></TextBox>
+            <Label Content="Customer Name" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="221"/>
+            <TextBox Name="CustomerAddress" Grid.Column="1" Grid.Row="2"></TextBox>
+            <Label Content="Customer Address" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="221"/>
+            <TextBox Name="CustomerEmail" Grid.Column="1" Grid.Row="3"></TextBox>
+            <Label Content="Customer Email" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="3" VerticalAlignment="Top" Height="26" Width="221"/>
         
+            <Button Grid.ColumnSpan="3"  Grid.Row="4" Click="Button_Click" >complete order</Button>
+
+        </Grid>
+
+        <ListView x:Name="OrderItemView"   Grid.Column="1">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn x:Name="gvcName" DisplayMemberBinding="{Binding Path=Name}" Header="Name" Width="150"/>
+                    <GridViewColumn x:Name="gvcPrice" DisplayMemberBinding="{Binding Path=Price}" Header="Price" Width="150"/>
+                    <GridViewColumn x:Name="gvcAmount" DisplayMemberBinding="{Binding Path=Amount}" Header="Amount" Width="150"/>
+                    <GridViewColumn x:Name="gvcInStock" DisplayMemberBinding="{Binding Path=TotalPrice}" Header="TotalPrice" Width="150"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
     </Grid>
 </Window>
