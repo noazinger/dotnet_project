@@ -64,12 +64,14 @@ namespace BlImplementation
                 foreach (DO.Product DoProduct in lst)
                 {
                     BO.ProductItem ProductForList = new BO.ProductItem();
-
                     ProductForList.ID = DoProduct.ID;
+                    ProductForList.Amount = DoProduct.inStock;
                     ProductForList.Name = DoProduct.Name;
                     ProductForList.Price = DoProduct.Price;
                     ProductForList.catagory = (BO.catagory)DoProduct.catagory;
-                    productsForList.Add(ProductForList);
+                    if(ProductForList.catagory == category) productsForList.Add(ProductForList);
+                    if (DoProduct.inStock > 0) ProductForList.InStock = true;
+                    else ProductForList.InStock = false;
                 }
                 return productsForList;
             }

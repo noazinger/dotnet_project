@@ -23,19 +23,20 @@ namespace PL.Products
         }
         public ProductWindow(BO.ProductItem ob, BO.Cart c)
         {
+            //נכנס לכאן
             this.DataContext = ob;
             InitializeComponent();
             id = ob.ID;
             name.Text = ob.Name;
             price.Text = ob.Price.ToString();
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.catagory));
+           
             CategorySelector.SelectedItem = ob.catagory;
             amount.Text = ob.Amount.ToString();
             func_butt.Content = "Add to cart";
-             name.IsReadOnly = true;
-             price.IsReadOnly = true;
-             CategorySelector.IsEnabled = false;
-             amount.IsReadOnly = true;
+            name.IsReadOnly = true;
+            price.IsReadOnly = true;
+            CategorySelector.IsEnabled = false;
             delete_btn.Visibility = Visibility.Collapsed;
             cart = c;
 
@@ -55,13 +56,13 @@ namespace PL.Products
                 CategorySelector.SelectedItem = ob.catagory;
                 amount.Text = ob.Amount.ToString();
                 func_butt.Content = btn;
-             /*   if(btn== "Add to cart")
+                if (btn == "Add to cart")
                 {
-                    name.IsReadOnly= true;
-                    price.IsReadOnly= true;
-                    CategorySelector.IsEnabled= false;
-                    amount.IsReadOnly= true;
-                }*/
+                    name.IsReadOnly = true;
+                    price.IsReadOnly = true;
+                    CategorySelector.IsEnabled = false;
+                    amount.IsReadOnly = true;
+                }
             }
             catch (Exception exc)
             {

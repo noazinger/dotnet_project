@@ -1,31 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Orders>
-	<Order>
-		<ID>20008</ID>
-		<CustomerName>tovi</CustomerName>
-		<CustomerEmail>t@t</CustomerEmail>
-		<CustomerAddress>revivim</CustomerAddress>
-		<OrderDate>2022-12-28T00:00:00+02:00</OrderDate>
-		<ShipDate>2022-12-28T00:00:00+02:00</ShipDate>
-		<DeliveryDate>2022-12-28T00:00:00+02:00</DeliveryDate>
-	</Order>
-	
-	<Order>
-		<ID>20009</ID>
-		<CustomerName>noa</CustomerName>
-		<CustomerEmail>n@n</CustomerEmail>
-		<CustomerAddress>kutcher</CustomerAddress>
-		<OrderDate>01/01/2023</OrderDate>
-		<ShipDate>02/01/2023</ShipDate>
-		<DeliveryDate>04/01/2023</DeliveryDate>
-	</Order>
-	<Order>
-		<ID>500016</ID>
-		<CustomerName>ppp</CustomerName>
-		<CustomerAddress>kkk</CustomerAddress>
-		<CustomerEmail>lkj</CustomerEmail>
-		<ShipDate>9/4/2008 16:05:07</ShipDate>
-		<DeliveryDate>28/3/2008 16:00:07</DeliveryDate>
-		<OrderDate>9/3/2008 16:05:07</OrderDate>
-	</Order>
+  <Order>
+    <ID>20008</ID>
+    <CustomerName>tovi</CustomerName>
+    <CustomerEmail>t@t</CustomerEmail>
+    <CustomerAddress>revivim</CustomerAddress>
+    <OrderDate>28/12/2022 00:00:00</OrderDate>
+    <ShipDate>14/01/2023 19:52:09</ShipDate>
+    <DeliveryDate>28/12/2022 00:00:00</DeliveryDate>
+  </Order>
+  <Order>
+    <ID>20009</ID>
+    <CustomerName>noa</CustomerName>
+    <CustomerEmail>n@n</CustomerEmail>
+    <CustomerAddress>kutcher</CustomerAddress>
+    <OrderDate>01/01/2023 00:00:00</OrderDate>
+    <ShipDate>14/01/2023 19:51:21</ShipDate>
+    <DeliveryDate>01/01/2023 00:00:00</DeliveryDate>
+  </Order>
+  <Order>
+    <ID>500016</ID>
+    <CustomerName>ppp</CustomerName>
+    <CustomerAddress>kkk</CustomerAddress>
+    <CustomerEmail>lkj</CustomerEmail>
+    <ShipDate>09/04/2008 16:05:07</ShipDate>
+    <DeliveryDate>14/01/2023 20:12:59</DeliveryDate>
+    <OrderDate>09/03/2008 16:05:07</OrderDate>
+  </Order>
 </Orders>

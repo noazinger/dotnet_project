@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -25,8 +26,12 @@ namespace PL.Carts
         BO.Cart ca = new();
         public CartWindow(BO.Cart cart)
         {
-            InitializeComponent();
+           InitializeComponent();
            OrderItemView.ItemsSource = cart.items;
+           this.DataContext = cart.items;
+           
+           total_price.Text = cart.TotalPrice.ToString();
+           total_price.IsReadOnly = true;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

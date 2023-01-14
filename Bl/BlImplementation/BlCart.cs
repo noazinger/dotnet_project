@@ -9,6 +9,7 @@ using DalApi;
 
 namespace BlImplementation
 {
+
     public  class Config
     {
         static int Id = 1;
@@ -47,7 +48,7 @@ namespace BlImplementation
                         {
                             i.Amount++;
                             i.TotalPrice += i.Price;
-                            cart.TotalPrice += i.Price;
+                            cart.TotalPrice += i.TotalPrice;
                             return cart;
                         }
                         else
@@ -75,6 +76,7 @@ namespace BlImplementation
                         if (orderItem.TotalPrice == null) orderItem.TotalPrice = 0;
                         orderItem.TotalPrice += p.Price;
                         cart.items.Add(orderItem);
+                        cart.TotalPrice += orderItem.TotalPrice;
                         return cart;
                     }
                     else throw new BO.NotInStock();

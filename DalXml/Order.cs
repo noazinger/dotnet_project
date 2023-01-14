@@ -50,15 +50,15 @@ internal class Order : IOrder
    public void Update(DO.Order item)
     {
         XElement? orderElement = XDocument.Load("..\\xml\\Order.xml").Root;
-        XElement? order= orderElement?.Element("Order").Elements("Order")
+        XElement? order= orderElement?.Elements("Order")
             .Where(e => e.Element("ID")?.Value == item.ID.ToString()).FirstOrDefault()??throw new Exception();
         order.Element("CustomerName").Value = item.CustomerName;
         //order?.Attribute("CustomerName")?.SetValue(item.CustomerName); // למה לא לעשות ככה?
         order.Element("CustomerEmail").Value = item.CustomerEmail;
         order.Element("CustomerAddress").Value = item.CustomerAddress;
         order.Element("OrderDate").Value = item.OrderDate.ToString();
-        order.Element("ShipDate").Value = item.CustomerAddress;
-        order.Element("DeliveryDate").Value = item.CustomerAddress;
+        order.Element("ShipDate").Value = item.ShipDate.ToString();
+        order.Element("DeliveryDate").Value = item.DeliveryDate.ToString();
         orderElement.Save("..\\xml\\Order.xml");
     }
    public IEnumerable<DO.Order> Read(Func<DO.Order, bool>? func=null )

@@ -35,7 +35,7 @@
             </ListView.View>
         </ListView>
 
-        <ListView Grid.Column="2" x:Name="ProductsListview" MouseDoubleClick="itemsClicked"  FontSize="16" Cursor="Hand" SelectionChanged="ProductsListview_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=5}">
+        <ListView Grid.Column="2" x:Name="ProductsListview" MouseDoubleClick="itemsClicked"  FontSize="16" Cursor="Hand" SelectionChanged="ProductsListview_SelectionChanged" Margin="25,-20,-25,20">
             <ListView.View>
                 <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
                     <GridViewColumn DisplayMemberBinding="{Binding Path=ID}" Header="ID" TextBlock.TextAlignment="Center" Width="30"></GridViewColumn>
@@ -45,7 +45,8 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="addProBtn" Content="Add new product" HorizontalAlignment="Left" Margin="60,553,0,0" VerticalAlignment="Top" Click="addProBtn_Click" FontSize="16" Background="Red" Height="33" Width="222" Grid.Column="2"/>
+        <Button x:Name="addProBtn" Content="Add new product" HorizontalAlignment="Left" Margin="25,578,0,0" VerticalAlignment="Top" Click="addProBtn_Click" FontSize="16" Background="Red" Height="33" Width="222" Grid.Column="2"/>
+        <Button Grid.Column="2" Background="LightCoral" Content="Back" HorizontalAlignment="Left" Margin="295,579,0,0" VerticalAlignment="Top" Height="29" Width="72" Click="btn_Back"/>
 
     </Grid>
 

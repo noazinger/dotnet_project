@@ -80,11 +80,18 @@ namespace PL.admin
                 int oId = (OrdersListview.SelectedItem as BO.OrderForList).ID;
                 ord = bl?.Order.ReadOrderInformation(oId);
                 new OrderWindow(ord, false).Show();
+                this.Close();
             }
             catch (Exception exc)
             {
                 MessageBox.Show(exc.Message);
             }
+        }
+
+        private void btn_Back(object sender, RoutedEventArgs e)
+        {
+            new MainWindow().Show();
+            this.Close();
         }
     }
 }
