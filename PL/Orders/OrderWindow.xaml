@@ -36,8 +36,8 @@
             <Label x:Name="lblOrderShipDate" Content="ship date:" HorizontalAlignment="Left" Margin="45,170,0,0" VerticalAlignment="Top" Height="30" RenderTransformOrigin="0.282,1.065" Grid.Column="1"/>
             <TextBox Text="{Binding Path=DeliveryDate}" x:Name="txtOrderDeliveryDate" HorizontalAlignment="Left" Margin="183,202,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="30" RenderTransformOrigin="0.029,0.063" Grid.ColumnSpan="2" Grid.Column="1"/>
             <Label x:Name="lblOrderDeliveryDate" Content="delivery date:" HorizontalAlignment="Left" Margin="43,202,0,0" VerticalAlignment="Top" Height="30" Grid.Column="1"/>
-            <Button Grid.Column="2" Content="update shipping" Background="Aqua" HorizontalAlignment="Left" Margin="395,108,0,0" VerticalAlignment="Top" Height="31" Width="153" Click="btn_update_shipping"/>
-            <Button Grid.Column="2" Content="update delivery" Background="Aqua" HorizontalAlignment="Left" Margin="395,156,0,0" VerticalAlignment="Top" Height="32" Width="153" Click="btn_update_delivery"/>
+            <Button Grid.Column="2" Content="update shipping" Background="Aqua" HorizontalAlignment="Left" Margin="395,108,0,0" VerticalAlignment="Top" Height="31" Width="153" Name="button_update_shipping" Click="btn_update_shipping"/>
+            <Button Grid.Column="2" Content="update delivery" Background="Aqua" HorizontalAlignment="Left" Margin="395,156,0,0" VerticalAlignment="Top" Height="32" Width="153" Name="button_update_delivery" Click="btn_update_delivery"/>
         </Grid>
         <ListView x:Name="OrderItemsListView" Grid.Row="1" ItemsSource="{Binding}" >
             <ListView.View>

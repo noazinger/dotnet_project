@@ -46,6 +46,8 @@ namespace PL.Orders
             txtOrderDeliveryDate.Text = order.DeliveryDate.ToString();
             BO.Order order1 = bl.Order.ReadOrderInformation(order.ID);
             this.DataContext=order1;
+            button_update_delivery.Visibility= isCustomer ? Visibility.Visible :  Visibility.Collapsed;  
+            button_update_shipping.Visibility= isCustomer ? Visibility.Visible : Visibility.Collapsed;
             try
             {
                 //OrderItemsListView.ItemsSource = order.Items;

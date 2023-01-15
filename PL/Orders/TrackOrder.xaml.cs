@@ -34,7 +34,7 @@ namespace PL.Orders
         }
         public void Order_d(object sender, RoutedEventArgs e)
         {
-            new OrderWindow(myOrder, true).Show();
+            new OrderWindow(myOrder, false).Show();
             this.Close();
 
         }
