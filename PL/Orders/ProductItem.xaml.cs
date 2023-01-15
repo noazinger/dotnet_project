@@ -31,7 +31,15 @@ namespace PL.Orders
             {
                 myCart = c;
                 ProductListView.ItemsSource = b.Product.ReadCatalog();
-                CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.catagory));
+                List<string> strings = new List<string>();
+               
+                    foreach(var item in Enum.GetValues(typeof(BO.catagory))) { 
+                        strings.Add(item.ToString());   
+                     }
+                strings.Add("see all");
+                CategorySelector.ItemsSource = strings;     
+
+
             }
             catch (Exception exc)
             {
@@ -65,10 +73,20 @@ namespace PL.Orders
 
         private void comboBox_selectionChange(object sender, SelectionChangedEventArgs e)
         {
+           
             try
             {
+                
                 object categor = CategorySelector.SelectedItem;
-                IEnumerable<BO.ProductItem> list = bl.Product.ReadProductByCategoty((BO.catagory)categor);
+                string c = categor.ToString();
+                IEnumerable<BO.ProductItem> list;
+                if (categor == "see all") list = bl.Product.ReadCatalog();
+
+                else
+                {
+                    BO.catagory enCat = (BO.catagory)Enum.Parse(typeof(BO.catagory), c);
+                    list = bl.Product.ReadProductByCategoty(enCat);
+                }
                 ProductListView.ItemsSource = list;
             }
             catch (Exception exc)
