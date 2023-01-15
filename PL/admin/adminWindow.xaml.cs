@@ -58,7 +58,7 @@ namespace PL.admin
                 pi.catagory = p.catagory;
                 pi.Name=p.Name;
                 new ProductWindow(pi, "update").Show();
-                Close();
+            
             }
             catch (Exception exc)
             {

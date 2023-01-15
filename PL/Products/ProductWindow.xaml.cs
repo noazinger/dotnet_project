@@ -119,12 +119,13 @@ namespace PL.Products
                     product.catagory = (BO.catagory)categor;
                     product.InStock = int.Parse(amount.Text);
                     bl.Product.Update(product);
+                    Close();
                 }
                 catch (Exception exc)
                 {
                     MessageBox.Show(exc.Message);
                 }
-                new ProductForListWindow(bl, false, prod).Show();
+             /*   new ProductForListWindow(bl, false, prod).Show();*/
 
             }
             if (function== "Add to cart")
