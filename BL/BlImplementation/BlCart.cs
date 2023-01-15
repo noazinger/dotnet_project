@@ -108,7 +108,7 @@ namespace BlImplementation
                 {
                     if (amount < i.Amount)
                     {
-                        if (i.Amount - amount == 0)
+                        if (amount == 0)
                         {
                             cart.TotalPrice -= i.TotalPrice;
                             cart.items.Remove(i);
@@ -117,9 +117,10 @@ namespace BlImplementation
                         }
                         else
                         {
-                            i.Amount -= amount;
-                            i.TotalPrice -= i.Price * amount;
-                            cart.TotalPrice += i.TotalPrice;
+                            i.Amount = amount;
+                            cart.TotalPrice -= i.TotalPrice;
+                            i.TotalPrice = i.Price * amount;
+                            cart.TotalPrice += i.Price * amount;
                             return cart;
 
                         }
@@ -129,8 +130,9 @@ namespace BlImplementation
                         DO.Product product = dalEntity.Product.ReadSingle(productID);
                         if (product.inStock - amount >= 0)
                         {
-                            i.Amount += amount;
-                            i.TotalPrice += i.Price * amount;
+                            i.Amount = amount;
+                            cart.TotalPrice -= i.TotalPrice;
+                            i.TotalPrice = i.Price * amount;
                             cart.TotalPrice += i.TotalPrice;
                             return cart; 
                         }
