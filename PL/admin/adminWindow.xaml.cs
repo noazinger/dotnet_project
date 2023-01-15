@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,25 +16,37 @@ using System.Windows.Shapes;
 using BlApi;
 using PL.Orders;
 using PL.Products;
-
+using System.Collections.ObjectModel;
 namespace PL.admin
 {
     /// <summary>
     /// Interaction logic for adminWindow.xaml
     /// </summary>
-    public partial class adminWindow : Window
+    /// 
+
+
+
+
+    public partial class adminWindow : Window 
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
         private BO.Product p = new BO.Product();
+
+        private ObservableCollection<BO.ProductForList> pl { get; set; }
+
         private BO.Order ord = new BO.Order();
         private BO.ProductItem pi = new();
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public adminWindow(IBl b)
         {
             try
             {
                 InitializeComponent();
+                pl = bl.Product.ReadListProducts()==null? new(): new(bl?.Product?.ReadListProducts());
                 bl = b;
-                ProductsListview.ItemsSource = bl.Product.ReadListProducts();
+                ProductsListview.DataContext = pl;
                 OrdersListview.ItemsSource = bl.Order.ReadOrders();
             }
             catch(Exception exc)
@@ -57,8 +70,10 @@ namespace PL.admin
                 pi.Price = p.Price;
                 pi.catagory = p.catagory;
                 pi.Name=p.Name;
-                new ProductWindow(pi, "update").Show();
-            
+                new ProductWindow(pi, "update",pl).Show();
+                this.Hide();
+
+
             }
             catch (Exception exc)
             {

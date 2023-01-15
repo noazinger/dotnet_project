@@ -6,11 +6,13 @@ using System.Windows.Controls;
 using System.Xml.Serialization;
 using System.Xml.Linq;
 using PL.admin;
-
+using System.Collections.ObjectModel;
 namespace PL.Products
 {
     public partial class ProductWindow : Window
     {
+        private ObservableCollection<BO.ProductForList> pw;
+        Window adminW;
         BO.Cart cart=new BO.Cart();
         BO.Product prod=new BO.Product();
         BlApi.IBl? bl = Factory.Get();
@@ -36,6 +38,7 @@ namespace PL.Products
             func_butt.Content = "Add to cart";
             name.IsReadOnly = true;
             price.IsReadOnly = true;
+            amount.IsReadOnly = true;
             CategorySelector.IsEnabled = false;
             delete_btn.Visibility = Visibility.Collapsed;
             cart = c;
@@ -43,8 +46,10 @@ namespace PL.Products
 
         }
 
-        public ProductWindow(BO.ProductItem ob,string btn)
+        public ProductWindow(BO.ProductItem ob, string btn, ObservableCollection<BO.ProductForList>? pl = null)
         {
+            pw = pl;
+
             try
             {
                 InitializeComponent();
@@ -98,7 +103,8 @@ namespace PL.Products
                     object categor = CategorySelector.SelectedItem;
                     product.catagory = (BO.catagory)categor;
                     product.InStock = int.Parse(amount.Text);
-                    bl.Product.Add(product);
+                    bl?.Product.Add(product);
+                    pw = new(bl?.Product?.ReadListProducts());
                 }
                 catch (Exception exc)
                 {
@@ -119,6 +125,12 @@ namespace PL.Products
                     product.catagory = (BO.catagory)categor;
                     product.InStock = int.Parse(amount.Text);
                     bl.Product.Update(product);
+                    pw.Clear();
+                    IEnumerable<BO.ProductForList>pp= bl.Product.ReadListProducts();
+                    foreach (var item in pp){
+                        pw.Add(item);
+                    }
+                    new adminWindow(bl).Show();
                     Close();
                 }
                 catch (Exception exc)

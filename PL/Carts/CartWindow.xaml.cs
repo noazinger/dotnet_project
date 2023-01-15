@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net;
@@ -16,6 +17,23 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml.Linq;
 
+
+
+
+//private ObservableCollection<BO.OrderItem> cl { get; set; }
+//public CartWindow(IBl blP, BO.Cart c, ProductItems lastW, MainWindow mainW)
+//{
+//    InitializeComponent();
+//    //cl=collectionList;
+//    cart = c;
+  
+//    cl = cart.Items == null ? new() : new(cart.Items);
+//    bl = blP;
+//    this.DataContext = cart;
+//    OrderItemsInCart.DataContext = cl;
+//}
+
+
 namespace PL.Carts
 {
     /// <summary>
@@ -24,14 +42,17 @@ namespace PL.Carts
     public partial class CartWindow : Window
     {
         BO.Cart ca = new();
+        private ObservableCollection<BO.OrderItem> cl { get; set; }
         public CartWindow(BO.Cart cart)
         {
            InitializeComponent();
-           OrderItemView.ItemsSource = cart.items;
+         //  OrderItemView.ItemsSource = cart.items;
            this.DataContext = cart.items;
-           
-           total_price.Text = cart.TotalPrice.ToString();
+           cl = cart.items == null ? new() : new(cart.items);
+            total_price.Text = cart.TotalPrice.ToString();
            total_price.IsReadOnly = true;
+            this.DataContext = cart;
+            OrderItemView.DataContext = cl;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

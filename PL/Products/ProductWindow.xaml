@@ -36,7 +36,7 @@
                 <Label Content="product price:"  FontSize="18" Grid.Row="1"></Label>
                 <TextBox TextWrapping="Wrap" x:Name="price" Margin="121,135,-138,102" Grid.RowSpan="2"/>
                 <Label Content="product amount:"  FontSize="18" Grid.Row="2"></Label>
-                <TextBox TextWrapping="Wrap" Name="amount"   Grid.Row="2" Margin="150,5,-138,0" Height="37" VerticalAlignment="Top" />
+                <TextBox TextWrapping="Wrap" Name="amount"  Grid.Row="2" Margin="150,5,-138,0" Height="37" VerticalAlignment="Top" />
                 <Label Content="product &#xD;&#xA;catagory:"  FontSize="18" Grid.Row="3" Margin="0,0,-138,73"></Label>
                 <ComboBox   Name="CategorySelector"  Grid.Row="3" HorizontalAlignment="Left" Width="90" Margin="100,10,0,93"/>
                 <Button Name="func_butt" Content="UpDate" HorizontalAlignment="Center" Grid.Row="3"  VerticalAlignment="Top" Click="Button_Click_1" Height="60" Width="180" Margin="0,67,0,0" FontWeight="Bold" Background="#FF67D850" />

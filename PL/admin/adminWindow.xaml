@@ -35,7 +35,7 @@
             </ListView.View>
         </ListView>
 
-        <ListView Grid.Column="2" x:Name="ProductsListview" MouseDoubleClick="itemsClicked"  FontSize="16" Cursor="Hand" SelectionChanged="ProductsListview_SelectionChanged">
+        <ListView Grid.Column="2" x:Name="ProductsListview" MouseDoubleClick="itemsClicked"  FontSize="16" Cursor="Hand" ItemsSource="{Binding}" SelectionChanged="ProductsListview_SelectionChanged">
             <ListView.View>
                 <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
                     <GridViewColumn DisplayMemberBinding="{Binding Path=ID}" Header="ID" TextBlock.TextAlignment="Center" Width="30"></GridViewColumn>
