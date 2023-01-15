@@ -13,8 +13,8 @@ internal class Order : IOrder
 {
     public int Add(DO.Order or)
     {
-        XElement? orderElement = XDocument.Load(@"../../../../xml/Order.xml").Root;
-        XElement? orderId = XDocument.Load(@"../../../../xml/dal-config.xml").Root;
+        XElement? orderElement = XDocument.Load(@"..\xml\Order.xml").Root;
+        XElement? orderId = XDocument.Load(@"..\xml\dal-config.xml").Root;
         XElement? orderId1 = orderId?.Element("ids")?.Element("orderId");
         XElement? order1 = new XElement("order",
         new XElement("OrderID", orderId1),
@@ -25,7 +25,7 @@ internal class Order : IOrder
         new XElement("DeliveryDate", or.DeliveryDate);
         new XElement("OrderDate", or.OrderDate);
         orderElement?.Add(order1);
-        orderElement?.Save(@"../../../../xml/Order.xml");
+        orderElement?.Save(@"..\xml\Order.xml");
         int id = int.Parse(orderId1.Value);
         id++;
         orderId1.Value = Convert.ToString(id);
