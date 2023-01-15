@@ -70,6 +70,8 @@ namespace PL.admin
                 pi.Price = p.Price;
                 pi.catagory = p.catagory;
                 pi.Name=p.Name;
+                pi.Amount = p.InStock;
+                pi.InStock = p.InStock > 0 ? true : false;
                 new ProductWindow(pi, "update",pl).Show();
                 this.Hide();
 

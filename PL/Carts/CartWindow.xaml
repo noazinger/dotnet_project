@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL.Carts"
         mc:Ignorable="d"
         Title="CartWindow" Height="450" Width="800">
-    <Grid>
+    <Grid x:Name="mainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="30*"/>
             <ColumnDefinition Width="90*"/>
@@ -35,18 +35,38 @@
             <Label Content="Customer Email" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="3" VerticalAlignment="Top" Height="26" Width="221"/>
 
             <Button Grid.ColumnSpan="3"  Grid.Row="4" Click="Button_Click" >complete order</Button>
-            <TextBox x:Name="total_price" Text="{Binding Path=TotalPrice}" HorizontalAlignment="Center" Margin="0,43,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="100" Grid.Column="1" Height="34"/>
+            <TextBox x:Name="total_price"  Text="{Binding Path=TotalPrice}" HorizontalAlignment="Center" Margin="0,43,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="100" Grid.Column="1" Height="34"/>
             <Label Content="Total Price: " HorizontalAlignment="Center" Margin="0,43,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.513,0.05"/>
 
         </Grid>
-
         <ListView x:Name="OrderItemView"   Grid.Column="1" Margin="0,0,0,42" ItemsSource="{Binding}" > 
             <ListView.View>
                 <GridView>
-                    <GridViewColumn x:Name="gvcName" DisplayMemberBinding="{Binding Path=Name}" Header="Name" Width="150"/>
-                    <GridViewColumn x:Name="gvcPrice" DisplayMemberBinding="{Binding Path=Price}" Header="Price" Width="150"/>
-                    <GridViewColumn x:Name="gvcAmount" DisplayMemberBinding="{Binding Path=Amount}" Header="Amount" Width="150"/>
-                    <GridViewColumn x:Name="gvcInStock" DisplayMemberBinding="{Binding Path=TotalPrice}" Header="TotalPrice" Width="150"/>
+                    <GridViewColumn x:Name="gvcName" DisplayMemberBinding="{Binding Path=Name}" Header="Name"/>
+                    <GridViewColumn x:Name="gvcPrice" DisplayMemberBinding="{Binding Path=Price}" Header="Price" />
+                    <GridViewColumn x:Name="gvcAmount" DisplayMemberBinding="{Binding Path=Amount}" Header="Amount"/>
+                    <GridViewColumn x:Name="gvcInStock" DisplayMemberBinding="{Binding Path=TotalPrice}" Header="TotalPrice"/>
+                    <GridViewColumn x:Name="gvcIncrease" Header="increase">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="Increase" Click="Increase" Width="20" >+</Button>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="gvcdecrease" Header="decrease">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="Decrease" Click="Decrease">-</Button>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="gvcremove" Header="Remove">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="Remove" Click="Remove">X</Button>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
