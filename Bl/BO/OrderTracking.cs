@@ -8,8 +8,9 @@ namespace BO
 {
     public class OrderTracking
     {
-        int ID { get; set; }
-        OrderStatus? Status {get;set;}
+        public int ID { get; set; }
+        public OrderStatus? Status {get;set;}
+        public List<Tuple<DateTime, OrderStatus>> packageStatus=new();
         public override string ToString() => $@"
         Order Tracking ID={ID}, 
         Order Status = {Status},

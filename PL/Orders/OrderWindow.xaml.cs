@@ -14,6 +14,7 @@ using BO;
 using System.Xml.Serialization;
 using System.Xml.Linq;
 using DO;
+using System.Collections.ObjectModel;
 
 namespace PL.Orders
 {
@@ -25,6 +26,7 @@ namespace PL.Orders
         BlApi.IBl? bl = Factory.Get();
         bool IsCustomer;
         int id;
+        public ObservableCollection<BO.OrderItem> orderObs { get; set; }
         public OrderWindow(BO.Order order, bool isCustomer)
         {
             InitializeComponent();
@@ -39,7 +41,6 @@ namespace PL.Orders
             txtOrderShipDate.IsReadOnly = isCustomer;
             txtOrderStatus.IsReadOnly = isCustomer;
             txtOrderOrderDate.Text = order.OrderDate.ToString();
-            //txtOrderOrderDate.Text = order.OrderDate.ToString();
             txtOrderStatus.Text = order.Status.ToString();
             txtOrderShipDate.Text = order.ShipDate.ToString();
             txtOrderDeliveryDate.Text = order.DeliveryDate.ToString();
@@ -47,12 +48,13 @@ namespace PL.Orders
             this.DataContext=order1;
             try
             {
-                OrderItemsListView.ItemsSource = order.Items;
+                //OrderItemsListView.ItemsSource = order.Items;
+                orderObs = (order.Items == null) ? new() : new(order.Items);
+                OrderItemsListView.DataContext = orderObs;
             }
             catch (Exception exc)
             {
                 MessageBox.Show(exc.Message);
-
             }
 
         }

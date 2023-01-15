@@ -81,7 +81,6 @@ namespace BlImplementation
                     }
                     else throw new BO.NotInStock();
                 }
-
             }
             throw new BO.NotExistException("the product is not exist");
 

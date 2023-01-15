@@ -6,8 +6,8 @@
     <CustomerEmail>t@t</CustomerEmail>
     <CustomerAddress>revivim</CustomerAddress>
     <OrderDate>28/12/2022 00:00:00</OrderDate>
-    <ShipDate>15/01/2023 15:51:39</ShipDate>
-    <DeliveryDate>28/12/2022 00:00:00</DeliveryDate>
+    <ShipDate>15/01/2023 18:42:07</ShipDate>
+    <DeliveryDate>15/01/2023 18:53:16</DeliveryDate>
   </Order>
   <Order>
     <ID>20009</ID>
@@ -15,8 +15,8 @@
     <CustomerEmail>n@n</CustomerEmail>
     <CustomerAddress>kutcher</CustomerAddress>
     <OrderDate>01/01/2023 00:00:00</OrderDate>
-    <ShipDate>14/01/2023 19:51:21</ShipDate>
-    <DeliveryDate>01/01/2023 00:00:00</DeliveryDate>
+    <ShipDate>15/01/2023 18:37:55</ShipDate>
+    <DeliveryDate>15/01/2023 18:37:55</DeliveryDate>
   </Order>
   <Order>
     <ID>500016</ID>

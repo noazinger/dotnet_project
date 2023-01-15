@@ -17,10 +17,25 @@
             <RowDefinition Height="20*"/>
             <RowDefinition Height="20*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Column="1" Grid.Row="1">
+        <Grid Grid.Column="0" Grid.Row="1">
             <Border BorderBrush="#FF9E4E4E"  Margin="-28,-17,0,0"/>
-            <Button Content="Order details" HorizontalAlignment="Left" Click="Order_d" Width="257" Margin="0,52,0,31" />
-            <Label  Content="sdg" HorizontalAlignment="Left"  VerticalAlignment="Top"  Width="120" Name="Order_status" Margin="133,29,0,0"/>
+            <Button Content="Order details" HorizontalAlignment="Center" Click="Order_d" Width="257" Margin="0,55,0,28" />
+            <Label  Content="{Binding OrderStatus}" HorizontalAlignment="Left"  VerticalAlignment="Top"  Width="120" Name="Order_status" Margin="133,29,0,0"/>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="142*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+
+            <ListView x:Name="ListViewItems" ItemsSource="{Binding packageStatus}" Margin="0,24,0,24">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Item1}" Header="Date"></GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Item2}" Header="Status"></GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </Grid>
     </Grid>
 </Window>

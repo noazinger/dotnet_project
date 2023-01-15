@@ -1,5 +1,4 @@
-﻿
-using BlApi;
+﻿using BlApi;
 using DalApi;
 using System.Reflection;
 using IOrder = BlApi.IOrder;
@@ -191,5 +190,33 @@ namespace BlImplementation
             }
         }
         public void Update(int orderNumber) { }
+
+        public BO.OrderTracking OrderTrack(int id)
+        {
+            try
+            {
+                //DO.Order currOrder = dalEntity.Order.ReadSingle(x => x.ID == id);
+                DO.Order currOrder = dalEntity.Order.ReadSingle(id);
+                BO.OrderTracking orderTracking = new();
+                orderTracking.ID = currOrder.ID;
+                orderTracking.packageStatus.Add(new Tuple<DateTime, BO.OrderStatus>((DateTime)currOrder.OrderDate, BO.OrderStatus.Dispatched));
+                orderTracking.Status = BO.OrderStatus.Dispatched;
+                if (currOrder.ShipDate <= DateTime.Now)
+                {
+                    orderTracking.packageStatus?.Add(new Tuple<DateTime, BO.OrderStatus>((DateTime)currOrder.ShipDate, BO.OrderStatus.Shipped));
+                    orderTracking.Status = BO.OrderStatus.Shipped;
+                }
+                if (currOrder.DeliveryDate <= DateTime.Now)
+                {
+                    orderTracking.packageStatus?.Add(new Tuple<DateTime, BO.OrderStatus>((DateTime)currOrder.DeliveryDate, BO.OrderStatus.Delivered));
+                    orderTracking.Status = BO.OrderStatus.Delivered;
+                }
+                return orderTracking;
+            }
+            catch (NotFoundException err)
+            {
+                throw new BO.NotExistException(err);
+            }
+        }
     }
 }
