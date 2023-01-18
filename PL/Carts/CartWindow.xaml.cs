@@ -66,7 +66,7 @@ namespace PL.Carts
             var Email = new EmailAddressAttribute();
             if (!Email.IsValid(CustomerEmail.Text) || CustomerEmail.Text == "") throw new BO.NotValidException("the email isnt valid");
             MessageBox.Show("please complete your details");
-            bl.Cart.OrderConfirmation(thisCart, CustomerName.Text, CustomerEmail.Text, CustomerAddress.Text);
+            bl?.Cart.OrderConfirmation(thisCart, CustomerName.Text, CustomerEmail.Text, CustomerAddress.Text);
             new MainWindow().Show();
         }
         private void Increase(object sender, RoutedEventArgs e)
