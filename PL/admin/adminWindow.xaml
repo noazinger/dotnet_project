@@ -8,12 +8,14 @@
         Title="adminWindow" Height="640" Width="800">
     <Grid x:Name="MainGrid">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100*"/>
-            <ColumnDefinition Width="70*"/>
+            <ColumnDefinition Width="446*"/>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="169"/>
+            <ColumnDefinition Width="160*"/>
         </Grid.ColumnDefinitions>
 
- 
-        <ListView Grid.Column="0" x:Name="OrdersListview" MouseDoubleClick="ordersClicked" FontSize="16" Cursor="Hand" SelectionChanged="OrdersListview_SelectionChanged" Grid.ColumnSpan="2">
+
+        <ListView Grid.Column="0" x:Name="OrdersListview" MouseDoubleClick="ordersClicked" FontSize="16" Cursor="Hand" SelectionChanged="OrdersListview_SelectionChanged" Grid.ColumnSpan="4">
             <ListView.View>
                 <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
                     <GridViewColumn DisplayMemberBinding="{Binding Path=ID}" Header="ID" />
@@ -25,7 +27,7 @@
             </ListView.View>
         </ListView>
 
-        <ListView Grid.Column="2" x:Name="ProductsListview" MouseDoubleClick="itemsClicked"  FontSize="16" Cursor="Hand" ItemsSource="{Binding}" SelectionChanged="ProductsListview_SelectionChanged">
+        <ListView Grid.Column="2" x:Name="ProductsListview" MouseDoubleClick="itemsClicked"  FontSize="16" Cursor="Hand" ItemsSource="{Binding}" SelectionChanged="ProductsListview_SelectionChanged" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView TextBlock.TextAlignment="Center" AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
                     <GridViewColumn DisplayMemberBinding="{Binding Path=ID}" Header="ID" TextBlock.TextAlignment="Center" Width="30"></GridViewColumn>
@@ -35,8 +37,8 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="addProBtn" Content="Add new product" HorizontalAlignment="Left" Margin="25,578,0,0" VerticalAlignment="Top" Click="addProBtn_Click" FontSize="16" Background="Red" Height="33" Width="222" Grid.Column="2"/>
-        <Button Grid.Column="2" Background="LightCoral" Content="Back" HorizontalAlignment="Left" Margin="295,579,0,0" VerticalAlignment="Top" Height="29" Width="72" Click="btn_Back"/>
+        <Button x:Name="addProBtn" Content="Add new product" Margin="6,573,101,0" VerticalAlignment="Top" Click="addProBtn_Click" FontSize="16" Background="Red" Height="33" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <Button Grid.Column="3" Background="LightCoral" Content="Back" HorizontalAlignment="Left" Margin="78,573,0,0" VerticalAlignment="Top" Height="35" Width="72" Click="btn_Back"/>
 
     </Grid>
 

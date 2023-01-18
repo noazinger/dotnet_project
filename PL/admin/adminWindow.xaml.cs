@@ -74,8 +74,6 @@ namespace PL.admin
                 pi.InStock = p.InStock > 0 ? true : false;
                 new ProductWindow(pi, "update",pl).Show();
                 this.Hide();
-
-
             }
             catch (Exception exc)
             {

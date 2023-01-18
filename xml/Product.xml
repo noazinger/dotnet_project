@@ -1,1 +1,37 @@
-<?xml version="1.0" encoding="utf-8"?><Products xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><Product><ID>10000</ID><Name>re</Name><Price>8888</Price><catagory>pants</catagory><inStock>0</inStock></Product><Product><ID>100011</ID><Name>ds</Name><Price>650</Price><catagory>suit</catagory><inStock>0</inStock></Product><Product><ID>10000</ID><Name>noab</Name><Price>100</Price><catagory>shirt</catagory><inStock>0</inStock></Product><Product><ID>100010</ID><Name>tova</Name><Price>10</Price><catagory>suit</catagory><inStock>100</inStock></Product><Product><ID>10001</ID><Name>moa</Name><Price>1</Price><catagory>pants</catagory><inStock>45</inStock></Product></Products>
+<?xml version="1.0" encoding="utf-8"?>
+<Products xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Product>
+		<ID>100011</ID>
+		<Name>ds</Name>
+		<Price>650</Price>
+		<catagory>suit</catagory>
+		<inStock>1500</inStock>
+	</Product>
+	<Product>
+		<ID>10000</ID>
+		<Name>noab</Name>
+		<Price>100</Price>
+		<catagory>shirt</catagory>
+		<inStock>50</inStock>
+	</Product>
+	<Product>
+		<ID>100010</ID>
+		<Name>tova</Name>
+		<Price>10</Price>
+		<catagory>suit</catagory>
+		<inStock>100</inStock>
+	</Product>
+	<Product>
+		<ID>10000</ID>
+		<Name>re</Name>
+		<Price>8888</Price>
+		<catagory>pants</catagory>
+		<inStock>11</inStock>
+	</Product><Product>
+		<ID>10001</ID>
+		<Name>moa</Name>
+		<Price>1</Price>
+		<catagory>pants</catagory>
+		<inStock>10</inStock>
+	</Product>
+</Products>

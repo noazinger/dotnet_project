@@ -108,6 +108,6 @@ internal class Order : IOrder
         //orderElement?.Save("..\\xml\\Order.xml");
         XElement? orderElement = XDocument.Load("../../../../xml/Order.xml").Root;
         orderElement?.Descendants("order").Where(p => int.Parse(p?.Element("OrderID").Value) == id).Remove();
-        orderElement?.Save("../../../../xml/Order.xml");
+        orderElement?.Save("../../../../xml/Order.xml"); 
     }
 }

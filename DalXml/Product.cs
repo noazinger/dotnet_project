@@ -94,8 +94,11 @@ internal class Product : IProduct
     }
     public void Delete(int id)
     {
+        XmlRootAttribute xRoot = new XmlRootAttribute();
+        xRoot.ElementName = "Products";
+        xRoot.IsNullable = true;
         StreamReader sr = new StreamReader(@"..\xml\Product.xml");
-        XmlSerializer serializer = new XmlSerializer(typeof(List<DO.Product>));
+        XmlSerializer serializer = new XmlSerializer(typeof(List<DO.Product>),xRoot);
         List<DO.Product> list = (List<DO.Product>?)serializer?.Deserialize(sr);
         sr.Close();
         StreamWriter sw = new StreamWriter(@"..\xml\Product.xml");
