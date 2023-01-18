@@ -124,7 +124,7 @@ namespace PL.Products
                     object categor = CategorySelector.SelectedItem;
                     product.catagory = (BO.catagory)categor;
                     product.InStock = int.Parse(amount.Text);
-                    bl.Product.Update(product);
+                    bl?.Product.Update(product);
                     pw.Clear();
                     IEnumerable<BO.ProductForList>pp= bl.Product.ReadListProducts();
                     foreach (var item in pp){

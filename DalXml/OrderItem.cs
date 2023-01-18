@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 using DalApi;
 using DO;
@@ -12,14 +13,33 @@ namespace Dal
     {
         public void Create(DO.OrderItem oi)
         {
-            StreamReader sr = new StreamReader(@"..\xml\OrderItem.xml");
-            XmlSerializer serializer= new XmlSerializer(typeof(DO.OrderItem));
-            var a = serializer.Deserialize(sr);
-            StreamWriter sw = new StreamWriter(@"..\xml\OrderItem.xml");
-            serializer.Serialize(sw, oi);
-            sr.Close();
-            sw.Close();
-        } 
+            XElement? orderElement = XDocument.Load(@"..\xml\OrderItem.xml").Root;
+            XElement? orderId = XDocument.Load(@"..\xml\dal-config.xml").Root;
+            XElement? orderItemId1 = orderId?.Element("ids")?.Element("orderItemId");
+            XElement? OrderItem = new XElement("OrderItem",
+            new XElement("ID", int.Parse(orderItemId1?.Value)),
+            new XElement("ProductID", oi.ProductID),
+            new XElement("OrderID", oi.OrderID),
+            new XElement("Price", oi.Price),
+            new XElement("Amount", oi.Amount));
+            orderElement?.Add(OrderItem);
+            orderElement?.Save(@"..\xml\OrderItem.xml");
+            int id = int.Parse(orderItemId1.Value);
+            orderItemId1.Value = (id + 1).ToString();
+            orderId?.Save(@"..\xml\dal-config.xml");
+            
+
+            /*    XmlRootAttribute xRoot = new XmlRootAttribute();
+                xRoot.ElementName = "Products";
+                xRoot.IsNullable = false;
+                StreamReader sr = new StreamReader(@"..\xml\OrderItem.xml");
+                XmlSerializer serializer = new XmlSerializer(typeof(DO.OrderItem), xRoot);
+                DO.OrderItem a =(DO.OrderItem)serializer.Deserialize(sr);
+                sr.Close();
+                StreamWriter sw = new StreamWriter(@"..\xml\OrderItem.xml");
+                serializer.Serialize(sw, oi);
+                sw.Close();*/
+        }
 
         public void Delete(int id)
         {
