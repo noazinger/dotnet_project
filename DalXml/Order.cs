@@ -17,7 +17,7 @@ internal class Order : IOrder
         XElement? orderId = XDocument.Load(@"..\xml\dal-config.xml").Root;
         XElement? orderId1 = orderId?.Element("ids")?.Element("orderId");
         XElement? order1 = new XElement("order",
-        new XElement("OrderID", orderId1),
+        new XElement("ID", orderId1?.Value),
         new XElement("CustomerName", or.CustomerName),
         new XElement("CustomerAdress", or.CustomerAddress),
         new XElement("CustomerEmail", or.CustomerEmail),
@@ -27,9 +27,9 @@ internal class Order : IOrder
         orderElement?.Add(order1);
         orderElement?.Save(@"..\xml\Order.xml");
         int id = int.Parse(orderId1.Value);
-        id++;
-        orderId1.Value = Convert.ToString(id);
-        return or.ID;
+        orderId1.Value = (id+1).ToString();
+        orderId?.Save(@"..\xml\dal-config.xml");
+        return id;
     }
 
     public void Create(DO.Order or)
@@ -64,7 +64,7 @@ internal class Order : IOrder
    public IEnumerable<DO.Order> Read(Func<DO.Order, bool>? func=null )
     {
         XElement? root = XDocument.Load("../xml/Order.xml")?.Root;
-        IEnumerable<XElement>? orderList = root?.Descendants("Order")?.ToList();
+        IEnumerable<XElement>? orderList = root?.Descendants("order")?.ToList();
         List<DO.Order> orders = new List<DO.Order>();
         foreach (var xOrder in orderList)
         {
@@ -88,7 +88,7 @@ internal class Order : IOrder
     public DO.Order ReadSingle(int id)
     {
         XElement? orderElement = XDocument.Load("..\\xml\\Order.xml").Root;
-        XElement? order = orderElement?.Elements("Order").Where(e => e.Element("ID")?.Value == id.ToString()).FirstOrDefault() ?? throw new Exception();
+        XElement? order = orderElement?.Elements("order").Where(e => e.Element("ID")?.Value == id.ToString()).FirstOrDefault() ?? throw new Exception();
         DO.Order returnOrder = new DO.Order();
         returnOrder.ID= id;
         returnOrder.CustomerName = order?.Element("CustomerName")?.Value;

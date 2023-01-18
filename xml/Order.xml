@@ -1,48 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Orders>
-  <Order>
-    <ID>20008</ID>
-    <CustomerName>tovi</CustomerName>
-    <CustomerEmail>t@t</CustomerEmail>
-    <CustomerAddress>revivim</CustomerAddress>
-    <OrderDate>28/12/2022 00:00:00</OrderDate>
-    <ShipDate>15/01/2023 18:42:07</ShipDate>
-    <DeliveryDate>15/01/2023 18:53:16</DeliveryDate>
-  </Order>
-  <Order>
-    <ID>20009</ID>
-    <CustomerName>noa</CustomerName>
-    <CustomerEmail>n@n</CustomerEmail>
-    <CustomerAddress>kutcher</CustomerAddress>
-    <OrderDate>01/01/2023 00:00:00</OrderDate>
-    <ShipDate>15/01/2023 18:37:55</ShipDate>
-    <DeliveryDate>15/01/2023 18:37:55</DeliveryDate>
-  </Order>
-  <Order>
-    <ID>500016</ID>
-    <CustomerName>ppp</CustomerName>
-    <CustomerAddress>kkk</CustomerAddress>
-    <CustomerEmail>lkj</CustomerEmail>
-    <ShipDate>09/04/2008 16:05:07</ShipDate>
-    <DeliveryDate>14/01/2023 20:12:59</DeliveryDate>
-    <OrderDate>09/03/2008 16:05:07</OrderDate>
-  </Order>
   <order>
-    <OrderID>
-      <orderId>500010</orderId>
-    </OrderID>
-    <CustomerName>m</CustomerName>
-    <CustomerAdress>moj</CustomerAdress>
-    <CustomerEmail>m@gmail.com</CustomerEmail>
+    <ID>100001</ID>
+    <CustomerName>aa</CustomerName>
+    <CustomerAdress>aa</CustomerAdress>
+    <CustomerEmail>a@a</CustomerEmail>
     <ShipDate>0001-01-01T00:00:00</ShipDate>
   </order>
   <order>
-    <OrderID>
-      <orderId>500010</orderId>
-    </OrderID>
-    <CustomerName>noa</CustomerName>
-    <CustomerAdress>kootcher</CustomerAdress>
-    <CustomerEmail>n@gmail</CustomerEmail>
+    <ID>100002</ID>
+    <CustomerName>bb</CustomerName>
+    <CustomerAdress>bb</CustomerAdress>
+    <CustomerEmail>b@b</CustomerEmail>
     <ShipDate>0001-01-01T00:00:00</ShipDate>
   </order>
 </Orders>
