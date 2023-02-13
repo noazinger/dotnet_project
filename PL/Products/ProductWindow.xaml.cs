@@ -157,7 +157,7 @@ namespace PL.Products
         {
             try
             {
-                bl.Product.Delete(prod.ID);
+                bl.Product.Delete(id);
                 adminWindow a = new(bl);
                 a.Show();
                 Close();

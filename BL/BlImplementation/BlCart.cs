@@ -183,7 +183,6 @@ namespace BlImplementation
                 var id = dalEntity.Order.Add(newOrder);
                     foreach (var i in cart.items)
                     {
-                    i.ID = id;
                         DO.OrderItem orderItem = new();
                         orderItem.OrderID = id;
                         orderItem.Price = i.Price;

@@ -61,13 +61,18 @@ namespace PL.Carts
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (CustomerName.Text == "") throw new BO.NotValidException("the name isnt valid");
-            if (CustomerAddress.Text == "") throw new BO.NotValidException("the address isnt valid");
-            var Email = new EmailAddressAttribute();
-            if (!Email.IsValid(CustomerEmail.Text) || CustomerEmail.Text == "") throw new BO.NotValidException("the email isnt valid");
-            MessageBox.Show("please complete your details");
+            try
+            {
+                if (CustomerName.Text == "") throw new BO.NotValidException("the name isnt valid");
+                if (CustomerAddress.Text == "") throw new BO.NotValidException("the address isnt valid");
+                var Email = new EmailAddressAttribute();
+                if (!Email.IsValid(CustomerEmail.Text) || CustomerEmail.Text == "") throw new BO.NotValidException("the email isnt valid");
+            }
+            catch(Exception exc) { MessageBox.Show(exc.ToString()); }
+            MessageBox.Show("the order is complited");
             bl?.Cart.OrderConfirmation(thisCart, CustomerName.Text, CustomerEmail.Text, CustomerAddress.Text);
             new MainWindow().Show();
+            this.Close();
         }
         private void Increase(object sender, RoutedEventArgs e)
         {
