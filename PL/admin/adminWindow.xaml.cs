@@ -23,10 +23,6 @@ namespace PL.admin
     /// Interaction logic for adminWindow.xaml
     /// </summary>
     /// 
-
-
-
-
     public partial class adminWindow : Window 
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
@@ -94,7 +90,7 @@ namespace PL.admin
             {
                 int oId = (OrdersListview.SelectedItem as BO.OrderForList).ID;
                 ord = bl?.Order.ReadOrderInformation(oId);
-                new OrderWindow(ord, false).Show();
+                new OrderWindow(ord, true).Show();
                 this.Close();
             }
             catch (Exception exc)

@@ -25,11 +25,11 @@ namespace BlImplementation
                     BO.OrderForList order = new();
                     order.ID = item.ID;
                     order.CustomerName = item.CustomerName;
-                    if (item.OrderDate >= DateTime.Now && item.ShipDate <= DateTime.Now)
+                    if (item.OrderDate <= DateTime.Now && item.ShipDate <= DateTime.Now)
                     {
                         order.Status = (BO.OrderStatus)1;
                     }
-                    else if (item.ShipDate >= DateTime.Now && item.DeliveryDate <= DateTime.Now)
+                    else if (item.ShipDate <= DateTime.Now && item.DeliveryDate <= DateTime.Now)
                     {
                         order.Status = (BO.OrderStatus)2;
                     }
@@ -83,11 +83,11 @@ namespace BlImplementation
                     order.OrderDate = singleOrder.OrderDate;
                     order.ShipDate = singleOrder.ShipDate;
                     order.DeliveryDate = singleOrder.DeliveryDate;
-                    if (singleOrder.OrderDate >= DateTime.Now && singleOrder.ShipDate <= DateTime.Now)
+                    if (singleOrder.OrderDate <= DateTime.Now && singleOrder.ShipDate <= DateTime.Now)
                     {
                         order.Status = (BO.OrderStatus)1;
                     }
-                    else if (singleOrder.ShipDate >= DateTime.Now && singleOrder.DeliveryDate <= DateTime.Now)
+                    else if (singleOrder.ShipDate <= DateTime.Now && singleOrder.DeliveryDate <= DateTime.Now)
                     {
                         order.Status = (BO.OrderStatus)2;
                     }

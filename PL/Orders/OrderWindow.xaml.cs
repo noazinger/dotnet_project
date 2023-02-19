@@ -32,22 +32,22 @@ namespace PL.Orders
             InitializeComponent();
             IsCustomer = isCustomer;
             id = order.ID;
-            txtOrderCustomerAddress.IsReadOnly = isCustomer;
-            txtOrderCustomerEmail.IsReadOnly = isCustomer;
-            txtOrderCustomerName.IsReadOnly = isCustomer;
-            txtOrderDeliveryDate.IsReadOnly = isCustomer;
-            txtOrderID.IsReadOnly = isCustomer;
-            txtOrderOrderDate.IsReadOnly = isCustomer;
-            txtOrderShipDate.IsReadOnly = isCustomer;
-            txtOrderStatus.IsReadOnly = isCustomer;
+            txtOrderCustomerAddress.IsReadOnly = !isCustomer;
+            txtOrderCustomerEmail.IsReadOnly = !isCustomer;
+            txtOrderCustomerName.IsReadOnly = !isCustomer;
+            txtOrderDeliveryDate.IsReadOnly = !isCustomer;
+            txtOrderID.IsReadOnly = !isCustomer;
+            txtOrderOrderDate.IsReadOnly = !isCustomer;
+            txtOrderShipDate.IsReadOnly = !isCustomer;
+            txtOrderStatus.IsReadOnly = !isCustomer;
             txtOrderOrderDate.Text = order.OrderDate.ToString();
             txtOrderStatus.Text = order.Status.ToString();
             txtOrderShipDate.Text = order.ShipDate.ToString();
             txtOrderDeliveryDate.Text = order.DeliveryDate.ToString();
             BO.Order order1 = bl.Order.ReadOrderInformation(order.ID);
             this.DataContext=order1;
-            button_update_delivery.Visibility= isCustomer ? Visibility.Visible :  Visibility.Collapsed;  
-            button_update_shipping.Visibility= isCustomer ? Visibility.Visible : Visibility.Collapsed;
+            button_update_delivery.Visibility= !isCustomer ? Visibility.Collapsed : Visibility.Visible;  
+            button_update_shipping.Visibility= !isCustomer ? Visibility.Collapsed : Visibility.Visible;
             try
             {
                 //OrderItemsListView.ItemsSource = order.Items;

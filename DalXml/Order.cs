@@ -21,9 +21,9 @@ internal class Order : IOrder
         new XElement("CustomerName", or.CustomerName),
         new XElement("CustomerAdress", or.CustomerAddress),
         new XElement("CustomerEmail", or.CustomerEmail),
-        new XElement("ShipDate", or.ShipDate));
-        new XElement("DeliveryDate", or.DeliveryDate);
-        new XElement("OrderDate", or.OrderDate);
+        new XElement("OrderDate", or.OrderDate),
+        new XElement("ShipDate", or.ShipDate),
+        new XElement("DeliveryDate", or.DeliveryDate));
         orderElement?.Add(order1);
         orderElement?.Save(@"..\xml\Order.xml");
         int id = int.Parse(orderId1.Value);
@@ -38,12 +38,12 @@ internal class Order : IOrder
         XElement? orderElement = XDocument.Load("..\\xml\\Order.xml").Root;
         XElement? order = new XElement("Order",
         new XElement("ID", or.ID),
-         new XElement("CustomerName", or.CustomerName),
-         new XElement("CustomerEmail", or.CustomerEmail),
-         new XElement("CustomerAddress", or.CustomerAddress),
+        new XElement("CustomerName", or.CustomerName),
+        new XElement("CustomerEmail", or.CustomerEmail),
+        new XElement("CustomerAddress", or.CustomerAddress),
         new XElement("OrderDate", or.OrderDate),
-         new XElement("ShipDate", or.ShipDate),
-         new XElement("DeliveryDate", or.DeliveryDate));
+        new XElement("ShipDate", or.ShipDate),
+        new XElement("DeliveryDate", or.DeliveryDate));
         orderElement?.Element("Order")?.Add(order);
         orderElement?.Save("..\\xml\\Order.xml");
     }
