@@ -10,10 +10,10 @@ using DalApi;
 namespace BlImplementation
 {
 
-    public  class Config
+    public class Config
     {
         static int Id = 1;
-       public static int OrderItemId { get { return Id++; } }
+        public static int OrderItemId { get { return Id++; } }
     }
     internal class BlCart : ICart
     {
@@ -37,51 +37,53 @@ namespace BlImplementation
         /// < exception cref= "BO.NotExistException" ></ exception >
         public BO.Cart Add(BO.Cart cart, int id)
         {
-            if (cart.items!=null)
+            if (cart.items != null)
             {
-                foreach (var i in cart.items)
+                BO.OrderItem item = cart.items.Find(x => x.ProductID == id) ?? null;
+                if (item != null)
                 {
-                    if (i.ProductID == id)
+                    DO.Product d = dalEntity.Product.ReadSingle(id);
+                    if (d.inStock > 0)
                     {
-                        DO.Product d = dalEntity.Product.ReadSingle(id);
-                        if (d.inStock > 0)
-                        {
-                            i.Amount++;
-                            i.TotalPrice += i.Price;
-                            cart.TotalPrice += i.TotalPrice;
-                            return cart;
-                        }
-                        else
-                        {
-                            throw new BO.NotInStock();
-                        }
+                        item.Amount++;
+                        item.TotalPrice += item.Price;
+                        cart.TotalPrice += item.TotalPrice;
+                        return cart;
+                    }
+                    else
+                    {
+                        throw new BO.NotInStock();
                     }
                 }
             }
             else
             {
-                cart.items=new List<BO.OrderItem>();
+                cart.items = new List<BO.OrderItem>();
             }
-            foreach (var p in dalEntity.Product.Read())
-            {
-                if (p.ID == id)
-                {
-                    if (p.inStock > 0) {
-                        BO.OrderItem orderItem = new BO.OrderItem();
-                        orderItem.ID = Config.OrderItemId;
-                        orderItem.Name = p.Name;
-                        orderItem.Price = p.Price;
-                        orderItem.ProductID = p.ID;
-                        orderItem.Amount = 1;
-                        if (orderItem.TotalPrice == null) orderItem.TotalPrice = 0;
-                        orderItem.TotalPrice += p.Price;
-                        cart.items.Add(orderItem);
-                        cart.TotalPrice += orderItem.TotalPrice;
-                        return cart;
-                    }
-                    else throw new BO.NotInStock();
-                }
-            }
+            List<DO.Product> product = (from pr in dalEntity?.Product.Read()
+                                        where pr.ID == id && pr.inStock > 0
+                                        select pr).ToList();
+            if (product == null) throw new BO.NotInStock();
+            DO.Product p = product[0];
+            BO.OrderItem orderItem = new BO.OrderItem();
+            orderItem.ID = Config.OrderItemId;
+            orderItem.Name = p.Name;
+            orderItem.Price = p.Price;
+            orderItem.ProductID = p.ID;
+            orderItem.Amount = 1;
+            if (orderItem?.TotalPrice == null) orderItem.TotalPrice = 0;
+            orderItem.TotalPrice += p.Price;
+            cart.items.Add(orderItem);
+            cart.TotalPrice += orderItem.TotalPrice;
+            return cart;
+            throw new BO.NotExistException("the product is not exist");
+
+
+            /// <summary>
+            /// the function update the amount of the product in the cart
+            /// the function get 3 parmeters: 
+
+
             throw new BO.NotExistException("the product is not exist");
 
         }
@@ -102,46 +104,43 @@ namespace BlImplementation
         /// <exception cref="BO.NotExistException"></exception>
         public BO.Cart Update(BO.Cart cart, int productID, int amount)
         {
-            foreach (var i in cart.items)
+            BO.OrderItem item = cart.items.Find(x => x.ProductID == productID) ?? null;
+            if (item == null) throw new BO.NotExistException("the product is not exist in cart");
+
+
+            if (amount < item.Amount)
             {
-                if (i.ProductID == productID)
+                if (amount == 0)
                 {
-                    if (amount < i.Amount)
-                    {
-                        if (amount == 0)
-                        {
-                            cart.TotalPrice -= i.TotalPrice;
-                            cart.items.Remove(i);
-                            return cart;
+                    cart.TotalPrice -= item.TotalPrice;
+                    cart.items.Remove(item);
+                    return cart;
 
-                        }
-                        else
-                        {
-                            i.Amount = amount;
-                            cart.TotalPrice -= i.TotalPrice;
-                            i.TotalPrice = i.Price * amount;
-                            cart.TotalPrice += i.Price * amount;
-                            return cart;
-
-                        }
-                    }
-                    else
-                    {
-                        DO.Product product = dalEntity.Product.ReadSingle(productID);
-                        if (product.inStock - amount >= 0)
-                        {
-                            i.Amount = amount;
-                            cart.TotalPrice -= i.TotalPrice;
-                            i.TotalPrice = i.Price * amount;
-                            cart.TotalPrice += i.TotalPrice;
-                            return cart; 
-                        }
-                        else throw new BO.NotInStock();
-                    }
+                }
+                else
+                {
+                    item.Amount = amount;
+                    cart.TotalPrice -= item.TotalPrice;
+                    item.TotalPrice = item.Price * amount;
+                    cart.TotalPrice += item.Price * amount;
+                    return cart;
 
                 }
             }
-            throw new BO.NotExistException("the product is not exist in cart");
+            else
+            {
+                DO.Product product = dalEntity.Product.ReadSingle(productID);
+                if (product.inStock - amount >= 0)
+                {
+                    item.Amount = amount;
+                    cart.TotalPrice -= item.TotalPrice;
+                    item.TotalPrice = item.Price * amount;
+                    cart.TotalPrice += item.TotalPrice;
+                    return cart;
+                }
+                else throw new BO.NotInStock();
+            }
+
 
         }
         /// <summary>
@@ -163,60 +162,67 @@ namespace BlImplementation
         /// <exception cref="BO.AlreadyExistsException"></exception>
         /// <exception cref="BO.NotDataException"></exception>
         /// <exception cref="BO.NotExistException"></exception>
-        public void OrderConfirmation(BO.Cart cart, string name, string email, string address)
-        {
-            try
+        /// 
+        ///     public void MakeAnOrder(BO.Cart c, string name, string email, string address)
+       
+        
+
+            public void OrderConfirmation(BO.Cart cart, string name, string email, string address)
             {
-                if (name == "") throw new BO.NotValidException("the name isnt valid");
-                if (email == "") throw new BO.NotValidException("the email isnt valid");
-                if (address == "") throw new BO.NotValidException("the address isnt valid");
-                var Email = new EmailAddressAttribute();
-                if (!Email.IsValid(email) || email == "") throw new BO.NotValidException("the email isnt valid");
-                DO.Product p = new DO.Product();
-                DO.Order newOrder = new();
-                newOrder.OrderDate = DateTime.Now;
-                newOrder.DeliveryDate = DateTime.MinValue;
-                newOrder.ShipDate = DateTime.MinValue;
-                newOrder.CustomerAddress = address;
-                newOrder.CustomerName = name;
-                newOrder.CustomerEmail = email;
-                var id = dalEntity.Order.Add(newOrder);
-                    foreach (var i in cart.items)
-                    {
-                        DO.OrderItem orderItem = new();
-                        orderItem.OrderID = id;
-                        orderItem.Price = i.Price;
-                        orderItem.ProductID = i.ProductID;
-                        orderItem.Amount = i.Amount;
-                        dalEntity.OrderItem.Create(orderItem);                        
-                    }
-                foreach (var item in cart.items)
+                try
                 {
-                    List<DO.Product> products = dalEntity.Product.Read().ToList();
-                    p = products.Find(x => x.ID == item.ProductID);
-                    if (p.inStock < item.Amount) throw new BO.NotValidException("Not enough of this product in stock");
-                    if (item.Amount < 0) throw new BO.NotValidException("the amount isnt valid");
-                    p.inStock -= item.Amount;
-                    dalEntity.Product.Update(p);
+                    if (name == "") throw new BO.NotValidException("the name isnt valid");
+                    if (email == "") throw new BO.NotValidException("the email isnt valid");
+                    if (address == "") throw new BO.NotValidException("the address isnt valid");
+                    var Email = new EmailAddressAttribute();
+                    if (!Email.IsValid(email) || email == "") throw new BO.NotValidException("the email isnt valid");
+                    if (cart?.items?.Count() <= 0) throw new Exception("there are not order items that be ordered");
+                    DO.Product p = new DO.Product();
+                    DO.Order newOrder = new();
+                    newOrder.OrderDate = DateTime.Now;
+                    newOrder.DeliveryDate = DateTime.MinValue;
+                    newOrder.ShipDate = DateTime.MinValue;
+                    newOrder.CustomerAddress = address;
+                    newOrder.CustomerName = name;
+                    newOrder.CustomerEmail = email;
+
+                    var id = dalEntity.Order.Add(newOrder);
+                    var amount = from BO.OrderItem oi in cart.items
+                                 let a = oi.Amount
+                                 where a > dalEntity.Product.ReadSingle(oi.ProductID).inStock
+                                 select oi;
+                    if (amount.Count() > 0)
+                        throw new BO.NotValidException("Not enough of this product in stock");
+
+                    List<DO.OrderItem> listItems = (from i in cart.items
+                                                    select new DO.OrderItem { Amount = i.Amount, ID = i.ID, OrderID = id, Price = i.Price, ProductID = i.ProductID }).ToList();
+                    listItems.Select(item =>
+                    {
+                        if (item.Amount < 0) throw new BO.NotValidException("the amount isnt valid");
+                        dalEntity.OrderItem.Create(item);
+                        DO.Product ptoupdate = dalEntity.Product.ReadSingle(item.ProductID);
+                        ptoupdate.inStock = ptoupdate.inStock - item.Amount;
+                        dalEntity.Product.Update(ptoupdate);
+                        return listItems;
+                    }).ToList();
                 }
-            }
-            catch(StackOverFlowException exc)
-            {
-                throw new BO.OverflowException(exc);
-            }
-            catch (AlreadyExistsException exc)
-            {
-                throw new BO.AlreadyExistsException(exc);
-            }
-            catch(DataIsEmpty exc)
-            {
-                throw new BO.NotDataException(exc);
-            }
-            catch(NotFoundException exc)
-            {
-                throw new BO.NotExistException(exc);
+                catch (StackOverFlowException exc)
+                {
+                    throw new BO.OverflowException(exc);
+                }
+                catch (AlreadyExistsException exc)
+                {
+                    throw new BO.AlreadyExistsException(exc);
+                }
+                catch (DataIsEmpty exc)
+                {
+                    throw new BO.NotDataException(exc);
+                }
+                catch (NotFoundException exc)
+                {
+                    throw new BO.NotExistException(exc);
+                }
             }
         }
     }
-}
 
