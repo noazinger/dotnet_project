@@ -8,54 +8,127 @@ namespace BlImplementation
     internal class BlOrder : IOrder
     {
         DalApi.IDal? dalEntity = DalApi.Factory.Get();
-        /// <summary>
-        /// the function requesting the orders list
-        /// and Build an order list of the OrderForList
-        /// </summary>
-        /// <returns> return list of all the orders</returns>
-        /// <exception cref="BO.NotDataException"> if the orders return null</exception>
-        public IEnumerable<BO.OrderForList> ReadOrders()
+
+        private DO.Order convertBOtoDOFunc(BO.Order bOrder)
+        {
+            object obDo=new DO.Order();
+            obDo.GetType().GetProperties().Select(p =>
+            {
+                p.SetValue(obDo, bOrder.GetType().GetProperty(p.Name)?.GetValue(bOrder));
+                return p;
+            }).ToList();
+            return (DO.Order)obDo;        
+        }
+
+        private BO.Order convertDOtoBOFunc(DO.Order dOrder)
+        {
+            BO.Order b_order = new();
+            b_order.GetType().GetProperties().Where(prop => (prop.Name != "Status" && prop.Name != "Items" && prop.Name != "TotalPrice")).Select(prop =>
+            {
+                prop.SetValue(b_order, dOrder.GetType().GetProperty(prop.Name)?.GetValue(dOrder));
+                return prop;
+            }).ToList();
+            (List<BO.OrderItem> ls, double totalPrice) = getItemsf(id);
+            b_order.Items = ls;
+            b_order.TotalPrice = totalPrice;
+            if (b_order.ShipDate <= DateTime.Now)
+                b_order.Status = BO.Enums.eOrderStatus.shipped;
+            else
+                b_order.Status = BO.Enums.eOrderStatus.ordered;
+            if (b_order.DeliveryDate <= DateTime.Now)
+                b_order.Status = BO.Enums.eOrderStatus.received;
+            return (BO.Order)b_order;
+        }
+
+        public (List<BO.OrderItem>, double) convertingDOProductToBOProductForList(List<DO.OrderItem> orderItems)
+        {
+
+            List<BO.OrderItem> b_orderItems =
+                orderItems.Select(oi => new BO.OrderItem
+                {
+                    ID = oi.OrderItemID,
+                    Name = Dal.Product.GetSingle(p => p.ID == oi.ProductID).Name,
+                    ProductID = oi.ProductID,
+                    Price = oi.Price,
+                    Amount = oi.Amount,
+                    TotalPrice = oi.Amount * oi.Price,
+                }).ToList();
+            double totalPrice = 0;
+            b_orderItems.Sum(oi => totalPrice += oi.TotalPrice);
+            return (b_orderItems.ToList(), totalPrice);
+        }
+        (List<BO.OrderItem>, double) getItemsfunc(int id)
+        {
+            List<DO.OrderItem> orderItem = dalEntity.OrderItem.Read(ord => ord.OrderID == id).ToList();
+            List<BO.OrderItem> items = new();
+            return convertDOtoBOFunc()
+            return castingDOProdukctToBOProductForList(orderItems);
+            /// <summary>
+            /// the function requesting the orders list
+            /// and Build an order list of the OrderForList
+            /// </summary>
+            /// <returns> return list of all the orders</returns>
+            /// <exception cref="BO.NotDataException"> if the orders return null</exception>
+            public IEnumerable<BO.OrderForList> ReadOrders()
         {
             List<BO.OrderForList> OrdersList = new List<BO.OrderForList>();
             try
             {
                 List<DO.Order> orders = dalEntity.Order.Read().ToList();
-                foreach (var item in orders)
-                {
-                    BO.OrderForList order = new();
-                    order.ID = item.ID;
-                    order.CustomerName = item.CustomerName;
-                    if (item.OrderDate <= DateTime.Now && item.ShipDate <= DateTime.Now)
+                var ordersList =
+                    from order in orders
+                    let boOrder = dalEntity.OrderItem.Read(ord => ord.OrderID == order.ID).ToList()
+                    select new BO.OrderForList()
                     {
-                        order.Status = (BO.OrderStatus)1;
-                    }
-                    else if (item.ShipDate <= DateTime.Now && item.DeliveryDate <= DateTime.Now)
-                    {
-                        order.Status = (BO.OrderStatus)2;
-                    }
-                    else
-                    {
-                        order.Status = (BO.OrderStatus)3;
-                    }
-                    int amount = 0;
-                    double totalPrice = 0;
-                    List<DO.OrderItem> items = dalEntity.OrderItem.ReadByOrderId(item.ID).ToList();
-                    foreach (var itemIn in items)
-                    {
-                        amount += itemIn.Amount;
-                        totalPrice += itemIn.Price * itemIn.Amount;
-                    }
-                    order.AmountOfItems = amount;
-                    order.TotalPrice = totalPrice;
-                    OrdersList.Add(order);
-
-                }
+                        ID = order.ID,
+                        CustomerName = order.CustomerName,
+                        AmountOfItems = boOrder == null ? 0 : boOrder.Count,
+                        TotalPrice = boOrder == null ? 0 : boOrder.Sum(ord => ord.Price * ord.Amount),
+                        Status = (order.DeliveryDate < DateTime.Now) ? BO.OrderStatus.Delivered :
+                        (order.ShipDate < DateTime.Now) ? BO.OrderStatus.Shipped : BO.OrderStatus.Dispatched,
+                    };
+                return ordersList;
             }
-            catch (DataIsEmpty exc)
+            catch(DataIsEmpty exc)
             {
                 throw new BO.NotDataException(exc);
             }
-            return OrdersList;
+            //    foreach (var item in orders)
+            //    {
+            //        BO.OrderForList order = new();
+            //        order.ID = item.ID;
+            //        order.CustomerName = item.CustomerName;
+            //        if (item.OrderDate <= DateTime.Now && item.ShipDate <= DateTime.Now)
+            //        {
+            //            order.Status = (BO.OrderStatus)1;
+            //        }
+            //        else if (item.ShipDate <= DateTime.Now && item.DeliveryDate <= DateTime.Now)
+            //        {
+            //            order.Status = (BO.OrderStatus)2;
+            //        }
+            //        else
+            //        {
+            //            order.Status = (BO.OrderStatus)3;
+            //        }
+            //        int amount = 0;
+            //        double totalPrice = 0;
+            //        List<DO.OrderItem> items = dalEntity.OrderItem.ReadByOrderId(item.ID).ToList();
+            //        foreach (var itemIn in items)
+            //        {
+            //            amount += itemIn.Amount;
+            //            totalPrice += itemIn.Price * itemIn.Amount;
+            //        }
+            //        order.AmountOfItems = amount;
+            //        order.TotalPrice = totalPrice;
+            //        OrdersList.Add(order);
+
+            //    }
+            //}
+            //catch (DataIsEmpty exc)
+            //{
+            //    throw new BO.NotDataException(exc);
+            //}
+            //return OrdersList;
         }
 
         /// <summary>
@@ -73,55 +146,53 @@ namespace BlImplementation
             BO.Order order = new BO.Order();
             try
             {
-                if (id > 0)
-                {
-                    bool check=false;
-                    DO.Order singleOrder = dalEntity.Order.ReadSingle(id);
-                    order.ID = id;
-                    order.CustomerName = singleOrder.CustomerName;
-                    order.CustomerAddress = singleOrder.CustomerAddress;
-                    order.CustomerEmail = singleOrder.CustomerEmail;
-                    order.OrderDate = singleOrder.OrderDate;
-                    order.ShipDate = singleOrder.ShipDate;
-                    order.DeliveryDate = singleOrder.DeliveryDate;
-                    if (singleOrder.OrderDate <= DateTime.Now)
-                    {
-                        order.Status = (BO.OrderStatus)1;
-                        check = true;
-                    }
-                    else
-                        order.Status = (BO.OrderStatus)2;
-                    if(singleOrder.DeliveryDate <= DateTime.Now&&!check)
-                        order.Status = (BO.OrderStatus)3;
-                    order.PaymentDate = DateTime.Now;
-                }
-                double total = 0;
-                List<BO.OrderItem> itemInformation = new List<BO.OrderItem>();
-                foreach (var i in dalEntity.OrderItem.ReadByOrderId(id))
-                {
-                    BO.OrderItem item = new BO.OrderItem();
-                    item.ID = i.OrderID;
-                    item.Name = dalEntity.Product.ReadSingle(i.ProductID).Name;
-                    item.ProductID = i.ProductID;
-                    item.Price = i.Price;
-                    item.Amount = i.Amount;
-                    item.TotalPrice = item.Amount * item.Price;
-                    total += item.TotalPrice;
-                    itemInformation.Add(item);
-                }
-                order.Items = itemInformation;
-                order.TotalPrice = total;
-            }
-            catch (NotFoundException exc)
-            {
-                throw new BO.NotExistException(exc);
-            }
-            catch (DataIsEmpty exc)
-            {
-                throw new BO.NotDataException(exc);
-            }
-
-            return order;
+                if (id < 0) throw new BO.NotValidException("ID is negative number");
+                DO.Order dOrder = dalEntity.Order.ReadSingle(id);
+                return convertBOtoDOFunc(dOrder, id);
+            //    if (id > 0)
+            //    {
+            //        DO.Order singleOrder = dalEntity.Order.ReadSingle(id);
+            //        order.ID = id;
+            //        order.CustomerName = singleOrder.CustomerName;
+            //        order.CustomerAddress = singleOrder.CustomerAddress;
+            //        order.CustomerEmail = singleOrder.CustomerEmail;
+            //        order.OrderDate = singleOrder.OrderDate;
+            //        order.ShipDate = singleOrder.ShipDate;
+            //        order.DeliveryDate = singleOrder.DeliveryDate;
+            //        if (singleOrder.OrderDate <= DateTime.Now)
+            //            order.Status = (BO.OrderStatus)1;
+            //        else
+            //            order.Status = (BO.OrderStatus)2;
+            //        if(singleOrder.DeliveryDate <= DateTime.Now)
+            //            order.Status = (BO.OrderStatus)3;
+            //        order.PaymentDate = DateTime.Now;
+            //    }
+            //    double total = 0;
+            //    List<BO.OrderItem> itemInformation = new List<BO.OrderItem>();
+            //    foreach (var i in dalEntity.OrderItem.ReadByOrderId(id))
+            //    {
+            //        BO.OrderItem item = new BO.OrderItem();
+            //        item.ID = i.OrderID;
+            //        item.Name = dalEntity.Product.ReadSingle(i.ProductID).Name;
+            //        item.ProductID = i.ProductID;
+            //        item.Price = i.Price;
+            //        item.Amount = i.Amount;
+            //        item.TotalPrice = item.Amount * item.Price;
+            //        total += item.TotalPrice;
+            //        itemInformation.Add(item);
+            //    }
+            //    order.Items = itemInformation;
+            //    order.TotalPrice = total;
+            //}
+            //catch (NotFoundException exc)
+            //{
+            //    throw new BO.NotExistException(exc);
+            //}
+            //catch (DataIsEmpty exc)
+            //{
+            //    throw new BO.NotDataException(exc);
+            //}
+            //return order;
         }
         /// <summary>
         /// the function update the shipping date in the order
