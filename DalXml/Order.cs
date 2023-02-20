@@ -19,7 +19,7 @@ internal class Order : IOrder
         XElement? order1 = new XElement("order",
         new XElement("ID", orderId1?.Value),
         new XElement("CustomerName", or.CustomerName),
-        new XElement("CustomerAdress", or.CustomerAddress),
+        new XElement("CustomerAddress", or.CustomerAddress),
         new XElement("CustomerEmail", or.CustomerEmail),
         new XElement("OrderDate", or.OrderDate),
         new XElement("ShipDate", or.ShipDate),
@@ -50,8 +50,8 @@ internal class Order : IOrder
    public void Update(DO.Order item)
     {
         XElement? orderElement = XDocument.Load("..\\xml\\Order.xml").Root;
-        XElement? order= orderElement?.Elements("Order")
-            .Where(e => e.Element("ID")?.Value == item.ID.ToString()).FirstOrDefault()??throw new Exception();
+        XElement? order= orderElement?.Elements("order")
+                .Where(e => e.Element("ID")?.Value == item.ID.ToString()).FirstOrDefault()??throw new Exception();
         order.Element("CustomerName").Value = item.CustomerName;
         //order?.Attribute("CustomerName")?.SetValue(item.CustomerName); // למה לא לעשות ככה?
         order.Element("CustomerEmail").Value = item.CustomerEmail;

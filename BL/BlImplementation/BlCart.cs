@@ -216,8 +216,6 @@ namespace BlImplementation
             {
                 throw new BO.NotExistException(exc);
             }
-
-        
         }
     }
 }

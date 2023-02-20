@@ -3,10 +3,19 @@
   <order>
     <ID>100010</ID>
     <CustomerName>tova</CustomerName>
-    <CustomerAdress>revivim</CustomerAdress>
+    <CustomerAddress>revivim</CustomerAddress>
     <CustomerEmail>t@gmail.com</CustomerEmail>
-    <OrderDate>2023-02-19T21:54:19.9193021+02:00</OrderDate>
-    <ShipDate>0001-01-01T00:00:00</ShipDate>
-    <DeliveryDate>0001-01-01T00:00:00</DeliveryDate>
+    <OrderDate>19/02/2023 21:54:19</OrderDate>
+    <ShipDate>20/02/2023 10:24:00</ShipDate>
+    <DeliveryDate>20/02/2023 10:19:09</DeliveryDate>
+  </order>
+  <order>
+    <ID>100011</ID>
+    <CustomerName>noa</CustomerName>
+    <CustomerAddress>kutcher</CustomerAddress>
+    <CustomerEmail>noa@gmail.com</CustomerEmail>
+    <OrderDate>20/02/2023 10:46:52</OrderDate>
+    <ShipDate>20/02/2023 10:54:50</ShipDate>
+    <DeliveryDate>01/01/0001 00:00:00</DeliveryDate>
   </order>
 </Orders>

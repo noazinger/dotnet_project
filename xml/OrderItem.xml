@@ -140,4 +140,18 @@
     <Price>650</Price>
     <Amount>1</Amount>
   </OrderItem>
+  <OrderItem>
+    <ID>100020</ID>
+    <ProductID>100012</ProductID>
+    <OrderID>100011</OrderID>
+    <Price>80</Price>
+    <Amount>1</Amount>
+  </OrderItem>
+  <OrderItem>
+    <ID>100021</ID>
+    <ProductID>100015</ProductID>
+    <OrderID>100011</OrderID>
+    <Price>150</Price>
+    <Amount>1</Amount>
+  </OrderItem>
 </OrderItems>

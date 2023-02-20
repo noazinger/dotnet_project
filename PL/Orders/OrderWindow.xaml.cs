@@ -70,7 +70,6 @@ namespace PL.Orders
         {
             bl.Order.UpdateShipping(id);
         }
-
         private void btn_update_delivery(object sender, RoutedEventArgs e)
         {
             bl.Order.UpdateDelivery(id);

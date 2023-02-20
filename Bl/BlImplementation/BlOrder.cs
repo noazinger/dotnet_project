@@ -75,6 +75,7 @@ namespace BlImplementation
             {
                 if (id > 0)
                 {
+                    bool check=false;
                     DO.Order singleOrder = dalEntity.Order.ReadSingle(id);
                     order.ID = id;
                     order.CustomerName = singleOrder.CustomerName;
@@ -83,20 +84,16 @@ namespace BlImplementation
                     order.OrderDate = singleOrder.OrderDate;
                     order.ShipDate = singleOrder.ShipDate;
                     order.DeliveryDate = singleOrder.DeliveryDate;
-                    if (singleOrder.OrderDate <= DateTime.Now && singleOrder.ShipDate <= DateTime.Now)
+                    if (singleOrder.OrderDate <= DateTime.Now)
                     {
                         order.Status = (BO.OrderStatus)1;
-                    }
-                    else if (singleOrder.ShipDate <= DateTime.Now && singleOrder.DeliveryDate <= DateTime.Now)
-                    {
-                        order.Status = (BO.OrderStatus)2;
+                        check = true;
                     }
                     else
-                    {
+                        order.Status = (BO.OrderStatus)2;
+                    if(singleOrder.DeliveryDate <= DateTime.Now&&!check)
                         order.Status = (BO.OrderStatus)3;
-                    }
                     order.PaymentDate = DateTime.Now;
-                    
                 }
                 double total = 0;
                 List<BO.OrderItem> itemInformation = new List<BO.OrderItem>();
