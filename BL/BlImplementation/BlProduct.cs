@@ -13,19 +13,20 @@ namespace BlImplementation
         DalApi.IDal? dalEntity = DalApi.Factory.Get();
         public IEnumerable<BO.ProductForList> ReadListProducts()
         {
-            List<BO.ProductForList> products = new List<BO.ProductForList>();
             try
             {
-                foreach (DO.Product item in dalEntity.Product.Read())
-                {
-                    BO.ProductForList product = new BO.ProductForList();
-                    product.ID = item.ID;
-                    product.Name = item.Name;
-                    product.Price = item.Price;
-                    product.catagory = (BO.catagory)item.catagory;
-                    products.Add(product);
-                }
-                return products;
+                List<DO.Product> products = dalEntity.Product.Read().ToList();
+                var productsList =
+                    from pr in products
+                    select new BO.ProductForList
+                    {
+                        ID = pr.ID,
+                        Name = pr.Name,
+                        Price = pr.Price,
+                        catagory = (BO.catagory)pr.catagory
+                    };
+                   
+                return productsList;
             }
             catch (DataIsEmpty exc)
             {
@@ -34,46 +35,46 @@ namespace BlImplementation
         }
         public IEnumerable<BO.ProductItem> ReadCatalog()
         {
-            List<BO.ProductItem> products = new List<BO.ProductItem>();
             try
             {
-                foreach (DO.Product item in dalEntity.Product.Read())
-                {
-                    BO.ProductItem product = new BO.ProductItem();
-                    product.ID = item.ID;
-                    product.Name = item.Name;
-                    product.Price = item.Price;
-                    product.catagory = (BO.catagory)item.catagory;
-                    product.Amount = item.inStock;
-                    product.InStock = item.inStock > 0 ? true : false;
-                    products.Add(product);
-                }
-                return products;
+                List<DO.Product> products = dalEntity.Product.Read().ToList();
+                var productsItem =
+                    from pr in products
+                    select new BO.ProductItem
+                    {
+                        ID = pr.ID,
+                        Name = pr.Name,
+                        Price = pr.Price,
+                        catagory = (BO.catagory)pr.catagory,
+                        Amount = pr.inStock,
+                        InStock = pr.inStock > 0 ? true : false
+                    };
+
+                return productsItem;
             }
             catch (DataIsEmpty exc)
             {
                 throw new BO.NotDataException(exc);
             }
+
         }
+        
         public IEnumerable<BO.ProductItem> ReadProductByCategoty(BO.catagory category)
         {
             try
             {
                 IEnumerable<DO.Product> lst = dalEntity.Product.Read(p => p.catagory == (DO.catagory)category);
-                List<BO.ProductItem> productsForList = new List<BO.ProductItem>();
-                foreach (DO.Product DoProduct in lst)
-                {
-                    BO.ProductItem ProductForList = new BO.ProductItem();
-                    ProductForList.ID = DoProduct.ID;
-                    ProductForList.Amount = DoProduct.inStock;
-                    ProductForList.Name = DoProduct.Name;
-                    ProductForList.Price = DoProduct.Price;
-                    ProductForList.catagory = (BO.catagory)DoProduct.catagory;
-                    if(ProductForList.catagory == category) productsForList.Add(ProductForList);
-                    if (DoProduct.inStock > 0) ProductForList.InStock = true;
-                    else ProductForList.InStock = false;
-                }
-                return productsForList;
+                List<BO.ProductItem> productCatagory = (from pc in lst
+                                      select new BO.ProductItem
+                                      {
+                                          ID = pc.ID,
+                                          Name = pc.Name,
+                                          Price = pc.Price,
+                                          catagory = (BO.catagory)pc.catagory,
+                                          Amount = pc.inStock,
+                                          InStock = pc.inStock > 0 ? true : false
+                                      }).ToList();
+                return productCatagory;
             }
             catch (DataIsEmpty exc)
             {
