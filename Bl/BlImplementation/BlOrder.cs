@@ -20,42 +20,60 @@ namespace BlImplementation
             try
             {
                 List<DO.Order> orders = dalEntity.Order.Read().ToList();
-                foreach (var item in orders)
-                {
-                    BO.OrderForList order = new();
-                    order.ID = item.ID;
-                    order.CustomerName = item.CustomerName;
-                    if (item.OrderDate <= DateTime.Now && item.ShipDate <= DateTime.Now)
+                var ordersList =
+                    from order in orders
+                    let boOrder = dalEntity.OrderItem.Read(ord => ord.OrderID == order.ID).ToList()
+                    select new BO.OrderForList()
                     {
-                        order.Status = (BO.OrderStatus)1;
-                    }
-                    else if (item.ShipDate <= DateTime.Now && item.DeliveryDate <= DateTime.Now)
-                    {
-                        order.Status = (BO.OrderStatus)2;
-                    }
-                    else
-                    {
-                        order.Status = (BO.OrderStatus)3;
-                    }
-                    int amount = 0;
-                    double totalPrice = 0;
-                    List<DO.OrderItem> items = dalEntity.OrderItem.ReadByOrderId(item.ID).ToList();
-                    foreach (var itemIn in items)
-                    {
-                        amount += itemIn.Amount;
-                        totalPrice += itemIn.Price * itemIn.Amount;
-                    }
-                    order.AmountOfItems = amount;
-                    order.TotalPrice = totalPrice;
-                    OrdersList.Add(order);
-
-                }
+                        ID = order.ID,
+                        CustomerName = order.CustomerName,
+                        AmountOfItems = boOrder == null ? 0 : boOrder.Count,
+                        TotalPrice = boOrder == null ? 0 : boOrder.Sum(ord => ord.Price * ord.Amount),
+                        Status = (order.DeliveryDate < DateTime.Now) ? BO.OrderStatus.Delivered :
+                        (order.ShipDate < DateTime.Now) ? BO.OrderStatus.Shipped : BO.OrderStatus.Dispatched,
+                    };
+                return ordersList;
             }
-            catch (DataIsEmpty exc)
+            catch(DataIsEmpty exc)
             {
                 throw new BO.NotDataException(exc);
             }
-            return OrdersList;
+            //    foreach (var item in orders)
+            //    {
+            //        BO.OrderForList order = new();
+            //        order.ID = item.ID;
+            //        order.CustomerName = item.CustomerName;
+            //        if (item.OrderDate <= DateTime.Now && item.ShipDate <= DateTime.Now)
+            //        {
+            //            order.Status = (BO.OrderStatus)1;
+            //        }
+            //        else if (item.ShipDate <= DateTime.Now && item.DeliveryDate <= DateTime.Now)
+            //        {
+            //            order.Status = (BO.OrderStatus)2;
+            //        }
+            //        else
+            //        {
+            //            order.Status = (BO.OrderStatus)3;
+            //        }
+            //        int amount = 0;
+            //        double totalPrice = 0;
+            //        List<DO.OrderItem> items = dalEntity.OrderItem.ReadByOrderId(item.ID).ToList();
+            //        foreach (var itemIn in items)
+            //        {
+            //            amount += itemIn.Amount;
+            //            totalPrice += itemIn.Price * itemIn.Amount;
+            //        }
+            //        order.AmountOfItems = amount;
+            //        order.TotalPrice = totalPrice;
+            //        OrdersList.Add(order);
+
+            //    }
+            //}
+            //catch (DataIsEmpty exc)
+            //{
+            //    throw new BO.NotDataException(exc);
+            //}
+            //return OrdersList;
         }
 
         /// <summary>
@@ -75,7 +93,6 @@ namespace BlImplementation
             {
                 if (id > 0)
                 {
-                    bool check=false;
                     DO.Order singleOrder = dalEntity.Order.ReadSingle(id);
                     order.ID = id;
                     order.CustomerName = singleOrder.CustomerName;
@@ -85,13 +102,10 @@ namespace BlImplementation
                     order.ShipDate = singleOrder.ShipDate;
                     order.DeliveryDate = singleOrder.DeliveryDate;
                     if (singleOrder.OrderDate <= DateTime.Now)
-                    {
                         order.Status = (BO.OrderStatus)1;
-                        check = true;
-                    }
                     else
                         order.Status = (BO.OrderStatus)2;
-                    if(singleOrder.DeliveryDate <= DateTime.Now&&!check)
+                    if(singleOrder.DeliveryDate <= DateTime.Now)
                         order.Status = (BO.OrderStatus)3;
                     order.PaymentDate = DateTime.Now;
                 }
