@@ -147,7 +147,7 @@ namespace BlImplementation
             tempProduct.inStock = product.InStock;
             try
             {
-                dalEntity.Product.Create(tempProduct);
+                dalEntity?.Product.Create(tempProduct);
 
             }
             catch (AlreadyExistsException exc)
@@ -158,7 +158,7 @@ namespace BlImplementation
         }
         public void Delete(int id)
         {
-            List<DO.OrderItem> orderItems = dalEntity.OrderItem.Read().ToList();
+            List<DO.OrderItem>? orderItems = dalEntity?.OrderItem?.Read().ToList();
             DO.OrderItem orderItem = orderItems.Find(order => order.ID == id);
             if (!orderItem.Equals(default(DO.OrderItem)))
             {
@@ -170,7 +170,7 @@ namespace BlImplementation
             }
             try
             {
-                dalEntity.Product.Delete(id);
+                dalEntity?.Product.Delete(id);
             }
             catch (NotFoundException exc)
             {
@@ -187,7 +187,7 @@ namespace BlImplementation
             tempProduct.ID = product.ID;
             tempProduct.Name = product.Name;
             tempProduct.Price = product.Price;
-            tempProduct.catagory = (DO.catagory)product.catagory;
+            tempProduct.catagory = (DO.catagory?)product.catagory;
             tempProduct.inStock = product.InStock;
             try
             {
