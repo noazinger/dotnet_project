@@ -60,8 +60,8 @@ namespace Dal
             xRoot.ElementName = "OrderItems";
             xRoot.IsNullable = true;
             StreamReader sr = new StreamReader(@"..\xml\OrderItem.xml");
-            XmlSerializer serializer = new XmlSerializer(typeof(List<DO.OrderItem>));
-            List<DO.OrderItem>? list = (List<DO.OrderItem>?)serializer.Deserialize(sr);
+            XmlSerializer serializer = new XmlSerializer(typeof(List<DO.OrderItem>),xRoot);
+            List<DO.OrderItem> list = (List<DO.OrderItem>)serializer.Deserialize(sr);
             sr.Close();
             return list;
         }
