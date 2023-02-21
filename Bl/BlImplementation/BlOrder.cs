@@ -1,6 +1,9 @@
 ﻿using BlApi;
+using BO;
 using DalApi;
+using DO;
 using System.Reflection;
+using System.Xml.Serialization;
 using IOrder = BlApi.IOrder;
 
 namespace BlImplementation
@@ -243,7 +246,7 @@ namespace BlImplementation
         /// <exception cref="BO.NotExistException"> if itsnt found the order by order Id</exception>
         public BO.Order UpdateDelivery(int orderNumber)
         {
-            try
+            try 
             {
                 DO.Order orderDo = dalEntity.Order.ReadSingle(orderNumber);
                 orderDo.DeliveryDate = DateTime.Now;
@@ -264,7 +267,31 @@ namespace BlImplementation
             }
         }
         public void Update(int orderNumber) { }
-
+        public int? SelectingOrderForTreatment()
+        {
+            List<BO.OrderForList> ?OrdersList = new List<BO.OrderForList>();
+            try
+            {
+                List<DO.Order> orders = dalEntity.Order.Read().ToList();
+                var ordersList =
+                    from order in orders
+                    where order.ShipDate == DateTime.MinValue && order.DeliveryDate == DateTime.MinValue
+                    orderby order.OrderDate
+                    select order;
+               return ordersList?.First().ID;
+                //    select new BO.OrderForList()
+                //    {
+                        
+                //        Status = (order.DeliveryDate < DateTime.Now) ? BO.OrderStatus.Delivered :
+                //        (order.ShipDate < DateTime.Now) ? BO.OrderStatus.Shipped : BO.OrderStatus.Dispatched,
+                //    };
+                //return ordersList;
+            }
+            catch (DataIsEmpty exc)
+            {
+                throw new BO.NotDataException(exc);
+            }
+        }
         public BO.OrderTracking OrderTrack(int id)
         {
             try
