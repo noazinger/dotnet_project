@@ -15,5 +15,6 @@ namespace BlApi
         public void Update(int orderNumber);
         public BO.OrderTracking OrderTrack(int id);
         public int? SelectingOrderForTreatment();
+        object UpdateShipping(int? orderId);
     }
 }

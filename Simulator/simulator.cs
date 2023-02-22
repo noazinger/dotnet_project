@@ -18,8 +18,7 @@ namespace Simulator
         public static void run()
         {
             new Thread(
-         () =>
-         {
+         () =>{
              while (bContinue)
              {
 
@@ -40,11 +39,12 @@ namespace Simulator
                      nextStatus = order.Status.ToString();
                  }
                  CurruntOrder cOrder = new(previousStatus, nextStatus, time);
-                 if (ProgressChange != null)
-                     ProgressChange(null, cOrder);
+                 if (newProcces != null)
+                     newProcces(null, cOrder);
                  Thread.Sleep(time * 1000);
+                 return;
              }
-         }
+        }
             ).Start();
         }
     }
@@ -53,10 +53,10 @@ namespace Simulator
         public string currentStatus;
         public string nextStatus;
         public int seconds;
-        public CurruntOrder(string currentSt,string nextSt, int sec)
+        public CurruntOrder(string currentSt, string nextSt, int sec)
         {
-            currentStatus= currentSt;
-            nextStatus= nextSt;
+            currentStatus = currentSt;
+            nextStatus = nextSt;
             seconds = sec;
         }
     }
