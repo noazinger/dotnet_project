@@ -319,5 +319,10 @@ namespace BlImplementation
                 throw new BO.NotExistException(err);
             }
         }
+
+        public object UpdateShipping(int? orderId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
