@@ -15,6 +15,7 @@ namespace PL
     /// </summary>
     public partial class Simulator : Window
     {
+
         public Simulator()
         {
                 InitializeComponent();
@@ -29,6 +30,12 @@ namespace PL
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
             
+            
+            
+        }
+        private void newOrderProsses(object sender, EventArgs e)
+        {
+           
         }
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
