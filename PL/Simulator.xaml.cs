@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Diagnostics;
 using System.Reflection;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -22,10 +23,14 @@ namespace PL
     /// </summary>
     public partial class Simulator : Window
     {
+        private Stopwatch stopwatch;
+        private bool IsTaimerRun;
+        DateTime timeOfStarting= DateTime.Now;
+        DateTime timeOfEnding= DateTime.Now;
         int second;
         DateTime dt = new DateTime();
         Tuple<string, string,DateTime, DateTime,int?,int> dc;
-
+        
         public Simulator()
         {
                 InitializeComponent();
@@ -70,6 +75,14 @@ namespace PL
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             object result = e.Result;
+        }
+        private void stopOrderProgress(object sender, EventArgs e)
+        {
+            stopwatch.Stop();
+            IsTaimerRun = false;
+            string message = "completed";
+            MessageBox.Show(message);
+            this.Close();
         }
     }
 }
