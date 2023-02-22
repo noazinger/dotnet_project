@@ -35,8 +35,8 @@ namespace Simulator
                      nextStatus = order.Status.ToString();
                  }
                  CurruntOrder cOrder = new(previousStatus, nextStatus, time);
-                 if (newProcces != null)
-                     newProcces(null, cOrder);
+                 if (newProsses != null)
+                     newProsses(null, cOrder);
                  Thread.Sleep(time * 1000);
                  return;
              }
