@@ -7,6 +7,23 @@
         mc:Ignorable="d"
         Title="Simulator" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Label Content="Old status" Grid.Row="0"></Label>
+        <Label x:Name="oldStatus" Content="{Binding Path=t[3]}" Grid.Column="0" Grid.Row="0" Margin="74,10,200,164"/>
+        <Label Content="Begin of treatment" Grid.Row="1"></Label>
+        <Label x:Name="BeginOfTreatment" Content="{Binding Path=t[3]}" Grid.Column="0" Grid.Row="1" Margin="74,10,200,164"/>
+        <Label Content="New Status" Grid.Row="2"></Label>
+        <Label x:Name="NewStatus" Content="{Binding Path=t[3]}" Grid.Column="0" Grid.Row="2" Margin="74,10,200,164"/>
+
+
     </Grid>
 </Window>
