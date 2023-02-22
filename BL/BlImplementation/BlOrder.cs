@@ -275,8 +275,8 @@ namespace BlImplementation
                 List<DO.Order> orders = dalEntity.Order.Read().ToList();
                 var ordersList =
                     from order in orders
-                    where order.ShipDate == DateTime.MinValue||order.DeliveryDate == DateTime.MinValue
-                    orderby (order.ShipDate - DateTime.Now)
+                    where order.ShipDate == DateTime.MinValue && order.DeliveryDate == DateTime.MinValue
+                    orderby order.OrderDate
                     select order;
                return ordersList?.First().ID;
                 //    select new BO.OrderForList()

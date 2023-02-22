@@ -66,5 +66,10 @@ namespace PL
             this.Hide();
         }
 
+        private void Simulator_Click(object sender, RoutedEventArgs e)
+        {
+            new Simulator().Show();
+
+        }
     }
 }

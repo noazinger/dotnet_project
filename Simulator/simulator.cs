@@ -6,7 +6,10 @@ namespace Simulator
     {
         static bool bContinue = true;
         private static readonly BlApi.IBl? bl = BlApi.Factory.Get();
-      
+        private static string previousStatus { get; set; }
+        private static string nextStatus { get; set; }
+        static Random random = new Random();
+        public static event EventHandler newProcces;
 
         public static void run()
         {
@@ -17,19 +20,24 @@ namespace Simulator
             while (bContinue)
             {
                 int? OrderId= bl?.Order.SelectingOrderForTreatment();
-                int time = 20;
                 if (OrderId == null) bContinue = false;
                 BO.Order? order = bl?.Order.ReadOrderInformation((int)OrderId);
+                 previousStatus = order.Status.ToString();
+                 nextStatus = order.Status.ToString();
+                 int time=random.Next(1000,5000);
                 Thread.Sleep(time * 1000);
-                if (order?.ShipDate == DateTime.MinValue)
+                if (previousStatus== "Dispatched")
                 {
-                     bl?.Order.UpdateShipping((int)OrderId);
+                     order=bl?.Order.UpdateShipping((int)OrderId);
+                     nextStatus = order.Status.ToString();
                 }
                 else if (order?.DeliveryDate == DateTime.MinValue)
                 {
-                    bl?.Order.UpdateDelivery((int)OrderId);
+                    order=bl?.Order.UpdateDelivery((int)OrderId);
+                    nextStatus = order.Status.ToString();
+
                 }
-            }
+             }
          }
             ).Start();
         }
