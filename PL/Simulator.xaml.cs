@@ -14,7 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using Simulator;
 namespace PL
 {
     /// <summary>
@@ -22,6 +22,9 @@ namespace PL
     /// </summary>
     public partial class Simulator : Window
     {
+        int second;
+        DateTime dt = new DateTime();
+        Tuple<string, string,DateTime, DateTime,int?,int> dc;
 
         public Simulator()
         {
@@ -33,16 +36,32 @@ namespace PL
                 worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
                 worker.WorkerReportsProgress = true;
                 worker.RunWorkerAsync();
+                worker.WorkerReportsProgress = true;
+                worker.WorkerSupportsCancellation = true;
+                
         }
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            
-            
-            
+            simulator.newProsses += newOrderProsses;
+            simulator.run();
+
+
         }
         private void newOrderProsses(object sender, EventArgs e)
         {
-           
+            if (!(e is CurruntOrder))
+                return;
+            dt = DateTime.Now;
+            CurruntOrder cOrder = e as CurruntOrder;
+            dc = new Tuple<string, string, DateTime, DateTime, int?, int>(cOrder.currentStatus, cOrder.nextStatus, dt, dt, cOrder.Id, cOrder.seconds);
+            if (!CheckAccess())
+            {
+                Dispatcher.BeginInvoke(newOrderProsses, sender, e);
+            }
+            else
+            {
+                DataContext = dc;
+            }
         }
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {

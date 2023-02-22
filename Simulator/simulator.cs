@@ -14,7 +14,8 @@ namespace Simulator
         public static void run()
         {
             new Thread(
-         () =>{
+         () =>
+         {
              while (bContinue)
              {
 
@@ -23,7 +24,7 @@ namespace Simulator
                  BO.Order? order = bl?.Order.ReadOrderInformation((int)OrderId);
                  previousStatus = order.Status.ToString();
                  nextStatus = order.Status.ToString();
-                 int time = random.Next(1000, 4000);
+                 int time = random.Next(1,6);
                  if (previousStatus == "Dispatched")
                  {
                      order = bl?.Order.UpdateShipping((int)OrderId);
@@ -34,13 +35,12 @@ namespace Simulator
                      order = bl?.Order.UpdateDelivery((int)OrderId);
                      nextStatus = order.Status.ToString();
                  }
-                 CurruntOrder cOrder = new(previousStatus, nextStatus, time);
+                 CurruntOrder cOrder = new(previousStatus, nextStatus, time, OrderId);
+                 Thread.Sleep(time * 1000);
                  if (newProsses != null)
                      newProsses(null, cOrder);
-                 Thread.Sleep(time * 1000);
-                 return;
              }
-        }
+         }
             ).Start();
         }
     }
@@ -49,11 +49,15 @@ namespace Simulator
         public string currentStatus;
         public string nextStatus;
         public int seconds;
-        public CurruntOrder(string currentSt, string nextSt, int sec)
+        public int? Id;
+
+
+        public CurruntOrder(string currentSt, string nextSt, int sec, int? id)
         {
             currentStatus = currentSt;
             nextStatus = nextSt;
             seconds = sec;
+            Id = id;
         }
     }
 }

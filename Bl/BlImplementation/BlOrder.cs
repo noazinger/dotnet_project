@@ -34,11 +34,11 @@ namespace BlImplementation
             (List<BO.OrderItem> ls, double totalPrice) = getItemsfunc(id);
             b_order.Items = ls;
             b_order.TotalPrice = totalPrice;
-            if (b_order.ShipDate <= DateTime.Now)
+            if (b_order.ShipDate==DateTime.MinValue)
                 b_order.Status = BO.OrderStatus.Dispatched;
-            else
+            else if(b_order.DeliveryDate== DateTime.MinValue)
                 b_order.Status = BO.OrderStatus.Shipped;
-            if (b_order.DeliveryDate <= DateTime.Now)
+            else 
                 b_order.Status = BO.OrderStatus.Delivered;
             return (BO.Order)b_order;
         }
@@ -87,8 +87,8 @@ namespace BlImplementation
                         CustomerName = order.CustomerName,
                         AmountOfItems = boOrder == null ? 0 : boOrder.Count,
                         TotalPrice = boOrder == null ? 0 : boOrder.Sum(ord => ord.Price * ord.Amount),
-                        Status = (order.DeliveryDate < DateTime.Now) ? BO.OrderStatus.Delivered :
-                        (order.ShipDate < DateTime.Now) ? BO.OrderStatus.Shipped : BO.OrderStatus.Dispatched,
+                        Status = (order.ShipDate == DateTime.MinValue) ? BO.OrderStatus.Dispatched :
+                        (order.DeliveryDate == DateTime.MinValue) ? BO.OrderStatus.Shipped : BO.OrderStatus.Delivered,
                     };
                 return ordersList;
             }
@@ -228,6 +228,12 @@ namespace BlImplementation
                 orderBo.ShipDate = orderDo.ShipDate;
                 orderBo.OrderDate = orderDo.OrderDate;
                 orderBo.DeliveryDate = orderDo.DeliveryDate;
+                if (orderBo.ShipDate == DateTime.MinValue)
+                    orderBo.Status = BO.OrderStatus.Dispatched;
+                else if (orderBo.DeliveryDate == DateTime.MinValue)
+                    orderBo.Status = BO.OrderStatus.Shipped;
+                else
+                    orderBo.Status = BO.OrderStatus.Delivered;
                 return orderBo;
             }
             catch (NotFoundException err)
@@ -256,9 +262,16 @@ namespace BlImplementation
                 orderBo.CustomerName = orderDo.CustomerName;
                 orderBo.CustomerEmail = orderDo.CustomerEmail;
                 orderBo.ID = orderDo.ID;
+                
                 orderBo.ShipDate = orderDo.ShipDate;
                 orderBo.OrderDate = orderDo.OrderDate;
                 orderBo.DeliveryDate = orderDo.DeliveryDate;
+                if (orderBo.ShipDate == DateTime.MinValue)
+                    orderBo.Status = BO.OrderStatus.Dispatched;
+                else if (orderBo.DeliveryDate == DateTime.MinValue)
+                    orderBo.Status = BO.OrderStatus.Shipped;
+                else
+                    orderBo.Status = BO.OrderStatus.Delivered;
                 return orderBo;
             }
             catch (NotFoundException err)
@@ -275,7 +288,7 @@ namespace BlImplementation
                 List<DO.Order> orders = dalEntity.Order.Read().ToList();
                 var ordersList =
                     from order in orders
-                    where order.ShipDate == DateTime.MinValue && order.DeliveryDate == DateTime.MinValue
+                    where order.ShipDate == DateTime.MinValue||order.DeliveryDate == DateTime.MinValue
                     orderby order.OrderDate
                     select order;
                return ordersList?.First().ID;

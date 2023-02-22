@@ -6,8 +6,8 @@
     <CustomerAddress>revivim</CustomerAddress>
     <CustomerEmail>t@gmail.com</CustomerEmail>
     <OrderDate>19/02/2023 21:54:19</OrderDate>
-    <ShipDate>20/02/2023 10:24:00</ShipDate>
-    <DeliveryDate>20/02/2023 10:19:09</DeliveryDate>
+    <ShipDate>22/02/2023 20:56:16</ShipDate>
+    <DeliveryDate>22/02/2023 20:59:28</DeliveryDate>
   </order>
   <order>
     <ID>100011</ID>
@@ -16,14 +16,95 @@
     <CustomerEmail>noa@gmail.com</CustomerEmail>
     <OrderDate>20/02/2023 10:46:52</OrderDate>
     <ShipDate>20/02/2023 10:54:50</ShipDate>
-    <DeliveryDate>01/01/0001 00:00:00</DeliveryDate>
+    <DeliveryDate>22/02/2023 20:59:48</DeliveryDate>
   </order>
   <order>
     <ID>100012</ID>
     <CustomerName>noa zinger</CustomerName>
     <CustomerAddress>minchat izachak 5</CustomerAddress>
     <CustomerEmail>nzinger@gmail.com</CustomerEmail>
-    <OrderDate>2023-02-20T12:22:24.8414909+02:00</OrderDate>
+    <OrderDate>20/02/2023 12:22:24</OrderDate>
+    <ShipDate>22/02/2023 20:59:57</ShipDate>
+    <DeliveryDate>22/02/2023 20:59:58</DeliveryDate>
+  </order>
+  <order>
+    <ID>100013</ID>
+    <CustomerName>fdg</CustomerName>
+    <CustomerAddress>fsg</CustomerAddress>
+    <CustomerEmail>g@g</CustomerEmail>
+    <OrderDate>22/02/2023 20:32:21</OrderDate>
+    <ShipDate>22/02/2023 21:00:02</ShipDate>
+    <DeliveryDate>22/02/2023 21:00:04</DeliveryDate>
+  </order>
+  <order>
+    <ID>100014</ID>
+    <CustomerName>e</CustomerName>
+    <CustomerAddress>e</CustomerAddress>
+    <CustomerEmail>e@g</CustomerEmail>
+    <OrderDate>22/02/2023 20:33:25</OrderDate>
+    <ShipDate>22/02/2023 21:00:06</ShipDate>
+    <DeliveryDate>22/02/2023 21:00:08</DeliveryDate>
+  </order>
+  <order>
+    <ID>100015</ID>
+    <CustomerName>g</CustomerName>
+    <CustomerAddress>g</CustomerAddress>
+    <CustomerEmail>g@g</CustomerEmail>
+    <OrderDate>22/02/2023 20:33:41</OrderDate>
+    <ShipDate>22/02/2023 21:00:14</ShipDate>
+    <DeliveryDate>22/02/2023 21:04:17</DeliveryDate>
+  </order>
+  <order>
+    <ID>100016</ID>
+    <CustomerName>r</CustomerName>
+    <CustomerAddress>r</CustomerAddress>
+    <CustomerEmail>r@g</CustomerEmail>
+    <OrderDate>22/02/2023 20:33:53</OrderDate>
+    <ShipDate>22/02/2023 21:13:04</ShipDate>
+    <DeliveryDate>22/02/2023 21:13:06</DeliveryDate>
+  </order>
+  <order>
+    <ID>100017</ID>
+    <CustomerName>r</CustomerName>
+    <CustomerAddress>r</CustomerAddress>
+    <CustomerEmail>r@g</CustomerEmail>
+    <OrderDate>22/02/2023 20:35:25</OrderDate>
+    <ShipDate>22/02/2023 21:13:11</ShipDate>
+    <DeliveryDate>22/02/2023 21:18:05</DeliveryDate>
+  </order>
+  <order>
+    <ID>100018</ID>
+    <CustomerName>dgfgsdfg</CustomerName>
+    <CustomerAddress>fdgd</CustomerAddress>
+    <CustomerEmail>d@d</CustomerEmail>
+    <OrderDate>22/02/2023 20:36:07</OrderDate>
+    <ShipDate>22/02/2023 21:18:06</ShipDate>
+    <DeliveryDate>01/01/0001 00:00:00</DeliveryDate>
+  </order>
+  <order>
+    <ID>100019</ID>
+    <CustomerName>k</CustomerName>
+    <CustomerAddress>kk</CustomerAddress>
+    <CustomerEmail>k@k</CustomerEmail>
+    <OrderDate>22/02/2023 20:40:46</OrderDate>
+    <ShipDate>0001-01-01T00:00:00</ShipDate>
+    <DeliveryDate>0001-01-01T00:00:00</DeliveryDate>
+  </order>
+  <order>
+    <ID>100020</ID>
+    <CustomerName>bbbbb</CustomerName>
+    <CustomerAddress>bbb</CustomerAddress>
+    <CustomerEmail>b@b</CustomerEmail>
+    <OrderDate>22/02/2023 21:03:20</OrderDate>
+    <ShipDate>0001-01-01T00:00:00</ShipDate>
+    <DeliveryDate>0001-01-01T00:00:00</DeliveryDate>
+  </order>
+  <order>
+    <ID>100021</ID>
+    <CustomerName>ytt</CustomerName>
+    <CustomerAddress>rtre</CustomerAddress>
+    <CustomerEmail>t@ed</CustomerEmail>
+    <OrderDate>2023-02-22T21:12:14.709122+02:00</OrderDate>
     <ShipDate>0001-01-01T00:00:00</ShipDate>
     <DeliveryDate>0001-01-01T00:00:00</DeliveryDate>
   </order>
