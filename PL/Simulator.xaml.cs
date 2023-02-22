@@ -14,8 +14,7 @@ namespace PL
         public Simulator()
         {
             InitializeComponent();
-            
-
+         
         }
     }
 }
