@@ -11,6 +11,7 @@ namespace PL
     /// </summary>
     public partial class Simulator : Window
     {
+
         public Simulator()
         {
             InitializeComponent();
