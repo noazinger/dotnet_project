@@ -18,12 +18,17 @@
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         <Label Content="Old status" Grid.Row="0"></Label>
-        <Label x:Name="oldStatus" Content="{Binding Path=t[3]}" Grid.Column="0" Grid.Row="0" Margin="74,10,200,164"/>
+        <Label x:Name="oldStatus" Content="{Binding Item1}" Grid.Column="0" Grid.Row="0" Margin="74,10,200,164"/>
         <Label Content="Begin of treatment" Grid.Row="1"></Label>
-        <Label x:Name="BeginOfTreatment" Content="{Binding Path=t[3]}" Grid.Column="0" Grid.Row="1" Margin="74,10,200,164"/>
+        <Label x:Name="BeginOfTreatment" Content="{Binding Item3}" Grid.Column="0" Grid.Row="1" Margin="74,10,200,50"/>
         <Label Content="New Status" Grid.Row="2"></Label>
-        <Label x:Name="NewStatus" Content="{Binding Path=t[3]}" Grid.Column="0" Grid.Row="2" Margin="74,10,200,164"/>
-
+        <Label x:Name="NewStatus" Content="{Binding Item2}" Grid.Column="0" Grid.Row="1" Margin="115,99,34,0" Grid.RowSpan="2"/>
+        <Label Content="End Of Treatment" Grid.Row="2" Grid.Column="0" Margin="10,80,290,-80"></Label>
+        <Label x:Name="EndOfTreatment" Content="{Binding Item4}" Grid.Column="0" Grid.Row="2" Margin="137,80,137,0" Height="45" VerticalAlignment="Top"/>
+        <Label x:Name="Second" Content="{Binding Item6}" Grid.Column="1" Grid.Row="2" Margin="97,80,81,-87"/>
+        <Label Content="Second" Grid.Row="2" Grid.Column="1" Margin="10,80,190,-80"></Label>
+        <Label x:Name="Id" Content="{Binding Item5}" Grid.Column="1" Grid.Row="2" Margin="87,30,54,-45"/>
+        <Label Content="id" Grid.Row="2" Grid.Column="1" Margin="10,37,190,-37"></Label>
 
     </Grid>
 </Window>
