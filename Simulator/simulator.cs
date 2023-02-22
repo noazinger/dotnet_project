@@ -4,16 +4,12 @@ namespace Simulator
 {
     public static class simulator
     {
-
-
-
-
         static bool bContinue = true;
         private static readonly BlApi.IBl? bl = BlApi.Factory.Get();
         private static string previousStatus { get; set; }
         private static string nextStatus { get; set; }
         static Random random = new Random();
-        public static event EventHandler newProcces;
+        public static event EventHandler newProsses;
         public static event EventHandler ProgressChange;
         public static void run()
         {
