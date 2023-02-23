@@ -68,7 +68,7 @@ namespace PL
 
         private void Simulator_Click(object sender, RoutedEventArgs e)
         {
-            new Simulator().Show();
+            new Simulator(bl).Show();
 
         }
     }

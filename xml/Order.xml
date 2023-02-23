@@ -51,8 +51,8 @@
     <CustomerAddress>g</CustomerAddress>
     <CustomerEmail>g@g</CustomerEmail>
     <OrderDate>22/02/2023 20:33:41</OrderDate>
-    <ShipDate>22/02/2023 21:00:14</ShipDate>
-    <DeliveryDate>22/02/2023 21:04:17</DeliveryDate>
+    <ShipDate>23/02/2023 22:11:25</ShipDate>
+    <DeliveryDate>23/02/2023 22:11:29</DeliveryDate>
   </order>
   <order>
     <ID>100016</ID>
@@ -60,8 +60,8 @@
     <CustomerAddress>r</CustomerAddress>
     <CustomerEmail>r@g</CustomerEmail>
     <OrderDate>22/02/2023 20:33:53</OrderDate>
-    <ShipDate>22/02/2023 21:13:04</ShipDate>
-    <DeliveryDate>22/02/2023 21:13:06</DeliveryDate>
+    <ShipDate>23/02/2023 22:11:34</ShipDate>
+    <DeliveryDate>23/02/2023 22:11:36</DeliveryDate>
   </order>
   <order>
     <ID>100017</ID>
@@ -69,8 +69,8 @@
     <CustomerAddress>r</CustomerAddress>
     <CustomerEmail>r@g</CustomerEmail>
     <OrderDate>22/02/2023 20:35:25</OrderDate>
-    <ShipDate>22/02/2023 21:13:11</ShipDate>
-    <DeliveryDate>22/02/2023 21:18:05</DeliveryDate>
+    <ShipDate>23/02/2023 22:13:54</ShipDate>
+    <DeliveryDate>23/02/2023 22:13:58</DeliveryDate>
   </order>
   <order>
     <ID>100018</ID>
@@ -78,8 +78,8 @@
     <CustomerAddress>fdgd</CustomerAddress>
     <CustomerEmail>d@d</CustomerEmail>
     <OrderDate>22/02/2023 20:36:07</OrderDate>
-    <ShipDate>22/02/2023 21:18:06</ShipDate>
-    <DeliveryDate>01/01/0001 00:00:00</DeliveryDate>
+    <ShipDate>23/02/2023 22:14:01</ShipDate>
+    <DeliveryDate>23/02/2023 22:14:06</DeliveryDate>
   </order>
   <order>
     <ID>100019</ID>
@@ -87,8 +87,8 @@
     <CustomerAddress>kk</CustomerAddress>
     <CustomerEmail>k@k</CustomerEmail>
     <OrderDate>22/02/2023 20:40:46</OrderDate>
-    <ShipDate>0001-01-01T00:00:00</ShipDate>
-    <DeliveryDate>0001-01-01T00:00:00</DeliveryDate>
+    <ShipDate>23/02/2023 22:40:24</ShipDate>
+    <DeliveryDate>23/02/2023 22:40:29</DeliveryDate>
   </order>
   <order>
     <ID>100020</ID>
@@ -104,7 +104,7 @@
     <CustomerName>ytt</CustomerName>
     <CustomerAddress>rtre</CustomerAddress>
     <CustomerEmail>t@ed</CustomerEmail>
-    <OrderDate>2023-02-22T21:12:14.709122+02:00</OrderDate>
+    <OrderDate>22/02/2023 21:12:14</OrderDate>
     <ShipDate>0001-01-01T00:00:00</ShipDate>
     <DeliveryDate>0001-01-01T00:00:00</DeliveryDate>
   </order>

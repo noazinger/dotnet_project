@@ -7,28 +7,38 @@
         mc:Ignorable="d"
         Title="Simulator" Height="450" Width="800">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400"/>
-            <ColumnDefinition Width="300"/>
-            <ColumnDefinition Width="100"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="200"/>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="30"/>
-        </Grid.RowDefinitions>
-        <Label Content="Old status" Grid.Row="0"></Label>
-        <Label x:Name="oldStatus" Content="{Binding Item1}" Grid.Column="0" Grid.Row="0" Margin="74,10,200,164"/>
-        <Label Content="Begin of treatment" Grid.Row="1"></Label>
-        <Label x:Name="BeginOfTreatment" Content="{Binding Item3}" Grid.Column="0" Grid.Row="1" Margin="74,10,200,50"/>
-        <Label Content="New Status" Grid.Row="2"></Label>
-        <Label x:Name="NewStatus" Content="{Binding Item2}" Grid.Column="0" Grid.Row="1" Margin="115,99,34,0" Grid.RowSpan="2"/>
-        <Label Content="End Of Treatment" Grid.Row="2" Grid.Column="0" Margin="10,80,290,-80"></Label>
-        <Label x:Name="EndOfTreatment" Content="{Binding Item4}" Grid.Column="0" Grid.Row="2" Margin="137,80,137,0" Height="45" VerticalAlignment="Top"/>
-        <Label x:Name="Second" Content="{Binding Item6}" Grid.Column="1" Grid.Row="2" Margin="97,80,81,-87"/>
-        <Label Content="Second" Grid.Row="2" Grid.Column="1" Margin="10,80,190,-80"></Label>
-        <Label x:Name="Id" Content="{Binding Item5}" Grid.Column="1" Grid.Row="2" Margin="87,30,54,-45"/>
-        <Label Content="id" Grid.Row="2" Grid.Column="1" Margin="10,37,190,-37"></Label>
-
+        <Button Content="Stop Simulation" Height="35" Margin="655,0,10,389" VerticalAlignment="Bottom" Width="135" Click="StopSimulatorBTN_Click"/>
+        <TextBlock x:Name="simulatorClock" Text="00:00:00" HorizontalAlignment="Left" Grid.Column="1" Height="80" Margin="10,0,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="230" FontSize="48" FontFamily="adam" FontWeight="Bold" Grid.RowSpan="2"/>
+        <Grid Margin="0,55,0,34">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="69*"/>
+                <ColumnDefinition Width="331*"/>
+                <ColumnDefinition Width="400*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="46*"/>
+                <RowDefinition Height="112*"/>
+                <RowDefinition Height="79*"/>
+                <RowDefinition Height="117*"/>
+                <RowDefinition Height="41*"/>
+            </Grid.RowDefinitions>
+            <Label Content="Old status" Grid.Row="1" Grid.Column="1" Margin="131,17,120,34"></Label>
+            <Label x:Name="oldStatus" Content="{Binding Item1}" Grid.Column="2" Grid.Row="1" Margin="10,22,228,57"/>
+            <Label Content="Begin of treatment" Grid.Row="1" Grid.Column="1" Margin="127,63,16,68" Grid.RowSpan="2"></Label>
+            <Label x:Name="BeginOfTreatment" Content="{Binding Item3}" Grid.Row="1" Grid.Column="2" Margin="31,54,207,10"/>
+            <Label Content="New Status" Grid.Row="2" Grid.Column="1" Margin="131,8,12,0" Height="33" VerticalAlignment="Top"/>
+            <Label x:Name="NewStatus" Content="{Binding Item2}" Grid.Column="2" Grid.Row="2" Margin="16,4,133,30"/>
+            <Label Content="End Of Treatment" Grid.Row="3" Margin="132,2,54,70" Grid.Column="1"/>
+            <Label x:Name="EndOfTreatment" Content="{Binding Item4}" Grid.Row="3" Margin="1,2,-1,63" Grid.Column="2" RenderTransformOrigin="0.5,0.5"/>
+            <Label x:Name="Second" Content="{Binding Item6}" Grid.Row="3" Grid.Column="2" Margin="16,31,127,34"/>
+            <Label Content="Second" Grid.Row="3" Grid.Column="1" Margin="132,31,199,34" Grid.ColumnSpan="2"></Label>
+            <Label x:Name="Id" Content="{Binding Item5}" Grid.Column="2" Grid.Row="3" Margin="51,58,90,9"/>
+            <Label Content="id" Grid.Row="3" Grid.Column="1" Margin="132,65,68,0"/>
+        </Grid>
+        <StatusBar Name="statusBar" Grid.Column="0" Grid.Row="5" VerticalAlignment="Bottom" Background="LightBlue">
+            <StatusBarItem Height="80">
+                <TextBlock Width="72" FontSize="20">Status:</TextBlock>
+            </StatusBarItem>
+        </StatusBar>
     </Grid>
 </Window>
