@@ -6,8 +6,8 @@
     <CustomerAddress>revivim</CustomerAddress>
     <CustomerEmail>t@gmail.com</CustomerEmail>
     <OrderDate>19/02/2023 21:54:19</OrderDate>
-    <ShipDate>22/02/2023 20:56:16</ShipDate>
-    <DeliveryDate>22/02/2023 20:59:28</DeliveryDate>
+    <ShipDate>24/02/2023 08:08:49</ShipDate>
+    <DeliveryDate>24/02/2023 08:08:54</DeliveryDate>
   </order>
   <order>
     <ID>100011</ID>
@@ -15,8 +15,8 @@
     <CustomerAddress>kutcher</CustomerAddress>
     <CustomerEmail>noa@gmail.com</CustomerEmail>
     <OrderDate>20/02/2023 10:46:52</OrderDate>
-    <ShipDate>20/02/2023 10:54:50</ShipDate>
-    <DeliveryDate>22/02/2023 20:59:48</DeliveryDate>
+    <ShipDate>24/02/2023 08:09:01</ShipDate>
+    <DeliveryDate>24/02/2023 09:51:39</DeliveryDate>
   </order>
   <order>
     <ID>100012</ID>
@@ -24,8 +24,8 @@
     <CustomerAddress>minchat izachak 5</CustomerAddress>
     <CustomerEmail>nzinger@gmail.com</CustomerEmail>
     <OrderDate>20/02/2023 12:22:24</OrderDate>
-    <ShipDate>22/02/2023 20:59:57</ShipDate>
-    <DeliveryDate>22/02/2023 20:59:58</DeliveryDate>
+    <ShipDate>24/02/2023 09:51:46</ShipDate>
+    <DeliveryDate>01/01/0001 00:00:00</DeliveryDate>
   </order>
   <order>
     <ID>100013</ID>
@@ -33,8 +33,8 @@
     <CustomerAddress>fsg</CustomerAddress>
     <CustomerEmail>g@g</CustomerEmail>
     <OrderDate>22/02/2023 20:32:21</OrderDate>
-    <ShipDate>22/02/2023 21:00:02</ShipDate>
-    <DeliveryDate>22/02/2023 21:00:04</DeliveryDate>
+    <ShipDate>0001-01-01T00:00:00</ShipDate>
+    <DeliveryDate>0001-01-01T00:00:00</DeliveryDate>
   </order>
   <order>
     <ID>100014</ID>
@@ -42,8 +42,8 @@
     <CustomerAddress>e</CustomerAddress>
     <CustomerEmail>e@g</CustomerEmail>
     <OrderDate>22/02/2023 20:33:25</OrderDate>
-    <ShipDate>22/02/2023 21:00:06</ShipDate>
-    <DeliveryDate>22/02/2023 21:00:08</DeliveryDate>
+    <ShipDate>0001-01-01T00:00:00</ShipDate>
+    <DeliveryDate>0001-01-01T00:00:00</DeliveryDate>
   </order>
   <order>
     <ID>100015</ID>
@@ -51,8 +51,8 @@
     <CustomerAddress>g</CustomerAddress>
     <CustomerEmail>g@g</CustomerEmail>
     <OrderDate>22/02/2023 20:33:41</OrderDate>
-    <ShipDate>23/02/2023 22:11:25</ShipDate>
-    <DeliveryDate>23/02/2023 22:11:29</DeliveryDate>
+    <ShipDate>0001-01-01T00:00:00</ShipDate>
+    <DeliveryDate>0001-01-01T00:00:00</DeliveryDate>
   </order>
   <order>
     <ID>100016</ID>
@@ -60,8 +60,8 @@
     <CustomerAddress>r</CustomerAddress>
     <CustomerEmail>r@g</CustomerEmail>
     <OrderDate>22/02/2023 20:33:53</OrderDate>
-    <ShipDate>23/02/2023 22:11:34</ShipDate>
-    <DeliveryDate>23/02/2023 22:11:36</DeliveryDate>
+    <ShipDate>0001-01-01T00:00:00</ShipDate>
+    <DeliveryDate>0001-01-01T00:00:00</DeliveryDate>
   </order>
   <order>
     <ID>100017</ID>
@@ -69,8 +69,8 @@
     <CustomerAddress>r</CustomerAddress>
     <CustomerEmail>r@g</CustomerEmail>
     <OrderDate>22/02/2023 20:35:25</OrderDate>
-    <ShipDate>23/02/2023 22:13:54</ShipDate>
-    <DeliveryDate>23/02/2023 22:13:58</DeliveryDate>
+    <ShipDate>0001-01-01T00:00:00</ShipDate>
+    <DeliveryDate>0001-01-01T00:00:00</DeliveryDate>
   </order>
   <order>
     <ID>100018</ID>
@@ -78,8 +78,8 @@
     <CustomerAddress>fdgd</CustomerAddress>
     <CustomerEmail>d@d</CustomerEmail>
     <OrderDate>22/02/2023 20:36:07</OrderDate>
-    <ShipDate>23/02/2023 22:14:01</ShipDate>
-    <DeliveryDate>23/02/2023 22:14:06</DeliveryDate>
+    <ShipDate>0001-01-01T00:00:00</ShipDate>
+    <DeliveryDate>0001-01-01T00:00:00</DeliveryDate>
   </order>
   <order>
     <ID>100019</ID>
@@ -87,8 +87,8 @@
     <CustomerAddress>kk</CustomerAddress>
     <CustomerEmail>k@k</CustomerEmail>
     <OrderDate>22/02/2023 20:40:46</OrderDate>
-    <ShipDate>23/02/2023 22:40:24</ShipDate>
-    <DeliveryDate>23/02/2023 22:40:29</DeliveryDate>
+    <ShipDate>0001-01-01T00:00:00</ShipDate>
+    <DeliveryDate>0001-01-01T00:00:00</DeliveryDate>
   </order>
   <order>
     <ID>100020</ID>

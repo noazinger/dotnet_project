@@ -18,35 +18,41 @@ namespace Simulator
         }
         public static void run()
         {
-            new Thread(
-         () =>
-         {
-             while (bContinue)
-             {
+            Thread thread = new Thread(new ThreadStart(ChooseOrder));
+            thread.Start();
+            return;
 
-                 int? OrderId = bl?.Order.SelectingOrderForTreatment();
-                 if (OrderId == null) bContinue = false;
-                 BO.Order? order = bl?.Order.ReadOrderInformation((int)OrderId);
-                 previousStatus = order.Status.ToString();
-                 nextStatus = order.Status.ToString();
-                 int time = random.Next(1,6);
-                 if (previousStatus == "Dispatched")
-                 {
-                     order = bl?.Order.UpdateShipping((int)OrderId);
-                     nextStatus = order.Status.ToString();
-                 }
-                 else if (order?.DeliveryDate == DateTime.MinValue)
-                 {
-                     order = bl?.Order.UpdateDelivery((int)OrderId);
-                     nextStatus = order.Status.ToString();
-                 }
-                 CurruntOrder cOrder = new(order,previousStatus, nextStatus, time, OrderId);
-                 Thread.Sleep(time * 1000);
-                 if (ProgressChange != null)
-                     ProgressChange(null, cOrder);
-             }
-         }
-            ).Start();
+        }
+        public static void ChooseOrder()
+        {
+
+            while (bContinue)
+            {
+                int? OrderId = bl?.Order.SelectingOrderForTreatment();
+                if (OrderId == null) DoStop(); //bContinue = false;
+                else
+                {
+                    BO.Order? order = bl?.Order.ReadOrderInformation((int)OrderId);
+                    previousStatus = order.Status.ToString();
+                    nextStatus = order.Status.ToString();
+                    int time = random.Next(1000, 6000);
+                    if (previousStatus == "Dispatched")
+                    {
+                        order = bl?.Order.UpdateShipping((int)OrderId);
+                        nextStatus = order.Status.ToString();
+                    }
+                    else if (order?.DeliveryDate == DateTime.MinValue)
+                    {
+                        order = bl?.Order.UpdateDelivery((int)OrderId);
+                        nextStatus = order.Status.ToString();
+                    }
+                    CurruntOrder cOrder = new(order, previousStatus, nextStatus, time, OrderId);
+                    if (ProgressChange != null)
+                        ProgressChange(null, cOrder);
+                    Thread.Sleep(time);
+                }
+            }
+            return;       
         }
     }
     public class CurruntOrder : EventArgs
