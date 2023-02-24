@@ -1,1 +1,66 @@
-<?xml version="1.0" encoding="utf-8"?><Products xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><Product><ID>10000</ID><Name>noab</Name><Price>100</Price><catagory>shirt</catagory><inStock>47</inStock></Product><Product><ID>10001</ID><Name>moa</Name><Price>1</Price><catagory>pants</catagory><inStock>0</inStock></Product><Product><ID>10000</ID><Name>re</Name><Price>8888</Price><catagory>pants</catagory><inStock>10</inStock></Product><Product><ID>100012</ID><Name>color tie</Name><Price>80</Price><catagory>tie</catagory><inStock>27</inStock></Product><Product><ID>100014</ID><Name>boys suit-black</Name><Price>600</Price><catagory>suit</catagory><inStock>15</inStock></Product><Product><ID>100011</ID><Name>ds</Name><Price>650</Price><catagory>suit</catagory><inStock>1493</inStock></Product><Product><ID>100010</ID><Name>tova</Name><Price>10</Price><catagory>suit</catagory><inStock>94</inStock></Product><Product><ID>100015</ID><Name>cotton shirt-long </Name><Price>150</Price><catagory>shirt</catagory><inStock>146</inStock></Product><Product><ID>100013</ID><Name>man suit- blue</Name><Price>1000</Price><catagory>suit</catagory><inStock>6</inStock></Product></Products>
+<?xml version="1.0" encoding="utf-8"?>
+<Products xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Product>
+    <ID>10000</ID>
+    <Name>noab</Name>
+    <Price>100</Price>
+    <catagory>shirt</catagory>
+    <inStock>47</inStock>
+  </Product>
+  <Product>
+    <ID>10001</ID>
+    <Name>moa</Name>
+    <Price>1</Price>
+    <catagory>pants</catagory>
+    <inStock>0</inStock>
+  </Product>
+  <Product>
+    <ID>10000</ID>
+    <Name>re</Name>
+    <Price>8888</Price>
+    <catagory>pants</catagory>
+    <inStock>10</inStock>
+  </Product>
+  <Product>
+    <ID>100012</ID>
+    <Name>color tie</Name>
+    <Price>80</Price>
+    <catagory>tie</catagory>
+    <inStock>27</inStock>
+  </Product>
+  <Product>
+    <ID>100014</ID>
+    <Name>boys suit-black</Name>
+    <Price>600</Price>
+    <catagory>suit</catagory>
+    <inStock>15</inStock>
+  </Product>
+  <Product>
+    <ID>100011</ID>
+    <Name>ds</Name>
+    <Price>650</Price>
+    <catagory>suit</catagory>
+    <inStock>1493</inStock>
+  </Product>
+  <Product>
+    <ID>100010</ID>
+    <Name>tova</Name>
+    <Price>10</Price>
+    <catagory>suit</catagory>
+    <inStock>94</inStock>
+  </Product>
+  <Product>
+    <ID>100013</ID>
+    <Name>man suit- blue</Name>
+    <Price>1000</Price>
+    <catagory>suit</catagory>
+    <inStock>6</inStock>
+  </Product>
+  <Product>
+    <ID>100015</ID>
+    <Name>cotton shirt-long </Name>
+    <Price>150</Price>
+    <catagory>shirt</catagory>
+    <inStock>145</inStock>
+  </Product>
+</Products>

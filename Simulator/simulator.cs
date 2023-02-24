@@ -11,6 +11,7 @@ namespace Simulator
         static Random random = new Random();
         public static event EventHandler StopSimulator;
         public static event EventHandler ProgressChange;
+        public static bool x = false;
         public static void DoStop()
         {
             bContinue = false;
@@ -19,6 +20,10 @@ namespace Simulator
         public static void run()
         {
             Thread thread = new Thread(new ThreadStart(ChooseOrder));
+            bContinue = true;
+            //if (x) {
+            //    thread = new Thread(new ThreadStart(ChooseOrder));
+            //    }
             thread.Start();
             return;
 
@@ -29,6 +34,7 @@ namespace Simulator
             while (bContinue)
             {
                 int? OrderId = bl?.Order.SelectingOrderForTreatment();
+                x = true;
                 if (OrderId == null) DoStop(); //bContinue = false;
                 else
                 {

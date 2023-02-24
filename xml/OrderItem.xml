@@ -266,4 +266,11 @@
     <Price>1000</Price>
     <Amount>1</Amount>
   </OrderItem>
+  <OrderItem>
+    <ID>100038</ID>
+    <ProductID>100015</ProductID>
+    <OrderID>100022</OrderID>
+    <Price>150</Price>
+    <Amount>1</Amount>
+  </OrderItem>
 </OrderItems>
