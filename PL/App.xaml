@@ -21,7 +21,7 @@
         </Style>
         <Style TargetType="ListView" x:Key="ListView_style">
             <Setter Property="Background" Value="white"/>
-            <Setter Property="Foreground" Value="Coral"/>
+            <Setter Property="Foreground" Value="Black"/>
             <Setter Property="BorderThickness" Value="0"/>
             <!--<Setter Property="ItemContainerStyle" Value/>-->
             <Setter Property="BorderThickness" Value="2.5"/>
