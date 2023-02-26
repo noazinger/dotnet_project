@@ -36,7 +36,7 @@
             <Label Content="id" Grid.Row="3" Grid.Column="1" Margin="132,65,68,0"/>
         </Grid>
         <StatusBar Name="statusBar" Grid.Column="0" Grid.Row="5" VerticalAlignment="Bottom" Background="LightBlue">
-            <StatusBarItem Height="80">
+            <StatusBarItem Height="80" Background="SeaGreen">
                 <TextBlock Width="72" FontSize="20">Status:</TextBlock>
             </StatusBarItem>
         </StatusBar>

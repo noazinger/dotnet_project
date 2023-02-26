@@ -18,6 +18,7 @@ namespace Simulator
         }
         public static void run()
         {
+            bContinue = true;
             Thread thread = new Thread(new ThreadStart(ChooseOrder));
             thread.Start();
             return;
