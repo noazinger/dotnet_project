@@ -15,8 +15,8 @@
         </Grid.ColumnDefinitions>
 
 
-        <ListView Grid.Column="0" x:Name="OrdersListview" MouseDoubleClick="ordersClicked" FontSize="16" Cursor="Hand" SelectionChanged="OrdersListview_SelectionChanged" Grid.ColumnSpan="4">
-            <ListView.View>
+        <ListView Grid.Column="0" x:Name="OrdersListview" MouseDoubleClick="ordersClicked" FontSize="16" Cursor="Hand" SelectionChanged="OrdersListview_SelectionChanged" Grid.ColumnSpan="4" Style="{StaticResource ListView_style}">
+            <ListView.View >
                 <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
                     <GridViewColumn DisplayMemberBinding="{Binding Path=ID}" Header="ID" HeaderContainerStyle="{StaticResource grid_view_st}"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=CustomerName}" Header="customerName" HeaderContainerStyle="{StaticResource grid_view_st}"/>
@@ -27,7 +27,7 @@
             </ListView.View>
         </ListView>
 
-        <ListView Grid.Column="2" x:Name="ProductsListview" MouseDoubleClick="itemsClicked"  FontSize="16" Cursor="Hand" ItemsSource="{Binding}" SelectionChanged="ProductsListview_SelectionChanged" Grid.ColumnSpan="2">
+        <ListView Grid.Column="2" x:Name="ProductsListview" Style="{StaticResource ListView_style}" MouseDoubleClick="itemsClicked"  FontSize="16" Cursor="Hand" ItemsSource="{Binding}" SelectionChanged="ProductsListview_SelectionChanged" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView TextBlock.TextAlignment="Center" AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
                     <GridViewColumn DisplayMemberBinding="{Binding Path=ID}" Header="ID" TextBlock.TextAlignment="Center" Width="30" HeaderContainerStyle="{StaticResource grid_view_st}"></GridViewColumn>

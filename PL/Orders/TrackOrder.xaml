@@ -28,7 +28,7 @@
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
 
-            <ListView x:Name="ListViewItems" ItemsSource="{Binding packageStatus}" Margin="0,24,0,24">
+            <ListView x:Name="ListViewItems" ItemsSource="{Binding packageStatus}" Style="{StaticResource ListView_style}" Margin="0,24,0,24">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding Item1}" Header="Date"></GridViewColumn>

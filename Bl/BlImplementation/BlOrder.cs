@@ -204,7 +204,7 @@ namespace BlImplementation
             try
             {
                 List<DO.Order> orders = dalEntity.Order.Read().ToList();
-                var ordersList=(
+                var ordersList =(
                     from order in orders
                     where order.ShipDate == DateTime.MinValue || order.DeliveryDate == DateTime.MinValue
                     orderby order.OrderDate
