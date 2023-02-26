@@ -16,8 +16,8 @@
             <RowDefinition Height="60*"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        <Label Content="category:" Grid.Row="0" Grid.Column="0" FontSize="18" Height="46"></Label>
-        <ComboBox HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1" Width="385" Height="35"
+        <Label Content="category:" Grid.Row="0" Grid.Column="0" FontSize="20"  Style="{StaticResource label_style}"></Label>
+        <ComboBox HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1" Style="{StaticResource ComboBox_style}" Width="400"
                 Name="CategorySelector"
                 SelectionChanged="comboBox_selectionChange" 
                   />
@@ -37,31 +37,16 @@
             <ListView x:Name="ProductListView" MouseDoubleClick="ProductListView_MouseDoubleClick"  Grid.ColumnSpan="5" Grid.RowSpan="2" SelectionChanged="ProductListView_SelectionChanged">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=ID}" Header="ID" ></GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Header="Name" ></GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=catagory}" Header="Category" ></GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Price}" Header="Price" ></GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=ID}" Header="ID" HeaderContainerStyle="{StaticResource grid_view_st}"></GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Header="Name" HeaderContainerStyle="{StaticResource grid_view_st}"></GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=catagory}" Header="Category" HeaderContainerStyle="{StaticResource grid_view_st}"></GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Price}" Header="Price" HeaderContainerStyle="{StaticResource grid_view_st}"></GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
 
         </Grid>
-        <!--<Grid Grid.Column="1">
-            --><!-- orders --><!--
-            <ListView x:Name="OrderListView" Grid.Column="1" SelectionChanged="UpdateOrder" >
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding ID}" Header="Id"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding CustomerName}" Header="Customer Name"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding OrderStatus}" Header="Order Status"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding AmountOfItems}" Header="Amount of Items"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding TotalPrice}" Header="Total Price"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </Grid>-->
-        <!--<Button  Content="add product" HorizontalAlignment="Left" VerticalAlignment="Center" Height="22" Width="168" Click="Add_product_Click" Margin="580,0,0,0" Grid.ColumnSpan="2" Grid.Row="2"/>-->
-        <Button Content="Back" Width="100" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Background="#FFF11212" Click="back_To_Main" Margin="10,10,0,0"/>
+        <Button Content="Back" Width="100" Grid.Row="2" VerticalAlignment="Center" Click="back_To_Main" Margin="10,0,0,0" Style="{StaticResource btn_style}"/>
 
     </Grid>
 </Window>

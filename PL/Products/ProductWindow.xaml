@@ -13,39 +13,41 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
-       VerticalAlignment="Stretch" Width="auto">
 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions >
+        <Grid Name="addProduct" Margin="10,10,48,61" Grid.Column="1" Grid.ColumnSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition  Width="200"/>
             </Grid.ColumnDefinitions >
-            <Grid Name="addProduct" Margin="10,10,190,61" Grid.Column="1" Grid.ColumnSpan="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition Height="Auto"/>
 
-                </Grid.RowDefinitions>
-
-                <Label Content="product name:"  FontSize="18" Grid.Row="0"></Label>
-                <TextBox TextWrapping="Wrap"  Name="name"  Grid.Row="0" Margin="121,0,-138,103"/>
-                <Label Content="product price:"  FontSize="18" Grid.Row="1"></Label>
-                <TextBox TextWrapping="Wrap" x:Name="price" Margin="121,135,-138,102" Grid.RowSpan="2"/>
-                <Label Content="product amount:"  FontSize="18" Grid.Row="2"></Label>
-                <TextBox TextWrapping="Wrap" Name="amount"  Grid.Row="2" Margin="150,5,-138,0" Height="37" VerticalAlignment="Top" />
-                <Label Content="product &#xD;&#xA;catagory:"  FontSize="18" Grid.Row="3" Margin="0,0,-138,73"></Label>
-                <ComboBox   Name="CategorySelector"  Grid.Row="3" HorizontalAlignment="Left" Width="90" Margin="100,10,0,93"/>
-                <Button Name="func_butt" Content="UpDate" HorizontalAlignment="Center" Grid.Row="3"  VerticalAlignment="Top" Click="Button_Click_1" Height="60" Width="180" Margin="0,67,0,0" FontWeight="Bold" Background="#FF67D850" />
-                <Button Name="delete_btn" Content="Delete" HorizontalAlignment="Left" Grid.Row="3" Click="delete_btn_Click" Width="117" Margin="-157,75,0,4" FontWeight="Bold" Background="#FF67D850" RenderTransformOrigin="0.503,0.102" />
-                <Button Content="Back" Width="121" HorizontalAlignment="Left" Margin="-184,100,0,0" VerticalAlignment="Top" Background="#FFF11212" Click="back_To_Main" Height="35"/>
-
-            </Grid>
+            <Label Content="product name:" Grid.Row="0" FontSize="18" Grid.Column="0" Style="{StaticResource label_style}"></Label>
+            <TextBox TextWrapping="Wrap"  Name="name" Grid.Column="1" Style="{StaticResource TextBox_style}"  Height="33" />
+            <Label Content="product price:"  FontSize="18" Grid.Row="1" Grid.Column="0" Style="{StaticResource label_style}"></Label>
+            <TextBox TextWrapping="Wrap"  Name="price" Grid.Row="1"  Grid.Column="1" Style="{StaticResource TextBox_style}"  Height="33" />
+            <Label Content="product amount:"  FontSize="18" Style="{StaticResource label_style}" Grid.Row="2"></Label>
+            <TextBox TextWrapping="Wrap"  Name="amount" Grid.Row="2"  Grid.Column="1" Style="{StaticResource TextBox_style}"  Height="33" />
+            <Label Content="product catagory:"  FontSize="18" Style="{StaticResource label_style}" Grid.Row="3" ></Label>
+            <ComboBox   Name="CategorySelector"  Grid.Row="3" HorizontalAlignment="Left" Grid.Column="1" Height="33" Width="200" />
+            <Button Name="func_butt" Content="UpDate" HorizontalAlignment="Center" Grid.Row="4" Grid.Column="1" Click="Button_Click_1" Style="{StaticResource btn_style}"/>
+            <Button Name="delete_btn" Content="Delete" HorizontalAlignment="Center" Grid.Row="4" Grid.Column="0" Click="delete_btn_Click"   Style="{StaticResource btn_style}"/>
 
         </Grid>
+
+        <Button Content="Back" VerticalAlignment="Top" Grid.Row="0" Click="back_To_Main" Style="{StaticResource btn_style}"/>
 
 
 

@@ -204,12 +204,13 @@ namespace BlImplementation
             try
             {
                 List<DO.Order> orders = dalEntity.Order.Read().ToList();
-                var ordersList =
+                var ordersList=(
                     from order in orders
                     where order.ShipDate == DateTime.MinValue || order.DeliveryDate == DateTime.MinValue
                     orderby order.OrderDate
-                    select order;
-                return ordersList?.First().ID;
+                    select order).ToList();
+                if (ordersList.Count==0) return null;
+                else return ordersList?.First().ID;
             }
             catch (DataIsEmpty exc)
             {
