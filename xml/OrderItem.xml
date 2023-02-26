@@ -301,4 +301,11 @@
     <Price>1000</Price>
     <Amount>1</Amount>
   </OrderItem>
+  <OrderItem>
+    <ID>100043</ID>
+    <ProductID>10000</ProductID>
+    <OrderID>100027</OrderID>
+    <Price>100</Price>
+    <Amount>7</Amount>
+  </OrderItem>
 </OrderItems>

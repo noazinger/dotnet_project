@@ -29,13 +29,13 @@
         <Grid Grid.Column="4" Grid.Row="1">
             <Border BorderBrush="#FF9E4E4E"  Margin="-28,-17,0,0"/>
             <Button Content="Track" HorizontalAlignment="Left" Click="Track_b" Style="{StaticResource btn_style}"  />
-            <TextBox   HorizontalAlignment="Left" TextWrapping="Wrap" Text="Order number" VerticalAlignment="Top" Width="120" Name="number"/>
+            <TextBox Text="Order number" VerticalAlignment="Top" Width="130" Name="number" Style="{StaticResource TextBox_style}"/>
         </Grid>
         <Grid Grid.Column="1" Grid.Row="2">
             <Button Content="New Order"  HorizontalAlignment="Left"  VerticalAlignment="Top" Click="newOrder_b" Style="{StaticResource btn_style}" Margin="0,24,0,0"/>
         </Grid>
         <Button Content="Admin" HorizontalAlignment="Center" VerticalAlignment="Top" Height="64" Width="168" Click="admin_b" Margin="0,180,0,0" Style="{StaticResource btn_style}" />
         <Button Content="New Order" HorizontalAlignment="Left"  Margin="130,337,0,0" VerticalAlignment="Top" Click="newOrder_b" Width="117" Height="36" Style="{StaticResource btn_style}"/>
-        <Button Content="admia" Click="Simulator_Click" Style="{StaticResource btn_style}" Margin="133,54,24,25" Grid.ColumnSpan="2" />
+        <Button Content="admia" Click="Simulator_Click" Style="{StaticResource btn_style}" Grid.RowSpan="3" Grid.Column="1" />
     </Grid>
 </Window>

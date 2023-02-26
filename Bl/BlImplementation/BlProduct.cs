@@ -64,8 +64,8 @@ namespace BlImplementation
             try
             {
                 IEnumerable<DO.Product> lst = dalEntity.Product.Read(p => p.catagory == (DO.catagory)category);
-                List<BO.ProductItem> productCatagory = (from pc in lst
-                                      select new BO.ProductItem
+                List<BO.ProductItem> productCatagory = (from pc in lst where category== (BO.catagory)pc.catagory
+                                                        select new BO.ProductItem
                                       {
                                           ID = pc.ID,
                                           Name = pc.Name,
