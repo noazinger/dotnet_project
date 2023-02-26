@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 
 
@@ -26,7 +27,7 @@ using System.Xml.Linq;
 //    InitializeComponent();
 //    //cl=collectionList;
 //    cart = c;
-  
+
 //    cl = cart.Items == null ? new() : new(cart.Items);
 //    bl = blP;
 //    this.DataContext = cart;
@@ -54,7 +55,7 @@ namespace PL.Carts
 /*            this.DataContext = cart.items;
 */            cl = cart.items == null ? new() : new(cart.items);
 /*            TotalP.Add(cart.TotalPrice);
-*/           total_price.IsReadOnly = true;
+*/          total_price.IsReadOnly = true;
             mainGrid.DataContext = thisCart;
             OrderItemView.DataContext = cl;
         }
@@ -78,13 +79,14 @@ namespace PL.Carts
         {
             BO.OrderItem orderToUpdate = (BO.OrderItem)((Button)sender).DataContext;
             thisCart= bl.Cart.Update(thisCart, orderToUpdate.ProductID, orderToUpdate.Amount+1);
-            TotalP.Clear();
-            TotalP.Add(thisCart.TotalPrice);
+          
             cl.Clear();
+            
             foreach (var item in thisCart?.items)
             {
                 cl.Add(item);
             }
+            total_price.Text = thisCart.TotalPrice.ToString();
         }
         private void Decrease(object sender, RoutedEventArgs e)
         {
@@ -96,12 +98,14 @@ namespace PL.Carts
             {
                 cl.Add(item);
             }
+            total_price.Text = thisCart.TotalPrice.ToString();
+
         }
         private void Remove(object sender, RoutedEventArgs e)
         {
             BO.OrderItem orderToUpdate = (BO.OrderItem)((Button)sender).DataContext;
             thisCart = bl.Cart.Update(thisCart, orderToUpdate.ProductID, 0);
-
+            total_price.Text = thisCart.TotalPrice.ToString();
             cl.Clear();
 
             foreach (var item in thisCart.items)
