@@ -22,10 +22,10 @@
                 <RowDefinition Height="117*"/>
                 <RowDefinition Height="41*"/>
             </Grid.RowDefinitions>
-            <Label Content="Old status" Grid.Row="1" Grid.Column="1" Margin="131,17,120,34" Style="{StaticResource label_style}"></Label>
-            <Label x:Name="oldStatus" Content="{Binding Item1}" Grid.Column="2" Grid.Row="1" Margin="10,22,228,57" Style="{StaticResource label_style}"/>
+            <Label Content="Old status" Grid.Row="1" Grid.Column="1"  Style="{StaticResource label_style}"  VerticalAlignment="Top" HorizontalAlignment="Center"></Label>
+            <Label x:Name="oldStatus" Content="{Binding Item1}" Grid.Row="1" Style="{StaticResource label_style}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="160" Height="23" Grid.ColumnSpan="2" Grid.Column="2"/>
             <Label Content="Begin of treatment" Grid.Row="1" Grid.Column="1" Margin="127,63,16,68" Grid.RowSpan="2" Style="{StaticResource label_style}"></Label>
-            <Label x:Name="BeginOfTreatment" Content="{Binding Item3}" Grid.Row="1" Grid.Column="2" Margin="31,54,207,10" Style="{StaticResource label_style}"/>
+            <Label x:Name="BeginOfTreatment" Content="{Binding Item3}" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" Grid.ColumnSpan="2" Style="{StaticResource label_style}"/>
             <Label Content="New Status" Grid.Row="2" Grid.Column="1" Margin="131,8,12,0" Height="33" VerticalAlignment="Top" Style="{StaticResource label_style}"/>
             <Label x:Name="NewStatus" Content="{Binding Item2}" Grid.Column="2" Grid.Row="2" Margin="16,4,133,30" Style="{StaticResource label_style}"/>
             <Label Content="End Of Treatment" Grid.Row="3" Margin="132,2,54,70" Grid.Column="1" Style="{StaticResource label_style}"/>

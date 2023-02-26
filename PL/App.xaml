@@ -33,11 +33,12 @@
             <Setter Property="BorderBrush" Value="Black"/>
             <Setter Property="FontFamily" Value="Comic Sans MS"/>
             <Setter Property="FontSize" Value="15"/>
+            
         </Style>
         
         <Style TargetType="Label" x:Key="label_style">
             <Setter Property="FontSize" Value="12"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FontFamily" Value="Comic Sans MS"/>
@@ -48,6 +49,9 @@
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+
         </Style>
         
         <Style TargetType="ComboBox" x:Key="ComboBox_style">
