@@ -42,8 +42,8 @@
     <CustomerAddress>e</CustomerAddress>
     <CustomerEmail>e@g</CustomerEmail>
     <OrderDate>22/02/2023 20:33:25</OrderDate>
-    <ShipDate>0001-01-01T00:00:00</ShipDate>
-    <DeliveryDate>0001-01-01T00:00:00</DeliveryDate>
+    <ShipDate>26/02/2023 12:05:15</ShipDate>
+    <DeliveryDate>26/02/2023 12:05:23</DeliveryDate>
   </order>
   <order>
     <ID>100015</ID>
@@ -69,8 +69,8 @@
     <CustomerAddress>r</CustomerAddress>
     <CustomerEmail>r@g</CustomerEmail>
     <OrderDate>22/02/2023 20:35:25</OrderDate>
-    <ShipDate>0001-01-01T00:00:00</ShipDate>
-    <DeliveryDate>0001-01-01T00:00:00</DeliveryDate>
+    <ShipDate>26/02/2023 12:03:59</ShipDate>
+    <DeliveryDate>01/01/0001 00:00:00</DeliveryDate>
   </order>
   <order>
     <ID>100018</ID>

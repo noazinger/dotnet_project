@@ -120,9 +120,8 @@ namespace BlImplementation
                 else
                 {
                     item.Amount = amount;
-                    cart.TotalPrice -= item.TotalPrice;
                     item.TotalPrice = item.Price * amount;
-                    cart.TotalPrice += item.Price * amount;
+                    cart.TotalPrice -= item.Price * amount;
                     return cart;
 
                 }
