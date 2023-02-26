@@ -14,7 +14,7 @@
         <ComboBox Grid.Row="0" Name="CategorySelector" Style="{StaticResource ComboBox_style}"
                 SelectionChanged="comboBox_selectionChange" Grid.ColumnSpan="2" Margin="658,50,10,519" 
                   />
-        <ListView x:Name="ProductListView" d:ItemsSource="{d:SampleData ItemCount=5}" Style="{StaticResource ListView_style}" Margin="10,49,91,84" MouseDoubleClick="OrderListView_MouseDoubleClick" SelectionChanged="OrderListView_SelectionChanged">
+        <ListView x:Name="ProductListView" d:ItemsSource="{d:SampleData ItemCount=5}" Style="{StaticResource ListView_style}" Margin="10,49,120,84" MouseDoubleClick="OrderListView_MouseDoubleClick" SelectionChanged="OrderListView_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn x:Name="gvcID" DisplayMemberBinding="{Binding Path=ID}" Header="ID" Width="70" HeaderContainerStyle="{StaticResource grid_view_st}"/>
@@ -29,6 +29,6 @@
         </ListView>
         <Button Content="Back" Grid.Row="2" VerticalAlignment="Top"  Click="back_To_Main" Margin="10,10,0,0" Style="{StaticResource btn_style}"/>
 
-        <Button Margin="251,574,303,10" Click="showCart_btn" Style="{StaticResource btn_style}">🛒</Button>
+        <Button Click="showCart_btn" Style="{StaticResource btn_style}" HorizontalAlignment="Center" VerticalAlignment="Top"  RenderTransformOrigin="0.552,-0.406" Margin="0,570,0,0" >🛒</Button>
     </Grid>
 </Window>

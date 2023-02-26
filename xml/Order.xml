@@ -122,8 +122,8 @@
     <CustomerName>tovi</CustomerName>
     <CustomerAddress>rere</CustomerAddress>
     <CustomerEmail>t@y</CustomerEmail>
-    <OrderDate>2023-02-26T12:03:05.6887326+02:00</OrderDate>
-    <ShipDate>0001-01-01T00:00:00</ShipDate>
-    <DeliveryDate>0001-01-01T00:00:00</DeliveryDate>
+    <OrderDate>26/02/2023 12:03:05</OrderDate>
+    <ShipDate>26/02/2023 12:48:05</ShipDate>
+    <DeliveryDate>01/01/0001 00:00:00</DeliveryDate>
   </order>
 </Orders>
