@@ -122,6 +122,8 @@ namespace PL
         
         public void StopPr(object sender, EventArgs e)
         {
+            MessageBox.Show("successfully finish updating all orders");
+
             simulator.ProgressChange -= newOrderProsses;
             simulator.StopSimulator -= StopPr;
             /*if (worker.WorkerSupportsCancellation == true)
@@ -130,7 +132,7 @@ namespace PL
             {
                 Dispatcher.BeginInvoke(StopPr, sender, e);
             }
-            MessageBox.Show("successfully finish updating all orders");
+            //MessageBox.Show("successfully finish updating all orders");
             this.Close();
         }
 
