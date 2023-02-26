@@ -8,8 +8,8 @@
         Title="TrakOrder" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50*"/>
-            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="60*"/>
             <ColumnDefinition Width="50*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -19,8 +19,8 @@
         </Grid.RowDefinitions>
         <Grid Grid.Column="0" Grid.Row="1">
             <Border BorderBrush="#FF9E4E4E"  Margin="-27,-17,-1,0"/>
-            <Button Content="Order details" Click="Order_d" Margin="83,53,0,62" Style="{StaticResource btn_style}" RenderTransformOrigin="1.185,0.645"/>
-            <Label  Content="{Binding OrderStatus}" HorizontalAlignment="Left"  VerticalAlignment="Top"  Width="120" Name="Order_status" Margin="133,29,0,0"/>
+            <Button Content="Order details" Click="Order_d" Style="{StaticResource btn_style}" RenderTransformOrigin="1.185,0.645" HorizontalAlignment="Center"/>
+            <Label  Content="{Binding OrderStatus}" HorizontalAlignment="Center" VerticalAlignment="Top"  Width="120" Name="Order_status" Style="{StaticResource label_style}"/>
         </Grid>
         <Grid Grid.Column="1" Grid.Row="1">
             <Grid.RowDefinitions>
@@ -28,7 +28,7 @@
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
 
-            <ListView x:Name="ListViewItems" ItemsSource="{Binding packageStatus}" Style="{StaticResource ListView_style}" Margin="0,24,0,24">
+            <ListView x:Name="ListViewItems" ItemsSource="{Binding packageStatus}" Style="{StaticResource ListView_style}" Width="320" Height="100">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding Item1}" Header="Date" HeaderContainerStyle="{StaticResource grid_view_st}"></GridViewColumn>

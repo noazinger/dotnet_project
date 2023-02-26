@@ -69,17 +69,27 @@ namespace PL.Orders
 
         private void btn_update_shipping(object sender, RoutedEventArgs e)
         {
-            BO.Order orderToUpdate=bl.Order.UpdateShipping(id);
-            txtOrderStatus.Text = orderToUpdate.Status.ToString();
-            txtOrderShipDate.Text = orderToUpdate.ShipDate.ToString();
-            txtOrderDeliveryDate.Text = orderToUpdate.DeliveryDate.ToString();
+            try
+            {
+                BO.Order orderToUpdate = bl.Order.UpdateShipping(id);
+                txtOrderStatus.Text = orderToUpdate.Status.ToString();
+                txtOrderShipDate.Text = orderToUpdate.ShipDate.ToString();
+                txtOrderDeliveryDate.Text = orderToUpdate.DeliveryDate.ToString();
+            }
+            catch (Exception exc) {
+                MessageBox.Show(exc.Message);
+            }     
         }
         private void btn_update_delivery(object sender, RoutedEventArgs e)
         {
-            BO.Order orderToUpdate = bl.Order.UpdateDelivery(id);
-            txtOrderStatus.Text = orderToUpdate.Status.ToString();
-            txtOrderShipDate.Text = orderToUpdate.ShipDate.ToString();
-            txtOrderDeliveryDate.Text = orderToUpdate.DeliveryDate.ToString();
+            try
+            {
+                BO.Order orderToUpdate = bl.Order.UpdateDelivery(id);
+                txtOrderStatus.Text = orderToUpdate.Status.ToString();
+                txtOrderShipDate.Text = orderToUpdate.ShipDate.ToString();
+                txtOrderDeliveryDate.Text = orderToUpdate.DeliveryDate.ToString();
+            }
+            catch (Exception exc) { MessageBox.Show(exc.Message); }
         }
     }
 }

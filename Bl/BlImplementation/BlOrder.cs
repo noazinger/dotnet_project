@@ -136,6 +136,7 @@ namespace BlImplementation
             try
             {
                 DO.Order orderDo = dalEntity.Order.ReadSingle(orderNumber);
+                if (orderDo.ShipDate != DateTime.MinValue) throw new BO.NotValidException("you cant update");
                 orderDo.ShipDate = DateTime.Now;
                 dalEntity.Order.Update(orderDo);
                 BO.Order orderBo = new BO.Order();
@@ -173,6 +174,7 @@ namespace BlImplementation
             try
             {
                 DO.Order orderDo = dalEntity.Order.ReadSingle(orderNumber);
+                if (orderDo.DeliveryDate != DateTime.MinValue) throw new BO.NotValidException("you cant update");
                 orderDo.DeliveryDate = DateTime.Now;
                 dalEntity.Order.Update(orderDo);
                 BO.Order orderBo = new BO.Order();
