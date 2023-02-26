@@ -43,10 +43,8 @@ public struct DataSource
             product.inStock = readionly.Next(0, 200);//לאתחל 5 אחוז מהמוצרים ב-0\
             Config.ProductIndex++;
             productsData.Add(product);
-
         };
     }
-
     public static void createOrderData()
     {
         string[] CustomerName = { "Noa", "Tovi", "Gitty" };
@@ -91,7 +89,6 @@ public struct DataSource
             orderItem.Amount = 1;
             orderItem.Price = orderItem.Amount * productsData[productIndex].Price;
             orderItemsData.Add(orderItem);
-
         };
     }
 
@@ -102,10 +99,8 @@ public struct DataSource
         static public int OrderFinalIndex = 100;
         static public int ProductIndex = 0;
         static public int ProductId = 10000;
-
         static public int OrderId = 10000;
         static public int ProductID { get { return ProductId++; } }
-
         static public int OrderID { get { return OrderId++; } }
     }
 }

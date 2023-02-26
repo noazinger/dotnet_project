@@ -14,5 +14,6 @@ namespace DalApi
         T ReadSingle(int id);
         void Delete(int id);
         
+        
     }
 }
