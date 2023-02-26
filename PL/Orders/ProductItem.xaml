@@ -11,25 +11,24 @@
             <ColumnDefinition Width="93*"/>
             <ColumnDefinition Width="7*"/>
         </Grid.ColumnDefinitions>
-        <ComboBox Grid.Row="0"
-                Name="CategorySelector"
+        <ComboBox Grid.Row="0" Name="CategorySelector" Style="{StaticResource ComboBox_style}"
                 SelectionChanged="comboBox_selectionChange" Grid.ColumnSpan="2" Margin="658,50,10,519" 
                   />
         <ListView x:Name="ProductListView" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,49,91,84" MouseDoubleClick="OrderListView_MouseDoubleClick" SelectionChanged="OrderListView_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn x:Name="gvcID" DisplayMemberBinding="{Binding Path=ID}" Header="ID" Width="70"/>
-                    <GridViewColumn x:Name="gvcName" DisplayMemberBinding="{Binding Path=Name}" Header="Name" Width="100"/>
-                    <GridViewColumn x:Name="gvcPrice" DisplayMemberBinding="{Binding Path=Price}" Header="Price" Width="100"/>
-                    <GridViewColumn x:Name="gvcCatagory" DisplayMemberBinding="{Binding Path=catagory}" Header="catagory" Width="100"/>
-                    <GridViewColumn x:Name="gvcAmount" DisplayMemberBinding="{Binding Path=Amount}" Header="Amount" Width="100"/>
-                    <GridViewColumn x:Name="gvcInStock" DisplayMemberBinding="{Binding Path=InStock}" Header="InStock" Width="150"/>
+                    <GridViewColumn x:Name="gvcID" DisplayMemberBinding="{Binding Path=ID}" Header="ID" Width="70" HeaderContainerStyle="{StaticResource grid_view_st}"/>
+                    <GridViewColumn x:Name="gvcName" DisplayMemberBinding="{Binding Path=Name}" Header="Name" Width="100" HeaderContainerStyle="{StaticResource grid_view_st}"/>
+                    <GridViewColumn x:Name="gvcPrice" DisplayMemberBinding="{Binding Path=Price}" Header="Price" Width="100" HeaderContainerStyle="{StaticResource grid_view_st}"/>
+                    <GridViewColumn x:Name="gvcCatagory" DisplayMemberBinding="{Binding Path=catagory}" Header="catagory" Width="100" HeaderContainerStyle="{StaticResource grid_view_st}"/>
+                    <GridViewColumn x:Name="gvcAmount" DisplayMemberBinding="{Binding Path=Amount}" Header="Amount" Width="100" HeaderContainerStyle="{StaticResource grid_view_st}"/>
+                    <GridViewColumn x:Name="gvcInStock" DisplayMemberBinding="{Binding Path=InStock}" Header="InStock" Width="150" HeaderContainerStyle="{StaticResource grid_view_st}"/>
 
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Back" Width="100" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Background="#FFF11212" Click="back_To_Main" Margin="10,10,0,0"/>
+        <Button Content="Back" Grid.Row="2" VerticalAlignment="Top"  Click="back_To_Main" Margin="10,10,0,0" Style="{StaticResource btn_style}"/>
 
-        <Button Margin="251,574,303,10" Click="showCart_btn">cart</Button>
+        <Button Margin="251,574,303,10" Click="showCart_btn" Style="{StaticResource btn_style}">🛒</Button>
     </Grid>
 </Window>

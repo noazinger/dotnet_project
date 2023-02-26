@@ -18,8 +18,8 @@
             <RowDefinition Height="20*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Column="0" Grid.Row="1">
-            <Border BorderBrush="#FF9E4E4E"  Margin="-28,-17,0,0"/>
-            <Button Content="Order details" HorizontalAlignment="Center" Click="Order_d" Width="257" Margin="0,55,0,28" />
+            <Border BorderBrush="#FF9E4E4E"  Margin="-27,-17,-1,0"/>
+            <Button Content="Order details" Click="Order_d" Margin="83,53,0,62" Style="{StaticResource btn_style}" RenderTransformOrigin="1.185,0.645"/>
             <Label  Content="{Binding OrderStatus}" HorizontalAlignment="Left"  VerticalAlignment="Top"  Width="120" Name="Order_status" Margin="133,29,0,0"/>
         </Grid>
         <Grid Grid.Column="1" Grid.Row="1">
