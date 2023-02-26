@@ -15,6 +15,7 @@ using System.Xml.Serialization;
 using System.Xml.Linq;
 using DO;
 using System.Collections.ObjectModel;
+using DalApi;
 
 namespace PL.Orders
 {
@@ -23,7 +24,7 @@ namespace PL.Orders
     /// </summary>
     public partial class OrderWindow : Window
     {
-        BlApi.IBl? bl = Factory.Get();
+        BlApi.IBl? bl = BlApi.Factory.Get();
         bool IsCustomer;
         int id;
         public ObservableCollection<BO.OrderItem> orderObs { get; set; }
@@ -68,11 +69,17 @@ namespace PL.Orders
 
         private void btn_update_shipping(object sender, RoutedEventArgs e)
         {
-            bl.Order.UpdateShipping(id);
+            BO.Order orderToUpdate=bl.Order.UpdateShipping(id);
+            txtOrderStatus.Text = orderToUpdate.Status.ToString();
+            txtOrderShipDate.Text = orderToUpdate.ShipDate.ToString();
+            txtOrderDeliveryDate.Text = orderToUpdate.DeliveryDate.ToString();
         }
         private void btn_update_delivery(object sender, RoutedEventArgs e)
         {
-            bl.Order.UpdateDelivery(id);
+            BO.Order orderToUpdate = bl.Order.UpdateDelivery(id);
+            txtOrderStatus.Text = orderToUpdate.Status.ToString();
+            txtOrderShipDate.Text = orderToUpdate.ShipDate.ToString();
+            txtOrderDeliveryDate.Text = orderToUpdate.DeliveryDate.ToString();
         }
     }
 }

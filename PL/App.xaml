@@ -30,11 +30,11 @@
             <Setter Property="VerticalContentAlignment" Value="Top"/>
         </Style>
 
-            <Setter Property="FontWeight" Value="Bold"/>
+            <!--<Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FontFamily" Value="Comic Sans MS"/>
             <Setter Property="FontSize" Value="15"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
-        </Style>
+        </Style>-->
         <Style TargetType="Label" x:Key="label_style">
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
