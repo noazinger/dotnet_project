@@ -18,11 +18,11 @@
         <ListView Grid.Column="0" x:Name="OrdersListview" MouseDoubleClick="ordersClicked" FontSize="16" Cursor="Hand" SelectionChanged="OrdersListview_SelectionChanged" Grid.ColumnSpan="4" Style="{StaticResource ListView_style}">
             <ListView.View >
                 <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=ID}" Header="ID" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=CustomerName}" Header="customerName" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Status}" Header="Status" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=AmountOfItems}" Header="Amount Of Items" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=TotalPrice}" Header="Total Price" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=ID}" Header="ID" HeaderContainerStyle="{StaticResource grid_view_st}"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=CustomerName}" Header="customerName" HeaderContainerStyle="{StaticResource grid_view_st}"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Status}" Header="Status" HeaderContainerStyle="{StaticResource grid_view_st}"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=AmountOfItems}" Header="Amount Of Items" HeaderContainerStyle="{StaticResource grid_view_st}"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=TotalPrice}" Header="Total Price" HeaderContainerStyle="{StaticResource grid_view_st}"/>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -30,15 +30,15 @@
         <ListView Grid.Column="2" x:Name="ProductsListview" Style="{StaticResource ListView_style}" MouseDoubleClick="itemsClicked"  FontSize="16" Cursor="Hand" ItemsSource="{Binding}" SelectionChanged="ProductsListview_SelectionChanged" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView TextBlock.TextAlignment="Center" AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=ID}" Header="ID" TextBlock.TextAlignment="Center" Width="30"></GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Header="Name" Width="80"></GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=catagory}" Header="Category" ></GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Price}" Header="Price" ></GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=ID}" Header="ID" TextBlock.TextAlignment="Center" Width="30" HeaderContainerStyle="{StaticResource grid_view_st}"></GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Header="Name" Width="80" HeaderContainerStyle="{StaticResource grid_view_st}"></GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=catagory}" Header="Category" HeaderContainerStyle="{StaticResource grid_view_st}"></GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Price}" Header="Price" HeaderContainerStyle="{StaticResource grid_view_st}"></GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="addProBtn" Content="Add new product" Margin="6,573,101,0" VerticalAlignment="Top" Click="addProBtn_Click" FontSize="16" Background="Red" Height="33" Grid.Column="2" Grid.ColumnSpan="2"/>
-        <Button Grid.Column="3" Background="LightCoral" Content="Back" HorizontalAlignment="Left" Margin="78,573,0,0" VerticalAlignment="Top" Height="35" Width="72" Click="btn_Back"/>
+        <Button x:Name="addProBtn" Content="Add new product" Margin="6,571,0,0" VerticalAlignment="Top" Click="addProBtn_Click" Width="150" Grid.Column="2" Style="{StaticResource btn_style}"/>
+        <Button Grid.Column="3" Content="Back" Margin="44,571,0,0" VerticalAlignment="Top" Click="btn_Back" Style="{StaticResource btn_style}"/>
 
     </Grid>
 

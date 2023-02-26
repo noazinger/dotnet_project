@@ -130,6 +130,7 @@ namespace PL
             {
                 Dispatcher.BeginInvoke(StopPr, sender, e);
             }
+            //MessageBox.Show("successfully finish updating all orders");
             this.Close();
         }
 
