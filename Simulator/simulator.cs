@@ -15,16 +15,16 @@ namespace Simulator
         public static void DoStop()
         {
             bContinue = false;
+         
             StopSimulator("", EventArgs.Empty);
+
         }
         public static void run()
         {
             bContinue = true;
             Thread thread = new Thread(new ThreadStart(ChooseOrder));
             bContinue = true;
-            //if (x) {
-            //    thread = new Thread(new ThreadStart(ChooseOrder));
-            //    }
+    
             thread.Start();
             return;
 
