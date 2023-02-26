@@ -36,7 +36,7 @@ namespace Simulator
             {
                 int? OrderId = bl?.Order.SelectingOrderForTreatment();
                 x = true;
-                if (OrderId == null) DoStop(); //bContinue = false;
+                if (OrderId == null) DoStop(); 
                 else
                 {
                     BO.Order? order = bl?.Order.ReadOrderInformation((int)OrderId);

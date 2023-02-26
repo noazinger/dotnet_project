@@ -97,7 +97,7 @@
     <CustomerEmail>b@b</CustomerEmail>
     <OrderDate>22/02/2023 21:03:20</OrderDate>
     <ShipDate>26/02/2023 09:50:47</ShipDate>
-    <DeliveryDate>26/02/2023 09:50:50</DeliveryDate>
+	  <DeliveryDate>01/01/0001 00:00:00</DeliveryDate>
   </order>
   <order>
     <ID>100021</ID>
@@ -106,7 +106,7 @@
     <CustomerEmail>t@ed</CustomerEmail>
     <OrderDate>22/02/2023 21:12:14</OrderDate>
     <ShipDate>26/02/2023 10:01:08</ShipDate>
-    <DeliveryDate>26/02/2023 10:01:13</DeliveryDate>
+	  <DeliveryDate>01/01/0001 00:00:00</DeliveryDate>
   </order>
   <order>
     <ID>100022</ID>
@@ -114,7 +114,7 @@
     <CustomerAddress>mmmm</CustomerAddress>
     <CustomerEmail>n@n</CustomerEmail>
     <OrderDate>24/02/2023 10:06:13</OrderDate>
-    <ShipDate>26/02/2023 10:01:17</ShipDate>
-    <DeliveryDate>26/02/2023 10:01:23</DeliveryDate>
+    <ShipDate>01/01/0001 00:00:00</ShipDate>
+    <DeliveryDate>01/01/0001 00:00:00</DeliveryDate>
   </order>
 </Orders>
