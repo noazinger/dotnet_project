@@ -76,12 +76,10 @@ namespace PL.Orders
            
             try
             {
-                
                 object categor = CategorySelector.SelectedItem;
                 string c = categor.ToString();
-                IEnumerable<BO.ProductItem> list;
+                IEnumerable<BO.ProductItem?> list;
                 if (categor == "see all") list = bl.Product.ReadCatalog();
-
                 else
                 {
                     BO.catagory enCat = (BO.catagory)Enum.Parse(typeof(BO.catagory), c);

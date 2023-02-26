@@ -31,8 +31,8 @@
             <ListView x:Name="ListViewItems" ItemsSource="{Binding packageStatus}" Style="{StaticResource ListView_style}" Margin="0,24,0,24">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Item1}" Header="Date"></GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Item2}" Header="Status"></GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Item1}" Header="Date" HeaderContainerStyle="{StaticResource grid_view_st}"></GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Item2}" Header="Status" HeaderContainerStyle="{StaticResource grid_view_st}"></GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
